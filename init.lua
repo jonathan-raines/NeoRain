@@ -1,6 +1,7 @@
 require('plugins')
 require('treesitter')
 require('lsp.ruby-ls')
+require('nvim-compe')
 
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true
@@ -10,3 +11,5 @@ vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
 vim.cmd[[colorscheme tokyonight]]
+
+
