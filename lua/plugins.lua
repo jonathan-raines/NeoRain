@@ -37,9 +37,10 @@ return require("packer").startup(
 
 	-- LSP
 	use {"neovim/nvim-lspconfig", opt = true}
-	use {"kabouzeid/nvim-lspinstall", opt = true}
+	use "kabouzeid/nvim-lspinstall"
 
 	use {"hrsh7th/nvim-compe", opt = true}
+	use {"hrsh7th/vim-vsnip", opt = true}
 
 	use {"tpope/vim-surround", opt = true}
 	use "tpope/vim-endwise"
@@ -58,6 +59,7 @@ return require("packer").startup(
 	require_plugin("kabouzeid/nvim-lspinstall")
 	
 	require_plugin("nvim-compe")
+        require_plugin("vim-vsnip")
 
 	require_plugin("nvim-tree.lua")
 	require_plugin("nvim-web-devicons")

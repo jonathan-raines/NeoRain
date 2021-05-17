@@ -1,7 +1,12 @@
 require('plugins')
 require('treesitter')
-require('lsp.ruby-ls')
+require('lspinstall')
 require('nvim-compe')
+
+require('lsp')
+require('lsp.efm-ls')
+require('lsp.lua-ls')
+require('lsp.ruby-ls')
 
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true
