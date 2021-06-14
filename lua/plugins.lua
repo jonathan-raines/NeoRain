@@ -34,6 +34,11 @@ return require('packer').startup(function(use)
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {"windwp/nvim-ts-autotag", opt = true}
+  use {'andymass/vim-matchup', opt = true}
+  -- Treesitter Require
+  require_plugin("nvim-ts-autotag")
+  require_plugin("vim-matchup")
 
   -- LSP
   use { 'neovim/nvim-lspconfig', opt = true }

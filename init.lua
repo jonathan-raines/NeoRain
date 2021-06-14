@@ -149,5 +149,11 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 --inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 --inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
-
+-- TREESITTER
+require'nvim-treesitter.configs'.setup {
+  matchup = {
+    enable = true,              -- mandatory, false will disable the whole extension
+    -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+  },
+}
 
