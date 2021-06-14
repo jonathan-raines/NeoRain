@@ -35,7 +35,9 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'neovim/nvim-lspconfig', opt = true }
   use { 'kabouzeid/nvim-lspinstall', opt = true }
+  use { 'glepnir/lspsaga.nvim', opt = true }
 
   require_plugin("nvim-lspconfig")
   require_plugin("nvim-lspinstall")
+  require_plugin("lspsaga.nvim")
 end)
