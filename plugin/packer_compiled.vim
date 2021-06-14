@@ -72,6 +72,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["lspsaga.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
+  },
   ["nvim-lspconfig"] = {
     loaded = false,
     needs_bufread = false,

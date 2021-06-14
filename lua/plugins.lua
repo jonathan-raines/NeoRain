@@ -37,7 +37,22 @@ return require('packer').startup(function(use)
   use { 'kabouzeid/nvim-lspinstall', opt = true }
   use { 'glepnir/lspsaga.nvim', opt = true }
 
+  -- Telescope
+  use {"nvim-lua/popup.nvim", opt = true}
+  use {"nvim-lua/plenary.nvim", opt = true}
+  use {"nvim-telescope/telescope.nvim", opt = true}
+  use {"nvim-telescope/telescope-fzy-native.nvim", opt = true}
+  use {"nvim-telescope/telescope-project.nvim", opt = true}
+
+  -- LSP
   require_plugin("nvim-lspconfig")
   require_plugin("nvim-lspinstall")
   require_plugin("lspsaga.nvim")
+
+  -- Telescope
+  require_plugin("popup.nvim")
+  require_plugin("plenary.nvim")
+  require_plugin("telescope.nvim")
+  require_plugin("telescope-fzy-native.nvim")
+  require_plugin("telescope-project.nvim")
 end)
