@@ -72,10 +72,26 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["friendly-snippets"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/friendly-snippets"
+  },
   ["lspsaga.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
+  },
+  ["nvim-compe"] = {
+    after_files = { "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-compe"
+  },
+  ["nvim-dap"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-dap"
   },
   ["nvim-lspconfig"] = {
     loaded = false,
@@ -119,6 +135,11 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
+  },
+  ["vim-vsnip"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   }
 }
 
