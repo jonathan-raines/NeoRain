@@ -94,6 +94,31 @@ _G.packer_plugins = {
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/plenary.nvim"
+  },
+  ["popup.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/popup.nvim"
+  },
+  ["telescope-fzy-native.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/telescope-fzy-native.nvim"
+  },
+  ["telescope-project.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/telescope-project.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
   }
 }
 

@@ -32,10 +32,16 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- LSP
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'neovim/nvim-lspconfig', opt = true }
   use { 'kabouzeid/nvim-lspinstall', opt = true }
   use { 'glepnir/lspsaga.nvim', opt = true }
+
+  -- LSP Require
+  require_plugin("nvim-lspconfig")
+  require_plugin("nvim-lspinstall")
+  require_plugin("lspsaga.nvim")
 
   -- Telescope
   use {"nvim-lua/popup.nvim", opt = true}
@@ -44,15 +50,16 @@ return require('packer').startup(function(use)
   use {"nvim-telescope/telescope-fzy-native.nvim", opt = true}
   use {"nvim-telescope/telescope-project.nvim", opt = true}
 
-  -- LSP
-  require_plugin("nvim-lspconfig")
-  require_plugin("nvim-lspinstall")
-  require_plugin("lspsaga.nvim")
-
-  -- Telescope
+  -- Telescope Require
   require_plugin("popup.nvim")
   require_plugin("plenary.nvim")
   require_plugin("telescope.nvim")
   require_plugin("telescope-fzy-native.nvim")
   require_plugin("telescope-project.nvim")
+
+  -- Debugging
+  use {"mfussenegger/nvim-dap", opt = true}
+  
+  -- Debugging Require
+  require_plugin("nvim-dap")
 end)
