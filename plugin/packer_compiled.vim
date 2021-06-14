@@ -103,9 +103,19 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-lspinstall"
   },
+  ["nvim-tree.lua"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
+  ["nvim-ts-autotag"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-ts-autotag"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -135,6 +145,12 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
+  },
+  ["vim-matchup"] = {
+    after_files = { "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-matchup"
   },
   ["vim-vsnip"] = {
     loaded = false,

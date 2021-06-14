@@ -62,6 +62,11 @@ return require('packer').startup(function(use)
   require_plugin("telescope-fzy-native.nvim")
   require_plugin("telescope-project.nvim")
 
+  -- Nvim-Tree
+  use {"kyazdani42/nvim-tree.lua", opt = true}
+  -- Nvim-Tree Require
+  require_plugin("nvim-tree.lua")
+
   -- Debugging
   use {"mfussenegger/nvim-dap", opt = true}
   -- Debugging Require
