@@ -80,4 +80,11 @@ return require('packer').startup(function(use)
   require_plugin("nvim-compe")
   require_plugin("vim-vsnip")
   require_plugin("friendly-snippets")
+
+  -- Git
+  use {"lewis6991/gitsigns.nvim", opt = true }
+  use {"f-person/git-blame.nvim", opt = true }
+  -- Git Require
+  require_plugin("gitsigns.nvim")
+  require_plugin("git-blame.nvim")
 end)
