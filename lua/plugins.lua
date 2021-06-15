@@ -90,5 +90,8 @@ return require('packer').startup(function(use)
   require_plugin("gitsigns.nvim")
   require_plugin("git-blame.nvim")
 
-  -- C
+  -- Keybindings
+  use {"folke/which-key.nvim", opt = true}
+  -- Keybindings Require
+  require_plugin("which-key.nvim")
 end)
