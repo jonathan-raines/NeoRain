@@ -73,10 +73,8 @@ return require('packer').startup(function(use)
 
   -- Debugging
   use {"mfussenegger/nvim-dap", opt = true}
-  use {"Pocco81/DAPInstall.nvim", opt = true}
   -- Debugging Require
   require_plugin("nvim-dap")
-  require_plugin("DAPInstall.nvim")
 
   -- Autocomplete
   use {"hrsh7th/nvim-compe", opt = true}

@@ -735,4 +735,3 @@ vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
 -- TROUBLE
 require("trouble").setup{}
-
