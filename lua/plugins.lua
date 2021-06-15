@@ -36,7 +36,6 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {"windwp/nvim-ts-autotag", opt = true}
   use {'andymass/vim-matchup', opt = true}
-  -- Treesitter Require
   require_plugin("nvim-ts-autotag")
   require_plugin("vim-matchup")
 
@@ -45,7 +44,6 @@ return require('packer').startup(function(use)
   use { 'kabouzeid/nvim-lspinstall', opt = true }
   use { 'glepnir/lspsaga.nvim', opt = true }
   use {"folke/trouble.nvim", opt = true}
-  -- LSP Require
   require_plugin("nvim-lspconfig")
   require_plugin("nvim-lspinstall")
   require_plugin("lspsaga.nvim")
@@ -57,7 +55,6 @@ return require('packer').startup(function(use)
   use {"nvim-telescope/telescope.nvim", opt = true}
   use {"nvim-telescope/telescope-fzy-native.nvim", opt = true}
   use {"nvim-telescope/telescope-project.nvim", opt = true}
-  -- Telescope Require
   require_plugin("popup.nvim")
   require_plugin("plenary.nvim")
   require_plugin("telescope.nvim")
@@ -67,20 +64,17 @@ return require('packer').startup(function(use)
   -- Nvim-Tree
   use {"kyazdani42/nvim-tree.lua", opt = true}
   use {"kyazdani42/nvim-web-devicons", opt = true}
-  -- Nvim-Tree Require
   require_plugin("nvim-tree.lua")
   require_plugin("nvim-web-devicons")
 
   -- Debugging
   use {"mfussenegger/nvim-dap", opt = true}
-  -- Debugging Require
   require_plugin("nvim-dap")
 
   -- Autocomplete
   use {"hrsh7th/nvim-compe", opt = true}
   use {"hrsh7th/vim-vsnip", opt = true}
   use {"rafamadriz/friendly-snippets", opt = true}
-  -- Autocomplete Require
   require_plugin("nvim-compe")
   require_plugin("vim-vsnip")
   require_plugin("friendly-snippets")
@@ -88,15 +82,15 @@ return require('packer').startup(function(use)
   -- Git
   use {"lewis6991/gitsigns.nvim", opt = true }
   use {"f-person/git-blame.nvim", opt = true }
-  use {"kdheepak/lazygit.nvim", opt = true}
-  -- Git Require
   require_plugin("gitsigns.nvim")
   require_plugin("git-blame.nvim")
-  require_plugin("lazygit.nvim")
+
+  -- Terminal
+  use {"numtostr/FTerm.nvim", opt = true}
+  require_plugin("FTerm.nvim")
 
   -- Keybindings
   use {"folke/which-key.nvim", opt = true}
-  -- Keybindings Require
   require_plugin("which-key.nvim")
 
   -- AutoPairs
@@ -123,15 +117,12 @@ return require('packer').startup(function(use)
 
   -- Themes
   use {"navarasu/onedark.nvim", opt = true}
-  require_plugin("onedark.nvim")
   use {"folke/tokyonight.nvim", opt = true}
-  require_plugin("tokyonight.nvim")
   use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
+  require_plugin("onedark.nvim")
+  require_plugin("tokyonight.nvim")
   require_plugin("nvcode-color-schemes")
 
   use {"norcalli/nvim-colorizer.lua", opt = true}
-  use {"simrat39/symbols-outline.nvim", opt = true}
   require_plugin("nvim-colorizer.lua")
-  require_plugin("symbols-outline")
-
 end)

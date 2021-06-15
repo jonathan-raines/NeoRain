@@ -72,6 +72,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["FTerm.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/FTerm.nvim"
+  },
   ["barbar.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -96,11 +101,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
-  },
-  ["lazygit.nvim"] = {
-    loaded = false,
-    needs_bufread = true,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lazygit.nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = false,
@@ -190,11 +190,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/popup.nvim"
-  },
-  ["symbols-outline.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/symbols-outline.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = false,

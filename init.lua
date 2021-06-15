@@ -1,3 +1,45 @@
+-- Lines
+vim.wo.number = true -- set numbered lines
+vim.wo.relativenumber = true -- set relative number
+vim.wo.cursorline = true -- Enable highlighting of the current line
+vim.wo.signcolumn = "yes" -- Always show the sign column, otherwise it would shift the text each time
+-- Line Wrap
+vim.wo.wrap = false -- Line wrap
+vim.cmd('set whichwrap+=<,>,[,],h,l') -- move to next line with theses keys
+-- Misc
+vim.o.mouse = "a" -- Enable your mouse
+vim.o.termguicolors = true -- set term gui colors most terminals support this
+vim.o.fileencoding = "utf-8" -- The encoding written to file
+vim.o.updatetime = 300 -- Faster completion
+-- Settings
+vim.o.hidden = true
+vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
+vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
+vim.cmd('set inccommand=split') -- Make substitution work in realtime
+vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
+vim.o.guifont = "FiraCode Nerd Font:h17"
+vim.cmd('filetype plugin on') -- filetype detection
+-- Splits
+vim.o.splitbelow = true -- Horizontal splits will automatically be below
+vim.o.splitright = true -- Vertical splits will automatically be to the right
+-- Tabs
+vim.cmd('set expandtab') -- Converts tabs to spaces
+vim.cmd('set ts=4') -- Insert 2 spaces for a tab
+vim.cmd('set sw=4') -- Change the number of space characters inserted for indentation
+vim.bo.smartindent = true -- Makes indenting smart
+vim.o.showtabline = 2 -- Always show tabs
+-- UI
+vim.cmd('syntax on') -- syntax highlighting
+vim.o.pumheight = 10 -- Makes popup menu smaller
+vim.o.cmdheight = 2 -- More space for displaying messages
+vim.g.nvim_tree_disable_netrw = false -- enable netrw for remote gx gf support (must be set before plugin's packadd)
+vim.g.loaded_netrwPlugin = true -- needed for netrw gx command to open remote links in browser
+
+--Window
+vim.o.title = true -- Set the window's title, reflecting the filel current being worked on
+vim.o.titlestring="%<%F%=%l/%L - nvim"
+
+-- Plugins
 require('plugins')
 
 -- LSP-INSTALL
@@ -737,24 +779,54 @@ vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 require("trouble").setup{}
 
 -- NVIM COLORIZER
-require'colorizer'.setup()
-
--- SYMBOLS OUTLINE
-vim.g.symbols_outline = {
-    highlight_hovered_item = true,
-    show_guides = true,
-    auto_preview = true,
-    position = 'right',
-    keymaps = {
-        close = "<Esc>",
-        goto_location = "<Cr>",
-        focus_location = "o",
-        hover_symbol = "<C-space>",
-        rename_symbol = "r",
-        code_actions = "a",
-    },
-    lsp_blacklist = {},
-}
+require'colorizer'.setup(
+  {'*';},
+  {
+    RGB      = true;         -- #RGB hex codes
+    RRGGBB   = true;         -- #RRGGBB hex codes
+    RRGGBBAA = true;         -- #RRGGBBAA hex codes
+    rgb_fn   = true;         -- CSS rgb() and rgba() functions
+    hsl_fn   = true;         -- CSS hsl() and hsla() functions
+    css      = true;         -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+    css_fn   = true;         -- Enable all CSS *functions*: rgb_fn, hsl_fn
+  })
+	  -- names    = true;         -- "Name" codes like Blue
 
 -- TODO Comments
 require("todo-comments").setup{}
+
+-- Float Term
+require'FTerm'.setup({
+    dimensions  = {
+        height = 0.8,
+        width = 0.8,
+        x = 0.5,
+        y = 0.5
+    },
+    border = 'single' -- or 'double'
+})
+
+-- Keybinding
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Closer to the metal
+map('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>', opts)
+map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
+
+local term = require("FTerm.terminal")
+
+local lazy = term:new():setup({
+    cmd = "lazygit",
+    dimensions = {
+        height = 0.9,
+        width = 0.9
+    }
+})
+
+ -- Use this to toggle gitui in a floating terminal
+function _G.__fterm_lazygit()
+    lazy:toggle()
+end
+map('n', '<A-l>', '<CMD>lua _G.__fterm_lazygit()<CR>', opts)
+
