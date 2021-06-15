@@ -1,3 +1,9 @@
+-- Folding
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.cmd('set foldnestmax=4')
+vim.cmd('set foldlevelstart=20')
+
 -- Lines
 vim.wo.number = true -- set numbered lines
 vim.wo.relativenumber = true -- set relative number
@@ -13,6 +19,7 @@ vim.o.mouse = "a" -- Enable your mouse
 vim.o.termguicolors = true -- set term gui colors most terminals support this
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.updatetime = 300 -- Faster completion
+vim.o.timeoutlen = 100
 
 -- Settings
 vim.o.hidden = true

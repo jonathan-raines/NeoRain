@@ -1,4 +1,5 @@
 require('settings')
+require('keybinds')
 require('plugins')
 require('nr-autopairs')
 require('nr-barbar')
