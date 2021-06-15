@@ -110,16 +110,16 @@ return require('packer').startup(function(use)
   -- Comments
   use {"terrortylor/nvim-comment", opt = true}
   use {"JoosepAlviste/nvim-ts-context-commentstring", opt = true}
+  use {"folke/todo-comments.nvim", opt = true}
   require_plugin("nvim-comment")
   require_plugin("nvim-ts-context-commentstring")
+  require_plugin("todo-comments.nvim")
 
   -- Barbar / Galaxy Line
   use {"glepnir/galaxyline.nvim", opt = true}
-  require_plugin("galaxyline.nvim")
   use {"romgrk/barbar.nvim", opt = true}
-  require_plugin("barbar.nvim")
-  use {"glepnir/galaxyline.nvim", opt = true}
   require_plugin("galaxyline.nvim")
+  require_plugin("barbar.nvim")
 
   -- Themes
   use {"navarasu/onedark.nvim", opt = true}
@@ -129,5 +129,9 @@ return require('packer').startup(function(use)
   use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
   require_plugin("nvcode-color-schemes")
 
+  use {"norcalli/nvim-colorizer.lua", opt = true}
+  use {"simrat39/symbols-outline.nvim", opt = true}
+  require_plugin("nvim-colorizer.lua")
+  require_plugin("symbols-outline")
 
 end)

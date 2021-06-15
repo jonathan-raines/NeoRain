@@ -735,3 +735,26 @@ vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
 -- TROUBLE
 require("trouble").setup{}
+
+-- NVIM COLORIZER
+require'colorizer'.setup()
+
+-- SYMBOLS OUTLINE
+vim.g.symbols_outline = {
+    highlight_hovered_item = true,
+    show_guides = true,
+    auto_preview = true,
+    position = 'right',
+    keymaps = {
+        close = "<Esc>",
+        goto_location = "<Cr>",
+        focus_location = "o",
+        hover_symbol = "<C-space>",
+        rename_symbol = "r",
+        code_actions = "a",
+    },
+    lsp_blacklist = {},
+}
+
+-- TODO Comments
+require("todo-comments").setup{}
