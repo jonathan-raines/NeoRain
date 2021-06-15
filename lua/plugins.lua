@@ -94,4 +94,8 @@ return require('packer').startup(function(use)
   use {"folke/which-key.nvim", opt = true}
   -- Keybindings Require
   require_plugin("which-key.nvim")
+
+  -- AutoPairs
+  use {"windwp/nvim-autopairs", opt = true}
+  require_plugin("nvim-autopairs")
 end)
