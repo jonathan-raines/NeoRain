@@ -1,3 +1,4 @@
+require('nr-globals')
 require('settings')
 require('keybinds')
 require('plugins')
@@ -23,5 +24,8 @@ require('theme')
 
 require('lsp')
 require('lsp.dart')
+require('lsp.efm-general')
+require('lsp.javascript')
 require('lsp.python')
 require('lsp.ruby')
+
