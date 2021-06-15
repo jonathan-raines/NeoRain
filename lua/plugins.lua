@@ -116,6 +116,8 @@ return require('packer').startup(function(use)
   -- Themes
   use {"navarasu/onedark.nvim", opt = true}
   require_plugin("onedark.nvim")
+  use {"folke/tokyonight.nvim", opt = true}
+  require_plugin("tokyonight.nvim")
 
 
 end)
