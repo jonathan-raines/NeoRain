@@ -105,4 +105,8 @@ return require('packer').startup(function(use)
   require_plugin("nvim-comment")
   require_plugin("nvim-ts-context-commentstring")
 
+  -- Galaxy Line
+  use {"glepnir/galaxyline.nvim", opt = true}
+  require_plugin("galaxyline.nvim")
+
 end)
