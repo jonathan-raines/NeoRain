@@ -98,4 +98,11 @@ return require('packer').startup(function(use)
   -- AutoPairs
   use {"windwp/nvim-autopairs", opt = true}
   require_plugin("nvim-autopairs")
+
+  -- Comments
+  use {"terrortylor/nvim-comment", opt = true}
+  use {"JoosepAlviste/nvim-ts-context-commentstring", opt = true}
+  require_plugin("nvim-comment")
+  require_plugin("nvim-ts-context-commentstring")
+
 end)

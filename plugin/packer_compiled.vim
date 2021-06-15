@@ -92,6 +92,16 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
   },
+  ["nvim-autopairs"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
+  },
+  ["nvim-comment"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-comment"
+  },
   ["nvim-compe"] = {
     after_files = { "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
     loaded = false,

@@ -154,6 +154,9 @@ require'nvim-treesitter.configs'.setup {
   autotag = {
     enable = true,
   },
+  context_commentstring = {
+    enable = true
+  },
   matchup = {
     enable = true,              -- mandatory, false will disable the whole extension
     -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
@@ -461,3 +464,7 @@ npairs.add_rules({
   Rule("$", "$", "lua")
     :with_pair(ts_conds.is_not_ts_node({'function'}))
 })
+
+--  NVIM-COMMENT
+require("nvim_comment").setup({comment_empty = false})
+
