@@ -705,3 +705,8 @@ vim.api.nvim_set_keymap('n', '<S-x>', ':BufferClose<CR>', { noremap = true, sile
 -- nnoremap <silent>    <A-7> :BufferGoto 7<CR>
 -- nnoremap <silent>    <A-8> :BufferGoto 8<CR>
 -- nnoremap <silent>    <A-9> :BufferLast<CR>
+
+-- THEME
+vim.g.onedark_style = 'darker'
+require('onedark').setup()
+

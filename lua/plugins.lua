@@ -113,4 +113,9 @@ return require('packer').startup(function(use)
   use {"glepnir/galaxyline.nvim", opt = true}
   require_plugin("galaxyline.nvim")
 
+  -- Themes
+  use {"navarasu/onedark.nvim", opt = true}
+  require_plugin("onedark.nvim")
+
+
 end)
