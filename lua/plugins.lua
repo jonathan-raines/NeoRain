@@ -64,8 +64,10 @@ return require('packer').startup(function(use)
 
   -- Nvim-Tree
   use {"kyazdani42/nvim-tree.lua", opt = true}
+  use {"kyazdani42/nvim-web-devicons", opt = true}
   -- Nvim-Tree Require
   require_plugin("nvim-tree.lua")
+  require_plugin("nvim-web-devicons")
 
   -- Debugging
   use {"mfussenegger/nvim-dap", opt = true}
@@ -87,4 +89,6 @@ return require('packer').startup(function(use)
   -- Git Require
   require_plugin("gitsigns.nvim")
   require_plugin("git-blame.nvim")
+
+  -- C
 end)
