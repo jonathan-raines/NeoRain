@@ -97,10 +97,20 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
+  ["lazygit.nvim"] = {
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lazygit.nvim"
+  },
   ["lspsaga.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
+  },
+  ["nvcode-color-schemes.vim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvcode-color-schemes.vim"
   },
   ["nvim-autopairs"] = {
     loaded = false,
@@ -191,11 +201,26 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/tokyonight.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/trouble.nvim"
+  },
   ["vim-matchup"] = {
     after_files = { "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
     loaded = false,
     needs_bufread = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-matchup"
+  },
+  ["vim-surround"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-surround"
   },
   ["vim-vsnip"] = {
     loaded = false,

@@ -44,10 +44,12 @@ return require('packer').startup(function(use)
   use { 'neovim/nvim-lspconfig', opt = true }
   use { 'kabouzeid/nvim-lspinstall', opt = true }
   use { 'glepnir/lspsaga.nvim', opt = true }
+  use {"folke/trouble.nvim", opt = true}
   -- LSP Require
   require_plugin("nvim-lspconfig")
   require_plugin("nvim-lspinstall")
   require_plugin("lspsaga.nvim")
+  require_plugin("trouble.nvim")
 
   -- Telescope
   use {"nvim-lua/popup.nvim", opt = true}
@@ -71,8 +73,10 @@ return require('packer').startup(function(use)
 
   -- Debugging
   use {"mfussenegger/nvim-dap", opt = true}
+  use {"Pocco81/DAPInstall.nvim", opt = true}
   -- Debugging Require
   require_plugin("nvim-dap")
+  require_plugin("DAPInstall.nvim")
 
   -- Autocomplete
   use {"hrsh7th/nvim-compe", opt = true}
@@ -86,9 +90,11 @@ return require('packer').startup(function(use)
   -- Git
   use {"lewis6991/gitsigns.nvim", opt = true }
   use {"f-person/git-blame.nvim", opt = true }
+  use {"kdheepak/lazygit.nvim", opt = true}
   -- Git Require
   require_plugin("gitsigns.nvim")
   require_plugin("git-blame.nvim")
+  require_plugin("lazygit.nvim")
 
   -- Keybindings
   use {"folke/which-key.nvim", opt = true}
@@ -98,6 +104,10 @@ return require('packer').startup(function(use)
   -- AutoPairs
   use {"windwp/nvim-autopairs", opt = true}
   require_plugin("nvim-autopairs")
+
+  -- Formatting
+  use {"tpope/vim-surround", opt = true}
+  require_plugin("vim-surround")
 
   -- Comments
   use {"terrortylor/nvim-comment", opt = true}
@@ -118,6 +128,8 @@ return require('packer').startup(function(use)
   require_plugin("onedark.nvim")
   use {"folke/tokyonight.nvim", opt = true}
   require_plugin("tokyonight.nvim")
+  use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
+  require_plugin("nvcode-color-schemes")
 
 
 end)
