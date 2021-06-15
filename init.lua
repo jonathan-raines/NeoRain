@@ -3,6 +3,7 @@ require('plugins')
 require('lsp-install')
 require('lsp-config')
 require('lsp-saga')
+require('treesitter')
 
 -- TELESCOPE
 local actions = require("telescope.actions")
@@ -100,20 +101,6 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 --inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 --inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 --inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
--- TREESITTER
-require'nvim-treesitter.configs'.setup {
-  autotag = {
-    enable = true,
-  },
-  context_commentstring = {
-    enable = true
-  },
-  matchup = {
-    enable = true,              -- mandatory, false will disable the whole extension
-    -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-  },
-}
 
 -- NVIM-TREE
 vim.g.nvim_tree_hide_dotfiles = 1 -- 0 by default, this option hides files and folders starting with a dot `.`
