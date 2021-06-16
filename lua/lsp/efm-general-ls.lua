@@ -1,3 +1,4 @@
+-- Example configuations here: https://github.com/mattn/efm-langserver
 -- TODO this file needs to be refactored eache lang should be it's own file
 -- python
 local python_arguments = {}
@@ -113,3 +114,6 @@ require"lspconfig".efm.setup {
         }
     }
 }
+
+-- Also find way to toggle format on save
+-- maybe this will help: https://superuser.com/questions/439078/how-to-disable-autocmd-or-augroup-in-vim

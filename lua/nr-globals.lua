@@ -3,6 +3,19 @@ DATA_PATH = vim.fn.stdpath('data')
 CACHE_PATH = vim.fn.stdpath('cache')
 
 O = {
+    auto_close_tree = 0,
+    auto_complete = true,
+    colorscheme = 'tokyonight',
+    hidden_files = true,
+    wrap_lines = false,
+    number = true,
+    relative_number = true,
+    shell = 'bash',
+	timeoutlen = 100,
+    nvim_tree_disable_netrw = 0,
+    extras = false,
+
+    -- @usage pass a table with your desired languages
     treesitter = {
         ensure_installed = "all",
         ignore_install = {"haskell"},
@@ -57,5 +70,20 @@ O = {
 		filetypes = {'rb', 'erb', 'rakefile'}
 	},
     go = {},
+    -- css = {formatter = '', autoformat = false, virtual_text = true},
+    -- json = {formatter = '', autoformat = false, virtual_text = true}
+
+	dashboard = {
+		custom_header = {
+'                 _..._                                                                           ',
+'               .\'   (_`.    _                         __     ___           ',
+'              :  .      :  | |   _   _ _ __   __ _ _ _\\ \\   / (_)_ __ ___  ',
+'              :)    ()  :  | |  | | | | \'_ \\ / _` | \'__\\ \\ / /| | \'_ ` _ \\ ',
+'              `.   .   .\'  | |__| |_| | | | | (_| | |   \\ V / | | | | | | |',
+'                `-...-\'    |_____\\__,_|_| |_|\\__,_|_|    \\_/  |_|_| |_| |_|',
+		},
+		footer= {'chrisatmachine.com'}
+	}
 }
+
 
