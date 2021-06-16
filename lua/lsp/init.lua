@@ -73,12 +73,8 @@ vim.lsp.protocol.CompletionItemKind = {
     "   (TypeParameter)"
 }
 
---[[ " autoformat
-autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100) ]]
--- Java
--- autocmd FileType java nnoremap ca <Cmd>lua require('jdtls').code_action()<CR>
+-- autoformat
+vim.api.nvim_command('autocmd BufWritePre *.rs,*.js,*.lua,*.jsx lua vim.lsp.buf.formatting_sync(nil, 500)')
 
 local function documentHighlight(client, bufnr)
     -- Set autocommands conditional on server_capabilities
@@ -111,8 +107,4 @@ function lsp_config.tsserver_on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false
 end
 
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
--- local servers = {"pyright", "tsserver"}
--- for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
 return lsp_config
