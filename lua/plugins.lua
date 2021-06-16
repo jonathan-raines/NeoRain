@@ -97,9 +97,9 @@ return require('packer').startup(function(use)
   use {"windwp/nvim-autopairs", opt = true}
   require_plugin("nvim-autopairs")
 
-  -- Formatting
-  use {"tpope/vim-surround", opt = true}
-  require_plugin("vim-surround")
+  -- Auto CD
+  use {"ahmedkhalf/lsp-rooter.nvim", opt = true}
+  require_plugin("lsp-rooter.nvim")
 
   -- Comments
   use {"terrortylor/nvim-comment", opt = true}

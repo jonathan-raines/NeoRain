@@ -102,6 +102,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
+  ["lsp-rooter.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lsp-rooter.nvim"
+  },
   ["lspsaga.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -226,11 +231,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-matchup"
-  },
-  ["vim-surround"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-surround"
   },
   ["vim-vsnip"] = {
     loaded = false,
