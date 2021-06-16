@@ -75,7 +75,6 @@ local mappings = {
     ["p"] = "Projects",
     d = {
         name = "+Diagnostics",
-        t = {"<cmd>TroubleToggle<cr>", "trouble"},
         w = {"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace"},
         d = {"<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document"},
         q = {"<cmd>TroubleToggle quickfix<cr>", "quickfix"},
@@ -90,6 +89,19 @@ local mappings = {
         o = {"<cmd>DebugStepOver<cr>", "Step Over"},
         r = {"<cmd>DebugToggleRepl<cr>", "Toggle Repl"},
         s = {"<cmd>DebugStart<cr>", "Start"}
+    },
+    g = {
+        name = "+Lspsaga",
+        h = {"<cmd>Lspsaga lsp_finder<cr>", "Find Word Definition and Reference"},
+        ca = {"<cmd>Lspsaga code_action<cr>", "Code Action"}, -- Doesn't work
+        K = {"<cmd>Lspsaga hover_doc<cr>", "Hover Doc"},
+        s = {"<cmd>Lspsaga signature_help<cr>", "Signature Help"}, -- Doesn't work
+        r = {"<cmd>Lspsaga rename<cr>", "Rename"}, -- Doesn't work
+        d = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"}, -- Doesn't work
+        cd = {"<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<cr>", "Show Line Diagnostics"}, -- Doesn't work
+        cc = {"<cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<cr>", "Show Cursor Diagnostics"}, -- Doesn't work
+        n = {"<cmd>Lspsaga diagnostic_jump_next<cr>", "Diagnostic Jump Next"}, -- Doesn't work
+        p = {"<cmd>Lspsaga diagnostic_jump_prev<cr>", "Diagnostic Jump Next"}, -- Doesn't work
     },
     l = {
         name = "+LSP",
@@ -122,7 +134,7 @@ local mappings = {
         R = {"<cmd>Telescope registers<cr>", "Registers"},
         t = {"<cmd>Telescope live_grep<cr>", "Text"}
     },
-    S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}}
+    S ={name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}}
 }
 
 local wk = require("which-key")

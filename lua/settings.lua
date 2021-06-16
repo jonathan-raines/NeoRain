@@ -18,6 +18,7 @@ vim.wo.number = true -- set numbered lines
 vim.wo.relativenumber = true -- set relative number
 vim.wo.cursorline = true -- Enable highlighting of the current line
 vim.wo.signcolumn = "yes" -- Always show the sign column, otherwise it would shift the text each time
+vim.wo.colorcolumn = "90"
 
 -- Line Wrap
 vim.wo.wrap = false -- Line wrap
