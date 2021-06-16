@@ -14,6 +14,7 @@ O = {
 	timeoutlen = 100,
     nvim_tree_disable_netrw = 0,
     extras = false,
+    leader_key = ' ',
 
     -- @usage pass a table with your desired languages
     treesitter = {
