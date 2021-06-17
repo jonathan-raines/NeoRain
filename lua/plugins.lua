@@ -123,4 +123,7 @@ return require('packer').startup(function(use)
 
   use {"norcalli/nvim-colorizer.lua", opt = true}
   require_plugin("nvim-colorizer.lua")
+
+  use {"glepnir/dashboard-nvim", opt = true}
+  require_plugin("dashboard-nvim")
 end)
