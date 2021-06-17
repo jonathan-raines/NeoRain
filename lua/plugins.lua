@@ -118,10 +118,8 @@ return require('packer').startup(function(use)
   require_plugin("barbar.nvim")
 
   -- Themes
-  use {"navarasu/onedark.nvim", opt = true}
   use {"folke/tokyonight.nvim", opt = true}
   use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
-  require_plugin("onedark.nvim")
   require_plugin("tokyonight.nvim")
   require_plugin("nvcode-color-schemes")
 

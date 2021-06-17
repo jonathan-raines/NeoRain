@@ -1,7 +1,3 @@
--- One Dark
-require('onedark').setup()
-vim.g.onedark_style = 'darker'
-
 -- Tokyo Night
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true

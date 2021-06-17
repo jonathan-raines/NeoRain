@@ -177,11 +177,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
   },
-  ["onedark.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/onedark.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/packer.nvim"
