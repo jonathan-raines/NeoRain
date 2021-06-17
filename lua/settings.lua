@@ -1,24 +1,19 @@
--- Set leader
-if O.leader_key == ' ' or O.leader_key == 'space' then
-    vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
-    vim.g.mapleader = ' '
-else
-    vim.api.nvim_set_keymap('n', O.leader_key, '<NOP>', {noremap = true, silent = true})
-    vim.g.mapleader = O.leader_key
-end
-
 -- Folding
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.cmd('set foldnestmax=4')
 vim.cmd('set foldlevelstart=20')
 
+-- Leader
+vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
+vim.g.mapleader = ' '
+
 -- Lines
 vim.wo.number = true -- set numbered lines
 vim.wo.relativenumber = true -- set relative number
 vim.wo.cursorline = true -- Enable highlighting of the current line
 vim.wo.signcolumn = "yes" -- Always show the sign column, otherwise it would shift the text each time
-vim.wo.colorcolumn = "90"
+vim.wo.colorcolumn = "100"
 
 -- Line Wrap
 vim.wo.wrap = false -- Line wrap

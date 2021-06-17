@@ -162,11 +162,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
-  ["nvim-treesitter-context"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-context"
-  },
   ["nvim-ts-autotag"] = {
     loaded = false,
     needs_bufread = false,

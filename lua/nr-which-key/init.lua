@@ -43,6 +43,7 @@ local opts = {
     nowait = false -- use `nowait` when creating keymaps
 }
 
+-- no hl
 vim.api.nvim_set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', {noremap = true, silent = true})
 
 -- explorer
@@ -51,15 +52,16 @@ vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true
 -- telescope
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true, silent = true})
 
--- dashboard
-vim.api.nvim_set_keymap('n', '<Leader>;', ':Dashboard<CR>', {noremap = true, silent = true})
-
 -- Comments
 vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 
+-- Buffer pick
+vim.api.nvim_set_keymap("n", "<leader>b", ":BufferPick<CR>", {noremap = true, silent = true})
+
 -- close buffer
 vim.api.nvim_set_keymap("n", "<leader>q", ":BufferClose<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>Q", ":BufferCloseAllButCurrent<CR>", {noremap = true, silent = true})
 
 -- open projects
 vim.api.nvim_set_keymap('n', '<leader>p', ":lua require'telescope'.extensions.project.project{}<CR>",
@@ -75,6 +77,7 @@ local mappings = {
     ["p"] = "Projects",
     d = {
         name = "+Diagnostics",
+        t = {"<cmd>TroubleToggle<cr>", "trouble"},
         w = {"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace"},
         d = {"<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document"},
         q = {"<cmd>TroubleToggle quickfix<cr>", "quickfix"},
@@ -86,22 +89,23 @@ local mappings = {
         b = {"<cmd>DebugToggleBreakpoint<cr>", "Toggle Breakpoint"},
         c = {"<cmd>DebugContinue<cr>", "Continue"},
         i = {"<cmd>DebugStepInto<cr>", "Step Into"},
-        o = {"<cmd>DebugStepOver<cr>", "Step Over"},
+        o = {"<cmd>DebugStepOver<cr>", "tep Over"},
         r = {"<cmd>DebugToggleRepl<cr>", "Toggle Repl"},
         s = {"<cmd>DebugStart<cr>", "Start"}
     },
     g = {
-        name = "+Lspsaga",
-        h = {"<cmd>Lspsaga lsp_finder<cr>", "Find Word Definition and Reference"},
-        ca = {"<cmd>Lspsaga code_action<cr>", "Code Action"}, -- Doesn't work
-        K = {"<cmd>Lspsaga hover_doc<cr>", "Hover Doc"},
-        s = {"<cmd>Lspsaga signature_help<cr>", "Signature Help"}, -- Doesn't work
-        r = {"<cmd>Lspsaga rename<cr>", "Rename"}, -- Doesn't work
-        d = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"}, -- Doesn't work
-        cd = {"<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<cr>", "Show Line Diagnostics"}, -- Doesn't work
-        cc = {"<cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<cr>", "Show Cursor Diagnostics"}, -- Doesn't work
-        n = {"<cmd>Lspsaga diagnostic_jump_next<cr>", "Diagnostic Jump Next"}, -- Doesn't work
-        p = {"<cmd>Lspsaga diagnostic_jump_prev<cr>", "Diagnostic Jump Next"}, -- Doesn't work
+        name = "+Git",
+        j = {"<cmd>NextHunk<cr>", "Next Hunk"},
+        k = {"<cmd>PrevHunk<cr>", "Prev Hunk"},
+        p = {"<cmd>PreviewHunk<cr>", "Preview Hunk"},
+        r = {"<cmd>ResetHunk<cr>", "Reset Hunk"},
+        R = {"<cmd>ResetBuffer<cr>", "Reset Buffer"},
+        s = {"<cmd>StageHunk<cr>", "Stage Hunk"},
+        u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"},
+        o = {"<cmd>Telescope git_status<cr>", "Open changed file"},
+        b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
+        c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
+        C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
     },
     l = {
         name = "+LSP",
@@ -123,7 +127,8 @@ local mappings = {
     },
     s = {
         name = "+Search",
-        b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
+        b = {"<cmd>Telescope buffers<cr>", "Open buffers"},
+        g = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
         c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
         d = {"<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics"},
         D = {"<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics"},
@@ -132,12 +137,11 @@ local mappings = {
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
         r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
         R = {"<cmd>Telescope registers<cr>", "Registers"},
+        w = {"<cmd>Telescope grep_string<cr>", "Grep String"},
         t = {"<cmd>Telescope live_grep<cr>", "Text"}
     },
-    S ={name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}}
+    S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
 }
 
 local wk = require("which-key")
 wk.register(mappings, opts)
-
-
