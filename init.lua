@@ -24,5 +24,6 @@ require('nr-which-key')
 
 -- LSP
 require('lsp')
+require('lsp.efm-ls')
 require('lsp.lua-ls')
 require('lsp.ruby-ls')
