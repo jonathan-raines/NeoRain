@@ -83,9 +83,7 @@ return require('packer').startup(function(use)
 
   -- Git
   use {"lewis6991/gitsigns.nvim", opt = true }
-  --use {"f-person/git-blame.nvim", opt = true }
   require_plugin("gitsigns.nvim")
-  --require_plugin("git-blame.nvim")
 
   -- Terminal
   use {"numtostr/FTerm.nvim", opt = true}
