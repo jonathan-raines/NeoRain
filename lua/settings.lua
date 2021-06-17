@@ -23,9 +23,9 @@ vim.cmd('set whichwrap+=<,>,[,],h,l') -- move to next line with theses keys
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.termguicolors = true -- set term gui colors most terminals support this
 vim.o.fileencoding = "utf-8" -- The encoding written to file
-vim.o.updatetime = 300 -- Faster completion
+vim.o.updatetime = 100 -- Faster completion
 vim.o.timeoutlen = 100
-vim.wo.scrolloff = 5
+vim.wo.scrolloff = 8
 
 -- Settings
 vim.o.hidden = true
@@ -45,7 +45,6 @@ vim.cmd('set expandtab') -- Converts tabs to spaces
 vim.cmd('set ts=4') -- Insert 2 spaces for a tab
 vim.cmd('set sw=4') -- Change the number of space characters inserted for indentation
 vim.bo.smartindent = true -- Makes indenting smart
-vim.o.showtabline = 2 -- Always show tabs
 
 -- UI
 vim.cmd('syntax on') -- syntax highlighting
@@ -55,6 +54,6 @@ vim.g.nvim_tree_disable_netrw = false -- enable netrw for remote gx gf support (
 vim.g.loaded_netrwPlugin = true -- needed for netrw gx command to open remote links in browser
 
 --Window
-vim.o.title = true -- Set the window's title, reflecting the filel current being worked on
-vim.o.titlestring="%<%F%=%l/%L - nvim"
+vim.o.title = true -- Set the window's title, reflecting the file current being worked on
+vim.o.titlestring="%<%F%=%l/%L"
 

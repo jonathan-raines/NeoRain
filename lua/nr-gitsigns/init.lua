@@ -30,8 +30,8 @@ require('gitsigns').setup {
   watch_index = {
     interval = 1000
   },
-  current_line_blame = false,
-  current_line_blame_delay = 1000,
+  current_line_blame = true,
+  current_line_blame_delay = 100,
   current_line_blame_position = 'eol',
   sign_priority = 6,
   update_debounce = 100,
@@ -39,6 +39,4 @@ require('gitsigns').setup {
   use_decoration_api = true,
   use_internal_diff = true,  -- If luajit is present
 }
-
---set statusline+=%{get(b:,'gitsigns_status','')}
 

@@ -92,11 +92,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/galaxyline.nvim"
   },
-  ["git-blame.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/git-blame.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = false,
     needs_bufread = false,

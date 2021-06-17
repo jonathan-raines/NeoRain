@@ -1,6 +1,5 @@
 local gl = require('galaxyline')
--- get my theme in galaxyline repo
--- local colors = require('galaxyline.theme').default
+
 local colors = {
     -- bg = '#2E2E2E',
     bg = '#292D38',
@@ -21,8 +20,10 @@ local colors = {
     error_red = '#F44747',
     info_yellow = '#FFCC66'
 }
+
 local condition = require('galaxyline.condition')
 local gls = gl.section
+
 gl.short_line_list = {'NvimTree', 'vista', 'dbui', 'packer'}
 
 table.insert(gls.left, {
@@ -216,7 +217,4 @@ table.insert(gls.short_line_left, {
 table.insert(gls.short_line_left, {
     SFileName = {provider = 'SFileName', condition = condition.buffer_not_empty, highlight = {colors.grey, colors.bg}}
 })
-
---table.insert(gls.short_line_right[1] = {BufferIcon = {provider = 'BufferIcon', highlight = {colors.grey, colors.bg}}})
-
 
