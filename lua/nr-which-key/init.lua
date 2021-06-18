@@ -170,7 +170,7 @@ local mappings = {
         r = {"<cmd>lua vim.lsp.buf.references()<cr>", "References"},
         rwf = {"<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", "Remove Workspace Folder"},
         rn = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},
-        sh = {"<cmd>lua vim.lsp.signature_help()<cr>", "Signature Help"},
+        sh = {"<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature Help"},
         ws = {"<cmd>lua vim.lsp.workspace_symbol()<cr>", "Workspace Symbol"},
     },
     s = {
