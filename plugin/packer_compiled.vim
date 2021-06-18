@@ -87,6 +87,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/dashboard-nvim"
   },
+  ["flutter-tools.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/flutter-tools.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = false,
     needs_bufread = false,
@@ -190,6 +195,11 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/popup.nvim"
+  },
+  ["symbols-outline.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/symbols-outline.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = false,

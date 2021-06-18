@@ -127,6 +127,9 @@ return require('packer').startup(function(use)
   use {"glepnir/dashboard-nvim", opt = true}
   require_plugin("dashboard-nvim")
 
-  -- use {"simrat39/symbols-outline.nvim", opt = true}
-  -- require_plugin("symbols-outline.nvim")
+  use {"akinsho/flutter-tools.nvim", opt = true}
+  require_plugin("flutter-tools.nvim")
+
+  use {"simrat39/symbols-outline.nvim", opt = true}
+  require_plugin("symbols-outline.nvim")
 end)
