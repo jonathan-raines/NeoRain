@@ -82,6 +82,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/barbar.nvim"
   },
+  ["dashboard-nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/dashboard-nvim"
+  },
   ["friendly-snippets"] = {
     loaded = false,
     needs_bufread = false,

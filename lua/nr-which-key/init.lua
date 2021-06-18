@@ -50,7 +50,7 @@ vim.api.nvim_set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', {noremap = true,
 vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
 -- telescope
-vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true, silent = true})
 
 -- dashboard
 vim.api.nvim_set_keymap('n', '<Leader>;', ':Dashboard<CR>', {noremap = true, silent = true})
@@ -69,7 +69,6 @@ vim.api.nvim_set_keymap("n", "<leader>Q", ":BufferCloseAllButCurrent<CR>", {nore
 -- open projects
 vim.api.nvim_set_keymap('n', '<leader>p', ":lua require'telescope'.extensions.project.project{}<CR>",
                         {noremap = true, silent = true})
--- TODO create entire treesitter section
 
 local mappings = {
     ["/"] = "Comment",
@@ -86,6 +85,7 @@ local mappings = {
         q = {"<cmd>TroubleToggle quickfix<cr>", "quickfix"},
         l = {"<cmd>TroubleToggle loclist<cr>", "loclist"},
         r = {"<cmd>TroubleToggle lsp_references<cr>", "references"},
+        -- s = {"<cmd>SymbolsOutline<cr>", "Symbols Outline"},
     },
     D = {
         name = "+Debug",
@@ -100,6 +100,7 @@ local mappings = {
         name = "+Find",
         b = {"<cmd>Telescope buffers<cr>", "Open buffers"},
         c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
+        ds = {"<cmd>Telescope lsp_document_symbols<cr>", "Colorscheme"},
         e = {"<cmd>Telescope file_browser<cr>", "File Browser"},
         f = {"<cmd>Telescope find_files<cr>", "Find Files"},
         g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
@@ -113,6 +114,7 @@ local mappings = {
         td = {"<cmd>TodoTelescope<cr>", "Find TODO's"},
         vo = {"<cmd>Telescope vim_options<cr>", "Find Vim Options"},
         w = {"<cmd>Telescope grep_string<cr>", "Grep String"},
+        ws = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Colorscheme"},
     },
     l = {
         name = "+LSP",
