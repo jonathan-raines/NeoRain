@@ -25,6 +25,7 @@ require('nr-which-key')
 
 -- LSP
 require('lsp')
+require('lsp.clangd-ls')
 require('lsp.efm-ls')
 require('lsp.lua-ls')
 require('lsp.python-ls')
