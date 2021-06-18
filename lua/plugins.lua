@@ -86,6 +86,7 @@ return require('packer').startup(function(use)
   require_plugin("gitsigns.nvim")
 
   -- Terminal
+  -- TODO: Use Lspsaga floatterm to replace - Need to fix Process Exit 0 first
   use {"numtostr/FTerm.nvim", opt = true}
   require_plugin("FTerm.nvim")
 

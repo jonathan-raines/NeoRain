@@ -1,3 +1,6 @@
+-- Global Path to NVIM Directory
+DATA_PATH = vim.fn.stdpath('data')
+
 -- Folding
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
