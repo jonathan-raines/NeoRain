@@ -21,7 +21,6 @@ require('nr-telescope')
 require('nr-todo-comments')
 require('nr-treesitter')
 require('nr-trouble')
-require('nr-utils')
 require('nr-which-key')
 
 -- LSP
