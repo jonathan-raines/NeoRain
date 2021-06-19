@@ -124,7 +124,7 @@ local mappings = {
         ts = {"<cmd>Telescope treesitter<cr>", "File Browser"},
         td = {"<cmd>TodoTelescope<cr>", "Find TODO's"},
         vo = {"<cmd>Telescope vim_options<cr>", "Find Vim Options"},
-        w = {"<cmd>Telescope grep_string<cr>", "Grep String"},
+        s = {"<cmd>Telescope grep_string<cr>", "Grep String"},
         ws = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workplace Symbols"},
     },
     g = {
