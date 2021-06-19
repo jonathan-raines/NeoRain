@@ -77,6 +77,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/FTerm.nvim"
   },
+  ["awesome-flutter-snippets"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/awesome-flutter-snippets"
+  },
   ["barbar.nvim"] = {
     loaded = false,
     needs_bufread = false,

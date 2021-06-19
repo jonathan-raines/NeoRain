@@ -10,6 +10,7 @@ vim.api.nvim_set_keymap('n', '<C-Down>', ':resize +2<CR>', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-Left>', ':vertical resize -2<CR>', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', {silent = true})
 
+-- Show/Hide Tabline
 vim.api.nvim_set_keymap('n', '<A-t>', ':set showtabline=2<CR>', {silent = true})
 vim.api.nvim_set_keymap('n', '<A-h>', ':set showtabline=0<CR>', {silent = true})
 
