@@ -38,6 +38,7 @@ vim.cmd('set inccommand=split') -- Make substitution work in realtime
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.guifont = "FiraCode Nerd Font:h17"
 vim.cmd('filetype plugin on') -- filetype detection
+vim.cmd('set undofile')
 
 -- Splits
 vim.o.splitbelow = true -- Horizontal splits will automatically be below
