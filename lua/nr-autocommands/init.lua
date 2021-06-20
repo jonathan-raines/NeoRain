@@ -27,6 +27,9 @@ local auto_formatters = {}
 local python_autoformat = {'BufWritePre', '*.py', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 table.insert(auto_formatters, python_autoformat)
 
+local dart_autoformat = {'BufWritePre', '*.dart', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
+table.insert(auto_formatters, dart_autoformat)
+
 local javascript_autoformat = {'BufWritePre', '*.js', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 local javascriptreact_autoformat = {'BufWritePre', '*.jsx', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 
