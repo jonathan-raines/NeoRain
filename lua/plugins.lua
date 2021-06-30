@@ -49,14 +49,12 @@ return require('packer').startup(function(use)
   use { 'glepnir/lspsaga.nvim', opt = true } -- Possibly Delete
   use {"folke/trouble.nvim", opt = true} -- Possibly Delete
   use {"akinsho/flutter-tools.nvim", opt = true}
-  use {"simrat39/symbols-outline.nvim", opt = true} -- Possibly delete
 
   require_plugin("nvim-lspconfig")
   require_plugin("nvim-lspinstall")
   require_plugin("lspsaga.nvim") -- Possibly Delete
   require_plugin("trouble.nvim") -- Possibly Delete
   require_plugin("flutter-tools.nvim")
-  require_plugin("symbols-outline.nvim") -- Possibly delete
 
   -- Telescope
   use {"nvim-lua/popup.nvim", opt = true}
@@ -126,8 +124,4 @@ return require('packer').startup(function(use)
 
   use {"norcalli/nvim-colorizer.lua", opt = true}
   require_plugin("nvim-colorizer.lua")
-
-  use {"glepnir/dashboard-nvim", opt = true} -- Possibly delete
-  require_plugin("dashboard-nvim") -- Possibly delete
-
 end)

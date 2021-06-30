@@ -41,8 +41,6 @@ vim.cmd('vnoremap P "0P')
 -- Toggle the QuickFix window
 vim.api.nvim_set_keymap('', '<C-q>', ':call QuickFixToggle()<CR>', {noremap = true, silent = true})-- Use ";" for ":"
 
-vim.api.nvim_set_keymap('n', ';', ':', {noremap = true, silent = true})
-
 -- nvim-compe key map
 vim.cmd('inoremap <silent><expr> <C-Space> compe#complete()')
 vim.cmd("inoremap <silent><expr> <CR>      compe#confirm('<CR>')")

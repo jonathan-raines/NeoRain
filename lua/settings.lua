@@ -28,7 +28,7 @@ vim.o.termguicolors = true -- set term gui colors most terminals support this
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.updatetime = 100 -- Faster completion
 vim.o.timeoutlen = 100
-vim.wo.scrolloff = 8
+vim.wo.scrolloff = 5
 
 -- Settings
 vim.o.hidden = true
