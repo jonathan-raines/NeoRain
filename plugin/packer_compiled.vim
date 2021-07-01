@@ -89,7 +89,7 @@ _G.packer_plugins = {
   },
   ["flutter-tools.nvim"] = {
     loaded = false,
-    needs_bufread = false,
+    needs_bufread = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/flutter-tools.nvim"
   },
   ["friendly-snippets"] = {
