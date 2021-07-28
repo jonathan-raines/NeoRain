@@ -1,4 +1,4 @@
 require('settings')
 require('keybinds')
 require('plugins')
-require('nr-autocommands')
+require('core.autocommands')
