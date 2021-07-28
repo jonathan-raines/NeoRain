@@ -29,6 +29,8 @@ vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.updatetime = 100 -- Faster completion
 vim.o.timeoutlen = 100
 vim.wo.scrolloff = 5
+vim.g.swapfile = false
+vim.o.completeopt = "menuone,noselect"
 
 -- Settings
 vim.o.hidden = true
@@ -46,8 +48,8 @@ vim.o.splitright = true -- Vertical splits will automatically be to the right
 
 -- Tabs
 vim.cmd('set expandtab') -- Converts tabs to spaces
-vim.cmd('set ts=4') -- Insert 2 spaces for a tab
-vim.cmd('set sw=4') -- Change the number of space characters inserted for indentation
+vim.cmd('set ts=2') -- Insert 2 spaces for a tab
+vim.cmd('set sw=2') -- Change the number of space characters inserted for indentation
 vim.bo.smartindent = true -- Makes indenting smart
 
 -- UI
@@ -61,3 +63,28 @@ vim.g.loaded_netrwPlugin = true -- needed for netrw gx command to open remote li
 vim.o.title = true -- Set the window's title, reflecting the file current being worked on
 vim.o.titlestring="%<%F%=%l/%L"
 
+-- disable builtin vim plugins
+local disabled_built_ins = {
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "gzip",
+    "zip",
+    "zipPlugin",
+    "tar",
+    "tarPlugin",
+    "getscript",
+    "getscriptPlugin",
+    "vimball",
+    "vimballPlugin",
+    "2html_plugin",
+    "logipat",
+    "rrhelper",
+    "spellfile_plugin",
+    "matchit"
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+    vim.g["loaded_" .. plugin] = 1
+end

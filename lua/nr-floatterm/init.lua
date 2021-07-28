@@ -32,5 +32,3 @@ function _G.__fterm_lazygit()
     lazy:toggle()
 end
 map('n', '<A-l>', '<CMD>lua _G.__fterm_lazygit()<CR>', opts)
-
-
