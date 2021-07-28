@@ -86,13 +86,13 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/friendly-snippets"
   },
   ["galaxyline.nvim"] = {
-    config = { "\27LJ\1\2.\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\19nr-galaxy-line\frequire\0" },
+    config = { "\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20core.galaxyline\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/galaxyline.nvim"
   },
   ["gitsigns.nvim"] = {
-    config = { "\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16nr-gitsigns\frequire\0" },
+    config = { "\27LJ\1\2-\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\18core.gitsigns\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
@@ -104,7 +104,7 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lsp_signature.nvim"
   },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\1\2,\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\17nr-autopairs\frequire\0" },
+    config = { "\27LJ\1\2.\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\19core.autopairs\frequire\0" },
     load_after = {
       ["nvim-treesitter"] = true
     },
@@ -120,7 +120,7 @@ _G.packer_plugins = {
   },
   ["nvim-compe"] = {
     after_files = { "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
-    config = { "\27LJ\1\2(\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\rnr-compe\frequire\0" },
+    config = { "\27LJ\1\2*\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\15core.compe\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-compe"
@@ -147,7 +147,7 @@ _G.packer_plugins = {
   },
   ["nvim-treesitter"] = {
     after = { "nvim-autopairs", "nvim-ts-autotag", "nvim-ts-context-commentstring" },
-    config = { "\27LJ\1\2-\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\18nr-treesitter\frequire\0" },
+    config = { "\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20core.treesitter\frequire\0" },
     loaded = false,
     needs_bufread = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
@@ -187,7 +187,7 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["telescope.nvim"] = {
-    config = { "\27LJ\1\2?\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\22nr-telescope.init\frequire\0" },
+    config = { "\27LJ\1\2<\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\19core.telescope\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
@@ -204,7 +204,7 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
   ["which-key.nvim"] = {
-    config = { "\27LJ\1\2,\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\17nr-which-key\frequire\0" },
+    config = { "\27LJ\1\2-\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\18core.whichkey\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/which-key.nvim"

@@ -218,3 +218,4 @@ table.insert(gls.short_line_left, {
     SFileName = {provider = 'SFileName', condition = condition.buffer_not_empty, highlight = {colors.grey, colors.bg}}
 })
 
+

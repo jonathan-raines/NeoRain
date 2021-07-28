@@ -32,11 +32,11 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     event = "BufRead" ,
-    config = function() require "nr-treesitter" end
+    config = function() require "core.treesitter" end
   }
   use {"windwp/nvim-ts-autotag", after = "nvim-treesitter"}
   use {"JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter"}
-  use {"windwp/nvim-autopairs", after = "nvim-treesitter", config = function() require "nr-autopairs" end}
+  use {"windwp/nvim-autopairs", after = "nvim-treesitter", config = function() require "core.autopairs" end}
 
   -- LSP
   use {
@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
   -- Telescope
   use {'nvim-telescope/telescope.nvim',
     event = "BufEnter",
-    config = function() require("nr-telescope.init").setup() end,
+    config = function() require("core.telescope").setup() end,
     requires = {
       {'nvim-lua/popup.nvim'},
       {'nvim-lua/plenary.nvim'}
@@ -70,14 +70,14 @@ return require('packer').startup(function(use)
   use {"kyazdani42/nvim-tree.lua", after = "nvim-web-devicons"}
 
   -- Autocomplete
-  use {"hrsh7th/nvim-compe", event = "InsertEnter", config = function() require "nr-compe" end}
+  use {"hrsh7th/nvim-compe", event = "InsertEnter", config = function() require "core.compe" end}
   use {"hrsh7th/vim-vsnip", event = "InsertEnter"}
   use {"rafamadriz/friendly-snippets", event = "InsertEnter"}
   -- use {"Neevash/awesome-flutter-snippets"}
 
   -- Git
-  use {"lewis6991/gitsigns.nvim", event = "InsertEnter", config = function() require "nr-gitsigns" end }
-  use {"folke/which-key.nvim", event = "BufWinEnter", config = function() require "nr-which-key" end}
+  use {"lewis6991/gitsigns.nvim", event = "InsertEnter", config = function() require "core.gitsigns" end }
+  use {"folke/which-key.nvim", event = "BufWinEnter", config = function() require "core.whichkey" end}
 
   -- Comments
   use {
@@ -94,7 +94,7 @@ return require('packer').startup(function(use)
   use {
       "glepnir/galaxyline.nvim",
       event = "BufWinEnter",
-      config = function() require "nr-galaxy-line" end
+      config = function() require "core.galaxyline" end
   }
 
   -- Themes
