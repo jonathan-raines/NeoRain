@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/jonathan/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/jonathan/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/jonathan/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/jonathan/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/jonathan/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/jraines/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?.lua;/home/jraines/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?/init.lua;/home/jraines/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?.lua;/home/jraines/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/jraines/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -71,99 +71,99 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/LuaSnip"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/LuaSnip"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
   },
   cmp_luasnip = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-comment"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-comment"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-comment"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-lspinstall"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-toggleterm.lua"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-toggleterm.lua"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-toggleterm.lua"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-ts-autotag"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
   },
   ["nvim-ts-context-commentstring"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["project.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/project.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/project.nvim"
   },
   snap = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/snap"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/snap"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
   },
   ["which-key.nvim"] = {
     loaded = true,
-    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/which-key.nvim"
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
