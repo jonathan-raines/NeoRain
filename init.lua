@@ -17,14 +17,11 @@ vim.api.nvim_exec(
 
 local use = require('packer').use
 require('packer').startup(function()
-  use 'wbthomason/packer.nvim' -- Package manager
-  -- UI to select things (files, grep results, open buffers...)
+  use 'wbthomason/packer.nvim'
   use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
-  use 'folke/tokyonight.nvim' -- Theme inspired by Atom
+  use 'folke/tokyonight.nvim'
   use {'shadmansaleh/lualine.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  -- Highlight, edit, and navigate code using a fast incremental parsing library
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'windwp/nvim-ts-autotag'
   use 'windwp/nvim-autopairs'
@@ -32,10 +29,10 @@ require('packer').startup(function()
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'L3MON4D3/LuaSnip'
   use 'folke/which-key.nvim'
   use 'ahmedkhalf/project.nvim'
   use 'akinsho/nvim-toggleterm.lua'
