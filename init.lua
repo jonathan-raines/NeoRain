@@ -25,7 +25,7 @@ require('packer').startup(function()
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use 'nvim-treesitter/nvim-treesitter'
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'windwp/nvim-ts-autotag'
   use 'windwp/nvim-autopairs'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -40,32 +40,58 @@ require('packer').startup(function()
   use 'ahmedkhalf/project.nvim'
   use 'akinsho/nvim-toggleterm.lua'
   use 'terrortylor/nvim-comment'
+  use 'camspiers/snap'
 end)
 
---Incremental live completion (note: this is now a default on master)
-vim.o.inccommand = 'nosplit'
---Set highlight on search
-vim.o.hlsearch = false
---Make line numbers default
-vim.wo.number = true
-vim.wo.relativenumber = true
---Do not save when switching buffers (note: this is now a default on master)
-vim.o.hidden = true
---Enable mouse mode
-vim.o.mouse = 'a'
+local vim = vim
+local opt = vim.opt
+
 --Enable break indent
-vim.o.breakindent = true
---Save undo history
-vim.opt.undofile = true
+opt.breakindent = true
+opt.clipboard = "unnamedplus"
+opt.colorcolumn = "100"
+-- Set completeopt to have a better completion experience
+opt.completeopt = 'menuone,noselect'
+--Incremental live completion (note: this is now a default on master)
+opt.conceallevel = 0
+opt.cursorline = true
+opt.expandtab = true
+opt.foldtext = 'CustomFold()'
+opt.foldlevelstart = 5
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
+--Do not save when switching buffers (note: this is now a default on master)
+opt.hidden = true
+--Set highlight on search
+opt.hlsearch = true
 --Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+opt.ignorecase = true
+opt.inccommand = 'nosplit'
+opt.mouse = 'a'
+opt.number = true
+opt.numberwidth = 4 -- default is 4
+opt.pumheight = 10
+opt.relativenumber = true
+opt.scrolloff = 8
+opt.shiftwidth = 2
+opt.showmode = true
+opt.sidescrolloff = 8
 --Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+opt.signcolumn = 'yes'
+opt.smartcase = true
+opt.smartindent = true
+opt.spell = false
+opt.spelllang = "en"
+opt.tabstop = 2
 --Set colorscheme (order is important here)
-vim.o.termguicolors = true
-vim.wo.colorcolumn = "100"
+opt.termguicolors = true
+opt.timeoutlen = 100
+opt.title = true
+opt.undodir = vim.fn.stdpath('cache') .. '/undo'
+opt.undofile = true
+opt.updatetime = 250
+opt.wrap = false
+opt.writebackup = false
 
 vim.g.tokyonight_style = "night"
 vim.cmd [[colorscheme tokyonight]]
@@ -93,6 +119,50 @@ vim.api.nvim_set_keymap('i', '?', '?<c-g>u', {silent = true, noremap = true})
 -- Jumplist mutations
 vim.cmd('nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"')
 vim.cmd('nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"')
+
+vim.api.nvim_set_keymap('i', 'jk', '<ESC>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', 'jk', '<ESC>:noh<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('i', '<A-j>', '<ESC>:m .+1<CR>==gi', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('i', '<A-k>', '<ESC>:m .-2<CR>==gi', {silent = true, noremap = true})
+-- vim.api.nvim_set_keymap('i', '?', '?<c-g>u', {silent = true, noremap = true})
+
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true, noremap = true})
+
+vim.api.nvim_set_keymap('n', '<C-Up>', ':resize -2<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-Down>', ':resize +2<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-Left>', ':vertical resize -2<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', {silent = true, noremap = true})
+
+vim.api.nvim_set_keymap('v', '<A-j>', ":move '>+1<CR>gv-gv", {silent = true, noremap = true})
+vim.api.nvim_set_keymap('v', '<A-k>', ":move '<-2<CR>gv-gv", {silent = true, noremap = true})
+
+vim.api.nvim_set_keymap('n', '<C-q>', ':call QuickFixToggle()<CR>', {silent = true, noremap = true})
+-- vim.api.nvim_set_keymap('i', '<A-k>', '<ESC>:m .-2<CR>==gi', {silent = true, noremap = true})
+
+-- QuickFixToggle
+vim.cmd(
+[[function! QuickFixToggle()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
+    else
+    cclose
+    endif
+endfunction]]
+)
+
+-- Custom Fold
+vim.cmd(
+[[function! CustomFold()
+    return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
+endfunction]]
+)
+
+-- Folding
+vim.cmd('set foldnestmax=6')
+vim.cmd('set foldlevelstart=20')
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -192,8 +262,8 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Example custom server
-local sumneko_root_path = vim.fn.stdpath("data")
-local sumneko_binary = sumneko_root_path .. '/lspinstall/lua/sumneko-lua-language-server'
+local data_path = vim.fn.stdpath("data")
+local sumneko_binary = data_path .. '/lspinstall/lua/sumneko-lua-language-server'
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
@@ -201,7 +271,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 require('lspconfig').sumneko_lua.setup {
-  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+  cmd = { sumneko_binary, '-E', data_path .. '/main.lua' },
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -227,6 +297,33 @@ require('lspconfig').sumneko_lua.setup {
     },
   },
 }
+
+require('lspconfig').solargraph.setup {
+  cmd = { data_path .. '/lspinstall/ruby/solargraph/bin/solargraph', 'stdio'},
+  filetypes = { 'ruby', 'rakefile' },
+  root_dir = require'lspconfig.util'.root_pattern('.'),
+  settings = {
+    solargraph = {
+      formatting = true,
+    }
+  },
+}
+
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    require'lspconfig'[server].setup{}
+  end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
@@ -282,9 +379,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
 -- luasnip setup
 local luasnip = require 'luasnip'
 
@@ -310,7 +404,7 @@ cmp.setup {
     ['<Tab>'] = function(fallback)
       if vim.fn.pumvisible() == 1 then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-      elseif vim.fn['vsnip#available']() == 1 then
+      elseif luasnip.jumpable(1) then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true), '')
       else
         fallback()
@@ -389,7 +483,127 @@ vim.g.nvim_tree_icons = {
 
 require('lualine').setup()
 require('project_nvim').setup{}
-require('which-key').setup{}
+require('which-key').setup{
+plugins = {
+            marks = true, -- shows a list of your marks on ' and `
+            registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+            -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+            -- No actual key bindings are created
+            presets = {
+                operators = false, -- adds help for operators like d, y, ...
+                motions = false, -- adds help for motions
+                text_objects = false, -- help for text objects triggered after entering an operator
+                windows = true, -- default bindings on <c-w>
+                nav = true, -- misc bindings to work with windows
+                z = true, -- bindings for folds, spelling and others prefixed with z
+                g = true -- bindings for prefixed with g
+            }
+        },
+        icons = {
+            breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+            separator = "➜", -- symbol used between a key and it's label
+            group = "+" -- symbol prepended to a group
+        },
+        window = {
+            border = "single", -- none, single, double, shadow
+            position = "bottom", -- bottom, top
+            margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
+            padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
+        },
+        layout = {
+            height = {min = 4, max = 25}, -- min and max height of the columns
+            width = {min = 20, max = 50}, -- min and max width of the columns
+            spacing = 3 -- spacing between columns
+        },
+        hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
+        show_help = true -- show help message on the command line when the popup is visible
+    }
+
+    local opts = {
+        mode = "n", -- NORMAL mode
+        prefix = "<leader>",
+        buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps
+        nowait = false -- use `nowait` when creating keymaps
+    }
+
+    -- explorer
+    vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+
+    -- dashboard
+    vim.api.nvim_set_keymap('n', '<Leader>;', ':Dashboard<CR>', {noremap = true, silent = true})
+
+    -- Comments
+    vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+    vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+
+    -- Buffers
+    vim.api.nvim_set_keymap("n", "<leader>b", ":SnapBuffers<CR>", {noremap = true, silent = true})
+
+    local mappings = {
+        ["/"] = "Comment",
+        ["e"] = "Explorer",
+        ["b"] = "Buffers",
+        d = {
+            name = 'Diagnostics',
+            ga = {"<cmd>lua vim.lsp.diagnostic.get_all()<cr>", "Get All"},
+            gn = {"<cmd>lua vim.lsp.diagnostic.get_next()<cr>", "Get Next"},
+            gp = {"<cmd>lua vim.lsp.diagnostic.get_prev()<cr>", "Get Previous"},
+            gld = {"<cmd>lua vim.lsp.diagnostic.get_line_diagnostics()<cr>", "Get Line Diagnostics"},
+            gtn = {"<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Go to Next"},
+            gtp = {"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Go to Previous"},
+            sld = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Show Line Diagnostics"},
+        },
+        f = {
+            name = "+Find",
+            -- b = {"<cmd>Telescope buffers<cr>", "Open buffers"},
+            -- c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
+            -- ds = {"<cmd>Telescope lsp_document_symbols<cr>", "Colorscheme"},
+            e = {"<cmd>Telescope file_browser<cr>", "File Browser"},
+            -- f = {"<cmd> Telescope find_files<CR>", "Find Files"},
+            b = {"<cmd>lua SnapBuffers()<CR>", "Find Files"},
+            f = {"<cmd>lua SnapFiles()<CR>", "Find Files"},
+            w = {"<cmd>lua SnapGrep()<CR>", "Find Word"},
+            g = {"<cmd>lua SnapGit()<CR>", "Find Git"},
+            sw = {"<cmd>lua SnapGrepSelectedWord()<CR>", "Find Selected Word"},
+            of = {"<cmd>lua SnapOldFiles()<CR>", "Find Old Files"},
+            -- i = {"<cmd>Telescope current_buffer_fuzzy_find<cr>", "Search Current Buffer"},
+            -- km = {"<cmd>Telescope keymaps<cr>", "Find Keymaps"},
+            -- m = {"<cmd>Telescope marks<cr>", "Marks"},
+            -- p = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
+            -- of = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
+            -- ts = {"<cmd>Telescope treesitter<cr>", "Treesitter"},
+            -- td = {"<cmd>TodoTelescope<cr>", "Find TODO's"},
+            -- vo = {"<cmd>Telescope vim_options<cr>", "Find Vim Options"},
+            -- gs = {"<cmd>Telescope grep_string<cr>", "Grep String"},
+            -- ws = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workplace Symbols"},
+        },
+        g = {
+            name = "+Git",
+            nh = {"<cmd>lua require'gitsigns'.next_hunk()<cr>", "Next Hunk"},
+            ph = {"<cmd>lua require'gitsigns'.prev_hunk()<cr>", "Previous Hunk"},
+            sh = {"<cmd>lua require'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
+            ush = {"<cmd>lua require'gitsigns'.undo_stage_hunk()<cr>", "Unstage Hunk"},
+            rh = {"<cmd>lua require'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
+            rb = {"<cmd>lua require'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
+            pvh = {"<cmd>lua require'gitsigns'.preview_hunk()<cr>", "Preview Hunk"},
+            b = {"<cmd>lua require'gitsigns'.blame_line()<cr>", "Blame Line"},
+        },
+        l = {
+            name = "+LSP",
+            a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
+            i = {"<cmd>LspInfo<cr>", "Info"},
+            f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "LSP Finder"},
+            -- l = {"<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
+            -- p = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"},
+            r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},
+            t = {"<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Definition"},
+        },
+    }
+
+    local wk = require("which-key")
+    wk.register(mappings, opts)
 
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
@@ -434,3 +648,80 @@ require('nvim_comment').setup({
     end
   end
 })
+
+-- Snap
+local snap = require "snap"
+local fzf = snap.get "consumer.fzf"
+local limit = snap.get "consumer.limit"
+local producer_file = snap.get"producer.ripgrep.file".args {
+    '--hidden', "--iglob", "!vendor/* !node_modules/* !target/* !git/*"
+}
+local producer_vimgrep = snap.get "producer.ripgrep.vimgrep"
+local producer_buffer = snap.get "producer.vim.buffer"
+local producer_oldfile = snap.get "producer.vim.oldfile"
+local producer_git = snap.get "consumer.fzf"(snap.get "producer.git.file")
+local select_file = snap.get "select.file"
+local select_vimgrep = snap.get "select.vimgrep"
+local preview_file = snap.get "preview.file"
+local preview_vimgrep = snap.get "preview.vimgrep"
+
+function SnapFiles()
+    snap.run({
+        prompt = "  Files  ",
+        producer = fzf(producer_file),
+        select = select_file.select,
+        multiselect = select_file.multiselect,
+        views = {preview_file}
+    })
+end
+
+function SnapGrep()
+    snap.run({
+        prompt = "  Grep  ",
+        producer = limit(10000, producer_vimgrep),
+        select = select_vimgrep.select,
+        multiselect = select_vimgrep.multiselect,
+        views = {preview_vimgrep}
+    })
+end
+
+function SnapGrepSelectedWord()
+    snap.run({
+        prompt = "  Grep  ",
+        producer = limit(10000, producer_vimgrep),
+        select = select_vimgrep.select,
+        multiselect = select_vimgrep.multiselect,
+        views = {preview_vimgrep},
+        initial_filter = vim.fn.expand("<cword>")
+    })
+end
+
+function SnapGit()
+    snap.run {
+        prompt = "  Git  ",
+        producer = producer_git,
+        select = snap.get"select.file".select,
+        multiselect = snap.get"select.file".multiselect,
+        views = {snap.get "preview.file"}
+    }
+end
+
+function SnapBuffers()
+    snap.run({
+        prompt = " ﬘ Buffers  ",
+        producer = fzf(producer_buffer),
+        select = select_file.select,
+        multiselect = select_file.multiselect,
+        views = {preview_file}
+    })
+end
+
+function SnapOldFiles()
+    snap.run({
+        prompt = "  Oldfiles  ",
+        producer = fzf(producer_oldfile),
+        select = select_file.select,
+        multiselect = select_file.multiselect,
+        views = {preview_file}
+    })
+end

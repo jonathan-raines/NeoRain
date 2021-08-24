@@ -149,6 +149,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/project.nvim"
   },
+  snap = {
+    loaded = true,
+    path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/snap"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/jonathan/.local/share/nvim/site/pack/packer/start/telescope.nvim"
