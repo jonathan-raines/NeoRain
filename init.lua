@@ -561,7 +561,7 @@ plugins = {
             -- c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
             -- ds = {"<cmd>Telescope lsp_document_symbols<cr>", "Colorscheme"},
             e = {"<cmd>Telescope file_browser<cr>", "File Browser"},
-            -- f = {"<cmd> Telescope find_files<CR>", "Find Files"},
+            x = {"<cmd> Telescope find_files<CR>", "Find Files"},
             b = {"<cmd>lua SnapBuffers()<CR>", "Find Files"},
             f = {"<cmd>lua SnapFiles()<CR>", "Find Files"},
             w = {"<cmd>lua SnapGrep()<CR>", "Find Word"},
@@ -660,7 +660,6 @@ local producer_vimgrep = snap.get "producer.ripgrep.vimgrep"
 local producer_buffer = snap.get "producer.vim.buffer"
 local producer_oldfile = snap.get "producer.vim.oldfile"
 local producer_git = snap.get "consumer.fzf"(snap.get "producer.git.file")
-local select_file = snap.get "select.file"
 local select_vimgrep = snap.get "select.vimgrep"
 local preview_file = snap.get "preview.file"
 local preview_vimgrep = snap.get "preview.vimgrep"
@@ -669,8 +668,8 @@ function SnapFiles()
     snap.run({
         prompt = "  Files  ",
         producer = fzf(producer_file),
-        select = select_file.select,
-        multiselect = select_file.multiselect,
+        select = select_vimgrep.select,
+        multiselect = select_vimgrep.multiselect,
         views = {preview_file}
     })
 end
@@ -700,8 +699,8 @@ function SnapGit()
     snap.run {
         prompt = "  Git  ",
         producer = producer_git,
-        select = snap.get"select.file".select,
-        multiselect = snap.get"select.file".multiselect,
+        select = select_vimgrep.select,
+        multiselect = select_vimgrep.multiselect,
         views = {snap.get "preview.file"}
     }
 end
@@ -710,8 +709,8 @@ function SnapBuffers()
     snap.run({
         prompt = " ﬘ Buffers  ",
         producer = fzf(producer_buffer),
-        select = select_file.select,
-        multiselect = select_file.multiselect,
+        select = select_vimgrep.select,
+        multiselect = select_vimgrep.multiselect,
         views = {preview_file}
     })
 end
@@ -720,8 +719,8 @@ function SnapOldFiles()
     snap.run({
         prompt = "  Oldfiles  ",
         producer = fzf(producer_oldfile),
-        select = select_file.select,
-        multiselect = select_file.multiselect,
+        select = select_vimgrep.select,
+        multiselect = select_vimgrep.multiselect,
         views = {preview_file}
     })
 end
