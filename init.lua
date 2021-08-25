@@ -18,15 +18,27 @@ vim.api.nvim_exec(
 local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
+
+  -- Finders
   use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
+  use 'camspiers/snap'
+
+  -- UI
   use 'folke/tokyonight.nvim'
   use {'shadmansaleh/lualine.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use 'terrortylor/nvim-comment'
+
+  -- Treesitter
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use 'windwp/nvim-ts-autotag'
   use 'windwp/nvim-autopairs'
+  use 'windwp/nvim-ts-autotag'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
+
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
+
+  -- LSP
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
   use 'hrsh7th/nvim-cmp'
@@ -35,13 +47,12 @@ require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip'
   use 'onsails/lspkind-nvim'
+  use {'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } }
+  use {'jose-elias-alvarez/nvim-lsp-ts-utils' }
+
   use 'folke/which-key.nvim'
   use 'ahmedkhalf/project.nvim'
   use 'akinsho/nvim-toggleterm.lua'
-  use 'terrortylor/nvim-comment'
-  use 'camspiers/snap'
-  use {'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } }
-  use {'jose-elias-alvarez/nvim-lsp-ts-utils' }
 end)
 
 local vim = vim
@@ -345,22 +356,18 @@ end
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
 local border = { "", "", "", " ", "", "", "", " " }
+
 require('nvim-treesitter.configs').setup {
+  ensure_installed = 'maintained',
+  ignore_installed = {'haskell'},
   autopairs = { enable = true },
-  highlight = {
-    enable = true, -- false will disable the whole extension
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
-    },
-  },
+  autotag = {enable = true},
+  context_commentstring = { enable = true },
   indent = {
     enable = true,
+  },
+  highlight = {
+    enable = true, -- false will disable the whole extension
   },
   textobjects = {
     lsp_interop = {
