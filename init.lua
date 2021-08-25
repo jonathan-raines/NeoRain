@@ -215,7 +215,9 @@ require('telescope').setup {
       },
     },
     pickers = {
-      find_files = { hidden = true },
+      find_files = {
+        hidden = true,
+      },
     }
   },
 }
@@ -255,7 +257,6 @@ local on_attach = function(client, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
   if client.resolved_capabilities.document_formatting then
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
@@ -647,6 +648,8 @@ vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true,
 
 -- Buffers
 vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>lua SnapBuffers()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>c", ":bdelete<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>C", "<cmd>BufOnly<CR>", {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>q", ":q!<CR>", {noremap = true, silent = true})
@@ -656,6 +659,8 @@ local mappings = {
   ["e"] = "Explorer",
   ["b"] = "Buffers",
   ["w"] = "Save",
+  ["c"] = "Close Buffer",
+  ["C"] = "Close All But Current Buffer",
   ["q"] = "Quit",
   d = {
     name = 'Diagnostics',
@@ -812,7 +817,7 @@ function SnapFiles()
     prompt = "  Files  ",
     producer = fzf(producer_file),
     select = select_file.select,
-    multiselect = select_file.multiselect,
+    multiselect = select_vimgrep.multiselect,
     views = {preview_file}
   })
 end
@@ -885,7 +890,7 @@ vim.cmd [[ autocmd BufWinEnter * setlocal formatoptions-=c formatoptions-=r form
 vim.cmd [[ autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]]
 vim.cmd [[ autocmd BufNewFile * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]]
 vim.cmd [[ autocmd BufWinEnter NvimTree set colorcolumn=0 nocursorcolumn ]]
--- vim.cmd [[ autocmd ]]
+vim.cmd [[ command BufOnly silent! execute "%bd|e#|bd#" ]]
 -- vim.cmd [[ autocmd ]]
 
 -- Disable various builtin plugins in Vim that bog down speed
