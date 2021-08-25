@@ -583,23 +583,28 @@ vim.g.nvim_tree_icons = {
 }
 
 require('lualine').setup()
-require('project_nvim').setup{}
-require('which-key').setup{
 
-plugins = {
-  marks = true, -- shows a list of your marks on ' and `
-  registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-  -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-  -- No actual key bindings are created
-  presets = {
-      operators = false, -- adds help for operators like d, y, ...
-      motions = false, -- adds help for motions
-      text_objects = false, -- help for text objects triggered after entering an operator
-      windows = true, -- default bindings on <c-w>
-      nav = true, -- misc bindings to work with windows
-      z = true, -- bindings for folds, spelling and others prefixed with z
-      g = true -- bindings for prefixed with g
-  }
+require('project_nvim').setup{
+  manual_mode = false,
+  ignore_lsp = { 'solargraph' },
+  show_hidden = true,
+}
+
+require('which-key').setup{
+  plugins = {
+    marks = true, -- shows a list of your marks on ' and `
+    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+    -- No actual key bindings are created
+    presets = {
+        operators = false, -- adds help for operators like d, y, ...
+        motions = false, -- adds help for motions
+        text_objects = false, -- help for text objects triggered after entering an operator
+        windows = true, -- default bindings on <c-w>
+        nav = true, -- misc bindings to work with windows
+        z = true, -- bindings for folds, spelling and others prefixed with z
+        g = true -- bindings for prefixed with g
+    }
   },
   icons = {
       breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -634,6 +639,7 @@ local opts = {
 vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
 
 -- Comments
 vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
@@ -715,12 +721,11 @@ require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
   size = 20 or function(term)
     if term.direction == 'horizontal' then
-      return 10
+      return 15
     elseif term.direction == 'vertical' then
       return vim.o.columns * 0.4
     end
   end,
-  open_mapping = [[<c-t>]],
   hide_numbers = true, -- hide the number column in toggleterm buffers
   shade_filetypes = {},
   shade_terminals = true,
@@ -745,6 +750,37 @@ require("toggleterm").setup{
     }
   }
 }
+
+function _G.set_terminal_keymaps()
+  local opts = {noremap = true}
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = 'float' })
+local term = Terminal:new({ hidden = true, direction = 'horizontal' })
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+function _normterm_toggle()
+  term:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<A-l>", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("t", "<A-l>", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+
+vim.api.nvim_set_keymap("n", "<A-i>", "<cmd>lua _normterm_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("t", "<A-i>", "<cmd>lua _normterm_toggle()<CR>", {noremap = true, silent = true})
 
 require('nvim_comment').setup({
   comment_empty = false,
