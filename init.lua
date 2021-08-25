@@ -116,10 +116,6 @@ vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
---Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
-
 -- Keeping it centered
 vim.api.nvim_set_keymap('n', 'n', 'nzzzv', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', {silent = true, noremap = true})
@@ -136,9 +132,15 @@ vim.cmd('nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"')
 vim.cmd('nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"')
 
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', {silent = true, noremap = true})
-vim.api.nvim_set_keymap('n', 'jk', '<ESC>:noh<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', 'jk', ':noh<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('v', 'jk', '<ESC>', {silent = true, noremap = true})
+
+vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>==', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('i', '<A-j>', '<ESC>:m .+1<CR>==gi', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('i', '<A-k>', '<ESC>:m .-2<CR>==gi', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('v', '<A-j>', ":move '>+1<CR>gv-gv", {silent = true, noremap = true})
+vim.api.nvim_set_keymap('v', '<A-k>', ":move '<-2<CR>gv-gv", {silent = true, noremap = true})
 
 vim.api.nvim_set_keymap('n', 'U', '<C-R>', {silent = true, noremap = true})
 
@@ -155,14 +157,14 @@ vim.api.nvim_set_keymap('n', '<C-Down>', ':resize +2<CR>', {silent = true, norem
 vim.api.nvim_set_keymap('n', '<C-Left>', ':vertical resize -2<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', {silent = true, noremap = true})
 
-vim.api.nvim_set_keymap('v', '<A-j>', ":move '>+1<CR>gv-gv", {silent = true, noremap = true})
-vim.api.nvim_set_keymap('v', '<A-k>', ":move '<-2<CR>gv-gv", {silent = true, noremap = true})
-
 vim.api.nvim_set_keymap('v', '<', '<gv', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('v', '>', '>gv', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<', '<<', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '>', '>>', {silent = true, noremap = true})
 
 vim.api.nvim_set_keymap('n', '<C-q>', ':call QuickFixToggle()<CR>', {silent = true, noremap = true})
--- vim.api.nvim_set_keymap('i', '<A-k>', '<ESC>:m .-2<CR>==gi', {silent = true, noremap = true})
+
+vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
 -- QuickFixToggle
 vim.cmd(
@@ -217,6 +219,7 @@ require('telescope').setup {
     }
   },
 }
+
 --Add leader shortcuts
 -- vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
@@ -226,24 +229,21 @@ require('telescope').setup {
 -- vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 
--- Y yank until the end of line  (note: this is now a default on master)
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
-
 -- LSP settings
 local nvim_lsp = require 'lspconfig'
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gk', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gk', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gl', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'v', 'ga', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
@@ -354,8 +354,7 @@ require'lspinstall'.post_install_hook = function ()
 end
 
 -- Treesitter configuration
--- Parsers must be installed manually via :TSInstall
-local border = { "", "", "", " ", "", "", "", " " }
+local border = { "─", "│", "─", "│", "┌", "┐", "┘", "└" } -- { "", "", "", " ", "", "", "", " " }
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = 'maintained',
@@ -586,130 +585,131 @@ vim.g.nvim_tree_icons = {
 require('lualine').setup()
 require('project_nvim').setup{}
 require('which-key').setup{
+
 plugins = {
-            marks = true, -- shows a list of your marks on ' and `
-            registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-            -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-            -- No actual key bindings are created
-            presets = {
-                operators = false, -- adds help for operators like d, y, ...
-                motions = false, -- adds help for motions
-                text_objects = false, -- help for text objects triggered after entering an operator
-                windows = true, -- default bindings on <c-w>
-                nav = true, -- misc bindings to work with windows
-                z = true, -- bindings for folds, spelling and others prefixed with z
-                g = true -- bindings for prefixed with g
-            }
-        },
-        icons = {
-            breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-            separator = "➜", -- symbol used between a key and it's label
-            group = "+" -- symbol prepended to a group
-        },
-        window = {
-            border = "single", -- none, single, double, shadow
-            position = "bottom", -- bottom, top
-            margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
-            padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
-        },
-        layout = {
-            height = {min = 4, max = 25}, -- min and max height of the columns
-            width = {min = 20, max = 50}, -- min and max width of the columns
-            spacing = 3 -- spacing between columns
-        },
-        hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
-        show_help = true -- show help message on the command line when the popup is visible
-    }
+  marks = true, -- shows a list of your marks on ' and `
+  registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+  -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+  -- No actual key bindings are created
+  presets = {
+      operators = false, -- adds help for operators like d, y, ...
+      motions = false, -- adds help for motions
+      text_objects = false, -- help for text objects triggered after entering an operator
+      windows = true, -- default bindings on <c-w>
+      nav = true, -- misc bindings to work with windows
+      z = true, -- bindings for folds, spelling and others prefixed with z
+      g = true -- bindings for prefixed with g
+  }
+  },
+  icons = {
+      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+      separator = "➜", -- symbol used between a key and it's label
+      group = "+" -- symbol prepended to a group
+  },
+  window = {
+      border = "single", -- none, single, double, shadow
+      position = "bottom", -- bottom, top
+      margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
+      padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
+  },
+  layout = {
+      height = {min = 4, max = 25}, -- min and max height of the columns
+      width = {min = 20, max = 50}, -- min and max width of the columns
+      spacing = 3 -- spacing between columns
+  },
+  hidden = {"<silent>", "<cmd>", "<cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
+  show_help = true -- show help message on the command line when the popup is visible
+}
 
-    local opts = {
-        mode = "n", -- NORMAL mode
-        prefix = "<leader>",
-        buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-        silent = true, -- use `silent` when creating keymaps
-        noremap = true, -- use `noremap` when creating keymaps
-        nowait = false -- use `nowait` when creating keymaps
-    }
+local opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = false -- use `nowait` when creating keymaps
+}
 
-    -- explorer
-    vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+-- explorer
+vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
-    vim.api.nvim_set_keymap('n', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
 
-    -- Comments
-    vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
-    vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+-- Comments
+vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 
-    -- Buffers
-    vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>lua SnapBuffers()<CR>", {noremap = true, silent = true})
+-- Buffers
+vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>lua SnapBuffers()<CR>", {noremap = true, silent = true})
 
-    vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", {noremap = true, silent = true})
-    vim.api.nvim_set_keymap("n", "<leader>q", ":q!<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>q", ":q!<CR>", {noremap = true, silent = true})
 
-    local mappings = {
-        ["/"] = "Comment",
-        ["e"] = "Explorer",
-        ["b"] = "Buffers",
-        ["w"] = "Save",
-        ["q"] = "Quit",
-        d = {
-            name = 'Diagnostics',
-            ga = {"<cmd>lua vim.lsp.diagnostic.get_all()<cr>", "Get All"},
-            gn = {"<cmd>lua vim.lsp.diagnostic.get_next()<cr>", "Get Next"},
-            gp = {"<cmd>lua vim.lsp.diagnostic.get_prev()<cr>", "Get Previous"},
-            gld = {"<cmd>lua vim.lsp.diagnostic.get_line_diagnostics()<cr>", "Get Line Diagnostics"},
-            gtn = {"<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Go to Next"},
-            gtp = {"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Go to Previous"},
-            sld = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Show Line Diagnostics"},
-        },
-        f = {
-            name = "+Find",
-            -- b = {"<cmd>Telescope buffers<cr>", "Open buffers"},
-            -- c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
-            -- ds = {"<cmd>Telescope lsp_document_symbols<cr>", "Colorscheme"},
-            e = {"<cmd>Telescope file_browser<cr>", "File Browser"},
-            x = {"<cmd> Telescope find_files<CR>", "Find Files"},
-            b = {"<cmd>lua SnapBuffers()<CR>", "Find Files"},
-            f = {"<cmd>lua SnapFiles()<CR>", "Find Files"},
-            w = {"<cmd>lua SnapGrep()<CR>", "Find Word"},
-            g = {"<cmd>lua SnapGit()<CR>", "Find Git"},
-            sw = {"<cmd>lua SnapGrepSelectedWord()<CR>", "Find Selected Word"},
-            of = {"<cmd>lua SnapOldFiles()<CR>", "Find Old Files"},
-            -- i = {"<cmd>Telescope current_buffer_fuzzy_find<cr>", "Search Current Buffer"},
-            -- km = {"<cmd>Telescope keymaps<cr>", "Find Keymaps"},
-            -- m = {"<cmd>Telescope marks<cr>", "Marks"},
-            -- p = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
-            -- of = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
-            -- ts = {"<cmd>Telescope treesitter<cr>", "Treesitter"},
-            -- td = {"<cmd>TodoTelescope<cr>", "Find TODO's"},
-            -- vo = {"<cmd>Telescope vim_options<cr>", "Find Vim Options"},
-            -- gs = {"<cmd>Telescope grep_string<cr>", "Grep String"},
-            -- ws = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workplace Symbols"},
-        },
-        g = {
-            name = "+Git",
-            nh = {"<cmd>lua require'gitsigns'.next_hunk()<cr>", "Next Hunk"},
-            ph = {"<cmd>lua require'gitsigns'.prev_hunk()<cr>", "Previous Hunk"},
-            sh = {"<cmd>lua require'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
-            ush = {"<cmd>lua require'gitsigns'.undo_stage_hunk()<cr>", "Unstage Hunk"},
-            rh = {"<cmd>lua require'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
-            rb = {"<cmd>lua require'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
-            pvh = {"<cmd>lua require'gitsigns'.preview_hunk()<cr>", "Preview Hunk"},
-            b = {"<cmd>lua require'gitsigns'.blame_line()<cr>", "Blame Line"},
-        },
-        l = {
-            name = "+LSP",
-            a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
-            i = {"<cmd>LspInfo<cr>", "Info"},
-            f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "LSP Finder"},
-            -- l = {"<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
-            -- p = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"},
-            r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},
-            t = {"<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Definition"},
-        },
-    }
+local mappings = {
+  ["/"] = "Comment",
+  ["e"] = "Explorer",
+  ["b"] = "Buffers",
+  ["w"] = "Save",
+  ["q"] = "Quit",
+  d = {
+    name = 'Diagnostics',
+    ga = {"<cmd>lua vim.lsp.diagnostic.get_all()<cr>", "Get All"},
+    gn = {"<cmd>lua vim.lsp.diagnostic.get_next()<cr>", "Get Next"},
+    gp = {"<cmd>lua vim.lsp.diagnostic.get_prev()<cr>", "Get Previous"},
+    gld = {"<cmd>lua vim.lsp.diagnostic.get_line_diagnostics()<cr>", "Get Line Diagnostics"},
+    gtn = {"<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Go to Next"},
+    gtp = {"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Go to Previous"},
+    sld = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Show Line Diagnostics"},
+  },
+  f = {
+    name = "+Find",
+    -- b = {"<cmd>Telescope buffers<cr>", "Open buffers"},
+    -- c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
+    -- ds = {"<cmd>Telescope lsp_document_symbols<cr>", "Colorscheme"},
+    e = {"<cmd>Telescope file_browser<cr>", "File Browser"},
+    x = {"<cmd> Telescope find_files<CR>", "Find Files"},
+    b = {"<cmd>lua SnapBuffers()<CR>", "Find Files"},
+    f = {"<cmd>lua SnapFiles()<CR>", "Find Files"},
+    w = {"<cmd>lua SnapGrep()<CR>", "Find Word"},
+    g = {"<cmd>lua SnapGit()<CR>", "Find Git"},
+    sw = {"<cmd>lua SnapGrepSelectedWord()<CR>", "Find Selected Word"},
+    of = {"<cmd>lua SnapOldFiles()<CR>", "Find Old Files"},
+    -- i = {"<cmd>Telescope current_buffer_fuzzy_find<cr>", "Search Current Buffer"},
+    -- km = {"<cmd>Telescope keymaps<cr>", "Find Keymaps"},
+    -- m = {"<cmd>Telescope marks<cr>", "Marks"},
+    -- p = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
+    -- of = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
+    -- ts = {"<cmd>Telescope treesitter<cr>", "Treesitter"},
+    -- td = {"<cmd>TodoTelescope<cr>", "Find TODO's"},
+    -- vo = {"<cmd>Telescope vim_options<cr>", "Find Vim Options"},
+    -- gs = {"<cmd>Telescope grep_string<cr>", "Grep String"},
+    -- ws = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workplace Symbols"},
+  },
+  g = {
+    name = "+Git",
+    nh = {"<cmd>lua require'gitsigns'.next_hunk()<cr>", "Next Hunk"},
+    ph = {"<cmd>lua require'gitsigns'.prev_hunk()<cr>", "Previous Hunk"},
+    sh = {"<cmd>lua require'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
+    ush = {"<cmd>lua require'gitsigns'.undo_stage_hunk()<cr>", "Unstage Hunk"},
+    rh = {"<cmd>lua require'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
+    rb = {"<cmd>lua require'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
+    pvh = {"<cmd>lua require'gitsigns'.preview_hunk()<cr>", "Preview Hunk"},
+    b = {"<cmd>lua require'gitsigns'.blame_line()<cr>", "Blame Line"},
+  },
+  l = {
+    name = "+LSP",
+    a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
+    i = {"<cmd>LspInfo<cr>", "Info"},
+    f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "LSP Finder"},
+    -- l = {"<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
+    -- p = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"},
+    r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},
+    t = {"<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Definition"},
+  },
+}
 
-    local wk = require("which-key")
-    wk.register(mappings, opts)
+local wk = require("which-key")
+wk.register(mappings, opts)
 
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
@@ -772,64 +772,64 @@ local preview_file = snap.get "preview.file"
 local preview_vimgrep = snap.get "preview.vimgrep"
 
 function SnapFiles()
-    snap.run({
-        prompt = "  Files  ",
-        producer = fzf(producer_file),
-        select = select_file.select,
-        multiselect = select_file.multiselect,
-        views = {preview_file}
-    })
+  snap.run({
+    prompt = "  Files  ",
+    producer = fzf(producer_file),
+    select = select_file.select,
+    multiselect = select_file.multiselect,
+    views = {preview_file}
+  })
 end
 
 function SnapGrep()
-    snap.run({
-        prompt = "  Grep  ",
-        producer = limit(10000, producer_vimgrep),
-        select = select_vimgrep.select,
-        multiselect = select_vimgrep.multiselect,
-        views = {preview_vimgrep}
-    })
+  snap.run({
+    prompt = "  Grep  ",
+    producer = limit(10000, producer_vimgrep),
+    select = select_vimgrep.select,
+    multiselect = select_vimgrep.multiselect,
+    views = {preview_vimgrep}
+  })
 end
 
 function SnapGrepSelectedWord()
-    snap.run({
-        prompt = "  Grep  ",
-        producer = limit(10000, producer_vimgrep),
-        select = select_vimgrep.select,
-        multiselect = select_vimgrep.multiselect,
-        views = {preview_vimgrep},
-        initial_filter = vim.fn.expand("<cword>")
-    })
+  snap.run({
+    prompt = "  Grep  ",
+    producer = limit(10000, producer_vimgrep),
+    select = select_vimgrep.select,
+    multiselect = select_vimgrep.multiselect,
+    views = {preview_vimgrep},
+    initial_filter = vim.fn.expand("<cword>")
+  })
 end
 
 function SnapGit()
-    snap.run {
-        prompt = "  Git  ",
-        producer = producer_git,
-        select = select_file.select,
-        multiselect = select_file.multiselect,
-        views = {preview_file}
-    }
+  snap.run {
+    prompt = "  Git  ",
+    producer = producer_git,
+    select = select_file.select,
+    multiselect = select_file.multiselect,
+    views = {preview_file}
+  }
 end
 
 function SnapBuffers()
-    snap.run({
-        prompt = " ﬘ Buffers  ",
-        producer = fzf(producer_buffer),
-        select = select_file.select,
-        multiselect = select_file.multiselect,
-        views = {preview_file}
-    })
+  snap.run({
+    prompt = " ﬘ Buffers  ",
+    producer = fzf(producer_buffer),
+    select = select_file.select,
+    multiselect = select_file.multiselect,
+    views = {preview_file}
+  })
 end
 
 function SnapOldFiles()
-    snap.run({
-        prompt = "  Oldfiles  ",
-        producer = fzf(producer_oldfile),
-        select = select_file.select,
-        multiselect = select_file.multiselect,
-        views = {preview_file}
-    })
+  snap.run({
+    prompt = "  Oldfiles  ",
+    producer = fzf(producer_oldfile),
+    select = select_file.select,
+    multiselect = select_file.multiselect,
+    views = {preview_file}
+  })
 end
 
 -- Highlight on yank
@@ -887,61 +887,61 @@ require("lspconfig")["null-ls"].setup({
 })
 
 nvim_lsp.tsserver.setup {
-    on_attach = function(client, bufnr)
-        -- disable tsserver formatting if you plan on formatting via null-ls
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+  on_attach = function(client, bufnr)
+    -- disable tsserver formatting if you plan on formatting via null-ls
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
 
-        local ts_utils = require("nvim-lsp-ts-utils")
+    local ts_utils = require("nvim-lsp-ts-utils")
 
-        -- defaults
-        ts_utils.setup {
-            debug = false,
-            disable_commands = false,
-            enable_import_on_completion = false,
+    -- defaults
+    ts_utils.setup {
+      debug = false,
+      disable_commands = false,
+      enable_import_on_completion = false,
 
-            -- import all
-            import_all_timeout = 5000, -- ms
-            import_all_priorities = {
-                buffers = 4, -- loaded buffer names
-                buffer_content = 3, -- loaded buffer content
-                local_files = 2, -- git files or files with relative path markers
-                same_file = 1, -- add to existing import statement
-            },
-            import_all_scan_buffers = 100,
-            import_all_select_source = false,
+      -- import all
+      import_all_timeout = 5000, -- ms
+      import_all_priorities = {
+          buffers = 4, -- loaded buffer names
+          buffer_content = 3, -- loaded buffer content
+          local_files = 2, -- git files or files with relative path markers
+          same_file = 1, -- add to existing import statement
+      },
+      import_all_scan_buffers = 100,
+      import_all_select_source = false,
 
-            -- eslint
-            eslint_enable_code_actions = true,
-            eslint_enable_disable_comments = true,
-            eslint_bin = "eslint_d",
-            eslint_config_fallback = nil,
-            eslint_enable_diagnostics = false,
-            eslint_show_rule_id = false,
+      -- eslint
+      eslint_enable_code_actions = true,
+      eslint_enable_disable_comments = true,
+      eslint_bin = "eslint_d",
+      eslint_config_fallback = nil,
+      eslint_enable_diagnostics = false,
+      eslint_show_rule_id = false,
 
-            -- formatting
-            enable_formatting = true,
-            formatter = "eslint_d",
-            formatter_config_fallback = nil,
+      -- formatting
+      enable_formatting = true,
+      formatter = "eslint_d",
+      formatter_config_fallback = nil,
 
-            -- update imports on file move
-            update_imports_on_move = false,
-            require_confirmation_on_move = false,
-            watch_dir = nil,
+      -- update imports on file move
+      update_imports_on_move = false,
+      require_confirmation_on_move = false,
+      watch_dir = nil,
 
-            -- filter diagnostics
-            filter_out_diagnostics_by_severity = {},
-            filter_out_diagnostics_by_code = {},
-        }
+      -- filter diagnostics
+      filter_out_diagnostics_by_severity = {},
+      filter_out_diagnostics_by_code = {},
+    }
 
-        -- required to fix code action ranges and filter diagnostics
-        ts_utils.setup_client(client)
+    -- required to fix code action ranges and filter diagnostics
+    ts_utils.setup_client(client)
 
-        -- no default maps, so you may want to define some here
-        local opts = { silent = true }
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
-    end
+    -- no default maps, so you may want to define some here
+    local opts = { silent = true }
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", opts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
+  end
 }
