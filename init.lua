@@ -54,8 +54,7 @@ require('packer').startup(function()
     requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
   }
   use {
-    'camspiers/snap',
-    event = "BufEnter"
+    'camspiers/snap'
   }
 
   -- UI
@@ -67,7 +66,14 @@ require('packer').startup(function()
     end,
     event = "BufEnter"
   }
-  use {'shadmansaleh/lualine.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use {
+    'shadmansaleh/lualine.nvim',
+    config = function()
+      require('lualine').setup()
+    end,
+    event = "BufEnter",
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
   use {
     'lewis6991/gitsigns.nvim',
     config = function()
@@ -106,7 +112,6 @@ require('packer').startup(function()
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    event = "BufRead"
   }
   use {
     'windwp/nvim-autopairs',
@@ -137,15 +142,12 @@ require('packer').startup(function()
   }
   use {
     'windwp/nvim-ts-autotag',
-    before = 'nvim-treesitter/nvim-treesitter',
   }
   use {
     'JoosepAlviste/nvim-ts-context-commentstring',
-    before = 'nvim-treesitter/nvim-treesitter',
   }
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    before = 'nvim-treesitter/nvim-treesitter',
   }
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
 
@@ -163,7 +165,9 @@ require('packer').startup(function()
   use 'L3MON4D3/LuaSnip'
   use 'onsails/lspkind-nvim'
 
-  use 'folke/which-key.nvim'
+  use {
+    'folke/which-key.nvim',
+  }
   use 'ahmedkhalf/project.nvim'
   use 'akinsho/nvim-toggleterm.lua'
 end)
@@ -560,8 +564,6 @@ vim.g.nvim_tree_icons = {
         symlink = ""
     }
 }
-
-require('lualine').setup()
 
 require('project_nvim').setup{
   ignore_lsp = { 'solargraph' },

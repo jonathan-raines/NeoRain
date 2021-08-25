@@ -96,8 +96,10 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
   ["lualine.nvim"] = {
-    loaded = true,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    config = { "\27LJ\1\0025\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\flualine\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/lualine.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -140,9 +142,8 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    loaded = false,
-    needs_bufread = true,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
+    loaded = true,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
     loaded = true,
@@ -177,9 +178,8 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/project.nvim"
   },
   snap = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/snap"
+    loaded = true,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/snap"
   },
   ["telescope.nvim"] = {
     config = { "\27LJ\1\2¥\2\0\0\5\0\17\0\0214\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\15\0003\2\4\0003\3\3\0:\3\5\0023\3\6\0:\3\a\0023\3\b\0002\4\0\0:\4\t\3:\3\n\0023\3\f\0003\4\v\0:\4\r\3:\3\14\2:\2\16\1>\0\2\1G\0\1\0\rdefaults\1\0\0\fpickers\15find_files\1\0\0\1\0\1\vhidden\2\rmappings\6i\1\0\0\18layout_config\1\0\3\18preview_width\3P\vheight\4Í™³æ\fÌ™³ÿ\3\nwidth\4Í™³æ\fÌ™³ÿ\3\16borderchars\1\0\0\1\t\0\0\bâ”€\bâ”‚\bâ”€\bâ”‚\bâ”Œ\bâ”\bâ”˜\bâ””\nsetup\14telescope\frequire\0" },
@@ -204,9 +204,9 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs', 'nvim-comment'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufEnter * ++once lua require("packer.load")({'tokyonight.nvim', 'telescope.nvim', 'snap'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'tokyonight.nvim', 'lualine.nvim', 'telescope.nvim'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
