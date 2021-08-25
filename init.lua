@@ -20,22 +20,133 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Finders
-  use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
-  use 'camspiers/snap'
+  use {
+    'nvim-telescope/telescope.nvim',
+    config = function()
+      require('telescope').setup {
+        defaults = {
+          borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          layout_config = {
+            height = 0.9,
+            preview_width = 80,
+            width = 0.9,
+          },
+          mappings = {
+            i = {},
+          },
+          pickers = {
+            find_files = {
+              hidden = true,
+            },
+          }
+        },
+      }
+      --Add leader shortcuts
+      -- vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
+    end,
+    event = "BufEnter",
+    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
+  }
+  use {
+    'camspiers/snap',
+    event = "BufEnter"
+  }
 
   -- UI
-  use 'folke/tokyonight.nvim'
+  use {
+    'folke/tokyonight.nvim',
+    config = function()
+      vim.g.tokyonight_style = 'night'
+      vim.cmd [[colorscheme tokyonight]]
+    end,
+    event = "BufEnter"
+  }
   use {'shadmansaleh/lualine.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use 'terrortylor/nvim-comment'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup {
+        signs = {
+          add = { hl = 'GitGutterAdd', text = '+' },
+          change = { hl = 'GitGutterChange', text = '~' },
+          delete = { hl = 'GitGutterDelete', text = '_' },
+          topdelete = { hl = 'GitGutterDelete', text = '‾' },
+          changedelete = { hl = 'GitGutterChange', text = '~' },
+        },
+      }
+    end,
+    event = 'BufRead',
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
+  use {
+    'terrortylor/nvim-comment',
+    config = function()
+      require('nvim_comment').setup({
+        comment_empty = false,
+        hook = function()
+          if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then
+            require("ts_context_commentstring.internal").update_commentstring()
+          end
+        end
+      })
+
+      vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+      vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+    end,
+    event = "InsertEnter"
+  }
 
   -- Treesitter
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use 'windwp/nvim-autopairs'
-  use 'windwp/nvim-ts-autotag'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    event = "BufRead"
+  }
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      local npairs = require("nvim-autopairs")
+      local Rule = require('nvim-autopairs.rule')
 
+      npairs.setup({
+        check_ts = true,
+        ts_config = {
+          lua = {'string'},-- it will not add pair on that treesitter node
+          javascript = {'template_string'},
+          java = false,-- don't check treesitter on java
+        }
+      })
+
+      local ts_conds = require('nvim-autopairs.ts-conds')
+
+      -- press % => %% is only inside comment or string
+      npairs.add_rules({
+        Rule("%", "%", "lua")
+          :with_pair(ts_conds.is_ts_node({'string','comment'})),
+        Rule("$", "$", "lua")
+          :with_pair(ts_conds.is_not_ts_node({'function'}))
+      })
+    end,
+    event = "InsertEnter"
+  }
+  use {
+    'windwp/nvim-ts-autotag',
+    before = 'nvim-treesitter/nvim-treesitter',
+  }
+  use {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    before = 'nvim-treesitter/nvim-treesitter',
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    before = 'nvim-treesitter/nvim-treesitter',
+  }
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
 
   -- LSP
@@ -110,8 +221,6 @@ opt.updatetime = 250
 opt.wrap = false
 opt.writebackup = false
 
-vim.g.tokyonight_style = "night"
-vim.cmd [[colorscheme tokyonight]]
 
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
@@ -198,46 +307,6 @@ endfunction]]
 -- Folding
 vim.cmd('set foldnestmax=6')
 vim.cmd('set foldlevelstart=20')
-
--- Gitsigns
-require('gitsigns').setup {
-  signs = {
-    add = { hl = 'GitGutterAdd', text = '+' },
-    change = { hl = 'GitGutterChange', text = '~' },
-    delete = { hl = 'GitGutterDelete', text = '_' },
-    topdelete = { hl = 'GitGutterDelete', text = '‾' },
-    changedelete = { hl = 'GitGutterChange', text = '~' },
-  },
-}
-
--- Telescope
-require('telescope').setup {
-  defaults = {
-    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-    layout_config = {
-      height = 0.9,
-      preview_width = 80,
-      width = 0.9,
-    },
-    mappings = {
-      i = {},
-    },
-    pickers = {
-      find_files = {
-        hidden = true,
-      },
-    }
-  },
-}
-
---Add leader shortcuts
--- vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 
 -- LSP settings
 local nvim_lsp = require 'lspconfig'
@@ -362,82 +431,6 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
--- Treesitter configuration
-local border = { "─", "│", "─", "│", "┌", "┐", "┘", "└" } -- { "", "", "", " ", "", "", "", " " }
-
-require('nvim-treesitter.configs').setup {
-  ensure_installed = 'maintained',
-  ignore_installed = {'haskell'},
-  autopairs = { enable = true },
-  autotag = {enable = true},
-  context_commentstring = { enable = true },
-  indent = {
-    enable = true,
-  },
-  highlight = {
-    enable = true, -- false will disable the whole extension
-  },
-  textobjects = {
-    lsp_interop = {
-      enable = true,
-      border = border,
-      peek_definition_code = {
-        ['gp'] = '@function.outer'
-      }
-    },
-    select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-        ['ab'] = '@block.outer',
-        ['ib'] = '@block.inner',
-        ['ai'] = '@conditional.outer',
-        ['ii'] = '@conditional.inner',
-        ['al'] = '@loop.outer',
-        ['il'] = '@loop.inner',
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['glc'] = '@class.outer',
-        ['glf'] = '@function.outer',
-        ['glp'] = '@parameter.inner',
-      },
-     swap_previous = {
-        ['ghc'] = "@class.outer",
-        ['ghf'] = "@function.outer",
-        ['ghp'] = "@parameter.inner",
-      },
-    },
-  },
-}
-
 -- Diagnostics
 vim.fn.sign_define("LspDiagnosticsSignError", {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"})
 vim.fn.sign_define("LspDiagnosticsSignWarning", {texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning"})
@@ -534,29 +527,6 @@ cmp.setup {
 --     },
 -- })
 
--- Autopairs config
-local npairs = require("nvim-autopairs")
-local Rule = require('nvim-autopairs.rule')
-
-npairs.setup({
-  check_ts = true,
-  ts_config = {
-    lua = {'string'},-- it will not add pair on that treesitter node
-    javascript = {'template_string'},
-    java = false,-- don't check treesitter on java
-  }
-})
-
-local ts_conds = require('nvim-autopairs.ts-conds')
-
--- press % => %% is only inside comment or string
-npairs.add_rules({
-  Rule("%", "%", "lua")
-    :with_pair(ts_conds.is_ts_node({'string','comment'})),
-  Rule("$", "$", "lua")
-    :with_pair(ts_conds.is_not_ts_node({'function'}))
-})
-
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_disable_netrw = 0
 vim.g.nvim_tree_hide_dotfiles = 1
@@ -647,10 +617,6 @@ vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', {noremap = true, silent
 
 vim.api.nvim_set_keymap('n', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
-
--- Comments
-vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 
 -- Buffers
 vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>lua SnapBuffers()<CR>", {noremap = true, silent = true})
@@ -788,15 +754,6 @@ vim.api.nvim_set_keymap("t", "<A-l>", "<cmd>lua _lazygit_toggle()<CR>", {noremap
 
 vim.api.nvim_set_keymap("n", "<A-i>", "<cmd>lua _normterm_toggle()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("t", "<A-i>", "<cmd>lua _normterm_toggle()<CR>", {noremap = true, silent = true})
-
-require('nvim_comment').setup({
-  comment_empty = false,
-  hook = function()
-    if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then
-      require("ts_context_commentstring.internal").update_commentstring()
-    end
-  end
-})
 
 -- Snap
 local snap = require "snap"
