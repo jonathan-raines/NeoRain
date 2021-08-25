@@ -41,14 +41,16 @@ require('packer').startup(function()
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
+  use {'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } }
+  use {'jose-elias-alvarez/nvim-lsp-ts-utils' }
+
+  -- Auto Completion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip'
   use 'onsails/lspkind-nvim'
-  use {'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } }
-  use {'jose-elias-alvarez/nvim-lsp-ts-utils' }
 
   use 'folke/which-key.nvim'
   use 'ahmedkhalf/project.nvim'
@@ -131,10 +133,12 @@ vim.api.nvim_set_keymap('i', '?', '?<c-g>u', {silent = true, noremap = true})
 vim.cmd('nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"')
 vim.cmd('nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"')
 
+-- Escape
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', 'jk', ':noh<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('v', 'jk', '<ESC>', {silent = true, noremap = true})
 
+-- Move Lines Around
 vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>==', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('i', '<A-j>', '<ESC>:m .+1<CR>==gi', {silent = true, noremap = true})
@@ -142,28 +146,35 @@ vim.api.nvim_set_keymap('i', '<A-k>', '<ESC>:m .-2<CR>==gi', {silent = true, nor
 vim.api.nvim_set_keymap('v', '<A-j>', ":move '>+1<CR>gv-gv", {silent = true, noremap = true})
 vim.api.nvim_set_keymap('v', '<A-k>', ":move '<-2<CR>gv-gv", {silent = true, noremap = true})
 
+-- Redo
 vim.api.nvim_set_keymap('n', 'U', '<C-R>', {silent = true, noremap = true})
 
+-- Move Windows Around
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true, noremap = true})
 
+-- Jump to start/end of line
 vim.api.nvim_set_keymap('n', 'H', '^', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', 'L', '$', {silent = true, noremap = true})
 
+-- Resize windows
 vim.api.nvim_set_keymap('n', '<C-Up>', ':resize -2<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<C-Down>', ':resize +2<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<C-Left>', ':vertical resize -2<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', {silent = true, noremap = true})
 
+-- Indent
 vim.api.nvim_set_keymap('v', '<', '<gv', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('v', '>', '>gv', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<', '<<', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '>', '>>', {silent = true, noremap = true})
 
+-- Quickfix
 vim.api.nvim_set_keymap('n', '<C-q>', ':call QuickFixToggle()<CR>', {silent = true, noremap = true})
 
+-- Y behaves like C/D
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
 -- QuickFixToggle
@@ -209,10 +220,7 @@ require('telescope').setup {
       width = 0.9,
     },
     mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
+      i = {},
     },
     pickers = {
       find_files = {
@@ -280,7 +288,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -531,12 +539,12 @@ local npairs = require("nvim-autopairs")
 local Rule = require('nvim-autopairs.rule')
 
 npairs.setup({
-    check_ts = true,
-    ts_config = {
-        lua = {'string'},-- it will not add pair on that treesitter node
-        javascript = {'template_string'},
-        java = false,-- don't check treesitter on java
-    }
+  check_ts = true,
+  ts_config = {
+    lua = {'string'},-- it will not add pair on that treesitter node
+    javascript = {'template_string'},
+    java = false,-- don't check treesitter on java
+  }
 })
 
 local ts_conds = require('nvim-autopairs.ts-conds')
@@ -586,7 +594,6 @@ vim.g.nvim_tree_icons = {
 require('lualine').setup()
 
 require('project_nvim').setup{
-  manual_mode = false,
   ignore_lsp = { 'solargraph' },
   show_hidden = true,
 }
@@ -594,14 +601,12 @@ require('project_nvim').setup{
 require('which-key').setup{
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
-    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-    -- No actual key bindings are created
+    registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     presets = {
         operators = false, -- adds help for operators like d, y, ...
         motions = false, -- adds help for motions
-        text_objects = false, -- help for text objects triggered after entering an operator
-        windows = true, -- default bindings on <c-w>
+        text_objects = true, -- help for text objects triggered after entering an operator
+        windows = false, -- default bindings on <c-w>
         nav = true, -- misc bindings to work with windows
         z = true, -- bindings for folds, spelling and others prefixed with z
         g = true -- bindings for prefixed with g
@@ -638,6 +643,7 @@ local opts = {
 
 -- explorer
 vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
@@ -656,21 +662,19 @@ vim.api.nvim_set_keymap("n", "<leader>q", ":q!<CR>", {noremap = true, silent = t
 
 local mappings = {
   ["/"] = "Comment",
+  ['<space>'] = 'Switch to Last Buffer',
   ["e"] = "Explorer",
   ["b"] = "Buffers",
   ["w"] = "Save",
   ["c"] = "Close Buffer",
-  ["C"] = "Close All But Current Buffer",
+  ["C"] = "Close All Except Current Buffer",
   ["q"] = "Quit",
   d = {
     name = 'Diagnostics',
     ga = {"<cmd>lua vim.lsp.diagnostic.get_all()<cr>", "Get All"},
-    gn = {"<cmd>lua vim.lsp.diagnostic.get_next()<cr>", "Get Next"},
-    gp = {"<cmd>lua vim.lsp.diagnostic.get_prev()<cr>", "Get Previous"},
-    gld = {"<cmd>lua vim.lsp.diagnostic.get_line_diagnostics()<cr>", "Get Line Diagnostics"},
-    gtn = {"<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Go to Next"},
-    gtp = {"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Go to Previous"},
-    sld = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Show Line Diagnostics"},
+    gn = {"<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Get Next"},
+    gp = {"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Get Previous"},
+    ld = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Show Line Diagnostics"},
   },
   f = {
     name = "+Find",
@@ -712,8 +716,6 @@ local mappings = {
     a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
     i = {"<cmd>LspInfo<cr>", "Info"},
     f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "LSP Finder"},
-    -- l = {"<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
-    -- p = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"},
     r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},
     t = {"<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Definition"},
   },
@@ -928,6 +930,12 @@ require("lspconfig")["null-ls"].setup({
 })
 
 nvim_lsp.tsserver.setup {
+  cmd = { "typescript-language-server", "--stdio" },
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  init_options = {
+    hostInfo = "neovim"
+  },
+  root_dir = require'lspconfig.util'.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
   on_attach = function(client, bufnr)
     -- disable tsserver formatting if you plan on formatting via null-ls
     client.resolved_capabilities.document_formatting = false
@@ -961,7 +969,7 @@ nvim_lsp.tsserver.setup {
       eslint_show_rule_id = false,
 
       -- formatting
-      enable_formatting = true,
+      enable_formatting = false,
       formatter = "eslint_d",
       formatter_config_fallback = nil,
 
