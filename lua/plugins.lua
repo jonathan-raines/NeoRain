@@ -149,9 +149,12 @@ require('packer').startup(function()
     'shadmansaleh/lualine.nvim',
     config = function()
       require('lualine').setup {
+        sections = {},
         options = {
+          component_separators = "",
+          section_separators = "",
           theme = 'tokyonight'
-        }
+        },
       }
     end,
     event = "UIEnter",
@@ -532,7 +535,7 @@ require('packer').startup(function()
       vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', {noremap = true, silent = true})
 
       vim.api.nvim_set_keymap('n', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
-      vim.api.nvim_set_keymap('t', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
+      vim.api.nvim_set_keymap('t', '<A-i>', '<ESC>:ToggleTerm<CR>', {noremap = true, silent = true})
 
       -- Buffers
       vim.api.nvim_set_keymap("n", "<leader>c", ":bdelete<CR>", {noremap = true, silent = true})
