@@ -29,7 +29,7 @@ opt.pumheight = 10
 opt.relativenumber = true
 opt.scrolloff = 8
 opt.shiftwidth = 2
-opt.shortmess:append("c")
+opt.shortmess:append("cI")
 opt.showmode = true
 opt.sidescrolloff = 8
 --Decrease update time
