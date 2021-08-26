@@ -3,33 +3,6 @@ require 'lsp'
 require 'options'
 require 'keymaps'
 
--- use({
---     'hrsh7th/nvim-cmp',
---     config = function()
---         -- my configuration
---     end,
---     requires = {
---         -- not lazy-loading, so read after/plugin
---         { 'hrsh7th/cmp-path' },
---         -- TODO: cmp-spell
---         {
---             'hrsh7th/cmp-nvim-lua',
---             ft = 'lua',
---             -- this is after/plugin content
---             config = function()
---                 require('cmp').register_source('nvim_lua', require('cmp_nvim_lua').new())
---             end,
---         },
---         {
---             'hrsh7th/cmp-nvim-lsp',
---             ft = my_fts,
---             config = function()
---                 require('cmp_nvim_lsp').setup()
---             end,
---         },
---     },
--- })
-
 -- Highlight on yank
 vim.api.nvim_exec(
   [[
@@ -37,9 +10,7 @@ vim.api.nvim_exec(
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]],
-  false
-)
+]], false)
 
 -- Don't show any numbers inside terminals
 vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
@@ -48,7 +19,6 @@ vim.cmd [[ autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatop
 vim.cmd [[ autocmd BufNewFile * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]]
 vim.cmd [[ autocmd BufWinEnter NvimTree set colorcolumn=0 nocursorcolumn ]]
 vim.cmd [[ command BufOnly silent! execute "%bd|e#|bd#" ]]
--- vim.cmd [[ autocmd ]]
 
 -- Disable various builtin plugins in Vim that bog down speed
 vim.g.loaded_matchparen        = 1
