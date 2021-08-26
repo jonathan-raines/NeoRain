@@ -118,7 +118,7 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-comment"] = {
-    config = { "\27LJ\1\2§\1\0\0\3\0\b\0\0144\0\0\0007\0\1\0007\0\2\0'\1\0\0%\2\3\0>\0\3\2\a\0\4\0T\0\5€4\0\5\0%\1\6\0>\0\2\0027\0\a\0>\0\1\1G\0\1\0\25update_commentstring&ts_context_commentstring.internal\frequire\bvue\rfiletype\24nvim_buf_get_option\bapi\bvimÿ\1\1\0\5\0\15\0\0254\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0001\2\4\0:\2\5\1>\0\2\0014\0\6\0007\0\a\0007\0\b\0%\1\t\0%\2\n\0%\3\v\0003\4\f\0>\0\5\0014\0\6\0007\0\a\0007\0\b\0%\1\r\0%\2\n\0%\3\v\0003\4\14\0>\0\5\1G\0\1\0\1\0\2\vsilent\2\fnoremap\2\6v\1\0\2\vsilent\2\fnoremap\2\23:CommentToggle<CR>\14<leader>/\6n\20nvim_set_keymap\bapi\bvim\thook\0\1\0\1\18comment_empty\1\nsetup\17nvim_comment\frequire\0" },
+    config = { "\27LJ\1\2^\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\25update_commentstring&ts_context_commentstring.internal\frequireÿ\1\1\0\5\0\15\0\0254\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0001\2\4\0:\2\5\1>\0\2\0014\0\6\0007\0\a\0007\0\b\0%\1\t\0%\2\n\0%\3\v\0003\4\f\0>\0\5\0014\0\6\0007\0\a\0007\0\b\0%\1\r\0%\2\n\0%\3\v\0003\4\14\0>\0\5\1G\0\1\0\1\0\2\vsilent\2\fnoremap\2\6v\1\0\2\vsilent\2\fnoremap\2\23:CommentToggle<CR>\14<leader>/\6n\20nvim_set_keymap\bapi\bvim\thook\0\1\0\1\18comment_empty\1\nsetup\17nvim_comment\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-comment"

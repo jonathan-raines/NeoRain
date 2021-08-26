@@ -175,9 +175,9 @@ require('packer').startup(function()
       require('nvim_comment').setup({
         comment_empty = false,
         hook = function()
-          if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then
+          -- if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then
             require("ts_context_commentstring.internal").update_commentstring()
-          end
+          -- end
         end
       })
 
@@ -302,7 +302,7 @@ require('packer').startup(function()
   use {
     'windwp/nvim-ts-autotag',
     after = 'nvim-treesitter',
-    ft = { 'vue', 'html', 'tsx', 'svelte', 'php' }
+    ft = { 'vue', 'html' }
   }
   use {
     'JoosepAlviste/nvim-ts-context-commentstring',
@@ -1057,4 +1057,10 @@ nvim_lsp.tsserver.setup {
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
   end
+}
+
+require("lspconfig").vuels.setup {
+  cmd = { data_path .. "/lspinstall/vue/node_modules/.bin/vls", "--stdio" },
+  on_attach = on_attach,
+  root_dir = require("lspconfig").util.root_pattern(".git", "vue.config.js", "package.json", "yarn.lock"),
 }
