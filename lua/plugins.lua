@@ -374,7 +374,9 @@ require('packer').startup(function()
       })
 
       require("lspconfig")["null-ls"].setup({
-          on_attach = on_attach,
+        on_attach = function()
+          vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+        end
       })
     end,
     event = 'BufRead',
@@ -404,8 +406,8 @@ require('packer').startup(function()
 
       cmp.setup {
         formatting = {
-          format = function(entry, vim_item)
-            vim_item.menu = lspkind.presets.default[vim_item.kind]
+            format = function(_, vim_item)
+              vim_item.kind = lspkind.presets.default[vim_item.kind]
             return vim_item
           end
         },
@@ -453,10 +455,10 @@ require('packer').startup(function()
         },
 
         sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
           { name = 'buffer' },
-          { name = 'path' },
+          { name = 'luasnip' },
+          { name = 'nvim_lsp' },
+          -- { name = 'path' },
         },
       }
     end,
@@ -464,7 +466,10 @@ require('packer').startup(function()
       'hrsh7th/cmp-buffer',
       {
         'L3MON4D3/LuaSnip',
-        requires = { 'saadparwaiz1/cmp_luasnip' }
+        config = function()
+          require("luasnip/loaders/from_vscode").lazy_load()
+        end,
+        requires = { 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' }
       },
       'onsails/lspkind-nvim',
       'hrsh7th/cmp-nvim-lsp'
