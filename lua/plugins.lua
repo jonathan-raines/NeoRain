@@ -148,7 +148,11 @@ require('packer').startup(function()
   use {
     'shadmansaleh/lualine.nvim',
     config = function()
-      require('lualine').setup()
+      require('lualine').setup {
+        options = {
+          theme = 'tokyonight'
+        }
+      }
     end,
     event = "UIEnter",
     requires = { 'nvim-lua/plenary.nvim' }
