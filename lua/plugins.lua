@@ -15,6 +15,7 @@ vim.api.nvim_exec(
 )
 
 local use = require('packer').use
+
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
@@ -407,7 +408,7 @@ require('packer').startup(function()
       cmp.setup {
         formatting = {
             format = function(_, vim_item)
-              vim_item.kind = lspkind.presets.default[vim_item.kind]
+              vim_item.menu = lspkind.presets.default[vim_item.kind]
             return vim_item
           end
         },
@@ -458,7 +459,7 @@ require('packer').startup(function()
           { name = 'buffer' },
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
-          -- { name = 'path' },
+          { name = 'path' },
         },
       }
     end,
@@ -683,4 +684,3 @@ require('packer').startup(function()
     event = 'VimEnter'
   }
 end)
-

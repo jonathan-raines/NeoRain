@@ -40,6 +40,7 @@ opt.spell = false
 opt.spelllang = "en"
 opt.splitbelow = true
 opt.splitright = true
+opt.swapfile = false
 opt.tabstop = 2
 --Set colorscheme (order is important here)
 opt.termguicolors = true
