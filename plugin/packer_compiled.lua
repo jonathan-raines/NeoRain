@@ -143,8 +143,10 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-toggleterm.lua"
   },
   ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    config = { "\27LJ\1\2�\5\0\0\3\0\21\00054\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\0\0007\0\1\0'\1\1\0:\1\3\0004\0\0\0007\0\1\0'\1\1\0:\1\4\0004\0\0\0007\0\1\0'\1\0\0:\1\5\0004\0\0\0007\0\1\0'\1\1\0:\1\6\0004\0\0\0007\0\1\0'\1\0\0:\1\a\0004\0\0\0007\0\1\0'\1\1\0:\1\b\0004\0\0\0007\0\1\0'\1\0\0:\1\t\0004\0\0\0007\0\1\0'\1\1\0:\1\n\0004\0\0\0007\0\1\0003\1\f\0:\1\v\0004\0\0\0007\0\1\0003\1\14\0:\1\r\0004\0\0\0007\0\1\0003\1\16\0003\2\17\0:\2\18\0013\2\19\0:\2\20\1:\1\15\0G\0\1\0\vfolder\1\0\5\fdefault\b\15empty_open\b\topen\b\nempty\b\fsymlink\b\bgit\1\0\6\runstaged\b\fignored\b◌\14untracked\b\runmerged\b\frenamed\b➜\vstaged\b\1\0\2\fdefault\b\fsymlink\b\20nvim_tree_icons\1\0\4\ffolders\3\1\nfiles\3\1\bgit\3\1\18folder_arrows\3\0\25nvim_tree_show_icons\1\3\0\0\rstartify\14dashboard\29nvim_tree_auto_ignore_ft\25nvim_tree_auto_close\30nvim_tree_lsp_diagnostics\21nvim_tree_follow\29nvim_tree_indent_markers\28nvim_tree_hide_dotfiles\28nvim_tree_disable_netrw\27nvim_tree_quit_on_open\30nvim_tree_respect_buf_cwd\25nvim_tree_update_cwd\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     after = { "nvim-ts-autotag", "nvim-treesitter-textobjects", "nvim-ts-context-commentstring" },
@@ -236,16 +238,13 @@ vim.cmd [[au!]]
 time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType lua ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { ft = "lua" }, _G.packer_plugins)]]
 vim.cmd [[au FileType html ++once lua require("packer.load")({'nvim-ts-autotag', 'nvim-ts-context-commentstring'}, { ft = "html" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vue ++once lua require("packer.load")({'nvim-ts-autotag', 'nvim-lsp-ts-utils', 'nvim-ts-context-commentstring'}, { ft = "vue" }, _G.packer_plugins)]]
-vim.cmd [[au FileType svelte ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "svelte" }, _G.packer_plugins)]]
 vim.cmd [[au FileType css ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { ft = "css" }, _G.packer_plugins)]]
 vim.cmd [[au FileType js ++once lua require("packer.load")({'nvim-lsp-ts-utils', 'nvim-ts-context-commentstring'}, { ft = "js" }, _G.packer_plugins)]]
-vim.cmd [[au FileType php ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "php" }, _G.packer_plugins)]]
-vim.cmd [[au FileType tsx ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "tsx" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vue ++once lua require("packer.load")({'nvim-ts-autotag', 'nvim-lsp-ts-utils', 'nvim-ts-context-commentstring'}, { ft = "vue" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au UIEnter * ++once lua require("packer.load")({'tokyonight.nvim', 'lualine.nvim', 'telescope.nvim'}, { event = "UIEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au UIEnter * ++once lua require("packer.load")({'tokyonight.nvim', 'lualine.nvim', 'telescope.nvim', 'nvim-tree.lua'}, { event = "UIEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'null-ls.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'nvim-comment', 'gitsigns.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'which-key.nvim', 'nvim-toggleterm.lua'}, { event = "VimEnter *" }, _G.packer_plugins)]]
