@@ -147,8 +147,8 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-treesitter-textobjects", "nvim-ts-context-commentstring" },
-    config = { "\27LJ\1\2�\b\0\0\6\0*\0-3\0\0\0004\1\1\0%\2\2\0>\1\2\0027\1\3\0013\2\4\0003\3\5\0:\3\6\0023\3\a\0:\3\b\0023\3\t\0:\3\n\0023\3\v\0:\3\f\0023\3\r\0:\3\14\0023\3\19\0003\4\15\0:\0\16\0043\5\17\0:\5\18\4:\4\20\0033\4\21\0003\5\22\0:\5\23\4:\4\24\0033\4\25\0003\5\26\0:\5\27\0043\5\28\0:\5\29\0043\5\30\0:\5\31\0043\5 \0:\5!\4:\4\"\0033\4#\0003\5$\0:\5%\0043\5&\0:\5'\4:\4(\3:\3)\2>\1\2\1G\0\1\0\16textobjects\tswap\18swap_previous\1\0\3\bghc\17@class.outer\bghp\21@parameter.inner\bghf\20@function.outer\14swap_next\1\0\3\bglp\21@parameter.inner\bglf\20@function.outer\bglc\17@class.outer\1\0\1\venable\2\tmove\22goto_previous_end\1\0\2\a[M\20@function.outer\a[]\17@class.outer\24goto_previous_start\1\0\2\a[m\20@function.outer\a[[\17@class.outer\18goto_next_end\1\0\2\a]M\20@function.outer\a][\17@class.outer\20goto_next_start\1\0\2\a]m\20@function.outer\a]]\17@class.outer\1\0\2\14set_jumps\2\venable\2\vselect\fkeymaps\1\0\n\aic\17@class.inner\aai\23@conditional.outer\aib\17@block.inner\aac\17@class.outer\aal\16@loop.outer\aif\20@function.inner\ail\16@loop.inner\aii\23@conditional.inner\aab\17@block.outer\aaf\20@function.outer\1\0\2\14lookahead\2\venable\2\16lsp_interop\1\0\0\25peek_definition_code\1\0\1\agp\20@function.outer\vborder\1\0\1\venable\2\14highlight\1\0\1\venable\2\vindent\1\0\1\venable\2\26context_commentstring\1\0\2\19enable_autocmd\1\venable\2\14autopairs\1\0\1\venable\2\21ignore_installed\1\2\0\0\fhaskell\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\frequire\1\t\0\0\b─\b│\b─\b│\b┌\b┐\b┘\b└\0" },
+    after = { "nvim-ts-autotag", "nvim-treesitter-textobjects", "nvim-ts-context-commentstring" },
+    config = { "\27LJ\1\2�\t\0\0\6\0,\0/3\0\0\0004\1\1\0%\2\2\0>\1\2\0027\1\3\0013\2\4\0003\3\5\0:\3\6\0023\3\a\0:\3\b\0023\3\t\0:\3\n\0023\3\v\0:\3\f\0023\3\r\0:\3\14\0023\3\15\0:\3\16\0023\3\21\0003\4\17\0:\0\18\0043\5\19\0:\5\20\4:\4\22\0033\4\23\0003\5\24\0:\5\25\4:\4\26\0033\4\27\0003\5\28\0:\5\29\0043\5\30\0:\5\31\0043\5 \0:\5!\0043\5\"\0:\5#\4:\4$\0033\4%\0003\5&\0:\5'\0043\5(\0:\5)\4:\4*\3:\3+\2>\1\2\1G\0\1\0\16textobjects\tswap\18swap_previous\1\0\3\bghc\17@class.outer\bghp\21@parameter.inner\bghf\20@function.outer\14swap_next\1\0\3\bglp\21@parameter.inner\bglf\20@function.outer\bglc\17@class.outer\1\0\1\venable\2\tmove\22goto_previous_end\1\0\2\a[M\20@function.outer\a[]\17@class.outer\24goto_previous_start\1\0\2\a[m\20@function.outer\a[[\17@class.outer\18goto_next_end\1\0\2\a]M\20@function.outer\a][\17@class.outer\20goto_next_start\1\0\2\a]m\20@function.outer\a]]\17@class.outer\1\0\2\14set_jumps\2\venable\2\vselect\fkeymaps\1\0\n\aic\17@class.inner\aai\23@conditional.outer\aib\17@block.inner\aac\17@class.outer\aal\16@loop.outer\aif\20@function.inner\ail\16@loop.inner\aii\23@conditional.inner\aab\17@block.outer\aaf\20@function.outer\1\0\2\14lookahead\2\venable\2\16lsp_interop\1\0\0\25peek_definition_code\1\0\1\agp\20@function.outer\vborder\1\0\1\venable\2\14highlight\1\0\1\venable\2\vindent\1\0\1\venable\2\26context_commentstring\1\0\2\19enable_autocmd\1\venable\2\fautotag\1\0\1\venable\2\14autopairs\1\0\1\venable\2\21ignore_installed\1\2\0\0\fhaskell\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\frequire\1\t\0\0\b─\b│\b─\b│\b┌\b┐\b┘\b└\0" },
     loaded = false,
     needs_bufread = true,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
@@ -162,7 +162,9 @@ _G.packer_plugins = {
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects"
   },
   ["nvim-ts-autotag"] = {
-    config = { "\27LJ\1\2=\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\20nvim-ts-autotag\frequire\0" },
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
     loaded = false,
     needs_bufread = false,
     path = "/home/jraines/.local/share/nvim/site/pack/packer/opt/nvim-ts-autotag"

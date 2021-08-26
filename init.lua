@@ -198,7 +198,7 @@ require('packer').startup(function()
         ensure_installed = 'maintained',
         ignore_installed = {'haskell'},
         autopairs = { enable = true },
-        -- autotag = {enable = true},
+        autotag = {enable = true},
         context_commentstring = {
           enable = true,
           enable_autocmd = false,
@@ -301,9 +301,7 @@ require('packer').startup(function()
   }
   use {
     'windwp/nvim-ts-autotag',
-    config = function()
-      require('nvim-ts-autotag').setup()
-    end,
+    after = 'nvim-treesitter',
     ft = { 'vue', 'html', 'tsx', 'svelte', 'php' }
   }
   use {
