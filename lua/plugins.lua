@@ -181,11 +181,6 @@ require('packer').startup(function()
     config = function()
       require('nvim_comment').setup({
         comment_empty = false,
-        hook = function()
-          -- if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then
-            require("ts_context_commentstring.internal").update_commentstring()
-          -- end
-        end
       })
 
       vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
@@ -323,8 +318,6 @@ require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     config = function ()
-      vim.g.nvim_tree_update_cwd = 1
-      vim.g.nvim_tree_respect_buf_cwd = 1
       vim.g.nvim_tree_quit_on_open = 1
       vim.g.nvim_tree_disable_netrw = 0
       vim.g.nvim_tree_hide_dotfiles = 1
