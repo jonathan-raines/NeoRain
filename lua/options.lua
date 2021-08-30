@@ -1,41 +1,34 @@
 local vim = vim
 local opt = vim.opt
 
---Enable break indent
-opt.breakindent = true
-opt.clipboard = "unnamedplus"
-opt.colorcolumn = "100"
+opt.background = 'dark'
+opt.clipboard = 'unnamedplus'
+opt.colorcolumn = '100' -- performance penalty when turned on
 opt.completeopt = 'menuone,noselect'
-opt.conceallevel = 0
-opt.cursorline = true
+opt.cursorline = true -- performance penalty when turned on
 opt.errorbells = false
 opt.expandtab = true
 opt.foldtext = 'CustomFold()'
-opt.foldlevelstart = 5
-opt.foldmethod = 'expr'
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
+opt.foldlevelstart = 99
+opt.foldnestmax = 6
+opt.foldmethod = 'expr'
 opt.guifont = 'FiraCode Nerd Font:h12'
-opt.hidden = true
-opt.hlsearch = true
 opt.ignorecase = true
-opt.inccommand = 'nosplit'
+opt.inccommand = 'split'-- 'nosplit'
 opt.list = true
-opt.listchars = 'trail:-'
+opt.listchars = 'trail:<'
 opt.mouse = 'a'
-opt.number = true
-opt.numberwidth = 4 -- default is 4
-opt.pumheight = 10
+opt.number = false -- default is off
+opt.pumheight = 6 -- prev was 10
 opt.relativenumber = true
 opt.scrolloff = 8
 opt.shiftwidth = 2
 opt.shortmess:append("cI")
-opt.showmode = true
 opt.sidescrolloff = 8
 opt.signcolumn = 'yes'
 opt.smartcase = true
 opt.smartindent = true
-opt.spell = false
-opt.spelllang = "en"
 opt.splitbelow = true
 opt.splitright = true
 opt.swapfile = false
@@ -47,11 +40,6 @@ opt.undodir = vim.fn.stdpath('cache') .. '/undo'
 opt.undofile = true
 opt.updatetime = 100
 opt.wrap = false
-opt.writebackup = false
-
--- Folding
-vim.cmd('set foldnestmax=6')
-vim.cmd('set foldlevelstart=20')
 
 vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
 vim.cmd [[ autocmd BufWinEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]]

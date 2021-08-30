@@ -65,7 +65,7 @@ local mappings = {
   ["c"] = "Close Buffer",
   ["q"] = "Quit",
   f = {
-    name = "+Find",
+    name = "Find",
     e = {"<cmd>Telescope file_browser<cr>", "File Browser"},
     f = {"<cmd>Telescope find_files<CR>", "Find Files"},
     b = {"<cmd>Telescope buffers<cr>", "Open buffers"},
@@ -82,7 +82,7 @@ local mappings = {
     ws = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workplace Symbols"},
   },
   g = {
-    name = "+Git",
+    name = "Git",
     nh = {"<cmd>lua require'gitsigns'.next_hunk()<cr>", "Next Hunk"},
     ph = {"<cmd>lua require'gitsigns'.prev_hunk()<cr>", "Previous Hunk"},
     sh = {"<cmd>lua require'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
@@ -93,7 +93,7 @@ local mappings = {
     b = {"<cmd>lua require'gitsigns'.blame_line()<cr>", "Blame Line"},
   },
   h = {
-    name = "+Harpoon",
+    name = "Harpoon",
     pn = {"<cmd>lua require'harpoon.mark'.add_file()<CR>", "Add File"},
     qm = {"<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", "Quick Menu"},
     f = {"<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", "Navigate to File 1"},
@@ -102,7 +102,7 @@ local mappings = {
     j = {"<cmd>lua require'harpoon.ui'.nav_file(4)<CR>", "Navigate to File 4"},
   },
   l = {
-    name = "+LSP",
+    name = "LSP",
     a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
     d = {"<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics"},
     f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "Format Buffer"},
