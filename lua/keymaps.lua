@@ -47,10 +47,10 @@ vim.api.nvim_set_keymap('n', 'H', '^', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', 'L', '$', {silent = true, noremap = true})
 
 -- Resize windows
-vim.api.nvim_set_keymap('n', '<C-Up>', ':resize -2<CR>', {silent = true, noremap = true})
-vim.api.nvim_set_keymap('n', '<C-Down>', ':resize +2<CR>', {silent = true, noremap = true})
-vim.api.nvim_set_keymap('n', '<C-Left>', ':vertical resize -2<CR>', {silent = true, noremap = true})
-vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-Up>', ':resize -5<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-Down>', ':resize +5<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-Left>', ':vertical resize -5<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize +5<CR>', {silent = true, noremap = true})
 
 -- Indent
 vim.api.nvim_set_keymap('v', '<', '<gv', {silent = true, noremap = true})
@@ -66,20 +66,19 @@ vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
 -- QuickFixToggle
 vim.cmd(
-[[function! QuickFixToggle()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-    copen
-    else
-    cclose
-    endif
-endfunction]]
+  [[function! QuickFixToggle()
+      if empty(filter(getwininfo(), 'v:val.quickfix'))
+      copen
+      else
+      cclose
+      endif
+  endfunction]]
 )
 
 -- Custom Fold
 vim.cmd(
-[[function! CustomFold()
-    return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
-endfunction]]
+  [[function! CustomFold()
+      return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
+  endfunction]]
 )
-
 
