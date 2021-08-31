@@ -31,10 +31,14 @@ require('packer').startup(function()
   use {
     'nvim-telescope/telescope.nvim',
     config = function()
-      require 'configs.toggleterm'
+      require 'configs.telescope'
     end,
     event = "UIEnter",
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
+    requires = { 
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzy-native.nvim'
+    }
   }
 
   -- UI

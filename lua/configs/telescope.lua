@@ -6,10 +6,12 @@ require('telescope').setup {
       preview_width = 80,
       width = 0.9,
     },
+    file_sorter = require("telescope.sorters").get_fzy_sorter,
     mappings = {
       i = {},
       n = {},
     },
+    path_display = { shorten = 5 },
     pickers = {
       buffers = {
         sort_lastused = true
@@ -18,5 +20,15 @@ require('telescope').setup {
         hidden = true,
       },
     },
+    selection_strategy = "reset",
+    use_less = true,
+  },
+  extensions = {
+    fzy_native = {
+      override_generic_sorter = false,
+      override_file_sorter = true,
+    },
   },
 }
+
+require("telescope").load_extension("fzy_native")

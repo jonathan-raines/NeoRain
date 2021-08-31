@@ -20,6 +20,7 @@ opt.list = true
 opt.listchars = 'trail:<'
 opt.mouse = 'a'
 opt.number = false -- default is off
+opt.path = '**'
 opt.pumheight = 6 -- prev was 10
 opt.relativenumber = true
 opt.scrolloff = 8
@@ -39,6 +40,9 @@ opt.title = true
 opt.undodir = vim.fn.stdpath('cache') .. '/undo'
 opt.undofile = true
 opt.updatetime = 100
+opt.wildignore = '**/node_modules/*, **/.git/*'
+opt.wildmenu = true
+opt.wildmode = 'longest,list,full'
 opt.wrap = false
 
 vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
