@@ -20,7 +20,8 @@ require('nvim-treesitter.configs').setup {
       enable = true,
       border = border,
       peek_definition_code = {
-        ['gp'] = '@function.outer'
+        ["df"] = "@function.outer",
+        ["dF"] = "@class.outer",
       }
     },
     select = {
