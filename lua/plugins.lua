@@ -129,11 +129,6 @@ require('packer').startup(function()
   }
 
   use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter'
-  }
-
-  use {
     'kyazdani42/nvim-tree.lua',
     config = function ()
       require 'configs.nvim-tree'
@@ -184,7 +179,10 @@ require('packer').startup(function()
         end,
         requires = { 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' }
       },
-      'hrsh7th/cmp-nvim-lsp'
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+
     }
   }
 
@@ -194,17 +192,6 @@ require('packer').startup(function()
       require 'configs.whichkey'
     end,
     event = "UIEnter"
-  }
-
-  use {
-    'ahmedkhalf/project.nvim',
-    config = function ()
-      require('project_nvim').setup{
-        ignore_lsp = { 'solargraph' },
-        show_hidden = true,
-      }
-    end,
-    event = 'BufEnter'
   }
 
   use {

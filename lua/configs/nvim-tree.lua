@@ -12,6 +12,7 @@ vim.g.nvim_tree_show_icons = {
   files = 1,
   folder_arrows = 0
 }
+
 vim.g.nvim_tree_icons = {
   default = "",
   symlink = "",
