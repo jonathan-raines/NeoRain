@@ -46,7 +46,6 @@ vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true
 vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', '<A-i>', ':ToggleTerm<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', '<A-i>', '<ESC>:ToggleTerm<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<A-i>', '<ESC>:ToggleTerm<CR>', {noremap = true, silent = true})
 
 -- Buffers

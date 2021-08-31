@@ -208,4 +208,8 @@ require('packer').startup(function()
     requires = { 'popup.nvim', 'plenary.nvim'}
   }
 
+--   use {
+--     'ojroques/nvim-bufdel',
+--     event = 'BufEnter'
+--   }
 end)

@@ -81,4 +81,3 @@ vim.cmd(
       return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
   endfunction]]
 )
-
