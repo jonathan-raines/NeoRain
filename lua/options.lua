@@ -58,6 +58,15 @@ vim.api.nvim_exec([[
     autocmd BufWritePre * %s/\s\+$//e
   augroup end ]], false)
 
+vim.api.nvim_exec([[
+  augroup neovim_terminal
+    autocmd!
+    autocmd TermOpen * startinsert
+    autocmd TermOpen * :set nonumber norelativenumber
+    autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
+  augroup END
+]], false)
+
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1
