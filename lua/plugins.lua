@@ -34,11 +34,12 @@ require('packer').startup(function()
       require 'configs.telescope'
     end,
     event = "UIEnter",
-    requires = { 
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim'
-    }
+    requires = {
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make', event = 'VimEnter' }
+    },
+    after = { 'telescope-fzy-native.nvim' }
   }
 
   -- UI
@@ -192,7 +193,7 @@ require('packer').startup(function()
     config = function ()
       require 'configs.whichkey'
     end,
-    event = "VimEnter"
+    event = "UIEnter"
   }
 
   use {

@@ -11,7 +11,6 @@ require('telescope').setup {
       i = {},
       n = {},
     },
-    path_display = { shorten = 5 },
     pickers = {
       buffers = {
         sort_lastused = true
