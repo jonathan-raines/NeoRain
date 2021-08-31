@@ -1,6 +1,34 @@
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
+local icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "ﰠ",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "塞",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "פּ",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
+
 local function t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -11,6 +39,24 @@ local check_back_space = function()
 end
 
 cmp.setup {
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = string.format(
+        "%s %s",
+        icons[vim_item.kind],
+        vim_item.kind
+      )
+
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[LUA]",
+        buffer = "[BUF]",
+      })[entry.source.name]
+
+      return vim_item
+    end,
+  },
+
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
