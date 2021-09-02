@@ -101,7 +101,7 @@ local mappings = {
     j = {"<cmd>lua require'harpoon.ui'.nav_file(4)<CR>", "Navigate to File 4"},
     t = {"<cmd>lua require'harpoon.term'.gotoTerminal(1)<CR>", "Navigate to Terminal 1"},
     y = {"<cmd>lua require'harpoon.term'.gotoTerminal(2)<CR>", "Navigate to Terminal 2"},
-    lg = {"<cmd>lua require'harpoon.term'.sendCommand(3, 'lazygit')<CR>", "Navigate to Lazygit"},
+    lg = {"<cmd>lua require'harpoon.term'.sendCommand(3, 'lazygit\\n')<CR>", "Navigate to Lazygit"},
   },
   l = {
     name = "LSP",

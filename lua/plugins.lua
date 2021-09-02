@@ -33,7 +33,8 @@ require('packer').startup(function()
     config = function()
       require 'configs.telescope'
     end,
-    event = "UIEnter",
+    command = 'Telescope',
+    -- event = "UIEnter",
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
@@ -55,16 +56,30 @@ require('packer').startup(function()
   use {
     'shadmansaleh/lualine.nvim',
     config = function()
+
       require('lualine').setup {
-        sections = {},
+        sections = {
+          lualine_x = {
+            {
+              function()
+                if next(vim.treesitter.highlighter.active) then
+                  return "  "
+                end
+                return ""
+              end,
+              color = { fg = "#008080"},
+            },
+          }
+        },
         options = {
           component_separators = "",
           section_separators = "",
-          theme = 'tokyonight'
+          -- theme = 'tokyonight'
         },
       }
     end,
     event = "UIEnter",
+    -- after = 'tokyonight.nvim',
     requires = { 'nvim-lua/plenary.nvim' }
   }
 
@@ -81,7 +96,7 @@ require('packer').startup(function()
         },
       }
     end,
-    event = 'BufRead',
+    event = 'CursorHold',
     requires = { 'nvim-lua/plenary.nvim' }
   }
 
@@ -105,7 +120,7 @@ require('packer').startup(function()
     config = function ()
       require 'configs.treesitter'
     end,
-    event = "BufRead"
+    event = "CursorHold"
   }
 
   use {
@@ -142,11 +157,13 @@ require('packer').startup(function()
     'neovim/nvim-lspconfig',
     config = function()
       require 'lsp'
-    end
+    end,
+    event = "CursorHold"
   }
 
   use {
     'kabouzeid/nvim-lspinstall',
+    event = 'BufRead'
   }
 
   use {
@@ -208,8 +225,11 @@ require('packer').startup(function()
     requires = { 'popup.nvim', 'plenary.nvim'}
   }
 
---   use {
---     'ojroques/nvim-bufdel',
---     event = 'BufEnter'
---   }
+  use {
+    'pwntester/octo.nvim',
+    config=function()
+      require"octo".setup()
+    end,
+    event = 'BufRead'
+  }
 end)
