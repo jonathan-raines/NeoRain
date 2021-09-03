@@ -162,7 +162,7 @@ require('packer').startup(function()
   use {
     'windwp/nvim-ts-autotag',
     after = 'nvim-treesitter',
-    ft = { 'vue', 'html' },
+    ft = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue' },
   }
 
   use {

@@ -1,5 +1,5 @@
 local nvim_lsp = require 'lspconfig'
-local on_attach = function(client, bufnr)
+local custom_on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
@@ -10,10 +10,12 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'grf', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gp', "<cmd>lua require'configs.peek'.Peek('definition')<CR>", opts)
 
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gl', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'grn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 
@@ -74,7 +76,7 @@ nvim_lsp.solargraph.setup {
   cmd = { 'solargraph', 'stdio' },
   filetypes = { 'ruby', 'rakefile' },
   root_dir = require('lspconfig.util').root_pattern '.',
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
   settings = {
     solargraph = {
@@ -94,7 +96,7 @@ table.insert(runtime_path, 'lua/?/init.lua')
 
 nvim_lsp.sumneko_lua.setup {
   cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -192,7 +194,7 @@ nvim_lsp.vimls.setup {}
 nvim_lsp.vuels.setup {
   cmd = { 'vls' },
   capabilities = capabilities,
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   root_dir = require('lspconfig').util.root_pattern('.git', 'vue.config.js', 'package.json', 'yarn.lock'),
 }
 
@@ -209,4 +211,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
   },
   signs = true,
   underline = true,
+})
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+  -- Use a sharp border with `FloatBorder` highlights
+  border = 'single',
 })
