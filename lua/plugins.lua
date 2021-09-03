@@ -229,7 +229,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.whichkey'
     end,
-    event = 'UIEnter',
+    event = 'CursorHold',
   }
 
   use {
