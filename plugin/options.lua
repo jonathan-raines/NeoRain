@@ -14,6 +14,7 @@ opt.foldlevelstart = 99
 opt.foldnestmax = 6
 opt.foldmethod = 'expr'
 opt.guifont = 'FiraCode Nerd Font:h12'
+opt.hidden = true
 opt.hlsearch = false
 opt.ignorecase = true
 opt.inccommand = 'split' -- 'nosplit'

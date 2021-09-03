@@ -33,7 +33,6 @@ require('packer').startup(function()
       require 'configs.telescope'
     end,
     command = 'Telescope',
-    -- event = "UIEnter",
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
