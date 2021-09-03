@@ -26,7 +26,7 @@ require('which-key').setup {
   layout = {
     height = { min = 4, max = 25 }, -- min and max height of the columns
     width = { min = 20, max = 50 }, -- min and max width of the columns
-    spacing = 3, -- spacing between columns
+    spacing = 8, -- spacing between columns
   },
   hidden = { '<silent>', '<cmd>', '<cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible

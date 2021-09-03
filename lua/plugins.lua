@@ -107,7 +107,7 @@ require('packer').startup(function()
       }
     end,
     event = 'UIEnter',
-    -- after = 'tokyonight.nvim',
+    after = 'tokyonight.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
@@ -242,7 +242,7 @@ require('packer').startup(function()
 
   use {
     'ThePrimeagen/harpoon',
-    event = 'UIEnter',
+    event = 'BufRead',
     requires = { 'popup.nvim', 'plenary.nvim' },
   }
 
@@ -252,5 +252,15 @@ require('packer').startup(function()
       require('octo').setup()
     end,
     event = 'BufRead',
+  }
+
+  use {
+    'ahmedkhalf/project.nvim',
+    config = function()
+      require('project_nvim').setup {
+        ignore_lsp = { 'solargraph' },
+      }
+    end,
+    event = 'BufEnter',
   }
 end)
