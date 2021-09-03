@@ -71,7 +71,6 @@ require('packer').startup(function()
                 local msg = 'No Active Lsp'
                 local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
                 local clients = vim.lsp.get_active_clients()
-                local buf_client_names = {}
 
                 if next(clients) == nil then
                   return msg
@@ -81,12 +80,8 @@ require('packer').startup(function()
                   local filetypes = client.config.filetypes
 
                   if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                    table.insert(buf_client_names, client.name)
+                    return client.name
                   end
-                end
-
-                if next(buf_client_names) then
-                  return table.concat(buf_client_names, ', ')
                 end
 
                 return msg
