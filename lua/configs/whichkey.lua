@@ -73,6 +73,7 @@ local mappings = {
     cb = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Search Current Buffer' },
     km = { '<cmd>Telescope keymaps<cr>', 'Find Keymaps' },
     m = { '<cmd>Telescope marks<cr>', 'Marks' },
+    p = { '<cmd>Telescope projects<cr>', 'Projects' },
     of = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     ts = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
     vo = { '<cmd>Telescope vim_options<cr>', 'Find Vim Options' },
