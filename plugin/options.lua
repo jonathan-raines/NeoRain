@@ -16,7 +16,7 @@ opt.foldmethod = 'expr'
 opt.guifont = 'FiraCode Nerd Font:h12'
 opt.hlsearch = false
 opt.ignorecase = true
-opt.inccommand = 'split'-- 'nosplit'
+opt.inccommand = 'split' -- 'nosplit'
 opt.lazyredraw = true
 opt.mouse = 'a'
 opt.number = false -- default is off
@@ -25,9 +25,8 @@ opt.pumheight = 6 -- prev was 10
 opt.pumblend = 17
 opt.relativenumber = true
 opt.scrolloff = 8
-opt.shadafile = "NONE"
 opt.shiftwidth = 2
-opt.shortmess:append("cI")
+opt.shortmess:append 'cI'
 opt.sidescrolloff = 8
 opt.signcolumn = 'yes'
 opt.smartcase = true
@@ -39,36 +38,45 @@ opt.tabstop = 2
 opt.termguicolors = true
 opt.timeoutlen = 100
 opt.title = true
-opt.undodir = vim.fn.stdpath('cache') .. '/undo'
+opt.undodir = vim.fn.stdpath 'cache' .. '/undo'
 opt.undofile = true
 opt.updatetime = 100
 opt.wildignore = '**/node_modules/*, **/.git/*'
 opt.wildmenu = true
--- opt.wildmode = 'longest,list,full'
+opt.wildmode = 'longest,list,full'
 opt.wildoptions = 'pum'
 opt.wrap = false
 
 -- Highlight on yank
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank({timeout = 50})
-  augroup end ]], false)
+  augroup end ]],
+  false
+)
 
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
   augroup THE_PRIMEAGEN
     autocmd!
     autocmd BufWritePre * %s/\s\+$//e
-  augroup end ]], false)
+  augroup end ]],
+  false
+)
 
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
   augroup neovim_terminal
     autocmd!
     autocmd TermOpen * startinsert
     autocmd TermOpen * :set nonumber norelativenumber
     autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
   augroup END
-]], false)
+]],
+  false
+)
 
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1

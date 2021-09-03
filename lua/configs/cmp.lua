@@ -2,31 +2,31 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 local icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "ﰠ",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = "",
-  Property = "ﰠ",
-  Unit = "塞",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "פּ",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
+  Text = '',
+  Method = '',
+  Function = '',
+  Constructor = '',
+  Field = 'ﰠ',
+  Variable = '',
+  Class = 'ﴯ',
+  Interface = '',
+  Module = '',
+  Property = 'ﰠ',
+  Unit = '塞',
+  Value = '',
+  Enum = '',
+  Keyword = '',
+  Snippet = '',
+  Color = '',
+  File = '',
+  Reference = '',
+  Folder = '',
+  EnumMember = '',
+  Constant = '',
+  Struct = 'פּ',
+  Event = '',
+  Operator = '',
+  TypeParameter = '',
 }
 
 local function t(str)
@@ -41,16 +41,12 @@ end
 cmp.setup {
   formatting = {
     format = function(entry, vim_item)
-      vim_item.kind = string.format(
-        "%s %s",
-        icons[vim_item.kind],
-        vim_item.kind
-      )
+      vim_item.kind = string.format('%s %s', icons[vim_item.kind], vim_item.kind)
 
       vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[LUA]",
-        buffer = "[BUF]",
+        nvim_lsp = '[LSP]',
+        nvim_lua = '[LUA]',
+        buffer = '[BUF]',
       })[entry.source.name]
 
       return vim_item
@@ -67,35 +63,35 @@ cmp.setup {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
+    ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
-    }),
-    ["<tab>"] = cmp.mapping(function(fallback)
+    },
+    ['<tab>'] = cmp.mapping(function(fallback)
       if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(t("<C-n>"), "n")
+        vim.fn.feedkeys(t '<C-n>', 'n')
       elseif luasnip.expand_or_jumpable() then
-        vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
+        vim.fn.feedkeys(t '<Plug>luasnip-expand-or-jump', '')
       elseif check_back_space() then
-        vim.fn.feedkeys(t("<tab>"), "n")
+        vim.fn.feedkeys(t '<tab>', 'n')
       else
         fallback()
       end
     end, {
-      "i",
-      "s",
+      'i',
+      's',
     }),
-    ["<S-tab>"] = cmp.mapping(function(fallback)
+    ['<S-tab>'] = cmp.mapping(function(fallback)
       if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(t("<C-p>"), "n")
+        vim.fn.feedkeys(t '<C-p>', 'n')
       elseif luasnip.jumpable(-1) then
-        vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
+        vim.fn.feedkeys(t '<Plug>luasnip-jump-prev', '')
       else
         fallback()
       end
     end, {
-      "i",
-      "s",
+      'i',
+      's',
     }),
   },
 

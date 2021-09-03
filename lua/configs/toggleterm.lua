@@ -1,4 +1,4 @@
-require("toggleterm").setup{
+require('toggleterm').setup {
   -- size can be a number or function which is passed the current terminal
   size = 20 or function(term)
     if term.direction == 'horizontal' then
@@ -26,14 +26,14 @@ require("toggleterm").setup{
     border = 'curved',
     winblend = 0,
     highlights = {
-      border = "Normal",
-      background = "Normal",
-    }
-  }
+      border = 'Normal',
+      background = 'Normal',
+    },
+  },
 }
 
 function _G.set_terminal_keymaps()
-  local opts = {noremap = true}
+  local opts = { noremap = true }
   vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
@@ -44,11 +44,11 @@ function _G.set_terminal_keymaps()
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
 
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = 'float' })
-local term = Terminal:new({ hidden = true, direction = 'horizontal' })
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
+local term = Terminal:new { hidden = true, direction = 'horizontal' }
 
 function _lazygit_toggle()
   lazygit:toggle()
@@ -58,8 +58,8 @@ function _horiterm_toggle()
   term:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<A-l>", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("t", "<A-l>", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-l>', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<A-l>', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<A-i>", "<cmd>lua _horiterm_toggle()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("t", "<A-i>", "<cmd>lua _horiterm_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-i>', '<cmd>lua _horiterm_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<A-i>', '<cmd>lua _horiterm_toggle()<CR>', { noremap = true, silent = true })

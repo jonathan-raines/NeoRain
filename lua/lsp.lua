@@ -24,7 +24,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
   if client.resolved_capabilities.document_formatting then
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+    vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
   end
 
   -- Set autocommands conditional on server_capabilities
@@ -60,23 +60,32 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{}
-  end
-end
+nvim_lsp.bashls.setup {}
 
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+nvim_lsp.cssls.setup { capabilities = capabilities }
 
--- Example custom server
-local data_path = vim.fn.stdpath("data")
-local sumneko_binary = data_path .. '/lspinstall/lua/sumneko-lua-language-server'
+nvim_lsp.html.setup { capabilities = capabilities }
+
+nvim_lsp.jsonls.setup { capabilities = capabilities }
+
+nvim_lsp.pyright.setup {}
+
+nvim_lsp.solargraph.setup {
+  cmd = { 'solargraph', 'stdio' },
+  filetypes = { 'ruby', 'rakefile' },
+  root_dir = require('lspconfig.util').root_pattern '.',
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    solargraph = {
+      formatting = true,
+    },
+  },
+}
+
+local data_path = vim.fn.stdpath 'data'
+local sumneko_root_path = '/home/jonathan/lua-language-server'
+local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
@@ -84,7 +93,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 nvim_lsp.sumneko_lua.setup {
-  cmd = { sumneko_binary, '-E', data_path .. '/main.lua' },
+  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -111,33 +120,20 @@ nvim_lsp.sumneko_lua.setup {
   },
 }
 
-nvim_lsp.solargraph.setup {
-  cmd = { 'solargraph', 'stdio' },
-  filetypes = { 'ruby', 'rakefile' },
-  root_dir = require'lspconfig.util'.root_pattern('.'),
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    solargraph = {
-      formatting = true,
-    }
-  },
-}
-
 nvim_lsp.tsserver.setup {
-  cmd = { "typescript-language-server", "--stdio" },
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
   init_options = {
-    hostInfo = "neovim"
+    hostInfo = 'neovim',
   },
-  root_dir = require'lspconfig.util'.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+  root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     -- disable tsserver formatting if you plan on formatting via null-ls
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
 
-    local ts_utils = require("nvim-lsp-ts-utils")
+    local ts_utils = require 'nvim-lsp-ts-utils'
 
     -- defaults
     ts_utils.setup {
@@ -148,10 +144,10 @@ nvim_lsp.tsserver.setup {
       -- import all
       import_all_timeout = 5000, -- ms
       import_all_priorities = {
-          buffers = 4, -- loaded buffer names
-          buffer_content = 3, -- loaded buffer content
-          local_files = 2, -- git files or files with relative path markers
-          same_file = 1, -- add to existing import statement
+        buffers = 4, -- loaded buffer names
+        buffer_content = 3, -- loaded buffer content
+        local_files = 2, -- git files or files with relative path markers
+        same_file = 1, -- add to existing import statement
       },
       import_all_scan_buffers = 100,
       import_all_select_source = false,
@@ -159,14 +155,14 @@ nvim_lsp.tsserver.setup {
       -- eslint
       eslint_enable_code_actions = true,
       eslint_enable_disable_comments = true,
-      eslint_bin = "eslint_d",
+      eslint_bin = 'eslint_d',
       eslint_config_fallback = nil,
       eslint_enable_diagnostics = false,
       eslint_show_rule_id = false,
 
       -- formatting
       enable_formatting = false,
-      formatter = "eslint_d",
+      formatter = 'eslint_d',
       formatter_config_fallback = nil,
 
       -- update imports on file move
@@ -184,33 +180,33 @@ nvim_lsp.tsserver.setup {
 
     -- no default maps, so you may want to define some here
     local opts = { silent = true }
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
-  end
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gs', ':TSLspOrganize<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'qq', ':TSLspFixCurrent<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', ':TSLspRenameFile<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', opts)
+  end,
 }
 
+nvim_lsp.vimls.setup {}
+
 nvim_lsp.vuels.setup {
-  cmd = { data_path .. "/lspinstall/vue/node_modules/.bin/vls", "--stdio" },
+  cmd = { 'vls' },
   capabilities = capabilities,
   on_attach = on_attach,
-  root_dir = require("lspconfig").util.root_pattern(".git", "vue.config.js", "package.json", "yarn.lock"),
+  root_dir = require('lspconfig').util.root_pattern('.git', 'vue.config.js', 'package.json', 'yarn.lock'),
 }
 
 -- Diagnostics
-vim.fn.sign_define("LspDiagnosticsSignError", { texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning" })
-vim.fn.sign_define("LspDiagnosticsSignInformation", { texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint" })
+vim.fn.sign_define('LspDiagnosticsSignError', { texthl = 'LspDiagnosticsSignError', text = '', numhl = 'LspDiagnosticsSignError' })
+vim.fn.sign_define('LspDiagnosticsSignWarning', { texthl = 'LspDiagnosticsSignWarning', text = '', numhl = 'LspDiagnosticsSignWarning' })
+vim.fn.sign_define('LspDiagnosticsSignInformation', { texthl = 'LspDiagnosticsSignInformation', text = '', numhl = 'LspDiagnosticsSignInformation' })
+vim.fn.sign_define('LspDiagnosticsSignHint', { texthl = 'LspDiagnosticsSignHint', text = '', numhl = 'LspDiagnosticsSignHint' })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-      prefix = "",
-      spacing = 0,
-    },
-    signs = true,
-    underline = true,
-  }
-)
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = {
+    prefix = '',
+    spacing = 0,
+  },
+  signs = true,
+  underline = true,
+})
