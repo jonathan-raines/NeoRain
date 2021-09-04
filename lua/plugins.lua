@@ -41,20 +41,15 @@ require('packer').startup(function()
     after = { 'telescope-fzy-native.nvim' },
   }
 
-  -- UI
-  use {
-    'folke/tokyonight.nvim',
-    config = function()
-      vim.g.tokyonight_style = 'night'
-      vim.cmd [[colorscheme tokyonight]]
-    end,
-    event = 'UIEnter',
-  }
-
   use {
     'shadmansaleh/lualine.nvim',
     config = function()
       require('lualine').setup {
+        options = {
+          component_separators = '',
+          section_separators = '',
+          theme = 'catppuccino',
+        },
         sections = {
           lualine_x = {
             {
@@ -93,15 +88,9 @@ require('packer').startup(function()
             { 'filetype' },
           },
         },
-        options = {
-          component_separators = '',
-          section_separators = '',
-          -- theme = 'tokyonight'
-        },
       }
     end,
-    event = 'UIEnter',
-    after = 'tokyonight.nvim',
+    after = 'Catppuccino.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
@@ -266,5 +255,25 @@ require('packer').startup(function()
   use {
     'simrat39/symbols-outline.nvim',
     event = 'BufRead',
+  }
+
+  use {
+    'Pocco81/Catppuccino.nvim',
+    config = function()
+      require('catppuccino').setup {
+        colorscheme = 'dark_catppuccino',
+        term_colors = true,
+        integrations = {
+          gitsigns = true,
+          which_key = true,
+          telescope = true,
+          nvimtree = {
+            enabled = true,
+          },
+        },
+      }
+      vim.cmd [[colorscheme catppuccino]]
+    end,
+    event = 'UIEnter',
   }
 end)

@@ -109,6 +109,7 @@ local mappings = {
     i = { '<cmd>LspInfo<cr>', 'Info' },
     j = { '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', 'Go To Next' },
     k = { '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', 'Go To Previous' },
+    o = { '<cmd>SymbolsOutline<cr>', 'Symbols Outline' },
     l = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', 'Show Line Diagnostics' },
     q = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', 'Local List' },
     r = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
