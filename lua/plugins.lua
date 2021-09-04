@@ -70,7 +70,7 @@ require('packer').startup(function()
               function()
                 local msg = 'No Active Lsp'
                 local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-                local clients = vim.lsp.get_active_clients()
+                local clients = vim.lsp.get_active_clients(0)
 
                 if next(clients) == nil then
                   return msg
@@ -256,5 +256,10 @@ require('packer').startup(function()
       }
     end,
     event = 'BufEnter',
+  }
+
+  use {
+    'simrat39/symbols-outline.nvim',
+    event = 'BufRead',
   }
 end)

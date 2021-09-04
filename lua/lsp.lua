@@ -63,170 +63,140 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local function check_lsp_client_active(name)
-  local clients = vim.lsp.get_active_clients()
-  for _, client in pairs(clients) do
-    if client.name == name then
-      return true
-    end
-  end
-  return false
-end
+nvim_lsp.bashls.setup {}
 
-if not check_lsp_client_active 'bashls' then
-  nvim_lsp.bashls.setup {}
-end
+nvim_lsp.cssls.setup { capabilities = capabilities }
 
-if not check_lsp_client_active 'cssls' then
-  nvim_lsp.cssls.setup { capabilities = capabilities }
-end
+nvim_lsp.html.setup { capabilities = capabilities }
 
-if not check_lsp_client_active 'html' then
-  nvim_lsp.html.setup { capabilities = capabilities }
-end
+nvim_lsp.jsonls.setup { capabilities = capabilities }
 
-if not check_lsp_client_active 'jsonls' then
-  nvim_lsp.jsonls.setup { capabilities = capabilities }
-end
+nvim_lsp.pyright.setup {}
 
-if not check_lsp_client_active 'pyright' then
-  nvim_lsp.pyright.setup {}
-end
+nvim_lsp.solargraph.setup {
+  cmd = { 'solargraph', 'stdio' },
+  filetypes = { 'ruby', 'rakefile' },
+  root_dir = require('lspconfig.util').root_pattern '.',
+  on_attach = custom_on_attach,
+  capabilities = capabilities,
+  settings = {
+    solargraph = {
+      formatting = true,
+    },
+  },
+}
 
-if not check_lsp_client_active 'solargraph' then
-  nvim_lsp.solargraph.setup {
-    cmd = { 'solargraph', 'stdio' },
-    filetypes = { 'ruby', 'rakefile' },
-    root_dir = require('lspconfig.util').root_pattern '.',
-    on_attach = custom_on_attach,
-    capabilities = capabilities,
-    settings = {
-      solargraph = {
-        formatting = true,
+local sumneko_root_path = '/home/jonathan/lua-language-server'
+local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
+
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+nvim_lsp.sumneko_lua.setup {
+  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+  on_attach = custom_on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file('', true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
       },
     },
-  }
-end
+  },
+}
 
-if not check_lsp_client_active 'sumneko_lua' then
-  local sumneko_root_path = '/home/jonathan/lua-language-server'
-  local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
+nvim_lsp.tsserver.setup {
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+  init_options = {
+    hostInfo = 'neovim',
+  },
+  root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    -- disable tsserver formatting if you plan on formatting via null-ls
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
 
-  -- Make runtime files discoverable to the server
-  local runtime_path = vim.split(package.path, ';')
-  table.insert(runtime_path, 'lua/?.lua')
-  table.insert(runtime_path, 'lua/?/init.lua')
+    local ts_utils = require 'nvim-lsp-ts-utils'
 
-  nvim_lsp.sumneko_lua.setup {
-    cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-    on_attach = custom_on_attach,
-    capabilities = capabilities,
-    settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
-          -- Setup your lua path
-          path = runtime_path,
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { 'vim' },
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file('', true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
-        },
+    -- defaults
+    ts_utils.setup {
+      debug = false,
+      disable_commands = false,
+      enable_import_on_completion = false,
+
+      -- import all
+      import_all_timeout = 5000, -- ms
+      import_all_priorities = {
+        buffers = 4, -- loaded buffer names
+        buffer_content = 3, -- loaded buffer content
+        local_files = 2, -- git files or files with relative path markers
+        same_file = 1, -- add to existing import statement
       },
-    },
-  }
-end
+      import_all_scan_buffers = 100,
+      import_all_select_source = false,
 
-if not check_lsp_client_active 'tsserver' then
-  nvim_lsp.tsserver.setup {
-    cmd = { 'typescript-language-server', '--stdio' },
-    filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
-    init_options = {
-      hostInfo = 'neovim',
-    },
-    root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
-    capabilities = capabilities,
-    on_attach = function(client, bufnr)
-      -- disable tsserver formatting if you plan on formatting via null-ls
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      -- eslint
+      eslint_enable_code_actions = true,
+      eslint_enable_disable_comments = true,
+      eslint_bin = 'eslint_d',
+      eslint_config_fallback = nil,
+      eslint_enable_diagnostics = false,
+      eslint_show_rule_id = false,
 
-      local ts_utils = require 'nvim-lsp-ts-utils'
+      -- formatting
+      enable_formatting = false,
+      formatter = 'eslint_d',
+      formatter_config_fallback = nil,
 
-      -- defaults
-      ts_utils.setup {
-        debug = false,
-        disable_commands = false,
-        enable_import_on_completion = false,
+      -- update imports on file move
+      update_imports_on_move = false,
+      require_confirmation_on_move = false,
+      watch_dir = nil,
 
-        -- import all
-        import_all_timeout = 5000, -- ms
-        import_all_priorities = {
-          buffers = 4, -- loaded buffer names
-          buffer_content = 3, -- loaded buffer content
-          local_files = 2, -- git files or files with relative path markers
-          same_file = 1, -- add to existing import statement
-        },
-        import_all_scan_buffers = 100,
-        import_all_select_source = false,
+      -- filter diagnostics
+      filter_out_diagnostics_by_severity = {},
+      filter_out_diagnostics_by_code = {},
+    }
 
-        -- eslint
-        eslint_enable_code_actions = true,
-        eslint_enable_disable_comments = true,
-        eslint_bin = 'eslint_d',
-        eslint_config_fallback = nil,
-        eslint_enable_diagnostics = false,
-        eslint_show_rule_id = false,
+    -- required to fix code action ranges and filter diagnostics
+    ts_utils.setup_client(client)
 
-        -- formatting
-        enable_formatting = false,
-        formatter = 'eslint_d',
-        formatter_config_fallback = nil,
+    -- no default maps, so you may want to define some here
+    local opts = { silent = true }
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gs', ':TSLspOrganize<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'qq', ':TSLspFixCurrent<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', ':TSLspRenameFile<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', opts)
+  end,
+}
 
-        -- update imports on file move
-        update_imports_on_move = false,
-        require_confirmation_on_move = false,
-        watch_dir = nil,
+nvim_lsp.vimls.setup {}
 
-        -- filter diagnostics
-        filter_out_diagnostics_by_severity = {},
-        filter_out_diagnostics_by_code = {},
-      }
-
-      -- required to fix code action ranges and filter diagnostics
-      ts_utils.setup_client(client)
-
-      -- no default maps, so you may want to define some here
-      local opts = { silent = true }
-      vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gs', ':TSLspOrganize<CR>', opts)
-      vim.api.nvim_buf_set_keymap(bufnr, 'n', 'qq', ':TSLspFixCurrent<CR>', opts)
-      vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', ':TSLspRenameFile<CR>', opts)
-      vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', opts)
-    end,
-  }
-end
-
-if not check_lsp_client_active 'vimls' then
-  nvim_lsp.vimls.setup {}
-end
-
-if not check_lsp_client_active 'vuels' then
-  nvim_lsp.vuels.setup {
-    cmd = { 'vls' },
-    capabilities = capabilities,
-    on_attach = custom_on_attach,
-    root_dir = require('lspconfig').util.root_pattern('.git', 'vue.config.js', 'package.json', 'yarn.lock'),
-  }
-end
+nvim_lsp.vuels.setup {
+  cmd = { 'vls' },
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  root_dir = require('lspconfig').util.root_pattern('.git', 'vue.config.js', 'package.json', 'yarn.lock'),
+}
 
 -- Diagnostics
 vim.fn.sign_define('LspDiagnosticsSignError', { texthl = 'LspDiagnosticsSignError', text = '', numhl = 'LspDiagnosticsSignError' })
