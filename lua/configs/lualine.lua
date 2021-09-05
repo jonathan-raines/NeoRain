@@ -48,7 +48,7 @@ require('lualine').setup {
       {
         'filename',
         color = { fg = '#898E99' },
-        condition = conditions.buffer_not_empty,
+        -- condition = conditions.buffer_not_empty,
       },
       {
         'diff',
