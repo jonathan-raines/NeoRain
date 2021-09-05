@@ -42,6 +42,26 @@ require('packer').startup(function()
   }
 
   use {
+    'Pocco81/Catppuccino.nvim',
+    config = function()
+      require('catppuccino').setup {
+        colorscheme = 'dark_catppuccino',
+        term_colors = true,
+        integrations = {
+          gitsigns = true,
+          which_key = true,
+          telescope = true,
+          nvimtree = {
+            enabled = true,
+          },
+        },
+      }
+      vim.cmd [[colorscheme catppuccino]]
+    end,
+    after = 'lualine.nvim',
+  }
+
+  use {
     'shadmansaleh/lualine.nvim',
     config = function()
       require('lualine').setup {
@@ -90,7 +110,7 @@ require('packer').startup(function()
         },
       }
     end,
-    after = 'Catppuccino.nvim',
+    event = 'UIEnter',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
@@ -255,25 +275,5 @@ require('packer').startup(function()
   use {
     'simrat39/symbols-outline.nvim',
     event = 'BufRead',
-  }
-
-  use {
-    'Pocco81/Catppuccino.nvim',
-    config = function()
-      require('catppuccino').setup {
-        colorscheme = 'dark_catppuccino',
-        term_colors = true,
-        integrations = {
-          gitsigns = true,
-          which_key = true,
-          telescope = true,
-          nvimtree = {
-            enabled = true,
-          },
-        },
-      }
-      vim.cmd [[colorscheme catppuccino]]
-    end,
-    event = 'UIEnter',
   }
 end)
