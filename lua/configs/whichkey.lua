@@ -116,6 +116,10 @@ local mappings = {
     t = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', 'Type Definition' },
     w = { '<cmd>Telescope lsp_workspace_diagnostics<cr>', 'Workspace Diagnostics' },
   },
+  o = {
+    name = 'Octo',
+    l = { '<cmd>Octo pr list<CR>', 'List Pull Requests' },
+  },
 }
 
 local wk = require 'which-key'
