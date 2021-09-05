@@ -40,14 +40,15 @@ require('lualine').setup {
     lualine_b = {
       {
         'branch',
-        condition = nil, -- condition function, component is loaded when function returns true
         color = { bg = '#0B1115' },
+        condition = nil,
       },
     },
     lualine_c = {
       {
         'filename',
         color = { fg = '#898E99' },
+        condition = conditions.buffer_not_empty,
       },
       {
         'diff',
@@ -97,12 +98,11 @@ require('lualine').setup {
           return msg
         end,
         icon = ' ',
-        -- color = { gui = '' },
       },
       {
         'filetype',
-        condition = conditions.hide_in_width,
         color = { fg = '#898E99' },
+        condition = conditions.hide_in_width,
       },
     },
     lualine_y = {},
@@ -119,7 +119,6 @@ require('lualine').setup {
         left_padding = 0,
         right_padding = 0,
         color = { fg = '#61afef', bg = '#0B1115' },
-        condition = nil,
       },
     },
   },
