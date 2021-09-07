@@ -143,8 +143,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.nvim-tree'
     end,
-    cmd = 'NvimTreeToggle',
-    opt = true,
+    event = 'VimEnter',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
