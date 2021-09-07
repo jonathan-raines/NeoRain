@@ -66,6 +66,7 @@ local mappings = {
   ['b'] = 'Buffers',
   ['w'] = 'Save',
   ['c'] = 'Close Buffer',
+  ['C'] = 'Close All Hidden Buffers',
   ['q'] = 'QuickFix List',
   f = {
     name = 'Find',
