@@ -27,13 +27,9 @@ require('packer').startup(function()
     end,
   }
 
-  use { 'nvim-lua/plenary.nvim' }
-
-  use { 'nvim-lua/popup.nvim' }
+  use { 'nvim-lua/plenary.nvim', { 'nvim-lua/popup.nvim' }, { 'kyazdani42/nvim-web-devicons' } }
 
   use { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make', event = 'VimEnter' }
-
-  use { 'kyazdani42/nvim-web-devicons' }
 
   -- Finders
   use {
@@ -102,9 +98,6 @@ require('packer').startup(function()
       require('nvim_comment').setup {
         comment_empty = false,
       }
-
-      vim.api.nvim_set_keymap('n', '<leader>/', ':CommentToggle<CR>', { noremap = true, silent = true })
-      vim.api.nvim_set_keymap('v', '<leader>/', ':CommentToggle<CR>', { noremap = true, silent = true })
     end,
     cmd = 'CommentToggle',
     opt = true,

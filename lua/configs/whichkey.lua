@@ -55,6 +55,10 @@ vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers<CR>', { norema
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 
+-- Comment Toggle
+vim.api.nvim_set_keymap('n', '<leader>/', ':CommentToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>/', ':CommentToggle<CR>', { noremap = true, silent = true })
+
 local mappings = {
   ['/'] = 'Comment',
   ['<space>'] = 'Switch to Last Buffer',
