@@ -82,6 +82,7 @@ nvim_lsp.solargraph.setup {
   settings = {
     solargraph = {
       formatting = true,
+      rename = true,
     },
   },
 }

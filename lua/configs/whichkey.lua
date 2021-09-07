@@ -123,9 +123,6 @@ local mappings = {
   },
   o = {
     name = 'Octo',
-    aa = { '<cmd>Octo assignee add<CR>', 'Assign a User' },
-    ad = { '<cmd>Octo assignee remove<CR>', 'Unassign a User' },
-
     ic = { '<cmd>Octo issue create<CR>', 'Create Issue' },
     il = { '<cmd>Octo issue list<CR>', 'List Issues' },
 
@@ -137,6 +134,9 @@ local mappings = {
     pl = { '<cmd>Octo pr list<CR>', 'List Pull Requests' },
     pm = { '<cmd>Octo pr merge<CR>', 'Merge Pull Request' },
     ps = { '<cmd>Octo pr search<CR>', 'Search Pull Requests' },
+
+    ra = { '<cmd>Octo reviewer add<CR>', 'Assign a Reviewer' },
+    rd = { '<cmd>Octo reviewer remove<CR>', 'Unassign a Reviewer' },
 
     rc = { '<cmd>Octo review comments<CR>', 'View Pending Comments' },
     rr = { '<cmd>Octo review resume<CR>', 'Resume Review' },
