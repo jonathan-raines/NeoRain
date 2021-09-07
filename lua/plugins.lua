@@ -27,19 +27,27 @@ require('packer').startup(function()
     end,
   }
 
+  use { 'nvim-lua/plenary.nvim' }
+
+  use { 'nvim-lua/popup.nvim' }
+
+  use { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make', event = 'VimEnter' }
+
+  use { 'kyazdani42/nvim-web-devicons' }
+
   -- Finders
   use {
     'nvim-telescope/telescope.nvim',
     config = function()
       require 'configs.telescope'
     end,
-    command = 'Telescope',
+    cmd = 'Telescope',
+    opt = true,
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make', event = 'VimEnter' },
+      { 'nvim-telescope/telescope-fzy-native.nvim' },
     },
-    after = { 'telescope-fzy-native.nvim' },
   }
 
   use {
@@ -98,7 +106,8 @@ require('packer').startup(function()
       vim.api.nvim_set_keymap('n', '<leader>/', ':CommentToggle<CR>', { noremap = true, silent = true })
       vim.api.nvim_set_keymap('v', '<leader>/', ':CommentToggle<CR>', { noremap = true, silent = true })
     end,
-    event = 'BufRead',
+    cmd = 'CommentToggle',
+    opt = true,
   }
 
   -- Treesitter
@@ -141,7 +150,8 @@ require('packer').startup(function()
     config = function()
       require 'configs.nvim-tree'
     end,
-    event = 'UIEnter',
+    cmd = 'NvimTreeToggle',
+    opt = true,
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
@@ -151,6 +161,7 @@ require('packer').startup(function()
     config = function()
       require 'lsp'
     end,
+    event = 'BufEnter',
   }
 
   use {
@@ -202,7 +213,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.toggleterm'
     end,
-    event = 'VimEnter',
+    event = 'UIEnter',
   }
 
   use {
@@ -217,6 +228,7 @@ require('packer').startup(function()
       require('octo').setup()
     end,
     cmd = 'Octo',
+    opt = true,
   }
 
   use {
@@ -231,6 +243,24 @@ require('packer').startup(function()
 
   use {
     'simrat39/symbols-outline.nvim',
-    event = 'BufRead',
+    cmd = 'SymbolsOutline',
+    opt = true,
+  }
+
+  use {
+    'NTBBloodbath/rest.nvim',
+    config = function()
+      require('rest-nvim').setup {
+        result_split_horizontal = false,
+        skip_ssl_verification = false,
+        highlight = {
+          enabled = true,
+          timeout = 150,
+        },
+        jump_to_request = false,
+      }
+      vim.api.nvim_set_keymap('n', 'Q', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })
+    end,
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 end)
