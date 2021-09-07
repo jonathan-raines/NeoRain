@@ -20,6 +20,22 @@ local function diff_source()
   end
 end
 
+local function getclientnames()
+  local bufnr = vim.fn.bufnr ''
+  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+  local clients = vim.lsp.buf_get_clients(bufnr)
+  local clientnames_tbl = {}
+
+  for _, v in pairs(clients) do
+    local filetypes = v.config.filetypes
+    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 and v.name then
+      table.insert(clientnames_tbl, v.name)
+    end
+  end
+
+  return table.concat(clientnames_tbl, ', ')
+end
+
 require('lualine').setup {
   options = {
     component_separators = '',
@@ -79,23 +95,13 @@ require('lualine').setup {
       },
       {
         function()
-          local msg = 'No Active Lsp'
-          local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-          local clients = vim.lsp.get_active_clients(0)
-
-          if next(clients) == nil then
-            return msg
+          local bufnr = vim.fn.bufnr ''
+          local clients = vim.lsp.buf_get_clients(bufnr)
+          if vim.tbl_isempty(clients) then
+            return ''
           end
-
-          for _, client in ipairs(clients) do
-            local filetypes = client.config.filetypes
-
-            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-              return client.name
-            end
-          end
-
-          return msg
+          local names = getclientnames()
+          return string.format('%s', names)
         end,
         icon = ' ',
       },
