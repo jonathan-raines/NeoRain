@@ -249,7 +249,7 @@ require('packer').startup(function()
           enabled = true,
           timeout = 150,
         },
-        jump_to_request = false,
+        jump_to_request = true,
       }
       vim.api.nvim_set_keymap('n', 'Q', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })
     end,
