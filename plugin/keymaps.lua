@@ -9,6 +9,10 @@ vim.g.maplocalleader = ' '
 vim.api.nvim_set_keymap('n', 'n', 'nzzzv', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', 'J', 'mzJ`z', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '{', '{zz', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '}', '}zz', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<C-o>', '<C-o>zz', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<C-i>', '<C-i>zz', { silent = true, noremap = true })
 
 -- Undo break points
 vim.api.nvim_set_keymap('i', ',', ',<c-g>u', { silent = true, noremap = true })
@@ -63,6 +67,14 @@ vim.api.nvim_set_keymap('n', '<C-q>', ':call QuickFixToggle()<CR>', { silent = t
 
 -- Y behaves like C/D
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
+
+-- Increment / Decrement
+vim.api.nvim_set_keymap('n', '+', '<C-a>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '-', '<C-x>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('v', '+', '<C-a>gv-gv', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('v', '-', '<C-x>gv-gv', { silent = true, noremap = true })
+
+vim.api.nvim_set_keymap('n', '<Backspace>', '<C-^>', { silent = true, noremap = true })
 
 -- QuickFixToggle
 vim.cmd [[function! QuickFixToggle()
