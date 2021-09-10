@@ -65,6 +65,8 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 nvim_lsp.bashls.setup {}
 
+nvim_lsp.clangd.setup { capabilities = capabilities }
+
 nvim_lsp.cssls.setup { capabilities = capabilities }
 
 nvim_lsp.html.setup { capabilities = capabilities }
