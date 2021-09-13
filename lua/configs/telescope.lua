@@ -5,27 +5,30 @@ require('telescope').setup {
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     layout_config = {
       height = 0.9,
-      preview_width = 80,
       width = 0.9,
     },
     file_sorter = require('telescope.sorters').get_fzy_sorter,
     mappings = {
       i = {
-        ['<c-d>'] = require('telescope.actions').delete_buffer,
         ['<ESC>'] = actions.close,
       },
-      n = {
-        ['<c-d>'] = require('telescope.actions').delete_buffer,
-      },
+      n = {},
     },
-    pickers = {
-      buffers = {
-        sort_lastused = true,
-        theme = 'dropdown',
+  },
+  pickers = {
+    buffers = {
+      ignore_current_buffer = true,
+      sort_lastused = true,
+      mappings = {
+        i = {
+          ['<c-d>'] = require('telescope.actions').delete_buffer,
+        },
+        n = {
+          ['<c-d>'] = require('telescope.actions').delete_buffer,
+        },
       },
       find_files = {
         hidden = true,
-        theme = 'dropdown',
       },
     },
     selection_strategy = 'reset',
