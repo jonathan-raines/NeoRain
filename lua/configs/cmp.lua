@@ -29,15 +29,6 @@ local icons = {
   TypeParameter = '',
 }
 
-local function t(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-  local col = vim.fn.col '.' - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
-end
-
 cmp.setup {
   formatting = {
     format = function(entry, vim_item)
@@ -62,29 +53,28 @@ cmp.setup {
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
+      behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
     ['<Tab>'] = function(fallback)
       if vim.fn.pumvisible() == 1 then
-        vim.api.nvim_feedkeys(t '<C-n>', 'n', true)
-      elseif check_back_space() then
-        vim.api.nvim_feedkeys(t '<Tab>', 'n', true)
-      elseif luasnip.expand_or_jumpable() then
-        vim.api.nvim_feedkeys(t '<Plug>luasnip-expand-or-jump', '', true)
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      elseif require('luasnip').expand_or_jumpable() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
       else
         fallback()
       end
     end,
     ['<S-Tab>'] = function(fallback)
       if vim.fn.pumvisible() == 1 then
-        vim.api.nvim_feedkeys(t '<C-p>', 'n', true)
-      elseif luasnip.jumpable(-1) then
-        vim.api.nvim_feedkeys(t '<Plug>luasnip-jump-prev', 'n', true)
-      elseif luasnip.expand_or_jumpable() then
-        vim.api.nvim_feedkeys(t '<Plug>luasnip-expand-or-jump', '', true)
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      elseif require('luasnip').jumpable(-1) then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
       else
         fallback()
       end
