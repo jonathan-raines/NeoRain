@@ -79,6 +79,16 @@ require('packer').startup(function()
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup {
+        keymaps = {
+          noremap = true,
+
+          ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'" },
+          ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'" },
+
+          -- Text objects
+          ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+          ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+        },
         signs = {
           add = { hl = 'GitGutterAdd', text = '+' },
           change = { hl = 'GitGutterChange', text = '~' },
