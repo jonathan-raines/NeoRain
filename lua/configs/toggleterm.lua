@@ -48,7 +48,6 @@ vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
 local Terminal = require('toggleterm.terminal').Terminal
 local horizontal = Terminal:new { hidden = true, direction = 'horizontal' }
 local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
-local pianobar = Terminal:new { cmd = 'pianobar', hidden = true, direction = 'float' }
 
 function _horizontal_toggle()
   horizontal:toggle()
@@ -58,15 +57,8 @@ function _lazygit_toggle()
   lazygit:toggle()
 end
 
-function _pianobar_toggle()
-  pianobar:toggle()
-end
-
 vim.api.nvim_set_keymap('n', '<A-h>', '<cmd>lua _horizontal_toggle()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', '<A-h>', '<cmd>lua _horizontal_toggle()<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<A-l>', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', '<A-l>', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', '<A-p>', '<cmd>lua _pianobar_toggle()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<A-p>', '<cmd>lua _pianobar_toggle()<CR>', { noremap = true, silent = true })
