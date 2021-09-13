@@ -19,6 +19,9 @@ npairs.add_rules {
   Rule('$', '$', 'lua'):with_pair(ts_conds.is_not_ts_node { 'function' }),
 }
 
+npairs.add_rules(require 'nvim-autopairs.rules.endwise-lua')
+npairs.add_rules(require 'nvim-autopairs.rules.endwise-ruby')
+
 require('nvim-autopairs.completion.cmp').setup {
   map_cr = true, --  map <CR> on insert mode
   map_complete = true, -- it will auto insert `(` after select function or method item
