@@ -1,3 +1,5 @@
+local actions = require 'telescope.actions'
+
 require('telescope').setup {
   defaults = {
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
@@ -8,15 +10,22 @@ require('telescope').setup {
     },
     file_sorter = require('telescope.sorters').get_fzy_sorter,
     mappings = {
-      i = {},
-      n = {},
+      i = {
+        ['<c-d>'] = require('telescope.actions').delete_buffer,
+        ['<ESC>'] = actions.close,
+      },
+      n = {
+        ['<c-d>'] = require('telescope.actions').delete_buffer,
+      },
     },
     pickers = {
       buffers = {
         sort_lastused = true,
+        theme = 'dropdown',
       },
       find_files = {
         hidden = true,
+        theme = 'dropdown',
       },
     },
     selection_strategy = 'reset',
