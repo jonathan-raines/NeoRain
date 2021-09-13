@@ -49,7 +49,6 @@ vim.api.nvim_set_keymap('n', '<A-i>', ':ToggleTerm<CR>', { noremap = true, silen
 vim.api.nvim_set_keymap('t', '<A-i>', '<ESC>:ToggleTerm<CR>', { noremap = true, silent = true })
 
 -- Buffers
-vim.api.nvim_set_keymap('n', '<leader>c', ':bdelete<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
@@ -66,7 +65,6 @@ local mappings = {
   ['b'] = 'Buffers',
   ['w'] = 'Save',
   ['c'] = 'Close Buffer',
-  ['C'] = 'Close All Hidden Buffers',
   ['q'] = 'QuickFix List',
   f = {
     name = 'Find',
@@ -99,8 +97,8 @@ local mappings = {
   },
   h = {
     name = 'Harpoon',
-    pn = { "<cmd>lua require'harpoon.mark'.add_file()<CR>", 'Add File' },
-    qm = { "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", 'Quick Menu' },
+    p = { "<cmd>lua require'harpoon.mark'.add_file()<CR>", 'Add File' },
+    m = { "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", 'Quick Menu' },
     f = { "<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", 'Navigate to File 1' },
     g = { "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", 'Navigate to File 2' },
     h = { "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", 'Navigate to File 3' },
