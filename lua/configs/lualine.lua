@@ -48,33 +48,34 @@ require('lualine').setup {
         function()
           return ' '
         end,
-        left_padding = 0,
-        right_padding = 0,
-        condition = nil,
+        padding = { left = 0, right = 0 },
+        cond = nil,
       },
     },
     lualine_b = {
       {
         'branch',
         color = { bg = '#0B1115' },
-        condition = nil,
+        cond = nil,
       },
     },
     lualine_c = {
       {
         'filename',
         color = { fg = '#898E99' },
-        -- condition = conditions.buffer_not_empty,
+        -- cond = conditions.buffer_not_empty,
       },
       {
         'diff',
         source = diff_source,
         symbols = { added = '  ', modified = '柳', removed = ' ' },
-        color_added = { fg = '#97c374' },
-        color_modified = { fg = '#dbc074' },
-        color_removed = { fg = '#c94f6d' },
+        diff_color = {
+          added = { fg = '#97c374' },
+          modified = { fg = '#dbc074' },
+          removed = { fg = '#c94f6d' },
+        },
         color = {},
-        condition = nil,
+        cond = nil,
       },
     },
     lualine_x = {
@@ -82,7 +83,7 @@ require('lualine').setup {
         'diagnostics',
         sources = { 'nvim_lsp' },
         symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
-        condition = nil,
+        cond = nil,
       },
       {
         function()
@@ -108,7 +109,7 @@ require('lualine').setup {
       {
         'filetype',
         color = { fg = '#898E99' },
-        condition = conditions.hide_in_width,
+        cond = conditions.hide_in_width,
       },
     },
     lualine_y = {},
@@ -122,8 +123,7 @@ require('lualine').setup {
           local index = math.ceil(line_ratio * #chars)
           return chars[index]
         end,
-        left_padding = 0,
-        right_padding = 0,
+        padding = { left = 0, right = 0 },
         color = { fg = '#61afef', bg = '#0B1115' },
       },
     },
