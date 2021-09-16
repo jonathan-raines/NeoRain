@@ -51,6 +51,7 @@ require('packer').startup(function()
     config = function()
       require('catppuccino').setup {
         colorscheme = 'dark_catppuccino',
+        transparency = true,
         term_colors = true,
         integrations = {
           gitsigns = true,
