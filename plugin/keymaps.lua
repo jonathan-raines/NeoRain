@@ -24,6 +24,10 @@ vim.api.nvim_set_keymap('i', '?', '?<c-g>u', { silent = true, noremap = true })
 vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
 vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 
+-- Quickfix Navigation
+vim.api.nvim_set_keymap('n', ']q', ':cnext<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '[q', ':cprevious<CR>', { silent = true, noremap = true })
+
 -- Escape
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', 'jk', ':noh<CR>', { silent = true, noremap = true })
