@@ -235,16 +235,6 @@ require('packer').startup(function()
   }
 
   use {
-    'ahmedkhalf/project.nvim',
-    config = function()
-      require('project_nvim').setup {
-        ignore_lsp = { 'solargraph' },
-      }
-    end,
-    event = 'BufEnter',
-  }
-
-  use {
     'simrat39/symbols-outline.nvim',
     cmd = 'SymbolsOutline',
     opt = true,
