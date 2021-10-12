@@ -121,22 +121,14 @@ local mappings = {
     ic = { '<cmd>Octo issue create<CR>', 'Create Issue' },
     il = { '<cmd>Octo issue list<CR>', 'List Issues' },
 
-    ca = { '<cmd>Octo comment add<CR>', 'Add Comment' },
-    cd = { '<cmd>Octo comment delete<CR>', 'Delete Comment' },
-
-    pcl = { '<cmd>Octo pr close<CR>', 'Close Pull Request' },
-    pcr = { '<cmd>Octo pr create<CR>', 'Create Pull Request' },
+    pc = { '<cmd>Octo pr create<CR>', 'Create Pull Request' },
     pl = { '<cmd>Octo pr list<CR>', 'List Pull Requests' },
-    pm = { '<cmd>Octo pr merge<CR>', 'Merge Pull Request' },
     ps = { '<cmd>Octo pr search<CR>', 'Search Pull Requests' },
 
-    ra = { '<cmd>Octo reviewer add<CR>', 'Assign a Reviewer' },
-    rd = { '<cmd>Octo reviewer remove<CR>', 'Unassign a Reviewer' },
-
-    rc = { '<cmd>Octo review comments<CR>', 'View Pending Comments' },
-    rr = { '<cmd>Octo review resume<CR>', 'Resume Review' },
-    rst = { '<cmd>Octo review start<CR>', 'Start Review' },
-    rsm = { '<cmd>Octo review submit<CR>', 'Submit Review' },
+    rr = { '<rmd>Octo review resume<CR>', 'Resume Review' },
+    rd = { '<rmd>Octo review discard <CR>', 'Discard Review' },
+    rs = { '<cmd>Octo review start<CR>', 'Start Review' },
+    rf = { '<cmd>Octo review submit<CR>', 'Submit Review' },
 
     tr = { '<cmd>Octo thread resolve<CR>', 'Resolve Thread' },
     tu = { '<cmd>Octo thread unresolve<CR>', 'Unresolve Thread' },
