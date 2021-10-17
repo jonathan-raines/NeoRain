@@ -314,6 +314,7 @@ require('packer').startup(function()
         },
       }
       require('mini.bufremove').setup {}
+      require('mini.tabline').setup {}
     end,
   }
 end)
