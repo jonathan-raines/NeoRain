@@ -293,7 +293,7 @@ require('packer').startup(function()
     config = function()
       require('mini.surround').setup {
         -- Number of lines within which surrounding is searched
-        n_lines = 20,
+        n_lines = 30,
 
         -- Duration (in ms) of highlight when calling `MiniSurround.highlight()`
         highlight_duration = 500,
