@@ -104,14 +104,18 @@ require('packer').startup(function()
   }
 
   use {
-    'terrortylor/nvim-comment',
+    'numToStr/Comment.nvim',
     config = function()
-      require('nvim_comment').setup {
-        comment_empty = false,
+      require('Comment').setup {
+        {
+          ---@param ctx Ctx
+          pre_hook = function(ctx)
+            return require('ts_context_commentstring.internal').calculate_commentstring()
+          end,
+        },
       }
     end,
-    cmd = 'CommentToggle',
-    opt = true,
+    event = 'BufRead',
   }
 
   -- Treesitter

@@ -51,18 +51,12 @@ vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers theme=get_ivy<
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 
--- Comment Toggle
-vim.api.nvim_set_keymap('n', '<leader>/', ':CommentToggle<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<leader>/', ':CommentToggle<CR>', { noremap = true, silent = true })
-
 local mappings = {
-  ['/'] = 'Comment',
   ['<space>'] = 'Switch to Last Buffer',
   ['e'] = 'Explorer',
   ['b'] = 'Buffers',
   ['w'] = 'Save',
   ['c'] = 'Close Buffer',
-  ['q'] = 'QuickFix List',
   f = {
     name = 'Find',
     e = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
