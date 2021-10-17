@@ -313,7 +313,7 @@ require('packer').startup(function()
           update_n_lines = 'sn', -- Update `n_lines`
         },
       }
-      -- require('mini.bufremove').setup {}
+      require('mini.bufremove').setup {}
     end,
   }
 end)
