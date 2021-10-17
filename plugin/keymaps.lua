@@ -102,7 +102,7 @@ vim.cmd [[function DeleteHiddenBuffers() " Vim with the 'hidden' option
 		endfor
 	endfunction]]
 
-vim.api.nvim_set_keymap('n', '<leader>c', ':bdelete<CR>', { silent = true, noremap = true })
--- vim.api.nvim_set_keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>c', '<Cmd>lua MiniBufremove.delete()<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', { silent = true, noremap = true })
 
 vim.api.nvim_set_keymap('n', '<leader>B', ':ls<CR>:b<Space>', { silent = true, noremap = true })
