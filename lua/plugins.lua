@@ -154,12 +154,14 @@ require('packer').startup(function()
   }
 
   use {
-    'kyazdani42/nvim-tree.lua',
+    'rlch/github-notifications.nvim',
     config = function()
-      require 'configs.nvim-tree'
+      require('github-notifications').setup {}
     end,
-    event = 'VimEnter',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
   }
 
   -- LSP
@@ -317,4 +319,6 @@ require('packer').startup(function()
       require('mini.tabline').setup {}
     end,
   }
+
+  use { 'rmagatti/auto-session' }
 end)

@@ -58,6 +58,7 @@ require('lualine').setup {
         color = { bg = '#0B1115' },
         cond = nil,
       },
+      { 'branch', require('github-notifications').statusline_notification_count },
     },
     lualine_c = {
       {
