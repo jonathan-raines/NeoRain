@@ -269,6 +269,7 @@ require('packer').startup(function()
     ft = { 'dart' },
     requires = 'nvim-lua/plenary.nvim',
   }
+
   use {
     'chentau/marks.nvim',
     config = function()
