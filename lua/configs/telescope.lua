@@ -29,6 +29,9 @@ require('telescope').setup {
         },
       },
     },
+    current_buffer_fuzzy_find = {
+      previewer = false,
+    },
     find_files = {
       hidden = true,
       file_ignore_patterns = { '.git/' },
