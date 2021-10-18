@@ -134,10 +134,10 @@ require('packer').startup(function()
     requires = {},
   }
 
-  use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-  }
+  -- use {
+  --   'nvim-treesitter/nvim-treesitter-textobjects',
+  --   after = 'nvim-treesitter',
+  -- }
 
   use {
     'windwp/nvim-autopairs',

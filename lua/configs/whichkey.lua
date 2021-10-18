@@ -45,7 +45,7 @@ require('which-key').setup {
     width = { min = 20, max = 50 }, -- min and max width of the columns
     spacing = 8, -- spacing between columns
   },
-  hidden = { '<silent>', '<cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
+  hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible
   ignore_missing = false,
 }
@@ -135,22 +135,33 @@ local mappings = {
     k = { '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', 'Go To Previous' },
     o = { '<cmd>SymbolsOutline<cr>', 'Symbols Outline' },
     l = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', 'Show Line Diagnostics' },
-    r = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
+    r = { '<cmd>LspRestart<cr>', 'Restart LSP' },
     t = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', 'Type Definition' },
     w = { '<cmd>Telescope lsp_workspace_diagnostics<cr>', 'Workspace Diagnostics' },
   },
   o = {
     name = 'Octo',
-    ic = { '<cmd>Octo issue create<CR>', 'Create Issue' },
-    il = { '<cmd>Octo issue list<CR>', 'List Issues' },
-    pl = { '<cmd>Octo pr list<CR>', 'List Pull Requests' },
-    rs = { '<cmd>Octo review start<CR>', 'Start Review' },
-    rf = { '<cmd>Octo review submit<CR>', 'Submit Review' },
+    i = {
+      name = 'Issues',
+      c = { '<cmd>Octo issue create<CR>', 'Create Issue' },
+      l = { '<cmd>Octo issue list<CR>', 'List Issues' },
+    },
+    p = { '<cmd>Octo pr list<CR>', 'List Pull Requests' },
+    r = {
+      name = 'Review',
+      s = { '<cmd>Octo review start<CR>', 'Start Review' },
+      f = { '<cmd>Octo review submit<CR>', 'Submit Review' },
+    },
+  },
+  p = {
+    name = 'Packer',
+    c = { '<cmd>PackerCompile<CR>', 'PackerCompile' },
+    s = { '<cmd>PackerSync<CR>', 'PackerSync' },
   },
   t = {
     name = 'Tmux',
-    s = { tmux_sessions, 'sessions' },
-    w = { tmux_windows, 'windows' },
+    s = { tmux_sessions, 'Sessions' },
+    w = { tmux_windows, 'Windows' },
   },
 }
 
