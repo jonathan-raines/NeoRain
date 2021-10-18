@@ -29,8 +29,6 @@ require('packer').startup(function()
 
   use { 'nvim-lua/plenary.nvim', { 'nvim-lua/popup.nvim' }, { 'kyazdani42/nvim-web-devicons' } }
 
-  use { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make', event = 'VimEnter' }
-
   -- Finders
   use {
     'nvim-telescope/telescope.nvim',
@@ -42,7 +40,14 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzy-native.nvim' },
+      { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make', event = 'VimEnter' },
+      {
+        'camgraff/telescope-tmux.nvim',
+        config = function()
+          require('telescope').load_extension 'tmux'
+        end,
+        event = 'VimEnter',
+      },
     },
   }
 

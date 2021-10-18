@@ -1,3 +1,15 @@
+local telescope = require 'telescope'
+
+local function tmux_sessions()
+  telescope.extensions.tmux.sessions {}
+end
+
+local function tmux_windows()
+  telescope.extensions.tmux.windows {
+    entry_format = '#S: #T',
+  }
+end
+
 require('which-key').setup {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -126,6 +138,11 @@ local mappings = {
 
     tr = { '<cmd>Octo thread resolve<CR>', 'Resolve Thread' },
     tu = { '<cmd>Octo thread unresolve<CR>', 'Unresolve Thread' },
+  },
+  t = {
+    name = 'Tmux',
+    s = { tmux_sessions, 'sessions' },
+    w = { tmux_windows, 'windows' },
   },
 }
 
