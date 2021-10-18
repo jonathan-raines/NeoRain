@@ -71,27 +71,37 @@ vim.api.nvim_set_keymap('v', '+', '<C-a>gv-gv', { silent = true, noremap = true 
 vim.api.nvim_set_keymap('v', '-', '<C-x>gv-gv', { silent = true, noremap = true })
 
 -- QuickFixToggle
-vim.cmd [[function! QuickFixToggle()
+vim.api.nvim_exec(
+  [[
+  function! QuickFixToggle()
       if empty(filter(getwininfo(), 'v:val.quickfix'))
       copen
       else
       cclose
       endif
-  endfunction]]
+  endfunction]],
+  false
+)
 
 -- Custom Fold
-vim.cmd [[function! CustomFold()
+vim.api.nvim_exec(
+  [[function! CustomFold()
       return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
-  endfunction]]
+  endfunction]],
+  false
+)
 
 -- Delete Hidden Buffers
-vim.cmd [[function DeleteHiddenBuffers() " Vim with the 'hidden' option
+vim.api.nvim_exec(
+  [[function DeleteHiddenBuffers() " Vim with the 'hidden' option
 		let tpbl=[]
 		call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
 		for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
 			silent execute 'bwipeout!' buf
 		endfor
-	endfunction]]
+	endfunction]],
+  false
+)
 
 vim.api.nvim_set_keymap('n', '<leader>c', '<Cmd>lua MiniBufremove.delete()<CR>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>H', '<Cmd>lua MiniBufremove.unshow()<CR>', { silent = true, noremap = true })
