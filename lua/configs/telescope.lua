@@ -11,12 +11,16 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<ESC>'] = actions.close,
+        ['<C-q>'] = actions.send_selected_to_qflist,
       },
-      n = {},
+      n = {
+        ['<C-q>'] = actions.send_selected_to_qflist,
+      },
     },
   },
   pickers = {
     buffers = {
+      show_all_buffers = true,
       ignore_current_buffer = true,
       sort_lastused = true,
       mappings = {
@@ -27,9 +31,13 @@ require('telescope').setup {
           ['<c-d>'] = require('telescope.actions').delete_buffer,
         },
       },
-      find_files = {
-        hidden = true,
-      },
+    },
+    find_files = {
+      hidden = true,
+      file_ignore_patterns = { '.git/' },
+    },
+    live_grep = {
+      file_ignore_patterns = { '.git/' },
     },
     selection_strategy = 'reset',
     use_less = true,
