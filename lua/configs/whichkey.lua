@@ -70,11 +70,11 @@ vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 
 local mappings = {
-  ['<space>'] = 'Switch to Last Buffer',
+  ['<space>'] = 'Alternate File',
   ['b'] = 'Buffers',
-  ['c'] = 'Close Buffer',
+  ['c'] = 'Close',
   ['C'] = 'Close All But Current',
-  ['H'] = 'Hide Buffer',
+  ['H'] = 'Hide',
   ['q'] = 'Quit',
   ['w'] = 'Save',
   f = {
