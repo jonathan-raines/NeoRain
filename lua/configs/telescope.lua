@@ -11,11 +11,8 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<ESC>'] = actions.close,
-        ['<C-q>'] = actions.send_selected_to_qflist,
       },
-      n = {
-        ['<C-q>'] = actions.send_selected_to_qflist,
-      },
+      n = {},
     },
   },
   pickers = {
