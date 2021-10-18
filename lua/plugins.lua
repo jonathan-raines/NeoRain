@@ -232,6 +232,15 @@ require('packer').startup(function()
 
   use {
     'ThePrimeagen/harpoon',
+    config = function()
+      require('harpoon').setup {
+        global_settings = {
+          save_on_toggle = false,
+          save_on_change = true,
+          enter_on_sendcmd = true,
+        },
+      }
+    end,
     event = 'BufRead',
     requires = { 'popup.nvim', 'plenary.nvim' },
   }
@@ -325,5 +334,5 @@ require('packer').startup(function()
     end,
   }
 
-  use { 'rmagatti/auto-session' }
+  -- use { 'rmagatti/auto-session', event = 'VimEnter' }
 end)

@@ -105,6 +105,8 @@ local mappings = {
     g = { "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", 'Navigate to File 2' },
     h = { "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", 'Navigate to File 3' },
     j = { "<cmd>lua require'harpoon.ui'.nav_file(4)<CR>", 'Navigate to File 4' },
+    t = { "<cmd>lua require'harpoon.term'.gotoTerminal(1)<CR>", 'Go to Terminal 1' },
+    y = { "<cmd>lua require'harpoon.term'.gotoTerminal(2)<CR>", 'Go to Terminal 2' },
   },
   l = {
     name = 'LSP',
