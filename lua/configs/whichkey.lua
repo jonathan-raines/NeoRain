@@ -29,6 +29,11 @@ require('which-key').setup {
     separator = '➜', -- symbol used between a key and it's label
     group = '+', -- symbol prepended to a group
   },
+  key_labels = {
+    ['<space>'] = 'SPC',
+    ['<cr>'] = 'RET',
+    ['<tab>'] = 'TAB',
+  },
   window = {
     border = 'single', -- none, single, double, shadow
     position = 'bottom', -- bottom, top
@@ -40,8 +45,9 @@ require('which-key').setup {
     width = { min = 20, max = 50 }, -- min and max width of the columns
     spacing = 8, -- spacing between columns
   },
-  hidden = { '<silent>', '<cmd>', '<cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
+  hidden = { '<silent>', '<cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible
+  ignore_missing = false,
 }
 
 local opts = {
@@ -59,42 +65,54 @@ vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', { noremap = true, silen
 -- Buffers
 vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers theme=get_ivy<CR>', { noremap = true, silent = true })
 
+-- Write / Quit
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 
 local mappings = {
   ['<space>'] = 'Switch to Last Buffer',
-  ['e'] = 'Explorer',
   ['b'] = 'Buffers',
-  ['w'] = 'Save',
   ['c'] = 'Close Buffer',
+  ['C'] = 'Close All But Current',
+  ['H'] = 'Hide Buffer',
+  ['q'] = 'Quit',
+  ['w'] = 'Save',
   f = {
     name = 'Find',
     e = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
+    d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
-    ch = { '<cmd>Telescope command_history<cr>', 'Command History' },
-    sh = { '<cmd>Telescope search_history<cr>', 'Search History' },
-    ds = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
-    cb = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Search Current Buffer' },
+    h = {
+      name = 'History',
+      c = { '<cmd>Telescope command_history<cr>', 'Command History' },
+      s = { '<cmd>Telescope search_history<cr>', 'Search History' },
+      f = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
+    },
+    j = { '<cmd>Telescope jumplist<cr>', 'Jump List' },
     m = { '<cmd>Telescope marks<cr>', 'Marks' },
-    of = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     q = { '<cmd>Telescope quickfix<cr>', 'QuickFix List' },
-    jl = { '<cmd>Telescope jumplist<cr>', 'Jump List' },
-    ts = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
-    lg = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
-    gs = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
-    ws = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
+    s = {
+      name = 'Search',
+      b = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Search Current Buffer' },
+      s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
+      w = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
+    },
+    t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
+    w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
   },
   g = {
     name = 'Git',
-    nh = { "<cmd>lua require'gitsigns'.next_hunk()<cr>", 'Next Hunk' },
-    ph = { "<cmd>lua require'gitsigns'.prev_hunk()<cr>", 'Previous Hunk' },
-    sh = { "<cmd>lua require'gitsigns'.stage_hunk()<cr>", 'Stage Hunk' },
-    ush = { "<cmd>lua require'gitsigns'.undo_stage_hunk()<cr>", 'Unstage Hunk' },
-    rh = { "<cmd>lua require'gitsigns'.reset_hunk()<cr>", 'Reset Hunk' },
-    rb = { "<cmd>lua require'gitsigns'.reset_buffer()<cr>", 'Reset Buffer' },
-    pvh = { "<cmd>lua require'gitsigns'.preview_hunk()<cr>", 'Preview Hunk' },
     b = { "<cmd>lua require'gitsigns'.blame_line()<cr>", 'Blame Line' },
+    n = { "<cmd>lua require'gitsigns'.next_hunk()<cr>", 'Next Hunk' },
+    p = { "<cmd>lua require'gitsigns'.prev_hunk()<cr>", 'Previous Hunk' },
+    P = { "<cmd>lua require'gitsigns'.preview_hunk()<cr>", 'Preview Hunk' },
+    r = {
+      name = 'Reset',
+      h = { "<cmd>lua require'gitsigns'.reset_hunk()<cr>", 'Reset Hunk' },
+      b = { "<cmd>lua require'gitsigns'.reset_buffer()<cr>", 'Reset Buffer' },
+    },
+    s = { "<cmd>lua require'gitsigns'.stage_hunk()<cr>", 'Stage Hunk' },
+    u = { "<cmd>lua require'gitsigns'.undo_stage_hunk()<cr>", 'Unstage Hunk' },
   },
   h = {
     name = 'Harpoon',
