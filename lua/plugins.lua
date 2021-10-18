@@ -27,7 +27,7 @@ require('packer').startup(function()
     end,
   }
 
-  use { 'nvim-lua/plenary.nvim', { 'nvim-lua/popup.nvim' }, { 'kyazdani42/nvim-web-devicons' } }
+  use { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' }, { 'kyazdani42/nvim-web-devicons' } }
 
   -- Finders
   use {
@@ -67,7 +67,7 @@ require('packer').startup(function()
           },
         },
       }
-      vim.cmd [[colorscheme catppuccino]]
+      vim.cmd [[ colorscheme catppuccino ]]
     end,
     after = 'lualine.nvim',
   }
@@ -131,6 +131,7 @@ require('packer').startup(function()
       require 'configs.treesitter'
     end,
     event = 'CursorHold',
+    requires = {},
   }
 
   use {
@@ -156,17 +157,6 @@ require('packer').startup(function()
     'JoosepAlviste/nvim-ts-context-commentstring',
     ft = { 'js', 'css', 'html', 'vue', 'lua' },
     after = 'nvim-treesitter',
-  }
-
-  use {
-    'rlch/github-notifications.nvim',
-    config = function()
-      require('github-notifications').setup {}
-    end,
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
   }
 
   -- LSP
@@ -331,6 +321,13 @@ require('packer').startup(function()
       }
       require('mini.bufremove').setup {}
       require('mini.tabline').setup {}
+    end,
+  }
+
+  use {
+    'luukvbaal/nnn.nvim',
+    config = function()
+      require('nnn').setup()
     end,
   }
 

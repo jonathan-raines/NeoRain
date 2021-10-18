@@ -74,7 +74,6 @@ local mappings = {
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
     ch = { '<cmd>Telescope command_history<cr>', 'Command History' },
     sh = { '<cmd>Telescope search_history<cr>', 'Search History' },
-    gh = { "<cmd>lua require('telescope').extensions.ghn.notifications()<CR>", 'Open Github Notifications' },
     ds = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
     cb = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Search Current Buffer' },
     m = { '<cmd>Telescope marks<cr>', 'Marks' },
