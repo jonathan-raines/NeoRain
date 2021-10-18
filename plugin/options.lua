@@ -22,7 +22,7 @@ opt.lazyredraw = true
 opt.mouse = 'a'
 opt.number = false -- default is off
 opt.path = '**'
-opt.pumheight = 6 -- prev was 10
+opt.pumheight = 10
 opt.pumblend = 17
 opt.relativenumber = true
 opt.scrolloff = 8
@@ -60,7 +60,7 @@ vim.api.nvim_exec(
 
 vim.api.nvim_exec(
   [[
-  augroup THE_PRIMEAGEN
+  augroup TRIMWHITESPACE
     autocmd!
     autocmd BufWritePre * %s/\s\+$//e
   augroup end ]],
