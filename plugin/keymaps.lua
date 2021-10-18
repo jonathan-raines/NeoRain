@@ -30,7 +30,6 @@ vim.api.nvim_set_keymap('n', '[q', ':cprevious<CR>', { silent = true, noremap = 
 
 -- Escape
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', 'jk', ':noh<CR>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('v', 'jk', '<ESC>', { silent = true, noremap = true })
 
 -- Move Lines Around
@@ -38,8 +37,8 @@ vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', { silent = true, noremap =
 vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>==', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('i', '<A-j>', '<ESC>:m .+1<CR>==gi', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('i', '<A-k>', '<ESC>:m .-2<CR>==gi', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('v', '<A-j>', ":move '>+1<CR>gv-gv", { silent = true, noremap = true })
-vim.api.nvim_set_keymap('v', '<A-k>', ":move '<-2<CR>gv-gv", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('v', '<A-j>', ":m '>+1<CR>gv-gv", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('v', '<A-k>', ":m '<-2<CR>gv-gv", { silent = true, noremap = true })
 
 -- Redo
 vim.api.nvim_set_keymap('n', 'U', '<C-R>', { silent = true, noremap = true })
@@ -49,10 +48,6 @@ vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { silent = true, noremap = true 
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { silent = true, noremap = true })
-
--- Jump to start/end of line
-vim.api.nvim_set_keymap('n', 'H', '^', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', 'L', '$', { silent = true, noremap = true })
 
 -- Resize windows
 vim.api.nvim_set_keymap('n', '<C-Up>', ':resize -5<CR>', { silent = true, noremap = true })
@@ -69,16 +64,11 @@ vim.api.nvim_set_keymap('n', '>', '>>', { silent = true, noremap = true })
 -- Quickfix
 vim.api.nvim_set_keymap('n', '<C-q>', ':call QuickFixToggle()<CR>', { silent = true, noremap = true })
 
--- Y behaves like C/D
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
-
 -- Increment / Decrement
 vim.api.nvim_set_keymap('n', '+', '<C-a>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '-', '<C-x>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('v', '+', '<C-a>gv-gv', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('v', '-', '<C-x>gv-gv', { silent = true, noremap = true })
-
-vim.api.nvim_set_keymap('n', '<Backspace>', '<C-^>', { silent = true, noremap = true })
 
 -- QuickFixToggle
 vim.cmd [[function! QuickFixToggle()
@@ -94,6 +84,7 @@ vim.cmd [[function! CustomFold()
       return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
   endfunction]]
 
+-- Delete Hidden Buffers
 vim.cmd [[function DeleteHiddenBuffers() " Vim with the 'hidden' option
 		let tpbl=[]
 		call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
@@ -105,5 +96,3 @@ vim.cmd [[function DeleteHiddenBuffers() " Vim with the 'hidden' option
 vim.api.nvim_set_keymap('n', '<leader>c', '<Cmd>lua MiniBufremove.delete()<CR>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>H', '<Cmd>lua MiniBufremove.unshow()<CR>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', { silent = true, noremap = true })
-
-vim.api.nvim_set_keymap('n', '<leader>B', ':ls<CR>:b<Space>', { silent = true, noremap = true })
