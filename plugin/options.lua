@@ -74,6 +74,7 @@ vim.api.nvim_exec(
     autocmd TermOpen * startinsert
     autocmd TermOpen * :set nonumber norelativenumber
     autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
+    autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
   augroup END
 ]],
   false
