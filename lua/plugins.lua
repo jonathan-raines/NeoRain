@@ -54,26 +54,19 @@ require('packer').startup(function()
   }
 
   use {
-    'Pocco81/Catppuccino.nvim',
+    'folke/tokyonight.nvim',
     config = function()
-      require('catppuccino').setup {
-        colorscheme = 'dark_catppuccino',
-        transparency = true,
-        term_colors = true,
-        integrations = {
-          gitsigns = true,
-          which_key = true,
-          telescope = true,
-          nvimtree = {
-            enabled = true,
-          },
-        },
-      }
-      vim.cmd [[ colorscheme catppuccino ]]
+      -- Example config in Lua
+      vim.g.tokyonight_style = 'night'
+      vim.g.tokyonight_italic_functions = true
+      vim.g.tokyonight_sidebars = { 'qf', 'vista_kind', 'terminal', 'packer' }
+
+      -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+      vim.g.tokyonight_colors = { hint = 'orange', error = '#ff0000' }
+      vim.cmd [[colorscheme tokyonight]]
     end,
     after = 'lualine.nvim',
   }
-
   use {
     'shadmansaleh/lualine.nvim',
     config = function()
@@ -398,7 +391,7 @@ require('packer').startup(function()
         -- highlight group. By default, the Buffer*Icon group is linked to the
         -- Buffer* group (see Highlighting below). Otherwise, it will take its
         -- default value as defined by devicons.
-        icon_custom_colors = false,
+        icon_custom_colors = true,
 
         -- Configure icons on the bufferline.
         icon_separator_active = '▎',

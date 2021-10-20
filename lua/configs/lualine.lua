@@ -40,7 +40,7 @@ require('lualine').setup {
   options = {
     component_separators = '',
     section_separators = '',
-    theme = 'catppuccino',
+    theme = 'tokyonight',
   },
   sections = {
     lualine_a = {
@@ -55,14 +55,13 @@ require('lualine').setup {
     lualine_b = {
       {
         'branch',
-        color = { bg = '#0B1115' },
+        color = { bg = '#1F2335' },
         cond = nil,
       },
     },
     lualine_c = {
       {
         'filename',
-        color = { fg = '#898E99' },
         -- cond = conditions.buffer_not_empty,
       },
       {
@@ -124,7 +123,7 @@ require('lualine').setup {
           return chars[index]
         end,
         padding = { left = 0, right = 0 },
-        color = { fg = '#61afef', bg = '#0B1115' },
+        color = { fg = '#61afef', bg = '#1F2335' },
       },
     },
   },
