@@ -103,6 +103,4 @@ vim.api.nvim_exec(
   false
 )
 
-vim.api.nvim_set_keymap('n', '<leader>c', '<Cmd>lua MiniBufremove.delete()<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>H', '<Cmd>lua MiniBufremove.unshow()<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', { silent = true, noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', { silent = true, noremap = true })
