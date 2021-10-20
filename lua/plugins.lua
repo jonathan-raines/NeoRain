@@ -156,6 +156,15 @@ require('packer').startup(function()
     after = 'nvim-treesitter',
   }
 
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = function()
+      require 'configs.nvim-tree'
+    end,
+    event = 'VimEnter',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+  }
+
   -- LSP
   use {
     'neovim/nvim-lspconfig',
