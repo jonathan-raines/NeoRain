@@ -74,7 +74,13 @@ lsp_installer.on_server_ready(function(server)
         enable = false,
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file('', true),
+        library = {
+          [require('lvim.utils').join_paths(get_runtime_dir(), 'lvim', 'lua')] = true,
+          [vim.fn.expand '$VIMRUNTIME/lua'] = true,
+          [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+        },
+        maxPreload = 100000,
+        preloadFileSize = 10000,
       },
     }
   end
