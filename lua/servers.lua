@@ -75,7 +75,6 @@ lsp_installer.on_server_ready(function(server)
       },
       workspace = {
         library = {
-          [require('lvim.utils').join_paths(get_runtime_dir(), 'lvim', 'lua')] = true,
           [vim.fn.expand '$VIMRUNTIME/lua'] = true,
           [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
         },
@@ -152,6 +151,55 @@ lsp_installer.on_server_ready(function(server)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', opts)
       end,
     }
+
+    if server.name == 'vuels' then
+      opts2.init_options = {
+        config = {
+          vetur = {
+            completion = {
+              autoImport = true,
+              tagCasing = 'kebab',
+              useScaffoldSnippets = true,
+            },
+            useWorkspaceDependencies = true,
+            validation = {
+              script = true,
+              style = true,
+              template = true,
+            },
+          },
+        },
+      }
+    end
+
+    if server.name == 'yamlls' then
+      opts2.settings = {
+        yaml = {
+          hover = true,
+          completion = true,
+          validate = true,
+          schemaStore = {
+            enable = true,
+            url = 'https://www.schemastore.org/api/json/catalog.json',
+          },
+          schemas = {
+            kubernetes = {
+              'daemon.{yml,yaml}',
+              'manager.{yml,yaml}',
+              'restapi.{yml,yaml}',
+              'role.{yml,yaml}',
+              'role_binding.{yml,yaml}',
+              '*onfigma*.{yml,yaml}',
+              '*ngres*.{yml,yaml}',
+              '*ecre*.{yml,yaml}',
+              '*eployment*.{yml,yaml}',
+              '*ervic*.{yml,yaml}',
+              'kubectl-edit*.yaml',
+            },
+          },
+        },
+      }
+    end
   end
 
   -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
