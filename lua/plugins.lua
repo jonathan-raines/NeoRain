@@ -252,12 +252,6 @@ require('packer').startup(function()
   }
 
   use {
-    'simrat39/symbols-outline.nvim',
-    cmd = 'SymbolsOutline',
-    opt = true,
-  }
-
-  use {
     'NTBBloodbath/rest.nvim',
     config = function()
       require('rest-nvim').setup {
