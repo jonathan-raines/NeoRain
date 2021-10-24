@@ -20,7 +20,7 @@ opt.ignorecase = true
 opt.inccommand = 'split' -- 'nosplit'
 opt.lazyredraw = true
 opt.mouse = 'a'
-opt.number = false -- default is off
+opt.number = true -- default is off
 opt.path = '**'
 opt.pumheight = 10
 opt.pumblend = 17
@@ -43,9 +43,6 @@ opt.undodir = vim.fn.stdpath 'cache' .. '/undo'
 opt.undofile = true
 opt.updatetime = 100
 opt.wildignore = '**/node_modules/*, **/.git/*'
-opt.wildmenu = true
-opt.wildmode = 'longest,list,full'
-opt.wildoptions = 'pum'
 opt.wrap = false
 
 -- Highlight on yank

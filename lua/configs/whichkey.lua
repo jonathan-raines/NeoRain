@@ -59,17 +59,6 @@ local opts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
--- explorer
-vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
-
--- Buffers
-vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers theme=get_ivy<CR>', { noremap = true, silent = true })
-
--- Write / Quit
-vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
-
 local mappings = {
   ['<space>'] = 'Alternate File',
   ['b'] = 'Buffers',
@@ -88,9 +77,6 @@ local mappings = {
       s = { '<cmd>Telescope search_history<cr>', 'Search History' },
       f = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     },
-    j = { '<cmd>Telescope jumplist<cr>', 'Jump List' },
-    m = { '<cmd>Telescope marks<cr>', 'Marks' },
-    q = { '<cmd>Telescope quickfix<cr>', 'QuickFix List' },
     s = {
       name = 'Search',
       b = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Search Current Buffer' },
@@ -117,17 +103,16 @@ local mappings = {
   h = {
     name = 'Harpoon',
     p = { "<cmd>lua require'harpoon.mark'.add_file()<CR>", 'Add File' },
-    m = { "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", 'Quick Menu' },
-    f = { "<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", 'Navigate to File 1' },
-    g = { "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", 'Navigate to File 2' },
-    h = { "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", 'Navigate to File 3' },
-    j = { "<cmd>lua require'harpoon.ui'.nav_file(4)<CR>", 'Navigate to File 4' },
+    q = { "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", 'Quick Menu' },
+    a = { "<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", 'Navigate to File 1' },
+    s = { "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", 'Navigate to File 2' },
+    d = { "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", 'Navigate to File 3' },
+    f = { "<cmd>lua require'harpoon.ui'.nav_file(4)<CR>", 'Navigate to File 4' },
     t = { "<cmd>lua require'harpoon.term'.gotoTerminal(1)<CR>", 'Go to Terminal 1' },
     y = { "<cmd>lua require'harpoon.term'.gotoTerminal(2)<CR>", 'Go to Terminal 2' },
   },
   l = {
     name = 'LSP',
-    a = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
     d = { '<cmd>Telescope lsp_document_diagnostics<cr>', 'Document Diagnostics' },
     f = { '<cmd>lua vim.lsp.buf.formatting()<cr>', 'Format Buffer' },
     i = { '<cmd>LspInfo<cr>', 'Info' },

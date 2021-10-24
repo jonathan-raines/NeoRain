@@ -5,6 +5,17 @@ vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Explorer
+vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
+
+-- Buffers
+vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers theme=get_ivy<CR>', { noremap = true, silent = true })
+
+-- Write / Quit
+vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
+
 -- Keeping it centered
 vim.api.nvim_set_keymap('n', 'n', 'nzzzv', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', { silent = true, noremap = true })
@@ -102,5 +113,3 @@ vim.api.nvim_exec(
 	endfunction]],
   false
 )
-
--- vim.api.nvim_set_keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', { silent = true, noremap = true })
