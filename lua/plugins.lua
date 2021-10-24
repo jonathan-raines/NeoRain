@@ -312,6 +312,7 @@ require('packer').startup(function()
       vim.api.nvim_set_keymap('n', 'Q', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })
     end,
     requires = { 'nvim-lua/plenary.nvim' },
+    ft = { 'http' },
   }
 
   use {
