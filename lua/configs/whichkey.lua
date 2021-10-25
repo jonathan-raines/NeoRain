@@ -60,13 +60,13 @@ local opts = {
 }
 
 local mappings = {
-  ['<space>'] = 'Alternate File',
-  ['b'] = 'Buffers',
-  ['c'] = 'Close',
-  ['C'] = 'Close All But Current',
-  ['e'] = 'NVIM Tree',
-  ['q'] = 'Quit',
-  ['w'] = 'Save',
+  ['<space>'] = 'which_key_ignore',
+  ['b'] = 'which_key_ignore',
+  ['c'] = 'which_key_ignore',
+  ['C'] = 'which_key_ignore',
+  ['e'] = 'which_key_ignore',
+  ['q'] = 'which_key_ignore',
+  ['w'] = 'which_key_ignore',
   f = {
     name = 'Telescope',
     e = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
