@@ -64,6 +64,7 @@ local mappings = {
   ['b'] = 'Buffers',
   ['c'] = 'Close',
   ['C'] = 'Close All But Current',
+  ['e'] = 'NVIM Tree',
   ['q'] = 'Quit',
   ['w'] = 'Save',
   f = {
