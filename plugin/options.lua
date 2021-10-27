@@ -77,6 +77,8 @@ vim.api.nvim_exec(
   false
 )
 
+vim.cmd [[ au BufEnter * set fo-=c fo-=r fo-=o ]]
+
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1
