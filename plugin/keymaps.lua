@@ -7,10 +7,6 @@ vim.g.maplocalleader = ' '
 
 -- Explorer
 vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
-
--- Buffers
-vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers theme=get_ivy<CR>', { noremap = true, silent = true })
 
 -- Write / Quit
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })

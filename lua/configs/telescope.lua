@@ -52,3 +52,6 @@ require('telescope').setup {
 
 require('telescope').load_extension 'fzy_native'
 require('telescope').load_extension 'tmux'
+
+-- Buffers
+vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers theme=get_ivy<CR>', { noremap = true, silent = true })

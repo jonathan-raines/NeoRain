@@ -27,8 +27,6 @@ require('packer').startup(function()
     end,
   }
 
-  -- use { 'rmagatti/auto-session', event = 'VimEnter' }
-
   use { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' }, { 'kyazdani42/nvim-web-devicons' } }
 
   -- Finders
