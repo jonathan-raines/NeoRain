@@ -287,4 +287,162 @@ require('packer').startup(function()
     event = 'BufEnter',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
+
+  -- TESTING
+  use {
+    'TimUntersberger/neogit',
+    config = function()
+      local neogit = require 'neogit'
+
+      neogit.setup {
+        disable_signs = false,
+        disable_hint = false,
+        disable_context_highlighting = false,
+        disable_commit_confirmation = false,
+        auto_refresh = true,
+        disable_builtin_notifications = false,
+        commit_popup = {
+          kind = 'split',
+        },
+        -- Change the default way of opening neogit
+        kind = 'tab',
+        -- customize displayed signs
+        signs = {
+          -- { CLOSED, OPENED }
+          section = { '>', 'v' },
+          item = { '>', 'v' },
+          hunk = { '', '' },
+        },
+        integrations = {
+          -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `sindrets/diffview.nvim`.
+          -- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
+          --
+          -- Requires you to have `sindrets/diffview.nvim` installed.
+          -- use {
+          --   'TimUntersberger/neogit',
+          --   requires = {
+          --     'nvim-lua/plenary.nvim',
+          --     'sindrets/diffview.nvim'
+          --   }
+          -- }
+          --
+          diffview = false,
+        },
+        -- override/add mappings
+        mappings = {
+          -- modify status buffer mappings
+          status = {},
+        },
+      }
+    end,
+    requires = { 'nvim-lua/plenary.nvim' },
+  }
+
+  use {
+    'kristijanhusak/vim-dadbod-ui',
+    config = function()
+      vim.cmd [[ let g:db_ui_auto_execute_table_helpers = 1 ]]
+      vim.api.nvim_set_keymap('n', 'gj', '<cmd>DBUI<CR>', { noremap = true, silent = true })
+    end,
+    requires = {
+      { 'tpope/vim-dadbod' },
+      {
+        'kristijanhusak/vim-dadbod-completion',
+        config = function()
+          vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
+        end,
+      },
+    },
+  }
+
+  -- use {
+  --   'github/copilot.vim',
+  -- }
+
+  use {
+    'kevinhwang91/nvim-bqf',
+    config = function()
+      require('bqf').setup {
+        auto_enable = {
+          description = [[enable nvim-bqf in quickfix window automatically]],
+          default = true,
+        },
+        magic_window = {
+          description = [[give the window magic, when the window is splited horizontally, keep
+            the distance between the current line and the top/bottom border of neovim unchanged.
+            It's a bit like a floating window, but the window is indeed a normal window, without
+            any floating attributes.]],
+          default = true,
+        },
+        auto_resize_height = {
+          description = [[resize quickfix window height automatically.
+            Shrink higher height to size of list in quickfix window, otherwise extend height
+            to size of list or to default height (10)]],
+          default = true,
+        },
+        preview = {
+          auto_preview = {
+            description = [[enable preview in quickfix window automatically]],
+            default = true,
+          },
+          border_chars = {
+            description = [[border and scroll bar chars, they respectively represent:
+                vline, vline, hline, hline, ulcorner, urcorner, blcorner, brcorner, sbar]],
+            default = { '│', '│', '─', '─', '╭', '╮', '╰', '╯', '█' },
+          },
+          delay_syntax = {
+            description = [[delay time, to do syntax for previewed buffer, unit is millisecond]],
+            default = 50,
+          },
+          win_height = {
+            description = [[the height of preview window for horizontal layout]],
+            default = 15,
+          },
+          win_vheight = {
+            description = [[the height of preview window for vertical layout]],
+            default = 15,
+          },
+          wrap = {
+            description = [[wrap the line, `:h wrap` for detail]],
+            default = false,
+          },
+          should_preview_cb = {
+            description = [[a callback function to decide whether to preview while switching buffer,
+                with a bufnr parameter]],
+            default = nil,
+          },
+        },
+        func_map = {
+          description = [[the table for {function = key}]],
+          default = [[see ###Function table for detail]],
+        },
+        filter = {
+          fzf = {
+            action_for = {
+              ['ctrl-t'] = {
+                description = [[press ctrl-t to open up the item in a new tab]],
+                default = 'tabedit',
+              },
+              ['ctrl-v'] = {
+                description = [[press ctrl-v to open up the item in a new vertical split]],
+                default = 'vsplit',
+              },
+              ['ctrl-x'] = {
+                description = [[press ctrl-x to open up the item in a new horizontal split]],
+                default = 'split',
+              },
+              ['ctrl-q'] = {
+                description = [[press ctrl-q to toggle sign for the selected items]],
+                default = 'signtoggle',
+              },
+            },
+            extra_opts = {
+              description = 'extra options for fzf',
+              default = { '--bind', 'ctrl-o:toggle-all' },
+            },
+          },
+        },
+      }
+    end,
+  }
 end)
