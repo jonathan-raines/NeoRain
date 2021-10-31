@@ -40,13 +40,12 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make', event = 'VimEnter' },
+      { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make' },
       {
         'camgraff/telescope-tmux.nvim',
         config = function()
           require('telescope').load_extension 'tmux'
         end,
-        event = 'VimEnter',
       },
     },
   }
@@ -197,7 +196,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.whichkey'
     end,
-    event = 'BufRead',
+    event = 'VimEnter',
   }
 
   use {
@@ -213,7 +212,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.harpoon'
     end,
-    event = 'BufRead',
+    after = 'which-key.nvim',
     requires = { 'popup.nvim', 'plenary.nvim' },
   }
 
@@ -335,6 +334,8 @@ require('packer').startup(function()
         },
       }
     end,
+    cmd = 'Neogit',
+    opt = true,
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
@@ -353,6 +354,7 @@ require('packer').startup(function()
         end,
       },
     },
+    event = 'BufEnter',
   }
 
   -- use {
