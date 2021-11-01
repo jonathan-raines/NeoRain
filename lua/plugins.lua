@@ -29,6 +29,8 @@ require('packer').startup(function()
 
   use { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' }, { 'kyazdani42/nvim-web-devicons' } }
 
+  use { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make' }
+
   -- Finders
   use {
     'nvim-telescope/telescope.nvim',
@@ -40,7 +42,6 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make' },
       {
         'camgraff/telescope-tmux.nvim',
         config = function()
@@ -105,7 +106,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.treesitter'
     end,
-    event = 'BufEnter',
+    event = 'BufReadPre',
     requires = {},
   }
 
@@ -134,7 +135,8 @@ require('packer').startup(function()
     config = function()
       require 'configs.nvim-tree'
     end,
-    event = 'VimEnter',
+    cmd = 'NvimTreeToggle',
+    opt = true,
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
@@ -152,7 +154,7 @@ require('packer').startup(function()
     config = function()
       require 'lsp'
     end,
-    event = 'BufEnter',
+    event = 'BufReadPre',
   }
 
   use {
@@ -204,7 +206,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.toggleterm'
     end,
-    event = 'UIEnter',
+    event = 'BufRead',
   }
 
   use {
@@ -239,8 +241,8 @@ require('packer').startup(function()
       }
       vim.api.nvim_set_keymap('n', 'Q', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })
     end,
-    requires = { 'nvim-lua/plenary.nvim' },
     ft = { 'http' },
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 
   use {
@@ -283,7 +285,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.barbar'
     end,
-    event = 'BufEnter',
+    event = 'BufRead',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
@@ -352,99 +354,101 @@ require('packer').startup(function()
         config = function()
           vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
         end,
+        event = 'BufRead',
       },
     },
-    event = 'BufEnter',
+    event = 'BufRead',
   }
 
   -- use {
   --   'github/copilot.vim',
   -- }
 
-  use {
-    'kevinhwang91/nvim-bqf',
-    config = function()
-      require('bqf').setup {
-        auto_enable = {
-          description = [[enable nvim-bqf in quickfix window automatically]],
-          default = true,
-        },
-        magic_window = {
-          description = [[give the window magic, when the window is splited horizontally, keep
-            the distance between the current line and the top/bottom border of neovim unchanged.
-            It's a bit like a floating window, but the window is indeed a normal window, without
-            any floating attributes.]],
-          default = true,
-        },
-        auto_resize_height = {
-          description = [[resize quickfix window height automatically.
-            Shrink higher height to size of list in quickfix window, otherwise extend height
-            to size of list or to default height (10)]],
-          default = true,
-        },
-        preview = {
-          auto_preview = {
-            description = [[enable preview in quickfix window automatically]],
-            default = true,
-          },
-          border_chars = {
-            description = [[border and scroll bar chars, they respectively represent:
-                vline, vline, hline, hline, ulcorner, urcorner, blcorner, brcorner, sbar]],
-            default = { '│', '│', '─', '─', '╭', '╮', '╰', '╯', '█' },
-          },
-          delay_syntax = {
-            description = [[delay time, to do syntax for previewed buffer, unit is millisecond]],
-            default = 50,
-          },
-          win_height = {
-            description = [[the height of preview window for horizontal layout]],
-            default = 15,
-          },
-          win_vheight = {
-            description = [[the height of preview window for vertical layout]],
-            default = 15,
-          },
-          wrap = {
-            description = [[wrap the line, `:h wrap` for detail]],
-            default = false,
-          },
-          should_preview_cb = {
-            description = [[a callback function to decide whether to preview while switching buffer,
-                with a bufnr parameter]],
-            default = nil,
-          },
-        },
-        func_map = {
-          description = [[the table for {function = key}]],
-          default = [[see ###Function table for detail]],
-        },
-        filter = {
-          fzf = {
-            action_for = {
-              ['ctrl-t'] = {
-                description = [[press ctrl-t to open up the item in a new tab]],
-                default = 'tabedit',
-              },
-              ['ctrl-v'] = {
-                description = [[press ctrl-v to open up the item in a new vertical split]],
-                default = 'vsplit',
-              },
-              ['ctrl-x'] = {
-                description = [[press ctrl-x to open up the item in a new horizontal split]],
-                default = 'split',
-              },
-              ['ctrl-q'] = {
-                description = [[press ctrl-q to toggle sign for the selected items]],
-                default = 'signtoggle',
-              },
-            },
-            extra_opts = {
-              description = 'extra options for fzf',
-              default = { '--bind', 'ctrl-o:toggle-all' },
-            },
-          },
-        },
-      }
-    end,
-  }
+  -- use {
+  --   'kevinhwang91/nvim-bqf',
+  --   config = function()
+  --     require('bqf').setup {
+  --       auto_enable = {
+  --         description = [[enable nvim-bqf in quickfix window automatically]],
+  --         default = true,
+  --       },
+  --       magic_window = {
+  --         description = [[give the window magic, when the window is splited horizontally, keep
+  --           the distance between the current line and the top/bottom border of neovim unchanged.
+  --           It's a bit like a floating window, but the window is indeed a normal window, without
+  --           any floating attributes.]],
+  --         default = true,
+  --       },
+  --       auto_resize_height = {
+  --         description = [[resize quickfix window height automatically.
+  --           Shrink higher height to size of list in quickfix window, otherwise extend height
+  --           to size of list or to default height (10)]],
+  --         default = true,
+  --       },
+  --       preview = {
+  --         auto_preview = {
+  --           description = [[enable preview in quickfix window automatically]],
+  --           default = true,
+  --         },
+  --         border_chars = {
+  --           description = [[border and scroll bar chars, they respectively represent:
+  --               vline, vline, hline, hline, ulcorner, urcorner, blcorner, brcorner, sbar]],
+  --           default = { '│', '│', '─', '─', '╭', '╮', '╰', '╯', '█' },
+  --         },
+  --         delay_syntax = {
+  --           description = [[delay time, to do syntax for previewed buffer, unit is millisecond]],
+  --           default = 50,
+  --         },
+  --         win_height = {
+  --           description = [[the height of preview window for horizontal layout]],
+  --           default = 15,
+  --         },
+  --         win_vheight = {
+  --           description = [[the height of preview window for vertical layout]],
+  --           default = 15,
+  --         },
+  --         wrap = {
+  --           description = [[wrap the line, `:h wrap` for detail]],
+  --           default = false,
+  --         },
+  --         should_preview_cb = {
+  --           description = [[a callback function to decide whether to preview while switching buffer,
+  --               with a bufnr parameter]],
+  --           default = nil,
+  --         },
+  --       },
+  --       func_map = {
+  --         description = [[the table for {function = key}]],
+  --         default = [[see ###Function table for detail]],
+  --       },
+  --       filter = {
+  --         fzf = {
+  --           action_for = {
+  --             ['ctrl-t'] = {
+  --               description = [[press ctrl-t to open up the item in a new tab]],
+  --               default = 'tabedit',
+  --             },
+  --             ['ctrl-v'] = {
+  --               description = [[press ctrl-v to open up the item in a new vertical split]],
+  --               default = 'vsplit',
+  --             },
+  --             ['ctrl-x'] = {
+  --               description = [[press ctrl-x to open up the item in a new horizontal split]],
+  --               default = 'split',
+  --             },
+  --             ['ctrl-q'] = {
+  --               description = [[press ctrl-q to toggle sign for the selected items]],
+  --               default = 'signtoggle',
+  --             },
+  --           },
+  --           extra_opts = {
+  --             description = 'extra options for fzf',
+  --             default = { '--bind', 'ctrl-o:toggle-all' },
+  --           },
+  --         },
+  --       },
+  --     }
+  --   end,
+  --   event = 'VimEnter',
+  -- }
 end)

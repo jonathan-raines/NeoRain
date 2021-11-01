@@ -42,16 +42,16 @@ local Terminal = require('toggleterm.terminal').Terminal
 local horizontal = Terminal:new { hidden = true, direction = 'horizontal' }
 local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
 
-function _horizontal_toggle()
+function _G_horizontal_toggle()
   horizontal:toggle()
 end
 
-function _lazygit_toggle()
+function _G_lazygit_toggle()
   lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap('n', '<A-h>', '<cmd>lua _horizontal_toggle()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<A-h>', '<cmd>lua _horizontal_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<A-h>', '<cmd>lua _G_horizontal_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<A-h>', '<cmd>lua _G_horizontal_toggle()<CR>', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<A-l>', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<A-l>', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<A-l>', '<cmd>lua _G_lazygit_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<A-l>', '<cmd>lua _G_lazygit_toggle()<CR>', { noremap = true, silent = true })
