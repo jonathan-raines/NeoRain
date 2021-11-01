@@ -54,7 +54,6 @@ require('packer').startup(function()
   use {
     'folke/tokyonight.nvim',
     config = function()
-      -- Example config in Lua
       vim.g.tokyonight_style = 'night'
       vim.g.tokyonight_italic_functions = true
       vim.g.tokyonight_sidebars = { 'qf', 'vista_kind', 'terminal', 'packer' }
@@ -106,7 +105,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.treesitter'
     end,
-    event = 'BufReadPre',
+    event = 'BufEnter',
     requires = {},
   }
 
