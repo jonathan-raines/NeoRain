@@ -106,7 +106,15 @@ require('packer').startup(function()
       require 'configs.treesitter'
     end,
     event = 'BufEnter',
-    requires = {},
+    requires = {
+      {
+        'code-biscuits/nvim-biscuits',
+        config = function()
+          require('nvim-biscuits').setup {}
+        end,
+        after = 'nvim-treesitter',
+      },
+    },
   }
 
   use {
