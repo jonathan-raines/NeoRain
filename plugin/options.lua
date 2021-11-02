@@ -23,6 +23,7 @@ opt.list = true
 opt.listchars = 'tab:▸ ,trail:·'
 opt.mouse = 'a'
 opt.number = true -- default is off
+opt.path = '**'
 opt.pumheight = 10
 opt.pumblend = 17
 opt.relativenumber = true
@@ -47,8 +48,6 @@ opt.wildmenu = true
 opt.wildmode = 'longest:full,full'
 opt.wildignore = '**/node_modules/*, **/.git/*'
 opt.wrap = false
-
-vim.cmd [[set path+=**]]
 
 -- Highlight on yank
 vim.api.nvim_exec(

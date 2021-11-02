@@ -39,10 +39,9 @@ require('packer').startup(function()
   use {
     'nvim-telescope/telescope.nvim',
     config = function()
-      require 'configs.telescope'
+      require './configs/telescope'
     end,
-    cmd = 'Telescope',
-    opt = true,
+    event = 'BufRead',
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
@@ -73,7 +72,7 @@ require('packer').startup(function()
   use {
     'nvim-lualine/lualine.nvim',
     config = function()
-      require 'configs.lualine'
+      require './configs/lualine'
     end,
     event = 'UIEnter',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -82,7 +81,7 @@ require('packer').startup(function()
   use {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require 'configs.gitsigns'
+      require './configs/gitsigns'
     end,
     event = 'BufRead',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -108,7 +107,7 @@ require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
-      require 'configs.treesitter'
+      require './configs/treesitter'
     end,
     event = 'BufEnter',
     requires = {
@@ -128,7 +127,7 @@ require('packer').startup(function()
   use {
     'windwp/nvim-autopairs',
     config = function()
-      require 'configs.autopairs'
+      require './configs/autopairs'
     end,
     event = 'InsertEnter',
   }
@@ -148,7 +147,7 @@ require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     config = function()
-      require 'configs.nvim-tree'
+      require './configs/nvim-tree'
     end,
     cmd = 'NvimTreeToggle',
     opt = true,
@@ -175,7 +174,7 @@ require('packer').startup(function()
   use {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
-      require 'configs.null-ls'
+      require './configs/null-ls'
     end,
     event = 'BufReadPre',
     requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -191,7 +190,7 @@ require('packer').startup(function()
   use {
     'hrsh7th/nvim-cmp',
     config = function()
-      require 'configs.cmp'
+      require './configs/cmp'
     end,
     requires = {
       'hrsh7th/cmp-buffer',
@@ -211,7 +210,7 @@ require('packer').startup(function()
   use {
     'folke/which-key.nvim',
     config = function()
-      require 'configs.whichkey'
+      require './configs/whichkey'
     end,
     event = 'UIEnter',
   }
@@ -219,7 +218,7 @@ require('packer').startup(function()
   use {
     'akinsho/nvim-toggleterm.lua',
     config = function()
-      require 'configs.toggleterm'
+      require './configs/toggleterm'
     end,
     event = 'BufRead',
   }
@@ -227,9 +226,9 @@ require('packer').startup(function()
   use {
     'ThePrimeagen/harpoon',
     config = function()
-      require 'configs.harpoon'
+      require './configs/harpoon'
     end,
-    after = 'which-key.nvim',
+    event = 'BufEnter',
     requires = { 'popup.nvim', 'plenary.nvim' },
   }
 
@@ -290,7 +289,7 @@ require('packer').startup(function()
   use {
     'echasnovski/mini.nvim',
     config = function()
-      require 'configs.mini'
+      require './configs/mini'
     end,
     event = 'BufRead',
   }
@@ -298,7 +297,7 @@ require('packer').startup(function()
   use {
     'romgrk/barbar.nvim',
     config = function()
-      require 'configs.barbar'
+      require './configs/barbar'
     end,
     event = 'BufRead',
     requires = { 'kyazdani42/nvim-web-devicons' },

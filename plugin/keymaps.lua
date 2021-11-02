@@ -12,11 +12,6 @@ vim.api.nvim_set_keymap('n', '<leader><space>', '<C-^>', { noremap = true, silen
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 
--- Allow gf to open non-existent files
-vim.api.nvim_set_keymap('n', 'gf', 'gf :edit <cfile><CR>', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', '<leader>x', ':!xdg-open %<CR>', { noremap = true, silent = true })
-
 -- Keeping it centered
 vim.api.nvim_set_keymap('n', 'n', 'nzzzv', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', { silent = true, noremap = true })

@@ -62,3 +62,27 @@ require('gitsigns').setup {
     enable = false,
   },
 }
+
+local opts = {
+  mode = 'n', -- NORMAL mode
+  prefix = '<leader>',
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = false, -- use `nowait` when creating keymaps
+}
+
+require('which-key').register({
+  h = {
+    name = 'Git',
+    ['b'] = 'Blame Line',
+    ['g'] = { '<cmd>Neogit<CR>', 'Neogit' },
+    ['p'] = 'Preview Hunk',
+    ['r'] = 'Reset Hunk',
+    ['R'] = 'Reset Buffer',
+    ['s'] = 'Stage Hunk',
+    ['S'] = 'Stage Buffer',
+    ['u'] = 'Undo Stage Hunk',
+    ['U'] = 'Reset Buffer Index',
+  },
+}, opts)
