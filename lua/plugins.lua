@@ -27,6 +27,8 @@ require('packer').startup(function()
     end,
   }
 
+  use 'nathom/filetype.nvim'
+
   use { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' }, { 'kyazdani42/nvim-web-devicons' } }
 
   use { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make' }
@@ -113,6 +115,9 @@ require('packer').startup(function()
           require('nvim-biscuits').setup {}
         end,
         after = 'nvim-treesitter',
+      },
+      {
+        'nvim-treesitter/playground',
       },
     },
   }

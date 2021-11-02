@@ -29,6 +29,10 @@ local icons = {
 }
 
 cmp.setup {
+  documentation = {
+    border = 'single',
+    winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
+  },
   formatting = {
     format = function(entry, vim_item)
       vim_item.kind = string.format('%s %s', icons[vim_item.kind], vim_item.kind)
@@ -57,7 +61,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
-    ['<C-space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete(),
     -- ['<Tab>'] = cmp.mapping(function(fallback)
     --   if cmp.visible() then
     --     cmp.select_next_item()

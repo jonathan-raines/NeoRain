@@ -89,8 +89,8 @@ local mappings = {
   },
   h = {
     name = 'Git',
-    ['c'] = { '<cmd>Neogit<CR>', 'Neogit' },
     ['b'] = 'Blame Line',
+    ['g'] = { '<cmd>Neogit<CR>', 'Neogit' },
     ['p'] = 'Preview Hunk',
     ['r'] = 'Reset Hunk',
     ['R'] = 'Reset Buffer',
