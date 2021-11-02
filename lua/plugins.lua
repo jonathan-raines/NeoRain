@@ -45,26 +45,20 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
+      { 'nvim-treesitter/playground' },
       {
         'camgraff/telescope-tmux.nvim',
         config = function()
           require('telescope').load_extension 'tmux'
         end,
       },
-      { 'nvim-treesitter/playground' },
     },
   }
 
   use {
     'folke/tokyonight.nvim',
     config = function()
-      vim.g.tokyonight_style = 'night'
-      vim.g.tokyonight_italic_functions = true
-      vim.g.tokyonight_sidebars = { 'qf', 'vista_kind', 'terminal', 'packer' }
-
-      -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-      vim.g.tokyonight_colors = { hint = 'orange', error = '#ff0000' }
-      vim.cmd [[colorscheme tokyonight]]
+      require './configs/tokyonight'
     end,
     after = 'lualine.nvim',
   }
@@ -90,14 +84,7 @@ require('packer').startup(function()
   use {
     'numToStr/Comment.nvim',
     config = function()
-      require('Comment').setup {
-        {
-          ---@param ctx Ctx
-          pre_hook = function(ctx)
-            return require('ts_context_commentstring.internal').calculate_commentstring()
-          end,
-        },
-      }
+      require './configs/comment'
     end,
     event = 'BufRead',
   }
@@ -193,7 +180,6 @@ require('packer').startup(function()
       require './configs/cmp'
     end,
     requires = {
-      'hrsh7th/cmp-buffer',
       {
         'L3MON4D3/LuaSnip',
         config = function()
@@ -201,6 +187,7 @@ require('packer').startup(function()
         end,
         requires = { 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' },
       },
+      'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
@@ -244,16 +231,7 @@ require('packer').startup(function()
   use {
     'NTBBloodbath/rest.nvim',
     config = function()
-      require('rest-nvim').setup {
-        result_split_horizontal = false,
-        skip_ssl_verification = false,
-        highlight = {
-          enabled = true,
-          timeout = 150,
-        },
-        jump_to_request = true,
-      }
-      vim.api.nvim_set_keymap('n', 'Q', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })
+      require './configs/rest'
     end,
     ft = { 'http' },
     requires = { 'nvim-lua/plenary.nvim' },
@@ -271,17 +249,7 @@ require('packer').startup(function()
   use {
     'chentau/marks.nvim',
     config = function()
-      require('marks').setup {
-        default_mappings = true, -- whether to map keybinds or not. default true
-        builtin_marks = { '.', '<', '>', '^' }, -- which builtin marks to show. default {}
-        cyclic = true, -- whether movements cycle back to the beginning/end of buffer. default true
-        force_write_shada = false, -- whether the shada file is updated after modifying uppercase marks. default false
-        -- bookmark_0 = { -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own sign/virttext
-        --   sign = '⚑',
-        --   virt_text = 'hello world',
-        -- },
-        mappings = {},
-      }
+      require './configs/marks'
     end,
     event = 'BufRead',
   }
@@ -307,48 +275,7 @@ require('packer').startup(function()
   use {
     'TimUntersberger/neogit',
     config = function()
-      local neogit = require 'neogit'
-
-      neogit.setup {
-        disable_signs = false,
-        disable_hint = false,
-        disable_context_highlighting = false,
-        disable_commit_confirmation = false,
-        auto_refresh = true,
-        disable_builtin_notifications = false,
-        commit_popup = {
-          kind = 'split',
-        },
-        -- Change the default way of opening neogit
-        kind = 'tab',
-        -- customize displayed signs
-        signs = {
-          -- { CLOSED, OPENED }
-          section = { '>', 'v' },
-          item = { '>', 'v' },
-          hunk = { '', '' },
-        },
-        integrations = {
-          -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `sindrets/diffview.nvim`.
-          -- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
-          --
-          -- Requires you to have `sindrets/diffview.nvim` installed.
-          -- use {
-          --   'TimUntersberger/neogit',
-          --   requires = {
-          --     'nvim-lua/plenary.nvim',
-          --     'sindrets/diffview.nvim'
-          --   }
-          -- }
-          --
-          diffview = false,
-        },
-        -- override/add mappings
-        mappings = {
-          -- modify status buffer mappings
-          status = {},
-        },
-      }
+      require './configs/neogit'
     end,
     cmd = 'Neogit',
     opt = true,
@@ -362,7 +289,10 @@ require('packer').startup(function()
       vim.api.nvim_set_keymap('n', 'gj', '<cmd>DBUI<CR>', { noremap = true, silent = true })
     end,
     requires = {
-      { 'tpope/vim-dadbod' },
+      {
+        'tpope/vim-dadbod',
+        event = 'BufRead',
+      },
       {
         'kristijanhusak/vim-dadbod-completion',
         config = function()
@@ -376,93 +306,5 @@ require('packer').startup(function()
 
   -- use {
   --   'github/copilot.vim',
-  -- }
-
-  -- use {
-  --   'kevinhwang91/nvim-bqf',
-  --   config = function()
-  --     require('bqf').setup {
-  --       auto_enable = {
-  --         description = [[enable nvim-bqf in quickfix window automatically]],
-  --         default = true,
-  --       },
-  --       magic_window = {
-  --         description = [[give the window magic, when the window is splited horizontally, keep
-  --           the distance between the current line and the top/bottom border of neovim unchanged.
-  --           It's a bit like a floating window, but the window is indeed a normal window, without
-  --           any floating attributes.]],
-  --         default = true,
-  --       },
-  --       auto_resize_height = {
-  --         description = [[resize quickfix window height automatically.
-  --           Shrink higher height to size of list in quickfix window, otherwise extend height
-  --           to size of list or to default height (10)]],
-  --         default = true,
-  --       },
-  --       preview = {
-  --         auto_preview = {
-  --           description = [[enable preview in quickfix window automatically]],
-  --           default = true,
-  --         },
-  --         border_chars = {
-  --           description = [[border and scroll bar chars, they respectively represent:
-  --               vline, vline, hline, hline, ulcorner, urcorner, blcorner, brcorner, sbar]],
-  --           default = { '│', '│', '─', '─', '╭', '╮', '╰', '╯', '█' },
-  --         },
-  --         delay_syntax = {
-  --           description = [[delay time, to do syntax for previewed buffer, unit is millisecond]],
-  --           default = 50,
-  --         },
-  --         win_height = {
-  --           description = [[the height of preview window for horizontal layout]],
-  --           default = 15,
-  --         },
-  --         win_vheight = {
-  --           description = [[the height of preview window for vertical layout]],
-  --           default = 15,
-  --         },
-  --         wrap = {
-  --           description = [[wrap the line, `:h wrap` for detail]],
-  --           default = false,
-  --         },
-  --         should_preview_cb = {
-  --           description = [[a callback function to decide whether to preview while switching buffer,
-  --               with a bufnr parameter]],
-  --           default = nil,
-  --         },
-  --       },
-  --       func_map = {
-  --         description = [[the table for {function = key}]],
-  --         default = [[see ###Function table for detail]],
-  --       },
-  --       filter = {
-  --         fzf = {
-  --           action_for = {
-  --             ['ctrl-t'] = {
-  --               description = [[press ctrl-t to open up the item in a new tab]],
-  --               default = 'tabedit',
-  --             },
-  --             ['ctrl-v'] = {
-  --               description = [[press ctrl-v to open up the item in a new vertical split]],
-  --               default = 'vsplit',
-  --             },
-  --             ['ctrl-x'] = {
-  --               description = [[press ctrl-x to open up the item in a new horizontal split]],
-  --               default = 'split',
-  --             },
-  --             ['ctrl-q'] = {
-  --               description = [[press ctrl-q to toggle sign for the selected items]],
-  --               default = 'signtoggle',
-  --             },
-  --           },
-  --           extra_opts = {
-  --             description = 'extra options for fzf',
-  --             default = { '--bind', 'ctrl-o:toggle-all' },
-  --           },
-  --         },
-  --       },
-  --     }
-  --   end,
-  --   event = 'VimEnter',
   -- }
 end)
