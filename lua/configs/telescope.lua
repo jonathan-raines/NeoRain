@@ -1,3 +1,4 @@
+local telescope = require 'telescope'
 local actions = require 'telescope.actions'
 
 require('telescope').setup {
@@ -50,11 +51,15 @@ require('telescope').setup {
   },
 }
 
-require('telescope').load_extension 'fzy_native'
-require('telescope').load_extension 'tmux'
+local function tmux_sessions()
+  telescope.extensions.tmux.sessions {}
+end
 
--- Buffers
-vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers theme=get_ivy<CR>', { noremap = true, silent = true })
+local function tmux_windows()
+  telescope.extensions.tmux.windows {
+    entry_format = '#S: #T',
+  }
+end
 
 local opts = {
   mode = 'n', -- NORMAL mode
@@ -66,7 +71,7 @@ local opts = {
 }
 
 require('which-key').register({
-
+  b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
   f = {
     name = 'Telescope',
     e = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
@@ -86,5 +91,10 @@ require('which-key').register({
     },
     t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
     w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
+    T = {
+      name = 'Tmux',
+      s = { tmux_sessions, 'Sessions' },
+      w = { tmux_windows, 'Windows' },
+    },
   },
 }, opts)

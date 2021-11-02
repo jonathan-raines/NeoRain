@@ -32,7 +32,6 @@ require('packer').startup(function()
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-lua/popup.nvim' },
     { 'kyazdani42/nvim-web-devicons' },
-    { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make' },
   }
 
   -- Finders
@@ -45,12 +44,21 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-treesitter/playground' },
+      { 'nvim-treesitter/playground', after = 'telescope.nvim' },
       {
         'camgraff/telescope-tmux.nvim',
         config = function()
           require('telescope').load_extension 'tmux'
         end,
+        after = 'telescope.nvim',
+      },
+      {
+        'nvim-telescope/telescope-fzy-native.nvim',
+        config = function()
+          require('telescope').load_extension 'fzy_native'
+        end,
+        run = 'make',
+        after = 'telescope.nvim',
       },
     },
   }
@@ -301,6 +309,18 @@ require('packer').startup(function()
         event = 'BufRead',
       },
     },
+    event = 'BufRead',
+  }
+
+  use {
+    'vim-test/vim-test',
+    config = function()
+      vim.api.nvim_set_keymap('n', '<leader>tn', ':TestNearest<CR>', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>tf', ':TestFile<CR>', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>ts', ':TestSuite<CR>', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>tl', ':TestLast<CR>', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>tv', ':TestVisit<CR>', { noremap = true, silent = true })
+    end,
     event = 'BufRead',
   }
 
