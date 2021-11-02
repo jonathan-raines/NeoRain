@@ -27,11 +27,13 @@ require('packer').startup(function()
     end,
   }
 
-  use 'nathom/filetype.nvim'
-
-  use { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' }, { 'kyazdani42/nvim-web-devicons' } }
-
-  use { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make' }
+  use {
+    { 'nathom/filetype.nvim' },
+    { 'nvim-lua/plenary.nvim' },
+    { 'nvim-lua/popup.nvim' },
+    { 'kyazdani42/nvim-web-devicons' },
+    { 'nvim-telescope/telescope-fzy-native.nvim', run = 'make' },
+  }
 
   -- Finders
   use {
@@ -50,6 +52,7 @@ require('packer').startup(function()
           require('telescope').load_extension 'tmux'
         end,
       },
+      { 'nvim-treesitter/playground' },
     },
   }
 
@@ -210,7 +213,7 @@ require('packer').startup(function()
     config = function()
       require 'configs.whichkey'
     end,
-    event = 'VimEnter',
+    event = 'UIEnter',
   }
 
   use {
