@@ -4,7 +4,7 @@ local opt = vim.opt
 opt.background = 'dark'
 opt.clipboard = 'unnamedplus'
 opt.colorcolumn = '100' -- performance penalty when turned on
-opt.completeopt = 'menuone,noselect'
+opt.completeopt = { 'menu', 'menuone', 'noselect' }
 opt.cursorline = true -- performance penalty when turned on
 opt.errorbells = false
 opt.expandtab = true
@@ -42,6 +42,7 @@ opt.title = true
 opt.undodir = vim.fn.stdpath 'cache' .. '/undo'
 opt.undofile = true
 opt.updatetime = 100
+opt.wildmenu = true
 opt.wildignore = '**/node_modules/*, **/.git/*'
 opt.wrap = false
 
@@ -79,25 +80,27 @@ vim.api.nvim_exec(
 
 vim.cmd [[ au BufEnter * set fo-=c fo-=r fo-=o ]]
 
-vim.g.loaded_gzip = 1
-vim.g.loaded_zip = 1
-vim.g.loaded_zipPlugin = 1
-vim.g.loaded_tar = 1
-vim.g.loaded_tarPlugin = 1
+local disabled_built_ins = {
+  'netrw',
+  'netrwPlugin',
+  'netrwSettings',
+  'netrwFileHandlers',
+  'gzip',
+  'zip',
+  'zipPlugin',
+  'tar',
+  'tarPlugin',
+  'getscript',
+  'getscriptPlugin',
+  'vimball',
+  'vimballPlugin',
+  '2html_plugin',
+  'logipat',
+  'rrhelper',
+  'spellfile_plugin',
+  'matchit',
+}
 
-vim.g.loaded_getscript = 1
-vim.g.loaded_getscriptPlugin = 1
-vim.g.loaded_vimball = 1
-vim.g.loaded_vimballPlugin = 1
-vim.g.loaded_2html_plugin = 1
-
-vim.g.loaded_matchit = 1
-vim.g.loaded_matchparen = 1
-vim.g.loaded_logiPat = 1
-vim.g.loaded_rrhelper = 1
-
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrwSettings = 1
-
-vim.g.loaded_ruby_provider = 0
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g['loaded_' .. plugin] = 1
+end
