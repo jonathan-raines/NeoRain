@@ -1,6 +1,7 @@
 local vim = vim
 local opt = vim.opt
 
+opt.autoread = true
 opt.background = 'dark'
 opt.clipboard = 'unnamedplus'
 opt.colorcolumn = '100' -- performance penalty when turned on

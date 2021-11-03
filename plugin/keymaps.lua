@@ -35,6 +35,14 @@ vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 -- Quickfix Navigation
 map('n', ']q', ':cnext<CR>', { silent = true, noremap = true })
 map('n', '[q', ':cprevious<CR>', { silent = true, noremap = true })
+map('n', ']Q', ':clast<CR>', { silent = true, noremap = true })
+map('n', '[Q', ':cfirst<CR>', { silent = true, noremap = true })
+
+-- Buffer Navigation
+map('n', ']b', ':bn<CR>', { silent = true, noremap = true })
+map('n', '[b', ':bp<CR>', { silent = true, noremap = true })
+map('n', ']B', ':blast<CR>', { silent = true, noremap = true })
+map('n', '[B', ':bfirst<CR>', { silent = true, noremap = true })
 
 -- Escape
 map('i', 'jk', '<ESC>', { silent = true, noremap = true })

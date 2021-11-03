@@ -21,6 +21,14 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   use {
+    'Mofiqul/dracula.nvim',
+    config = function()
+      vim.g.dracula_show_end_of_buffer = true
+      vim.cmd [[ colorscheme dracula ]]
+    end,
+  }
+
+  use {
     'lewis6991/impatient.nvim',
     config = function()
       require 'impatient'
@@ -66,7 +74,7 @@ require('packer').startup(function()
   use {
     'folke/tokyonight.nvim',
     config = function()
-      require './configs/tokyonight'
+      -- require './configs/tokyonight'
     end,
     after = 'lualine.nvim',
   }
@@ -193,10 +201,9 @@ require('packer').startup(function()
         config = function()
           require('luasnip/loaders/from_vscode').lazy_load()
         end,
-        after = 'friendly-snippets',
         requires = {
-          { 'saadparwaiz1/cmp_luasnip', after = 'friendly-snippets' },
-          { 'rafamadriz/friendly-snippets', event = 'InsertEnter' },
+          { 'saadparwaiz1/cmp_luasnip' },
+          { 'rafamadriz/friendly-snippets' },
         },
       },
       'hrsh7th/cmp-buffer',
@@ -332,6 +339,11 @@ require('packer').startup(function()
       vim.api.nvim_set_keymap('n', '<leader>tv', ':TestVisit<CR>', { noremap = true, silent = true })
     end,
     event = 'BufRead',
+  }
+
+  use {
+    'tpope/vim-rails',
+    ft = { 'ruby', 'rake' },
   }
 
   -- use {
