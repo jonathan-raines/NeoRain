@@ -7,7 +7,7 @@ require('toggleterm').setup {
       return math.floor(vim.o.columns * 0.4)
     end
   end,
-  open_mapping = [[<a-i>]],
+  open_mapping = [[<c-i>]],
   hide_numbers = true, -- hide the number column in toggleterm buffers
   shade_filetypes = {},
   shade_terminals = true,
@@ -37,21 +37,3 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
-
-local Terminal = require('toggleterm.terminal').Terminal
-local horizontal = Terminal:new { hidden = true, direction = 'horizontal' }
-local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
-
-function _G_horizontal_toggle()
-  horizontal:toggle()
-end
-
-function _G_lazygit_toggle()
-  lazygit:toggle()
-end
-
-vim.api.nvim_set_keymap('n', '<A-h>', '<cmd>lua _G_horizontal_toggle()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<A-h>', '<cmd>lua _G_horizontal_toggle()<CR>', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', '<A-l>', '<cmd>lua _G_lazygit_toggle()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<A-l>', '<cmd>lua _G_lazygit_toggle()<CR>', { noremap = true, silent = true })

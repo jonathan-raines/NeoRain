@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local lsp_installer = require 'nvim-lsp-installer'
 local map = vim.api.nvim_buf_set_keymap
 
@@ -10,7 +11,6 @@ local custom_on_attach = function(client, bufnr)
   map(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   map(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  map(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   map(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   map(bufnr, 'n', 'gp', "<cmd>lua require'configs.peek'.Peek('definition')<CR>", opts)
   map(bufnr, 'n', 'ge', "<cmd>lua vim.diagnostic.open_float(0, {scope = 'line', border = 'single'})<CR>", opts)
@@ -224,7 +224,7 @@ end)
 
 require('lspconfig').solargraph.setup {
   cmd = { 'solargraph', 'stdio' },
-  filetypes = { 'ruby', 'rakefile' },
+  filetypes = { 'ruby', 'rakefile', 'rake' },
   root_dir = require('lspconfig.util').root_pattern '.',
   on_attach = custom_on_attach,
   capabilities = capabilities,

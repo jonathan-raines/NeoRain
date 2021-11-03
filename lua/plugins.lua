@@ -135,8 +135,8 @@ require('packer').startup(function()
 
   use {
     'JoosepAlviste/nvim-ts-context-commentstring',
-    ft = { 'js', 'css', 'html', 'vue', 'lua' },
     after = 'nvim-treesitter',
+    ft = { 'js', 'css', 'html', 'vue', 'lua' },
   }
 
   use {
@@ -193,7 +193,11 @@ require('packer').startup(function()
         config = function()
           require('luasnip/loaders/from_vscode').lazy_load()
         end,
-        requires = { 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' },
+        after = 'friendly-snippets',
+        requires = {
+          { 'saadparwaiz1/cmp_luasnip', after = 'friendly-snippets' },
+          { 'rafamadriz/friendly-snippets', event = 'InsertEnter' },
+        },
       },
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -295,6 +299,12 @@ require('packer').startup(function()
     config = function()
       vim.cmd [[ let g:db_ui_auto_execute_table_helpers = 1 ]]
       vim.api.nvim_set_keymap('n', 'gj', '<cmd>DBUI<CR>', { noremap = true, silent = true })
+
+      vim.cmd [[
+       let g:dbs = [
+        \ { 'name': 'be', 'url': 'postgres://postgres:welcome@localhost:5433/app_manager_backend_development'},
+        \ ]
+      ]]
     end,
     requires = {
       {
@@ -306,10 +316,10 @@ require('packer').startup(function()
         config = function()
           vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
         end,
-        event = 'BufRead',
+        after = 'vim-dadbod',
       },
     },
-    event = 'BufRead',
+    after = 'vim-dadbod',
   }
 
   use {
