@@ -21,14 +21,6 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   use {
-    'Mofiqul/dracula.nvim',
-    config = function()
-      vim.g.dracula_show_end_of_buffer = true
-      vim.cmd [[ colorscheme dracula ]]
-    end,
-  }
-
-  use {
     'lewis6991/impatient.nvim',
     config = function()
       require 'impatient'
@@ -72,9 +64,10 @@ require('packer').startup(function()
   }
 
   use {
-    'folke/tokyonight.nvim',
+    'Mofiqul/dracula.nvim',
     config = function()
-      -- require './configs/tokyonight'
+      vim.g.dracula_show_end_of_buffer = true
+      vim.cmd [[ colorscheme dracula ]]
     end,
     after = 'lualine.nvim',
   }
@@ -84,8 +77,8 @@ require('packer').startup(function()
     config = function()
       require './configs/lualine'
     end,
-    event = 'UIEnter',
     requires = { 'nvim-lua/plenary.nvim' },
+    event = 'UIEnter',
   }
 
   use {
@@ -93,8 +86,8 @@ require('packer').startup(function()
     config = function()
       require './configs/gitsigns'
     end,
-    event = 'BufRead',
     requires = { 'nvim-lua/plenary.nvim' },
+    event = 'BufRead',
   }
 
   use {
@@ -112,12 +105,13 @@ require('packer').startup(function()
     config = function()
       require './configs/treesitter'
     end,
-    event = 'BufEnter',
     requires = {
       {
         'code-biscuits/nvim-biscuits',
         config = function()
-          require('nvim-biscuits').setup {}
+          require('nvim-biscuits').setup {
+            cursor_line_only = true,
+          }
         end,
         after = 'nvim-treesitter',
       },
@@ -125,6 +119,7 @@ require('packer').startup(function()
         'nvim-treesitter/playground',
       },
     },
+    event = 'BufEnter',
   }
 
   use {
@@ -152,9 +147,9 @@ require('packer').startup(function()
     config = function()
       require './configs/nvim-tree'
     end,
+    requires = { 'kyazdani42/nvim-web-devicons' },
     cmd = 'NvimTreeToggle',
     opt = true,
-    requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
   -- LSP
@@ -179,14 +174,14 @@ require('packer').startup(function()
     config = function()
       require './configs/null-ls'
     end,
-    event = 'BufReadPre',
     requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    event = 'BufReadPre',
   }
 
   use {
     'jose-elias-alvarez/nvim-lsp-ts-utils',
-    ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
     requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig', 'jose-elias-alvarez/null-ls.nvim' },
+    ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
   }
 
   -- Auto Completion
@@ -234,8 +229,8 @@ require('packer').startup(function()
     config = function()
       require './configs/harpoon'
     end,
-    event = 'BufEnter',
     requires = { 'popup.nvim', 'plenary.nvim' },
+    event = 'BufEnter',
   }
 
   use {
@@ -252,8 +247,8 @@ require('packer').startup(function()
     config = function()
       require './configs/rest'
     end,
-    ft = { 'http' },
     requires = { 'nvim-lua/plenary.nvim' },
+    ft = { 'http' },
   }
 
   use {
@@ -261,8 +256,8 @@ require('packer').startup(function()
     config = function()
       require('flutter-tools').setup {}
     end,
-    ft = { 'dart' },
     requires = 'nvim-lua/plenary.nvim',
+    ft = { 'dart' },
   }
 
   use {
@@ -286,8 +281,8 @@ require('packer').startup(function()
     config = function()
       require './configs/barbar'
     end,
-    event = 'BufRead',
     requires = { 'kyazdani42/nvim-web-devicons' },
+    event = 'BufRead',
   }
 
   -- TESTING
@@ -296,20 +291,24 @@ require('packer').startup(function()
     config = function()
       require './configs/neogit'
     end,
+    requires = { 'nvim-lua/plenary.nvim' },
     cmd = 'Neogit',
     opt = true,
-    requires = { 'nvim-lua/plenary.nvim' },
   }
 
   use {
     'kristijanhusak/vim-dadbod-ui',
     config = function()
       vim.cmd [[ let g:db_ui_auto_execute_table_helpers = 1 ]]
-      vim.api.nvim_set_keymap('n', 'gj', '<cmd>DBUI<CR>', { noremap = true, silent = true })
-
+      vim.api.nvim_set_keymap('n', 'gj', ':DBUI<CR>', { noremap = true, silent = true })
       vim.cmd [[
-       let g:dbs = [
-        \ { 'name': 'be', 'url': 'postgres://postgres:welcome@localhost:5433/app_manager_backend_development'},
+        let g:dbs = [
+        \  { 'name': 'app_manager_develop', 'url': 'postgres://postgres:welcome@localhost:5433/app_manager_backend_development' },
+        \  { 'name': 'app_manager_test', 'url': 'postgres://postgres:welcome@localhost:5433/app_manager_backend_test' },
+        \  { 'name': 'auth_develop', 'url': 'postgres://postgres:welcome@localhost:5433/oauth_service_development' },
+        \  { 'name': 'auth_test', 'url': 'postgres://postgres:welcome@localhost:5433/oauth_service_test' },
+        \  { 'name': 'media_develop', 'url': 'postgres://postgres:welcome@localhost:5433/thrillshare_development' },
+        \  { 'name': 'media_test', 'url': 'postgres://postgres:welcome@localhost:5433/thrillshare_test' }
         \ ]
       ]]
     end,
