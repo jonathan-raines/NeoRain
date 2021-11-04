@@ -66,8 +66,7 @@ require('packer').startup(function()
   use {
     'Mofiqul/dracula.nvim',
     config = function()
-      vim.g.dracula_show_end_of_buffer = true
-      vim.cmd [[ colorscheme dracula ]]
+      require './configs/dracula'
     end,
     after = 'lualine.nvim',
   }
@@ -103,7 +102,7 @@ require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
-      require './configs/treesitter'
+      require './configs/nvim-treesitter'
     end,
     requires = {
       {
@@ -125,7 +124,7 @@ require('packer').startup(function()
   use {
     'windwp/nvim-autopairs',
     config = function()
-      require './configs/autopairs'
+      require './configs/nvim-autopairs'
     end,
     event = 'InsertEnter',
   }
@@ -188,7 +187,7 @@ require('packer').startup(function()
   use {
     'hrsh7th/nvim-cmp',
     config = function()
-      require './configs/cmp'
+      require './configs/nvim-cmp'
     end,
     requires = {
       {
@@ -211,7 +210,7 @@ require('packer').startup(function()
   use {
     'folke/which-key.nvim',
     config = function()
-      require './configs/whichkey'
+      require './configs/which-key'
     end,
     event = 'UIEnter',
   }
@@ -219,7 +218,7 @@ require('packer').startup(function()
   use {
     'akinsho/nvim-toggleterm.lua',
     config = function()
-      require './configs/toggleterm'
+      require './configs/nvim-toggleterm'
     end,
     event = 'BufRead',
   }
@@ -299,18 +298,7 @@ require('packer').startup(function()
   use {
     'kristijanhusak/vim-dadbod-ui',
     config = function()
-      vim.cmd [[ let g:db_ui_auto_execute_table_helpers = 1 ]]
-      vim.api.nvim_set_keymap('n', 'gj', ':DBUI<CR>', { noremap = true, silent = true })
-      vim.cmd [[
-        let g:dbs = [
-        \  { 'name': 'app_manager_develop', 'url': 'postgres://postgres:welcome@localhost:5433/app_manager_backend_development' },
-        \  { 'name': 'app_manager_test', 'url': 'postgres://postgres:welcome@localhost:5433/app_manager_backend_test' },
-        \  { 'name': 'auth_develop', 'url': 'postgres://postgres:welcome@localhost:5433/oauth_service_development' },
-        \  { 'name': 'auth_test', 'url': 'postgres://postgres:welcome@localhost:5433/oauth_service_test' },
-        \  { 'name': 'media_develop', 'url': 'postgres://postgres:welcome@localhost:5433/thrillshare_development' },
-        \  { 'name': 'media_test', 'url': 'postgres://postgres:welcome@localhost:5433/thrillshare_test' }
-        \ ]
-      ]]
+      require './configs/vim-dadbod-ui'
     end,
     requires = {
       {
@@ -331,13 +319,9 @@ require('packer').startup(function()
   use {
     'vim-test/vim-test',
     config = function()
-      vim.api.nvim_set_keymap('n', '<leader>tn', ':TestNearest<CR>', { noremap = true, silent = true })
-      vim.api.nvim_set_keymap('n', '<leader>tf', ':TestFile<CR>', { noremap = true, silent = true })
-      vim.api.nvim_set_keymap('n', '<leader>ts', ':TestSuite<CR>', { noremap = true, silent = true })
-      vim.api.nvim_set_keymap('n', '<leader>tl', ':TestLast<CR>', { noremap = true, silent = true })
-      vim.api.nvim_set_keymap('n', '<leader>tv', ':TestVisit<CR>', { noremap = true, silent = true })
+      vim.cmd [[ let test#strategy = "neovim" ]]
     end,
-    event = 'BufRead',
+    cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
 
   use {

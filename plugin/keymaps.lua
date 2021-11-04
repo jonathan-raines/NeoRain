@@ -51,8 +51,8 @@ map('v', 'jk', '<ESC>', { silent = true, noremap = true })
 -- Move Lines Around
 -- map('n', '<A-j>', ':m .+1<CR>==', { silent = true, noremap = true })
 -- map('n', '<A-k>', ':m .-2<CR>==', { silent = true, noremap = true })
-map('v', '<A-j>', ":m '>+1<CR>gv-gv", { silent = true, noremap = true })
-map('v', '<A-k>', ":m '<-2<CR>gv-gv", { silent = true, noremap = true })
+-- map('v', '<A-j>', ":m '>+1<CR>gv-gv", { silent = true, noremap = true })
+-- map('v', '<A-k>', ":m '<-2<CR>gv-gv", { silent = true, noremap = true })
 -- map('i', '<A-j>', '<ESC>:m .+1<CR>==gi', { silent = true, noremap = true })
 -- map('i', '<A-k>', '<ESC>:m .-2<CR>==gi', { silent = true, noremap = true })
 

@@ -53,32 +53,35 @@ opt.wrap = false
 -- Highlight on yank
 vim.api.nvim_exec(
   [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank({timeout = 50})
-  augroup end ]],
+    augroup YankHighlight
+      autocmd!
+      autocmd TextYankPost * silent! lua vim.highlight.on_yank({timeout = 50})
+    augroup end
+  ]],
   false
 )
 
 vim.api.nvim_exec(
   [[
-  augroup TRIMWHITESPACE
-    autocmd!
-    autocmd BufWritePre * %s/\s\+$//e
-  augroup end ]],
+    augroup TRIMWHITESPACE
+      autocmd!
+      autocmd BufWritePre * %s/\s\+$//e
+    augroup end
+  ]],
   false
 )
 
 vim.api.nvim_exec(
   [[
-  augroup neovim_terminal
-    autocmd!
-    autocmd TermOpen * startinsert
-    autocmd TermOpen * :set nonumber norelativenumber
-    autocmd TermOpen * :set nobuflisted
-    autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
-    autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
-  augroup end]],
+    augroup neovim_terminal
+      autocmd!
+      autocmd TermOpen * startinsert
+      autocmd TermOpen * :set nonumber norelativenumber
+      autocmd TermOpen * :set nobuflisted
+      autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
+      autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
+    augroup end
+  ]],
   false
 )
 

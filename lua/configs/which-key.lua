@@ -86,6 +86,14 @@ local mappings = {
     c = { '<cmd>PackerCompile<CR>', 'PackerCompile' },
     s = { '<cmd>PackerSync<CR>', 'PackerSync' },
   },
+  t = {
+    name = 'Testing',
+    f = { ':TestFile<CR>', 'Run Test File' },
+    l = { ':TestLast<CR>', 'Run Last Test' },
+    n = { ':TestNearest<CR>', 'Run Nearest Test' },
+    s = { ':TestSuite<CR>', 'Run Test Suite' },
+    v = { ':TestVisit<CR>', 'Visit Test File' },
+  },
 }
 
 local wk = require 'which-key'
