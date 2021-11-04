@@ -8,6 +8,7 @@ vim.g.maplocalleader = ' '
 
 -- Explorer
 map('n', '<leader><space>', '<C-^>', { noremap = true, silent = true })
+-- map('i', '<A-a>', '<ESC>la', { noremap = true, silent = true })
 
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
