@@ -15,6 +15,8 @@ map('n', '<leader>c', ':bd!<CR>', { noremap = true, silent = true })
 map('n', '<leader>C', ':bufdo bd!<CR>', { noremap = true, silent = true })
 map('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 
+map('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
 -- Keeping it centered
 map('n', 'n', 'nzzzv', { silent = true, noremap = true })
 map('n', 'N', 'Nzzzv', { silent = true, noremap = true })

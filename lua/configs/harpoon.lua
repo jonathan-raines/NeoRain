@@ -6,15 +6,6 @@ require('harpoon').setup {
   },
 }
 
-local opts = {
-  mode = 'n', -- NORMAL mode
-  prefix = '<leader>',
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = false, -- use `nowait` when creating keymaps
-}
-
 require('which-key').register({
   j = {
     name = 'Harpoon',
@@ -26,4 +17,6 @@ require('which-key').register({
     ['q'] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'Quick Menu' },
     ['t'] = { '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>', 'Go to Terminal' },
   },
-}, opts)
+}, {
+  prefix = '<leader>',
+})

@@ -61,15 +61,6 @@ local function tmux_windows()
   }
 end
 
-local opts = {
-  mode = 'n', -- NORMAL mode
-  prefix = '<leader>',
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = false, -- use `nowait` when creating keymaps
-}
-
 require('which-key').register({
   f = {
     name = 'Telescope',
@@ -97,4 +88,6 @@ require('which-key').register({
       w = { tmux_windows, 'Windows' },
     },
   },
-}, opts)
+}, {
+  prefix = '<leader>',
+})
