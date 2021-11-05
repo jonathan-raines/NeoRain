@@ -266,16 +266,16 @@ require('packer').startup(function()
   }
 
   ----------- Keep One Surround -----------
-  use {
-    'echasnovski/mini.nvim',
-    config = function()
-      require './configs/mini'
-    end,
-    event = 'BufRead',
-  }
+  -- use {
+  --   'tpope/vim-surround',
+  --   event = 'BufRead',
+  -- }
 
   use {
-    'tpope/vim-surround',
+    'blackCauldron7/surround.nvim',
+    config = function()
+      require('surround').setup { mappings_style = 'surround' }
+    end,
     event = 'BufRead',
   }
   -----------------------------------------

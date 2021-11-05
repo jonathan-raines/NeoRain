@@ -158,13 +158,6 @@ lsp_installer.on_server_ready(function(server)
 
         -- required to fix code action ranges and filter diagnostics
         ts_utils.setup_client(client)
-
-        -- no default maps, so you may want to define some here
-        -- local opts = { silent = true }
-        -- map(bufnr, 'n', 'gs', ':TSLspOrganize<CR>', opts)
-        -- map(bufnr, 'n', 'qq', ':TSLspFixCurrent<CR>', opts)
-        -- map(bufnr, 'n', 'gr', ':TSLspRenameFile<CR>', opts)
-        -- map(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', opts)
       end,
     }
 
