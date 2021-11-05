@@ -7,15 +7,16 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Explorer
-map('n', '<leader><space>', '<C-^>', { noremap = true, silent = true })
+map('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
-map('n', '<leader>c', ':bd!<CR>', { noremap = true, silent = true })
-map('n', '<leader>C', ':bufdo bd!<CR>', { noremap = true, silent = true })
+map('n', '<leader>W', ':wq!<CR>', { noremap = true, silent = true })
+
 map('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 
-map('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+map('n', '<leader>c', ':bd!<CR>', { noremap = true, silent = true })
+map('n', '<leader>C', ':bufdo bd!<CR>', { noremap = true, silent = true })
 
 -- Keeping it centered
 map('n', 'n', 'nzzzv', { silent = true, noremap = true })
@@ -76,12 +77,12 @@ map('v', '>', '>gv', { silent = true, noremap = true })
 map('n', '<', '<<', { silent = true, noremap = true })
 map('n', '>', '>>', { silent = true, noremap = true })
 
--- Quickfix
-map('n', '<C-q>', ':call QuickFixToggle()<CR>', { silent = true, noremap = true })
-
 -- Increment / Decrement
 map('v', '<C-a>', '<C-a>gv-gv', { silent = true, noremap = true })
 map('v', '<C-x>', '<C-x>gv-gv', { silent = true, noremap = true })
+
+-- Quickfix
+map('n', '<C-q>', ':call QuickFixToggle()<CR>', { silent = true, noremap = true })
 
 -- QuickFixToggle
 vim.api.nvim_exec(
