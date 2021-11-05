@@ -43,14 +43,13 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-treesitter/playground', after = 'telescope.nvim' },
-      {
-        'camgraff/telescope-tmux.nvim',
-        config = function()
-          require('telescope').load_extension 'tmux'
-        end,
-        after = 'telescope.nvim',
-      },
+      -- {
+      --   'camgraff/telescope-tmux.nvim',
+      --   config = function()
+      --     require('telescope').load_extension 'tmux'
+      --   end,
+      --   after = 'telescope.nvim',
+      -- },
       {
         'nvim-telescope/telescope-fzy-native.nvim',
         config = function()
@@ -97,7 +96,6 @@ require('packer').startup(function()
     event = 'BufRead',
   }
 
-  -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -112,10 +110,10 @@ require('packer').startup(function()
             cursor_line_only = true,
           }
         end,
-        after = 'nvim-treesitter',
-      },
-      {
-        'nvim-treesitter/playground',
+        requires = {
+          'nvim-treesitter/playground',
+          after = 'nvim-treesitter',
+        },
         after = 'nvim-treesitter',
       },
     },
@@ -155,7 +153,7 @@ require('packer').startup(function()
   use {
     'williamboman/nvim-lsp-installer',
     config = function()
-      require 'servers'
+      require './configs/nvim-lsp-installer'
     end,
     after = 'nvim-lspconfig',
   }
@@ -163,7 +161,7 @@ require('packer').startup(function()
   use {
     'neovim/nvim-lspconfig',
     config = function()
-      require 'lsp'
+      require './configs/nvim-lspconfig'
     end,
     event = 'BufReadPre',
   }
@@ -282,11 +280,11 @@ require('packer').startup(function()
   -----------------------------------------
 
   use {
-    'romgrk/barbar.nvim',
+    'akinsho/bufferline.nvim',
     config = function()
-      require './configs/barbar'
+      require './configs/bufferline'
     end,
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    requires = 'kyazdani42/nvim-web-devicons',
   }
 
   -- TESTING

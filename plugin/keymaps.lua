@@ -11,6 +11,8 @@ map('n', '<leader><space>', '<C-^>', { noremap = true, silent = true })
 
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
+map('n', '<leader>c', ':bd!<CR>', { noremap = true, silent = true })
+map('n', '<leader>C', ':bufdo bd!<CR>', { noremap = true, silent = true })
 map('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 
 -- Keeping it centered
