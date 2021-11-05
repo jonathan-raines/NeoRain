@@ -96,14 +96,6 @@ vim.api.nvim_exec(
   false
 )
 
--- Custom Fold
-vim.api.nvim_exec(
-  [[function! CustomFold()
-      return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
-  endfunction]],
-  false
-)
-
 -- Delete Hidden Buffers
 vim.api.nvim_exec(
   [[function DeleteHiddenBuffers() " Vim with the 'hidden' option
