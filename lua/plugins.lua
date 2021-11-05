@@ -116,9 +116,9 @@ require('packer').startup(function()
       },
       {
         'nvim-treesitter/playground',
+        after = 'nvim-treesitter',
       },
     },
-    event = 'BufEnter',
   }
 
   use {
@@ -212,7 +212,6 @@ require('packer').startup(function()
     config = function()
       require './configs/which-key'
     end,
-    event = 'UIEnter',
   }
 
   use {
@@ -329,6 +328,11 @@ require('packer').startup(function()
     ft = { 'ruby', 'rake' },
   }
 
+  use {
+    'dstein64/vim-startuptime',
+    cmd = 'StartupTime',
+    opt = true,
+  }
   -- use {
   --   'github/copilot.vim',
   -- }
