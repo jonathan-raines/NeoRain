@@ -40,7 +40,6 @@ require('packer').startup(function()
     config = function()
       require './configs/telescope'
     end,
-    event = 'BufRead',
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
@@ -61,6 +60,7 @@ require('packer').startup(function()
         after = 'telescope.nvim',
       },
     },
+    after = 'which-key.nvim',
   }
 
   use {
@@ -116,9 +116,9 @@ require('packer').startup(function()
       },
       {
         'nvim-treesitter/playground',
+        after = 'nvim-treesitter',
       },
     },
-    event = 'BufEnter',
   }
 
   use {
@@ -212,7 +212,6 @@ require('packer').startup(function()
     config = function()
       require './configs/which-key'
     end,
-    event = 'UIEnter',
   }
 
   use {
@@ -267,6 +266,7 @@ require('packer').startup(function()
     event = 'BufRead',
   }
 
+  -- Keep one of these two ----------------
   use {
     'echasnovski/mini.nvim',
     config = function()
@@ -276,12 +276,17 @@ require('packer').startup(function()
   }
 
   use {
+    'tpope/vim-surround',
+    event = 'BufRead',
+  }
+  -----------------------------------------
+
+  use {
     'romgrk/barbar.nvim',
     config = function()
       require './configs/barbar'
     end,
     requires = { 'kyazdani42/nvim-web-devicons' },
-    event = 'BufRead',
   }
 
   -- TESTING
@@ -319,7 +324,7 @@ require('packer').startup(function()
   use {
     'vim-test/vim-test',
     config = function()
-      vim.cmd [[ let test#strategy = "neovim" ]]
+      vim.cmd [[ let test#strategy = "harpoon" ]]
     end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
@@ -329,6 +334,16 @@ require('packer').startup(function()
     ft = { 'ruby', 'rake' },
   }
 
+  use {
+    'dstein64/vim-startuptime',
+    cmd = 'StartupTime',
+    opt = true,
+  }
+
+  -- use {
+  --   'tpope/vim-unimpaired',
+  --   event = 'BufEnter',
+  -- }
   -- use {
   --   'github/copilot.vim',
   -- }

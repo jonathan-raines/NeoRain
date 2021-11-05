@@ -85,6 +85,7 @@ local mappings = {
     name = 'Packer',
     c = { ':PackerCompile<CR>', 'PackerCompile' },
     s = { ':PackerSync<CR>', 'PackerSync' },
+    t = { ':StartupTime<CR>', 'Startup Time' },
   },
   t = {
     name = 'Testing',

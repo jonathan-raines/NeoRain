@@ -8,7 +8,6 @@ vim.g.maplocalleader = ' '
 
 -- Explorer
 map('n', '<leader><space>', '<C-^>', { noremap = true, silent = true })
--- map('i', '<A-a>', '<ESC>la', { noremap = true, silent = true })
 
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
@@ -54,8 +53,6 @@ map('n', '<A-j>', ':m .+1<CR>==', { silent = true, noremap = true })
 map('n', '<A-k>', ':m .-2<CR>==', { silent = true, noremap = true })
 map('v', '<A-j>', ":m '>+1<CR>gv-gv", { silent = true, noremap = true })
 map('v', '<A-k>', ":m '<-2<CR>gv-gv", { silent = true, noremap = true })
--- map('i', '<A-j>', '<ESC>:m .+1<CR>==gi', { silent = true, noremap = true })
--- map('i', '<A-k>', '<ESC>:m .-2<CR>==gi', { silent = true, noremap = true })
 
 -- Move Windows Around
 map('n', '<C-h>', '<C-w>h', { silent = true, noremap = true })

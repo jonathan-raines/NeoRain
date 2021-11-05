@@ -24,5 +24,6 @@ require('which-key').register({
     ['d'] = { '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', 'Go to file 3' },
     ['f'] = { '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', 'Go to file 4' },
     ['q'] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'Quick Menu' },
+    ['t'] = { '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>', 'Go to Terminal' },
   },
 }, opts)
