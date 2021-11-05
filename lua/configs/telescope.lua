@@ -71,9 +71,9 @@ local opts = {
 }
 
 require('which-key').register({
-  b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
   f = {
     name = 'Telescope',
+    b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
     e = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
     d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },

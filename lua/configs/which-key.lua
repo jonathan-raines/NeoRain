@@ -49,12 +49,12 @@ local opts = {
 
 local mappings = {
   ['<space>'] = 'which_key_ignore',
-  ['b'] = 'which_key_ignore',
   ['c'] = 'which_key_ignore',
   ['C'] = 'which_key_ignore',
   ['e'] = { ':NvimTreeToggle<CR>', 'NvimTree' },
   ['q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
+  ['b'] = 'Buffers',
   l = {
     name = 'LSP',
     d = { ':Telescope lsp_document_diagnostics<CR>', 'Document Diagnostics' },
