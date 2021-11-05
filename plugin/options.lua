@@ -1,32 +1,16 @@
-local vim = vim
 local opt = vim.opt
 
-opt.autoread = true
-opt.background = 'dark'
 opt.clipboard = 'unnamedplus'
 opt.colorcolumn = '100' -- performance penalty when turned on
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
 opt.cursorline = true -- performance penalty when turned on
-opt.errorbells = false
 opt.expandtab = true
-opt.foldtext = 'CustomFold()'
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
-opt.foldlevelstart = 99
-opt.foldnestmax = 6
 opt.foldmethod = 'expr'
-opt.guifont = 'FiraCode Nerd Font:h12'
-opt.hidden = true
-opt.hlsearch = false
 opt.ignorecase = true
 opt.inccommand = 'split' -- 'nosplit'
-opt.lazyredraw = true
-opt.list = true
-opt.listchars = 'tab:▸ ,trail:·'
 opt.mouse = 'a'
-opt.number = true -- default is off
-opt.path = '**'
-opt.pumheight = 10
-opt.pumblend = 17
+opt.number = true
 opt.relativenumber = true
 opt.scrolloff = 8
 opt.shiftwidth = 2
@@ -34,7 +18,6 @@ opt.shortmess:append 'cI'
 opt.sidescrolloff = 8
 opt.signcolumn = 'yes'
 opt.smartcase = true
-opt.smartindent = true
 opt.splitbelow = true
 opt.splitright = true
 opt.swapfile = false
@@ -44,7 +27,6 @@ opt.timeoutlen = 100
 opt.title = true
 opt.undodir = vim.fn.stdpath 'cache' .. '/undo'
 opt.undofile = true
-opt.updatetime = 300 -- Reduce time for highlighting other references
 opt.wildmenu = true
 opt.wildmode = 'longest:full,full'
 opt.wildignore = '**/node_modules/*, **/.git/*'
@@ -84,8 +66,6 @@ vim.api.nvim_exec(
   ]],
   false
 )
-
-vim.cmd 'au BufEnter * set fo-=c fo-=r fo-=o'
 
 local disabled_built_ins = {
   'netrw',
