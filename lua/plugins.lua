@@ -34,7 +34,30 @@ require('packer').startup(function()
     { 'kyazdani42/nvim-web-devicons' },
   }
 
-  -- Finders
+  ---------- Database ----------
+  use {
+    'kristijanhusak/vim-dadbod-ui',
+    config = function()
+      require './configs/vim-dadbod-ui'
+    end,
+    requires = {
+      {
+        'tpope/vim-dadbod',
+        event = 'BufRead',
+      },
+      {
+        'kristijanhusak/vim-dadbod-completion',
+        config = function()
+          vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
+        end,
+        after = 'vim-dadbod',
+      },
+    },
+    after = 'vim-dadbod',
+  }
+  ------------------------------
+
+  ---------- Fuzzy Finding ----------
   use {
     'nvim-telescope/telescope.nvim',
     config = function()
@@ -43,13 +66,6 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      -- {
-      --   'camgraff/telescope-tmux.nvim',
-      --   config = function()
-      --     require('telescope').load_extension 'tmux'
-      --   end,
-      --   after = 'telescope.nvim',
-      -- },
       {
         'nvim-telescope/telescope-fzy-native.nvim',
         config = function()
@@ -61,24 +77,9 @@ require('packer').startup(function()
     },
     after = 'which-key.nvim',
   }
+  -----------------------------------
 
-  use {
-    'Mofiqul/dracula.nvim',
-    config = function()
-      require './configs/dracula'
-    end,
-    after = 'lualine.nvim',
-  }
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    config = function()
-      require './configs/lualine'
-    end,
-    requires = { 'nvim-lua/plenary.nvim' },
-    event = 'UIEnter',
-  }
-
+  ---------- Github ----------
   use {
     'lewis6991/gitsigns.nvim',
     config = function()
@@ -89,44 +90,26 @@ require('packer').startup(function()
   }
 
   use {
-    'numToStr/Comment.nvim',
+    'pwntester/octo.nvim',
     config = function()
-      require './configs/comment'
+      require('octo').setup()
     end,
-    event = 'BufRead',
+    cmd = 'Octo',
+    opt = true,
   }
 
   use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    'TimUntersberger/neogit',
     config = function()
-      require './configs/nvim-treesitter'
+      require './configs/neogit'
     end,
-    requires = {
-      {
-        'code-biscuits/nvim-biscuits',
-        config = function()
-          require('nvim-biscuits').setup {
-            cursor_line_only = true,
-          }
-        end,
-        requires = {
-          'nvim-treesitter/playground',
-          after = 'nvim-treesitter',
-        },
-        after = 'nvim-treesitter',
-      },
-    },
+    requires = { 'nvim-lua/plenary.nvim' },
+    cmd = 'Neogit',
+    opt = true,
   }
+  ----------------------------
 
-  use {
-    'windwp/nvim-autopairs',
-    config = function()
-      require './configs/nvim-autopairs'
-    end,
-    event = 'InsertEnter',
-  }
-
+  ---------- Javascript ----------
   use {
     'windwp/nvim-ts-autotag',
     after = 'nvim-treesitter',
@@ -138,18 +121,31 @@ require('packer').startup(function()
     after = 'nvim-treesitter',
     ft = { 'js', 'css', 'html', 'vue', 'lua' },
   }
+  --------------------------------
 
+  ---------- Language Specific ----------
   use {
-    'kyazdani42/nvim-tree.lua',
-    config = function()
-      require './configs/nvim-tree'
-    end,
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    cmd = 'NvimTreeToggle',
-    opt = true,
+    'jose-elias-alvarez/nvim-lsp-ts-utils',
+    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig', 'jose-elias-alvarez/null-ls.nvim' },
+    ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
   }
 
-  -- LSP
+  use {
+    'tpope/vim-rails',
+    ft = { 'ruby', 'rake' },
+  }
+
+  use {
+    'akinsho/flutter-tools.nvim',
+    config = function()
+      require('flutter-tools').setup {}
+    end,
+    requires = 'nvim-lua/plenary.nvim',
+    ft = { 'dart' },
+  }
+  ---------------------------------------
+
+  ---------- LSP ----------
   use {
     'williamboman/nvim-lsp-installer',
     config = function()
@@ -174,14 +170,61 @@ require('packer').startup(function()
     requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     event = 'BufReadPre',
   }
-
+  -------------------------
+  ---------- Marks ----------
   use {
-    'jose-elias-alvarez/nvim-lsp-ts-utils',
-    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig', 'jose-elias-alvarez/null-ls.nvim' },
-    ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
+    'ThePrimeagen/harpoon',
+    config = function()
+      require './configs/harpoon'
+    end,
+    requires = { 'popup.nvim', 'plenary.nvim' },
+    event = 'BufEnter',
   }
 
-  -- Auto Completion
+  use {
+    'chentau/marks.nvim',
+    config = function()
+      require './configs/marks'
+    end,
+    event = 'BufRead',
+  }
+  ---------------------------
+
+  ---------- MISC ----------
+  use {
+    'vim-test/vim-test',
+    config = function()
+      vim.cmd [[ let test#strategy = "harpoon" ]]
+    end,
+    requires = { 'ThePrimeagen/harpoon' },
+    cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
+  }
+
+  use {
+    'dstein64/vim-startuptime',
+    cmd = 'StartupTime',
+    opt = true,
+  }
+
+  use {
+    'NTBBloodbath/rest.nvim',
+    config = function()
+      require './configs/rest'
+    end,
+    requires = { 'nvim-lua/plenary.nvim' },
+    ft = { 'http' },
+  }
+
+  -- use {
+  --   'tpope/vim-unimpaired',
+  --   event = 'BufEnter',
+  -- }
+  -- use {
+  --   'github/copilot.vim',
+  -- }
+  ------------------------------
+
+  ---------- Text Editing ----------
   use {
     'hrsh7th/nvim-cmp',
     config = function()
@@ -206,6 +249,73 @@ require('packer').startup(function()
   }
 
   use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require './configs/nvim-autopairs'
+    end,
+    event = 'InsertEnter',
+  }
+
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require './configs/comment'
+    end,
+    event = 'BufRead',
+  }
+
+  ----------- Keep One Surround -----------
+  use {
+    'echasnovski/mini.nvim',
+    config = function()
+      require './configs/mini'
+    end,
+    event = 'BufRead',
+  }
+
+  use {
+    'tpope/vim-surround',
+    event = 'BufRead',
+  }
+  -----------------------------------------
+
+  ---------- Treesitter ----------
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require './configs/nvim-treesitter'
+    end,
+  }
+  --------------------------------
+
+  -------------- UI -----------------
+  use {
+    'Mofiqul/dracula.nvim',
+    config = function()
+      require './configs/dracula'
+    end,
+    after = 'lualine.nvim',
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+      require './configs/lualine'
+    end,
+    requires = { 'nvim-lua/plenary.nvim' },
+    event = 'UIEnter',
+  }
+
+  use {
+    'akinsho/bufferline.nvim',
+    config = function()
+      require './configs/bufferline'
+    end,
+    requires = 'kyazdani42/nvim-web-devicons',
+  }
+
+  use {
     'folke/which-key.nvim',
     config = function()
       require './configs/which-key'
@@ -221,128 +331,13 @@ require('packer').startup(function()
   }
 
   use {
-    'ThePrimeagen/harpoon',
+    'kyazdani42/nvim-tree.lua',
     config = function()
-      require './configs/harpoon'
+      require './configs/nvim-tree'
     end,
-    requires = { 'popup.nvim', 'plenary.nvim' },
-    event = 'BufEnter',
-  }
-
-  use {
-    'pwntester/octo.nvim',
-    config = function()
-      require('octo').setup()
-    end,
-    cmd = 'Octo',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    cmd = 'NvimTreeToggle',
     opt = true,
   }
-
-  use {
-    'NTBBloodbath/rest.nvim',
-    config = function()
-      require './configs/rest'
-    end,
-    requires = { 'nvim-lua/plenary.nvim' },
-    ft = { 'http' },
-  }
-
-  use {
-    'akinsho/flutter-tools.nvim',
-    config = function()
-      require('flutter-tools').setup {}
-    end,
-    requires = 'nvim-lua/plenary.nvim',
-    ft = { 'dart' },
-  }
-
-  use {
-    'chentau/marks.nvim',
-    config = function()
-      require './configs/marks'
-    end,
-    event = 'BufRead',
-  }
-
-  -- Keep one of these two ----------------
-  use {
-    'echasnovski/mini.nvim',
-    config = function()
-      require './configs/mini'
-    end,
-    event = 'BufRead',
-  }
-
-  use {
-    'tpope/vim-surround',
-    event = 'BufRead',
-  }
-  -----------------------------------------
-
-  use {
-    'akinsho/bufferline.nvim',
-    config = function()
-      require './configs/bufferline'
-    end,
-    requires = 'kyazdani42/nvim-web-devicons',
-  }
-
-  -- TESTING
-  use {
-    'TimUntersberger/neogit',
-    config = function()
-      require './configs/neogit'
-    end,
-    requires = { 'nvim-lua/plenary.nvim' },
-    cmd = 'Neogit',
-    opt = true,
-  }
-
-  use {
-    'kristijanhusak/vim-dadbod-ui',
-    config = function()
-      require './configs/vim-dadbod-ui'
-    end,
-    requires = {
-      {
-        'tpope/vim-dadbod',
-        event = 'BufRead',
-      },
-      {
-        'kristijanhusak/vim-dadbod-completion',
-        config = function()
-          vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
-        end,
-        after = 'vim-dadbod',
-      },
-    },
-    after = 'vim-dadbod',
-  }
-
-  use {
-    'vim-test/vim-test',
-    config = function()
-      vim.cmd [[ let test#strategy = "harpoon" ]]
-    end,
-    cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
-  }
-
-  use {
-    'tpope/vim-rails',
-    ft = { 'ruby', 'rake' },
-  }
-
-  use {
-    'dstein64/vim-startuptime',
-    cmd = 'StartupTime',
-    opt = true,
-  }
-
-  -- use {
-  --   'tpope/vim-unimpaired',
-  --   event = 'BufEnter',
-  -- }
-  -- use {
-  --   'github/copilot.vim',
-  -- }
+  --------------------------------
 end)
