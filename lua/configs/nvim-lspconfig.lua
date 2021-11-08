@@ -21,3 +21,20 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.s
   border = 'rounded',
   close_events = { 'CursorMoved', 'BufHidden', 'InsertCharPre' },
 })
+
+require('which-key').register({
+  l = {
+    name = 'LSP',
+    d = { ':Telescope lsp_document_diagnostics<CR>', 'Document Diagnostics' },
+    f = { ':lua vim.lsp.buf.formatting()<CR>', 'Format Buffer' },
+    i = { ':LspInfo<CR>', 'Info' },
+    j = { ':lua vim.diagnostic.goto_next()<CR>', 'Go To Next' },
+    k = { ':lua vim.diagnostic.goto_prev()<CR>', 'Go To Previous' },
+    l = { ":lua vim.diagnostic.open_float(0, {scope = 'line', border = 'single'})<CR>", 'Show Line Diagnostics' },
+    r = { ':LspRestart<CR>', 'Restart LSP' },
+    t = { ':lua vim.lsp.buf.type_definition()<CR>', 'Type Definition' },
+    w = { ':Telescope lsp_workspace_diagnostics<CR>', 'Workspace Diagnostics' },
+  },
+}, {
+  prefix = '<leader>',
+})
