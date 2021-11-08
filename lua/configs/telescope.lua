@@ -3,7 +3,6 @@ local actions = require 'telescope.actions'
 
 require('telescope').setup {
   defaults = {
-    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     layout_config = {
       height = 0.9,
       width = 0.9,
@@ -13,7 +12,6 @@ require('telescope').setup {
       i = {
         ['<ESC>'] = actions.close,
       },
-      n = {},
     },
   },
   pickers = {
@@ -51,43 +49,31 @@ require('telescope').setup {
   },
 }
 
-local function tmux_sessions()
-  telescope.extensions.tmux.sessions {}
+local mappings = {}
+
+mappings.curr_buf = function()
+  local opt = require('telescope.themes').get_ivy()
+  require('telescope.builtin').current_buffer_fuzzy_find(opt)
 end
 
-local function tmux_windows()
-  telescope.extensions.tmux.windows {
-    entry_format = '#S: #T',
-  }
-end
-
-require('which-key').register({
+local wk = require 'which-key'
+wk.register({
   f = {
     name = 'Telescope',
     b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
-    e = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
+    e = { '<cmd>Telescope file_browser theme=get_ivy<cr>', 'File Browser' },
     d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
-    h = {
-      name = 'History',
-      c = { '<cmd>Telescope command_history<cr>', 'Command History' },
-      s = { '<cmd>Telescope search_history<cr>', 'Search History' },
-      f = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
-    },
-    s = {
-      name = 'Search',
-      b = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Search Current Buffer' },
-      s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
-      w = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
-    },
+    g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
+    r = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
+    s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
     t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
     w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
-    T = {
-      name = 'Tmux',
-      s = { tmux_sessions, 'Sessions' },
-      w = { tmux_windows, 'Windows' },
-    },
   },
 }, {
   prefix = '<leader>',
 })
+
+wk.register({
+  ['<c-_>'] = { mappings.curr_buf, 'Search Current Buffer' },
+}, opts)
