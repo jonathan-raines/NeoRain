@@ -28,6 +28,7 @@ opt.timeoutlen = 100
 opt.title = true
 opt.undodir = vim.fn.stdpath 'cache' .. '/undo'
 opt.undofile = true
+opt.updatetime = 3000
 opt.wildmenu = true
 opt.wildmode = 'longest:full,full'
 opt.wildignore = '**/node_modules/*, **/.git/*'

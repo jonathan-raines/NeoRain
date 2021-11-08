@@ -34,7 +34,13 @@ function _G_custom_on_attach(client, bufnr)
                 autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
                 autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
               augroup end
+
             ]]
+    -- augroup lsp_document_popup
+    --   autocmd! * <buffer>
+    --   autocmd CursorHold <buffer> lua vim.lsp.buf.hover()
+    --   autocmd CursorHoldI <buffer> lua vim.lsp.buf.signature_help()
+    -- augroup end
   end
 
   if client.resolved_capabilities.code_lens then
