@@ -7,5 +7,5 @@ require('marks').setup {
   --   sign = '⚑',
   --   virt_text = 'hello world',
   -- },
-  mappings = {},
+  exclude_filetypes = { 'harpoon' },
 }

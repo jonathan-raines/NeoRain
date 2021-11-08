@@ -222,7 +222,7 @@ require('lspconfig').solargraph.setup {
   cmd = { 'solargraph', 'stdio' },
   filetypes = { 'ruby', 'rakefile', 'rake' },
   root_dir = require('lspconfig.util').root_pattern '.',
-  on_attach = custom_on_attach,
+  on_attach = _G_custom_on_attach,
   capabilities = capabilities,
   settings = {
     solargraph = {

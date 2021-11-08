@@ -259,7 +259,7 @@ require('packer').startup(function()
   use {
     'blackCauldron7/surround.nvim',
     config = function()
-      require('surround').setup { mappings_style = 'surround' }
+      require('surround').setup { mappings_style = 'sandwich' }
     end,
     event = 'BufRead',
   }
