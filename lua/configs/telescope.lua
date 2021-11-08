@@ -61,9 +61,10 @@ wk.register({
   f = {
     name = 'Telescope',
     b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
-    e = { '<cmd>Telescope file_browser theme=get_ivy<cr>', 'File Browser' },
     d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
+    e = { '<cmd>Telescope file_browser theme=get_ivy<cr>', 'File Browser' },
+    E = { "<cmd>lua require('telescope.builtin').file_browser(require('telescope.themes').get_ivy({cwd = vim.fn.expand('%:p:h')}))<CR>", 'Find Files' },
     g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
     r = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },

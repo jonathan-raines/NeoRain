@@ -146,19 +146,19 @@ require('packer').startup(function()
 
   ---------- LSP ----------
   use {
-    'williamboman/nvim-lsp-installer',
-    config = function()
-      require './configs/nvim-lsp-installer'
-    end,
-    after = 'nvim-lspconfig',
-  }
-
-  use {
     'neovim/nvim-lspconfig',
     config = function()
       require './configs/nvim-lspconfig'
     end,
     event = 'BufReadPre',
+  }
+
+  use {
+    'williamboman/nvim-lsp-installer',
+    config = function()
+      require './configs/nvim-lsp-installer'
+    end,
+    after = 'nvim-lspconfig',
   }
 
   use {
@@ -170,6 +170,7 @@ require('packer').startup(function()
     event = 'BufReadPre',
   }
   -------------------------
+
   ---------- Marks ----------
   use {
     'ThePrimeagen/harpoon',
