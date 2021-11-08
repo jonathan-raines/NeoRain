@@ -7,6 +7,7 @@ opt.cursorline = true -- performance penalty when turned on
 opt.expandtab = true
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
 opt.foldmethod = 'expr'
+opt.foldlevelstart = 99
 opt.ignorecase = true
 opt.inccommand = 'split' -- 'nosplit'
 opt.mouse = 'a'

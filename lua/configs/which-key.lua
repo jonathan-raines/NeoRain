@@ -39,6 +39,7 @@ local mappings = {
   ['e'] = 'which_key_ignore',
   ['q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
+  ['W'] = 'which_key_ignore',
   ['b'] = 'Buffers',
   l = {
     name = 'LSP',
