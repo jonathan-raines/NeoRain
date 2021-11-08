@@ -139,7 +139,19 @@ require('packer').startup(function()
   use {
     'akinsho/flutter-tools.nvim',
     config = function()
-      require('flutter-tools').setup {}
+      require('flutter-tools').setup {
+        lsp = {
+          on_attach = _G_custom_on_attach,
+        },
+      }
+
+      require('which-key').register({
+        f = {
+          y = { '<cmd>Telescope flutter commands theme=dropdown<cr>', 'Flutter Commands' },
+        },
+      }, {
+        prefix = '<leader>',
+      })
     end,
     requires = 'nvim-lua/plenary.nvim',
     ft = { 'dart' },
@@ -330,15 +342,50 @@ require('packer').startup(function()
     end,
     event = 'BufRead',
   }
-
-  use {
-    'kyazdani42/nvim-tree.lua',
-    config = function()
-      require './configs/nvim-tree'
-    end,
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    cmd = 'NvimTreeToggle',
-    opt = true,
-  }
   --------------------------------
+  use {
+    'ThePrimeagen/refactoring.nvim',
+    config = function()
+      local refactor = require 'refactoring'
+      refactor.setup()
+
+      local function refactor(prompt_bufnr)
+        local content = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
+        require('telescope.actions').close(prompt_bufnr)
+        require('refactoring').refactor(content.value)
+      end
+
+      M = {}
+      M.refactors = function()
+        local opts = require('telescope.themes').get_cursor() -- set personal telescope options
+        require('telescope.pickers').new(opts, {
+          prompt_title = 'refactors',
+          finder = require('telescope.finders').new_table {
+            results = require('refactoring').get_refactors(),
+          },
+          sorter = require('telescope.config').values.generic_sorter(opts),
+          attach_mappings = function(_, map)
+            map('i', '<CR>', refactor)
+            map('n', '<CR>', refactor)
+            return true
+          end,
+        }):find()
+      end
+
+      vim.api.nvim_set_keymap(
+        'v',
+        '<Leader>re',
+        [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
+        { noremap = true, silent = true, expr = false }
+      )
+      vim.api.nvim_set_keymap(
+        'v',
+        '<Leader>rf',
+        [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]],
+        { noremap = true, silent = true, expr = false }
+      )
+      vim.api.nvim_set_keymap('v', '<Leader>rt', [[ <Esc><Cmd>lua M.refactors()<CR>]], { noremap = true, silent = true, expr = false })
+    end,
+    ft = { 'go', 'lua', 'js', 'py', 'ts' },
+  }
 end)
