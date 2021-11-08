@@ -36,11 +36,6 @@ function _G_custom_on_attach(client, bufnr)
               augroup end
 
             ]]
-    -- augroup lsp_document_popup
-    --   autocmd! * <buffer>
-    --   autocmd CursorHold <buffer> lua vim.lsp.buf.hover()
-    --   autocmd CursorHoldI <buffer> lua vim.lsp.buf.signature_help()
-    -- augroup end
   end
 
   if client.resolved_capabilities.code_lens then
@@ -51,6 +46,15 @@ function _G_custom_on_attach(client, bufnr)
               augroup end
             ]]
   end
+
+  vim.cmd [[
+    augroup LspPopupHelp
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua vim.diagnostic.open_float(0, { border = 'rounded', focusable = false, scope = 'line' })
+      autocmd CursorHold <buffer> lua vim.lsp.buf.hover()
+      autocmd CursorHoldI <buffer> lua vim.lsp.buf.signature_help()
+    augroup end
+  ]]
 
   local wk = require 'which-key'
   wk.register({
