@@ -6,9 +6,6 @@ map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Explorer
-map('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 map('n', '<leader>W', ':wq!<CR>', { noremap = true, silent = true })
@@ -76,10 +73,6 @@ map('v', '<', '<gv', { silent = true, noremap = true })
 map('v', '>', '>gv', { silent = true, noremap = true })
 map('n', '<', '<<', { silent = true, noremap = true })
 map('n', '>', '>>', { silent = true, noremap = true })
-
--- Increment / Decrement
-map('v', '<C-a>', '<C-a>gv-gv', { silent = true, noremap = true })
-map('v', '<C-x>', '<C-x>gv-gv', { silent = true, noremap = true })
 
 -- Quickfix
 map('n', '<C-q>', ':call QuickFixToggle()<CR>', { silent = true, noremap = true })
