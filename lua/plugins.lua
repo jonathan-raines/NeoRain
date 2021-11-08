@@ -180,14 +180,6 @@ require('packer').startup(function()
     requires = { 'popup.nvim', 'plenary.nvim' },
     event = 'BufEnter',
   }
-
-  use {
-    'chentau/marks.nvim',
-    config = function()
-      require './configs/marks'
-    end,
-    event = 'BufRead',
-  }
   ---------------------------
 
   ---------- MISC ----------
