@@ -2,7 +2,7 @@
 local lsp_installer = require 'nvim-lsp-installer'
 local map = vim.api.nvim_buf_set_keymap
 
-local custom_on_attach = function(client, bufnr)
+function _G_custom_on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
@@ -11,14 +11,14 @@ local custom_on_attach = function(client, bufnr)
   map(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   map(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  -- map(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   map(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   map(bufnr, 'n', 'gp', "<cmd>lua require'configs.peek'.Peek('definition')<CR>", opts)
   map(bufnr, 'n', 'ge', "<cmd>lua vim.diagnostic.open_float(0, {scope = 'line', border = 'single'})<CR>", opts)
-  -- map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  map(bufnr, 'n', 'gr', '<cmd>lua _G.rename()<CR>', opts)
-  map(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  map(bufnr, 'v', 'ga', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
+  map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  map(bufnr, 'n', 'ga', '<cmd>Telescope lsp_code_actions theme=get_cursor<CR>', opts)
+  map(bufnr, 'v', 'ga', '<cmd>Telescope lsp_code_actions theme=get_cursor<CR><ESC>', opts)
+  -- map(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- map(bufnr, 'v', 'ga', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
   map(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   map(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
@@ -55,6 +55,8 @@ local custom_on_attach = function(client, bufnr)
       ['d'] = 'Definition',
       ['D'] = 'Declaration',
       ['e'] = 'Line Diagnostics',
+      ['i'] = 'Implementation',
+      ['l'] = 'Lazygit',
       ['p'] = 'Peek Definition',
       ['r'] = 'Rename',
       ['R'] = 'References',
@@ -78,7 +80,7 @@ lsp_installer.on_server_ready(function(server)
   local runtime_path = vim.split(package.path, ';')
   table.insert(runtime_path, 'lua/?.lua')
   table.insert(runtime_path, 'lua/?/init.lua')
-  local opts2 = { on_attach = custom_on_attach, capabilities = capabilities }
+  local opts2 = { on_attach = _G_custom_on_attach, capabilities = capabilities }
 
   if server.name == 'sumneko_lua' then
     opts2['settings'] = {
