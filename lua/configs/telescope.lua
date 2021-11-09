@@ -71,7 +71,7 @@ wk.register({
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
     e = { '<cmd>Telescope file_browser theme=get_ivy<cr>', 'File Browser' },
     g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
-    r = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
+    o = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
     t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
     w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
