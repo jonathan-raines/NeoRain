@@ -1,6 +1,8 @@
 local vim = vim
 local map = vim.api.nvim_set_keymap
 
+map('n', 'Q', '<Nop>', { noremap = true, silent = true })
+
 --Remap space as leader key
 map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '

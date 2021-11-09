@@ -50,6 +50,11 @@ require('telescope').setup {
 
 local mappings = {}
 
+mappings.cwd_filebrowser = function()
+  local opt = require('telescope.themes').get_ivy { cwd = vim.fn.expand '%:p:h' }
+  require('telescope.builtin').file_browser(opt)
+end
+
 mappings.curr_buf = function()
   local opt = require('telescope.themes').get_ivy()
   require('telescope.builtin').current_buffer_fuzzy_find(opt)
@@ -58,7 +63,7 @@ end
 local wk = require 'which-key'
 wk.register({
   b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
-  e = { "<cmd>lua require('telescope.builtin').file_browser(require('telescope.themes').get_ivy({cwd = vim.fn.expand('%:p:h')}))<CR>", 'Find Files' },
+  e = { mappings.cwd_filebrowser, 'Find Files' },
   f = {
     name = 'Telescope',
     b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
