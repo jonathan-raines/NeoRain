@@ -210,8 +210,8 @@ require('packer').startup(function()
   use {
     'echasnovski/mini.nvim',
     config = function()
-      require('mini.surround').setup {}
-      require('mini.tabline').setup {}
+      require('mini.surround').setup()
+      require('mini.tabline').setup()
     end,
     event = 'BufEnter',
   }

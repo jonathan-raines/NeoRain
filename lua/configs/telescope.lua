@@ -1,4 +1,3 @@
-local telescope = require 'telescope'
 local actions = require 'telescope.actions'
 
 require('telescope').setup {
@@ -58,6 +57,8 @@ end
 
 local wk = require 'which-key'
 wk.register({
+  b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
+  e = { "<cmd>lua require('telescope.builtin').file_browser(require('telescope.themes').get_ivy({cwd = vim.fn.expand('%:p:h')}))<CR>", 'Find Files' },
   f = {
     name = 'Telescope',
     b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
@@ -70,12 +71,7 @@ wk.register({
     t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
     w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
   },
+  ['/'] = { mappings.curr_buf, 'Search Current Buffer' },
 }, {
   prefix = '<leader>',
 })
-
-wk.register({
-  b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
-  e = { "<cmd>lua require('telescope.builtin').file_browser(require('telescope.themes').get_ivy({cwd = vim.fn.expand('%:p:h')}))<CR>", 'Find Files' },
-  ['<c-_>'] = { mappings.curr_buf, 'Search Current Buffer' },
-}, opts)

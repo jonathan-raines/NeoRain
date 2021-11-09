@@ -38,6 +38,7 @@ local mappings = {
   ['C'] = 'which_key_ignore',
   ['e'] = 'which_key_ignore',
   ['q'] = 'which_key_ignore',
+  ['Q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
   ['W'] = 'which_key_ignore',
   ['b'] = 'Buffers',

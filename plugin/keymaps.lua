@@ -11,9 +11,10 @@ map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 map('n', '<leader>W', ':wq!<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
+map('n', '<leader>Q', ':bufdo bd!<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>c', ':bd!<CR>', { noremap = true, silent = true })
-map('n', '<leader>C', ':bufdo bd!<CR>', { noremap = true, silent = true })
+map('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', { noremap = true, silent = true })
 
 -- Keeping it centered
 map('n', 'n', 'nzzzv', { silent = true, noremap = true })
@@ -37,14 +38,16 @@ vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 -- Quickfix Navigation
 map('n', ']q', ':cnext<CR>', { silent = true, noremap = true })
 map('n', '[q', ':cprevious<CR>', { silent = true, noremap = true })
-map('n', ']Q', ':clast<CR>', { silent = true, noremap = true })
-map('n', '[Q', ':cfirst<CR>', { silent = true, noremap = true })
+map('n', ']Q', ':cfirst<CR>', { silent = true, noremap = true })
+map('n', '[Q', ':clast<CR>', { silent = true, noremap = true })
 
 -- Buffer Navigation
 map('n', ']b', ':bn<CR>', { silent = true, noremap = true })
 map('n', '[b', ':bp<CR>', { silent = true, noremap = true })
 map('n', ']B', ':blast<CR>', { silent = true, noremap = true })
 map('n', '[B', ':bfirst<CR>', { silent = true, noremap = true })
+map('n', '<Tab>', ':bn<CR>', { silent = true, noremap = true })
+map('n', '<Backspace>', ':bp<CR>', { silent = true, noremap = true })
 
 -- Escape
 map('i', 'jk', '<ESC>', { silent = true, noremap = true })
