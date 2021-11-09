@@ -1,27 +1,27 @@
 ---@diagnostic disable: undefined-global
 local lsp_installer = require 'nvim-lsp-installer'
 local map = vim.api.nvim_buf_set_keymap
+local opts = { noremap = true, silent = true }
+
+local mappings = {
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc'),
+  map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts),
+  map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts),
+  map(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts),
+  map(bufnr, 'n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts),
+  map(bufnr, 'n', 'gR', '<cmd>Telescope lsp_references theme=get_ivy<CR>', opts),
+  map(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts),
+  map(bufnr, 'n', 'gp', '<cmd>Telescope lsp_definitions jump_type=never theme=get_cursor<CR>', opts),
+  map(bufnr, 'n', 'ge', "<cmd>lua vim.diagnostic.open_float(0, {scope = 'line', border = 'rounded'})<CR>", opts),
+  map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts),
+  map(bufnr, 'v', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts),
+  map(bufnr, 'n', 'ga', '<cmd>Telescope lsp_code_actions theme=get_cursor<CR>', opts),
+  map(bufnr, 'v', 'ga', '<cmd>Telescope lsp_code_actions theme=get_cursor<CR><ESC>', opts),
+  map(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts),
+  map(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts),
+}
 
 function _G_custom_on_attach(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  local opts = { noremap = true, silent = true }
-  map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  map(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  map(bufnr, 'n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
-  map(bufnr, 'n', 'gR', '<cmd>Telescope lsp_references theme=get_ivy<CR>', opts)
-  map(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  map(bufnr, 'n', 'gp', '<cmd>Telescope lsp_definitions jump_type=never theme=get_cursor<CR>', opts)
-  map(bufnr, 'n', 'ge', "<cmd>lua vim.diagnostic.open_float(0, {scope = 'line', border = 'rounded'})<CR>", opts)
-  map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  map(bufnr, 'n', 'ga', '<cmd>Telescope lsp_code_actions theme=get_cursor<CR>', opts)
-  map(bufnr, 'v', 'ga', '<cmd>Telescope lsp_code_actions theme=get_cursor<CR><ESC>', opts)
-  -- map(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  -- map(bufnr, 'v', 'ga', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-  map(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  map(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-
   if client.resolved_capabilities.document_formatting then
     vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
   end
@@ -47,17 +47,7 @@ function _G_custom_on_attach(client, bufnr)
             ]]
   end
 
-  vim.cmd [[
-    augroup LspPopupHelp
-      autocmd! * <buffer>
-      autocmd CursorHold <buffer> lua vim.diagnostic.open_float(0, { border = 'rounded', focusable = false, scope = 'line' })
-      autocmd CursorHold <buffer> lua vim.lsp.buf.hover()
-      autocmd CursorHoldI <buffer> lua vim.lsp.buf.signature_help()
-    augroup end
-  ]]
-
-  local wk = require 'which-key'
-  wk.register({
+  require('which-key').register({
     g = {
       ['a'] = 'Code Action',
       ['b'] = 'Comment Block',
@@ -73,6 +63,8 @@ function _G_custom_on_attach(client, bufnr)
       ['x'] = 'Open File Under cursor',
     },
   }, opts)
+
+  return mappings
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -87,40 +79,14 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 lsp_installer.on_server_ready(function(server)
-  local runtime_path = vim.split(package.path, ';')
-  table.insert(runtime_path, 'lua/?.lua')
-  table.insert(runtime_path, 'lua/?/init.lua')
   local opts2 = { on_attach = _G_custom_on_attach, capabilities = capabilities }
-
-  if server.name == 'sumneko_lua' then
-    opts2['settings'] = {
-      diagnostics = {
-        globals = { 'vim' },
-      },
-      telemetry = {
-        enable = false,
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand '$VIMRUNTIME/lua'] = true,
-          [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
-        },
-        maxPreload = 100000,
-        preloadFileSize = 10000,
-      },
-    }
-  end
 
   if server.name == 'tsserver' then
     opts2 = {
-      cmd = { 'typescript-language-server', '--stdio' },
-      filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
-      init_options = {
-        hostInfo = 'neovim',
-      },
-      root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
-      capabilities = capabilities,
-      ---@diagnostic disable-next-line: unused-local
+      -- Only needed for inlayHints. Merge this table with your settings or copy
+      -- it from the source if you want to add your own init_options.
+      init_options = require('nvim-lsp-ts-utils').init_options,
+      --
       on_attach = function(client, bufnr)
         -- disable tsserver formatting if you plan on formatting via null-ls
         client.resolved_capabilities.document_formatting = false
@@ -136,11 +102,12 @@ lsp_installer.on_server_ready(function(server)
 
           -- import all
           import_all_timeout = 5000, -- ms
+          -- lower numbers indicate higher priority
           import_all_priorities = {
-            buffers = 4, -- loaded buffer names
-            buffer_content = 3, -- loaded buffer content
-            local_files = 2, -- git files or files with relative path markers
             same_file = 1, -- add to existing import statement
+            local_files = 2, -- git files or files with relative path markers
+            buffer_content = 3, -- loaded buffer content
+            buffers = 4, -- loaded buffer names
           },
           import_all_scan_buffers = 100,
           import_all_select_source = false,
@@ -148,15 +115,14 @@ lsp_installer.on_server_ready(function(server)
           -- eslint
           eslint_enable_code_actions = true,
           eslint_enable_disable_comments = true,
-          eslint_bin = 'eslint_d',
-          eslint_config_fallback = nil,
+          eslint_bin = 'eslint',
           eslint_enable_diagnostics = false,
-          eslint_show_rule_id = false,
+          eslint_opts = {},
 
           -- formatting
           enable_formatting = false,
-          formatter = 'eslint_d',
-          formatter_config_fallback = nil,
+          formatter = 'prettier',
+          formatter_opts = {},
 
           -- update imports on file move
           update_imports_on_move = false,
@@ -166,78 +132,31 @@ lsp_installer.on_server_ready(function(server)
           -- filter diagnostics
           filter_out_diagnostics_by_severity = {},
           filter_out_diagnostics_by_code = {},
+
+          -- inlay hints
+          auto_inlay_hints = true,
+          inlay_hints_highlight = 'Comment',
         }
 
         -- required to fix code action ranges and filter diagnostics
         ts_utils.setup_client(client)
+
+        -- no default maps, so you may want to define some here
+        local opts3 = { silent = true }
+        table.insert(mappings, {
+          map(bufnr, 'n', 'gs', ':TSLspOrganize<CR>', opts3),
+          map(bufnr, 'n', 'gr', ':TSLspRenameFile<CR>', opts3),
+          map(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', opts3),
+        })
       end,
     }
-
-    if server.name == 'vuels' then
-      opts2['init_options'] = {
-        config = {
-          vetur = {
-            completion = {
-              autoImport = true,
-              tagCasing = 'kebab',
-              useScaffoldSnippets = true,
-            },
-            useWorkspaceDependencies = true,
-            validation = {
-              script = true,
-              style = true,
-              template = true,
-            },
-          },
-        },
-      }
-    end
-
-    if server.name == 'yamlls' then
-      opts2['settings'] = {
-        yaml = {
-          hover = true,
-          completion = true,
-          validate = true,
-          schemaStore = {
-            enable = true,
-            url = 'https://www.schemastore.org/api/json/catalog.json',
-          },
-          schemas = {
-            kubernetes = {
-              'daemon.{yml,yaml}',
-              'manager.{yml,yaml}',
-              'restapi.{yml,yaml}',
-              'role.{yml,yaml}',
-              'role_binding.{yml,yaml}',
-              '*onfigma*.{yml,yaml}',
-              '*ngres*.{yml,yaml}',
-              '*ecre*.{yml,yaml}',
-              '*eployment*.{yml,yaml}',
-              '*ervic*.{yml,yaml}',
-              'kubectl-edit*.yaml',
-            },
-          },
-        },
-      }
-    end
   end
 
-  -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
   server:setup(opts2)
   vim.cmd [[ do User LspAttachBuffers ]]
 end)
 
 require('lspconfig').solargraph.setup {
-  cmd = { 'solargraph', 'stdio' },
-  filetypes = { 'ruby', 'rakefile', 'rake' },
-  root_dir = require('lspconfig.util').root_pattern '.',
   on_attach = _G_custom_on_attach,
   capabilities = capabilities,
-  settings = {
-    solargraph = {
-      formatting = true,
-      rename = true,
-    },
-  },
 }
