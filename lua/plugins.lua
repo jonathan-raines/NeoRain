@@ -206,6 +206,15 @@ require('packer').startup(function()
     requires = { 'nvim-lua/plenary.nvim' },
     ft = { 'http' },
   }
+
+  use {
+    'echasnovski/mini.nvim',
+    config = function()
+      require('mini.surround').setup {}
+      require('mini.tabline').setup {}
+    end,
+    event = 'BufEnter',
+  }
   ------------------------------
 
   ---------- Text Editing ----------
@@ -248,13 +257,13 @@ require('packer').startup(function()
     event = 'BufRead',
   }
 
-  use {
-    'blackCauldron7/surround.nvim',
-    config = function()
-      require('surround').setup { mappings_style = 'sandwich' }
-    end,
-    event = 'BufRead',
-  }
+  -- use {
+  --   'blackCauldron7/surround.nvim',
+  --   config = function()
+  --     require('surround').setup { mappings_style = 'sandwich' }
+  --   end,
+  --   event = 'BufRead',
+  -- }
 
   use {
     'ThePrimeagen/refactoring.nvim',
@@ -293,13 +302,13 @@ require('packer').startup(function()
     event = 'UIEnter',
   }
 
-  use {
-    'akinsho/bufferline.nvim',
-    config = function()
-      require './configs/bufferline'
-    end,
-    requires = 'kyazdani42/nvim-web-devicons',
-  }
+  -- use {
+  --   'akinsho/bufferline.nvim',
+  --   config = function()
+  --     require './configs/bufferline'
+  --   end,
+  --   requires = 'kyazdani42/nvim-web-devicons',
+  -- }
 
   use {
     'folke/which-key.nvim',

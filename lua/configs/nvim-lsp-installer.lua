@@ -21,6 +21,7 @@ local mappings = {
   map(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts),
 }
 
+---@diagnostic disable: unused-local
 function _G_custom_on_attach(client, bufnr)
   if client.resolved_capabilities.document_formatting then
     vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
@@ -83,10 +84,9 @@ lsp_installer.on_server_ready(function(server)
 
   if server.name == 'tsserver' then
     opts2 = {
-      -- Only needed for inlayHints. Merge this table with your settings or copy
-      -- it from the source if you want to add your own init_options.
-      init_options = require('nvim-lsp-ts-utils').init_options,
-      --
+      init_options = {
+        hostInfo = 'neovim',
+      },
       on_attach = function(client, bufnr)
         -- disable tsserver formatting if you plan on formatting via null-ls
         client.resolved_capabilities.document_formatting = false
