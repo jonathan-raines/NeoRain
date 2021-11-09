@@ -16,7 +16,7 @@ require('telescope').setup {
   pickers = {
     buffers = {
       show_all_buffers = true,
-      ignore_current_buffer = true,
+      ignore_current_buffer = false,
       sort_lastused = true,
       mappings = {
         i = {
