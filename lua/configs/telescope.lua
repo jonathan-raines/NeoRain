@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local actions = require 'telescope.actions'
 
 require('telescope').setup {

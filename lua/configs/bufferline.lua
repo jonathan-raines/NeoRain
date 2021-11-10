@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 require('bufferline').setup {
   options = {
     show_buffer_close_icons = false,

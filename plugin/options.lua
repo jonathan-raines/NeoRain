@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local opt = vim.opt
 
 opt.clipboard = 'unnamedplus'

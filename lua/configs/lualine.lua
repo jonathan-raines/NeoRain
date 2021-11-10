@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local window_width_limit = 80
 
 local conditions = {

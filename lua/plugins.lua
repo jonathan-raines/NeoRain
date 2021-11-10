@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -206,6 +207,15 @@ require('packer').startup(function()
     end,
     requires = { 'nvim-lua/plenary.nvim' },
     ft = { 'http' },
+  }
+
+  use {
+    'echasnovski/mini.nvim',
+    config = function()
+      -- require('mini.surround').setup()
+      require('mini.tabline').setup()
+    end,
+    event = 'BufEnter',
   }
   ------------------------------
 

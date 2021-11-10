@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 vim.cmd [[ let g:db_ui_auto_execute_table_helpers = 1 ]]
 
 vim.cmd [[
