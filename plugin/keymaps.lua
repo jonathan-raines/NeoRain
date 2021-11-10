@@ -12,7 +12,7 @@ vim.g.maplocalleader = ' '
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 
-map('n', '<leader>q', ':q<CR>', { noremap = true, silent = true })
+map('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 map('n', '<leader>Q', ':bufdo bd!<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>c', ':bd!<CR>', { noremap = true, silent = true })
