@@ -32,8 +32,7 @@ require('packer').startup(function()
     { 'nathom/filetype.nvim' },
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-lua/popup.nvim' },
-    { 'kyazdani42/nvim-web-devicons' },
-    { 'nvim-treesitter/playground', event = 'BufRead' },
+    { 'kyazdani42/nvim-web-devicons', event = 'VimEnter' },
   }
 
   ---------- Database ----------
@@ -208,15 +207,6 @@ require('packer').startup(function()
     requires = { 'nvim-lua/plenary.nvim' },
     ft = { 'http' },
   }
-
-  use {
-    'echasnovski/mini.nvim',
-    config = function()
-      -- require('mini.surround').setup()
-      require('mini.tabline').setup()
-    end,
-    event = 'BufEnter',
-  }
   ------------------------------
 
   ---------- Text Editing ----------
@@ -232,15 +222,17 @@ require('packer').startup(function()
           require('luasnip/loaders/from_vscode').lazy_load()
         end,
         requires = {
-          { 'saadparwaiz1/cmp_luasnip' },
-          { 'rafamadriz/friendly-snippets' },
+          { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
+          { 'rafamadriz/friendly-snippets', after = 'LuaSnip' },
         },
+        after = 'nvim-autopairs',
       },
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lua',
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
     },
+    after = 'nvim-autopairs',
   }
 
   use {
@@ -272,6 +264,7 @@ require('packer').startup(function()
     config = function()
       require './configs/refactoring'
     end,
+    event = 'BufRead',
     ft = { 'go', 'lua', 'js', 'py', 'ts' },
   }
   -----------------------------------------
@@ -310,6 +303,7 @@ require('packer').startup(function()
   --     require './configs/bufferline'
   --   end,
   --   requires = 'kyazdani42/nvim-web-devicons',
+  --   event = 'VimEnter',
   -- }
 
   use {
