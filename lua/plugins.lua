@@ -190,6 +190,7 @@ require('packer').startup(function()
     end,
     requires = { 'ThePrimeagen/harpoon' },
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
+    opt = true,
   }
 
   use {
@@ -205,15 +206,6 @@ require('packer').startup(function()
     end,
     requires = { 'nvim-lua/plenary.nvim' },
     ft = { 'http' },
-  }
-
-  use {
-    'echasnovski/mini.nvim',
-    config = function()
-      require('mini.surround').setup()
-      require('mini.tabline').setup()
-    end,
-    event = 'BufEnter',
   }
   ------------------------------
 
@@ -257,13 +249,13 @@ require('packer').startup(function()
     event = 'BufRead',
   }
 
-  -- use {
-  --   'blackCauldron7/surround.nvim',
-  --   config = function()
-  --     require('surround').setup { mappings_style = 'sandwich' }
-  --   end,
-  --   event = 'BufRead',
-  -- }
+  use {
+    'blackCauldron7/surround.nvim',
+    config = function()
+      require('surround').setup { mappings_style = 'sandwich' }
+    end,
+    event = 'BufRead',
+  }
 
   use {
     'ThePrimeagen/refactoring.nvim',

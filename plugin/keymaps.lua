@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local vim = vim
 local map = vim.api.nvim_set_keymap
 
@@ -10,7 +11,6 @@ vim.g.maplocalleader = ' '
 
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
-map('n', '<leader>W', ':wq!<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
 map('n', '<leader>Q', ':bufdo bd!<CR>', { noremap = true, silent = true })
@@ -34,22 +34,22 @@ map('i', '!', '!<c-g>u', { silent = true, noremap = true })
 map('i', '?', '?<c-g>u', { silent = true, noremap = true })
 
 -- Jumplist mutations
-vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
-vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
+-- vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
+-- vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 
 -- Quickfix Navigation
 map('n', ']q', ':cnext<CR>', { silent = true, noremap = true })
 map('n', '[q', ':cprevious<CR>', { silent = true, noremap = true })
-map('n', ']Q', ':cfirst<CR>', { silent = true, noremap = true })
-map('n', '[Q', ':clast<CR>', { silent = true, noremap = true })
+-- map('n', ']Q', ':cfirst<CR>', { silent = true, noremap = true })
+-- map('n', '[Q', ':clast<CR>', { silent = true, noremap = true })
 
 -- Buffer Navigation
 map('n', ']b', ':bn<CR>', { silent = true, noremap = true })
 map('n', '[b', ':bp<CR>', { silent = true, noremap = true })
 map('n', ']B', ':blast<CR>', { silent = true, noremap = true })
 map('n', '[B', ':bfirst<CR>', { silent = true, noremap = true })
-map('n', '<Tab>', ':bn<CR>', { silent = true, noremap = true })
-map('n', '<Backspace>', ':bp<CR>', { silent = true, noremap = true })
+-- map('n', '<Tab>', ':bn<CR>', { silent = true, noremap = true })
+-- map('n', '<Backspace>', ':bp<CR>', { silent = true, noremap = true })
 
 -- Escape
 map('i', 'jk', '<ESC>', { silent = true, noremap = true })
@@ -74,10 +74,10 @@ map('n', '<C-Left>', ':vertical resize -5<CR>', { silent = true, noremap = true 
 map('n', '<C-Right>', ':vertical resize +5<CR>', { silent = true, noremap = true })
 
 -- Indent
-map('v', '<', '<gv', { silent = true, noremap = true })
-map('v', '>', '>gv', { silent = true, noremap = true })
-map('n', '<', '<<', { silent = true, noremap = true })
-map('n', '>', '>>', { silent = true, noremap = true })
+-- map('v', '<', '<gv', { silent = true, noremap = true })
+-- map('v', '>', '>gv', { silent = true, noremap = true })
+-- map('n', '<', '<<', { silent = true, noremap = true })
+-- map('n', '>', '>>', { silent = true, noremap = true })
 
 -- Quickfix
 map('n', '<C-q>', ':call QuickFixToggle()<CR>', { silent = true, noremap = true })
