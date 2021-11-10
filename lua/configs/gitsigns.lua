@@ -63,7 +63,9 @@ require('gitsigns').setup {
   },
 }
 
-require('which-key').register({
+local wk = require 'which-key'
+
+wk.register({
   h = {
     name = 'Git',
     ['b'] = 'Blame Line',
@@ -79,3 +81,8 @@ require('which-key').register({
 }, {
   prefix = '<leader>',
 })
+
+wk.register {
+  [']c'] = { 'Get next hunk' },
+  ['[c'] = { 'Get previous hunk' },
+}
