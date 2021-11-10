@@ -12,7 +12,7 @@ vim.g.maplocalleader = ' '
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 
-map('n', '<leader>q', ':q!<CR>', { noremap = true, silent = true })
+map('n', '<leader>q', ':q<CR>', { noremap = true, silent = true })
 map('n', '<leader>Q', ':bufdo bd!<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>c', ':bd!<CR>', { noremap = true, silent = true })
@@ -46,8 +46,8 @@ map('n', '[q', ':cprevious<CR>', { silent = true, noremap = true })
 -- Buffer Navigation
 map('n', ']b', ':bn<CR>', { silent = true, noremap = true })
 map('n', '[b', ':bp<CR>', { silent = true, noremap = true })
-map('n', ']B', ':blast<CR>', { silent = true, noremap = true })
-map('n', '[B', ':bfirst<CR>', { silent = true, noremap = true })
+-- map('n', ']B', ':blast<CR>', { silent = true, noremap = true })
+-- map('n', '[B', ':bfirst<CR>', { silent = true, noremap = true })
 -- map('n', '<Tab>', ':bn<CR>', { silent = true, noremap = true })
 -- map('n', '<Backspace>', ':bp<CR>', { silent = true, noremap = true })
 
