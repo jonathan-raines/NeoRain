@@ -11,7 +11,6 @@ opt.foldmethod = 'expr'
 opt.foldlevelstart = 99
 opt.hlsearch = false
 opt.ignorecase = true
-opt.inccommand = 'split' -- 'nosplit'
 opt.mouse = 'a'
 opt.number = true
 opt.relativenumber = true
