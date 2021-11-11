@@ -28,14 +28,14 @@ map('n', '<C-o>', '<C-o>zz', { silent = true, noremap = true })
 map('n', '<C-i>', '<C-i>zz', { silent = true, noremap = true })
 
 -- Undo break points
--- map('i', ',', ',<c-g>u', { silent = true, noremap = true })
--- map('i', '.', '.<c-g>u', { silent = true, noremap = true })
--- map('i', '!', '!<c-g>u', { silent = true, noremap = true })
--- map('i', '?', '?<c-g>u', { silent = true, noremap = true })
+map('i', ',', ',<c-g>u', { silent = true, noremap = true })
+map('i', '.', '.<c-g>u', { silent = true, noremap = true })
+map('i', '!', '!<c-g>u', { silent = true, noremap = true })
+map('i', '?', '?<c-g>u', { silent = true, noremap = true })
 
 -- Jumplist mutations
--- vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
--- vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
+vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
+vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 
 -- Quickfix Navigation
 map('n', ']q', ':cnext<CR>', { silent = true, noremap = true })
