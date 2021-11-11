@@ -9,6 +9,11 @@ map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+map('n', '<leader><space>', '<c-^>', { noremap = true, silent = true })
+
+map('n', 'H', '^', { noremap = true, silent = true })
+map('n', 'L', '$', { noremap = true, silent = true })
+
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 
@@ -40,14 +45,10 @@ vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 -- Quickfix Navigation
 map('n', ']q', ':cnext<CR>', { silent = true, noremap = true })
 map('n', '[q', ':cprevious<CR>', { silent = true, noremap = true })
--- map('n', ']Q', ':cfirst<CR>', { silent = true, noremap = true })
--- map('n', '[Q', ':clast<CR>', { silent = true, noremap = true })
 
 -- Buffer Navigation
 map('n', ']b', ':bn<CR>', { silent = true, noremap = true })
 map('n', '[b', ':bp<CR>', { silent = true, noremap = true })
--- map('n', ']B', ':blast<CR>', { silent = true, noremap = true })
--- map('n', '[B', ':bfirst<CR>', { silent = true, noremap = true })
 -- map('n', '<Tab>', ':bn<CR>', { silent = true, noremap = true })
 -- map('n', '<Backspace>', ':bp<CR>', { silent = true, noremap = true })
 
