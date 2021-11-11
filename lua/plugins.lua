@@ -32,7 +32,6 @@ require('packer').startup(function()
     { 'nathom/filetype.nvim' },
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-lua/popup.nvim' },
-    { 'kyazdani42/nvim-web-devicons', event = 'VimEnter' },
   }
 
   ---------- Database ----------
@@ -75,6 +74,7 @@ require('packer').startup(function()
         run = 'make',
         after = 'telescope.nvim',
       },
+      { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
     },
     after = 'which-key.nvim',
   }
@@ -87,7 +87,7 @@ require('packer').startup(function()
       require './configs/gitsigns'
     end,
     requires = { 'nvim-lua/plenary.nvim' },
-    event = 'BufRead',
+    event = 'BufEnter',
   }
 
   use {
@@ -304,12 +304,12 @@ require('packer').startup(function()
     end,
   }
 
-  use {
-    'akinsho/nvim-toggleterm.lua',
-    config = function()
-      require './configs/nvim-toggleterm'
-    end,
-    event = 'BufRead',
-  }
+  -- use {
+  --   'akinsho/nvim-toggleterm.lua',
+  --   config = function()
+  --     require './configs/nvim-toggleterm'
+  --   end,
+  --   event = 'BufRead',
+  -- }
   --------------------------------
 end)
