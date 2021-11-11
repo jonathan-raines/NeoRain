@@ -297,15 +297,6 @@ require('packer').startup(function()
     event = 'UIEnter',
   }
 
-  -- use {
-  --   'akinsho/bufferline.nvim',
-  --   config = function()
-  --     require './configs/bufferline'
-  --   end,
-  --   requires = 'kyazdani42/nvim-web-devicons',
-  --   event = 'VimEnter',
-  -- }
-
   use {
     'folke/which-key.nvim',
     config = function()
