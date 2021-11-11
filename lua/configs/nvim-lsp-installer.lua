@@ -59,7 +59,6 @@ function _G_custom_on_attach(client, bufnr)
       ['D'] = 'Declaration',
       ['e'] = 'Line Diagnostics',
       ['i'] = 'Implementation',
-      ['l'] = 'Lazygit',
       ['p'] = 'Peek Definition',
       ['r'] = 'Rename',
       ['R'] = 'References',
