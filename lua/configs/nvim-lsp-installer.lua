@@ -158,6 +158,7 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 require('lspconfig').solargraph.setup {
+  filetypes = { 'ruby', 'rake' },
   on_attach = _G_custom_on_attach,
   capabilities = capabilities,
 }
