@@ -223,16 +223,16 @@ require('packer').startup(function()
         end,
         requires = {
           { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
-          { 'rafamadriz/friendly-snippets', after = 'LuaSnip' },
+          { 'rafamadriz/friendly-snippets', after = 'nvim-autopairs' },
         },
-        after = 'nvim-autopairs',
+        event = 'InsertEnter',
       },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      after = 'friendly-snippets',
     },
-    after = 'nvim-autopairs',
   }
 
   use {
