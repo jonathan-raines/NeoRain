@@ -223,7 +223,7 @@ require('packer').startup(function()
         end,
         requires = {
           { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
-          { 'rafamadriz/friendly-snippets', after = 'nvim-autopairs' },
+          { 'rafamadriz/friendly-snippets', event = 'InsertEnter' },
         },
         event = 'InsertEnter',
       },
@@ -303,13 +303,5 @@ require('packer').startup(function()
       require './configs/which-key'
     end,
   }
-
-  -- use {
-  --   'akinsho/nvim-toggleterm.lua',
-  --   config = function()
-  --     require './configs/nvim-toggleterm'
-  --   end,
-  --   event = 'BufRead',
-  -- }
   --------------------------------
 end)

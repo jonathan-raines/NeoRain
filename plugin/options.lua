@@ -70,6 +70,13 @@ vim.api.nvim_exec(
   false
 )
 
+vim.cmd [[
+  augroup cursor_location
+    autocmd!
+    autocmd BufReadPost * silent! normal! g`"zv
+  augroup end
+]] --Return to last cursor location in a file
+
 local disabled_built_ins = {
   'netrw',
   'netrwPlugin',
