@@ -12,8 +12,8 @@ vim.g.maplocalleader = ' '
 
 map('n', '<leader><space>', '<c-^>', opts)
 
-map('n', 'H', '^', opts)
-map('n', 'L', '$', opts)
+-- map('n', 'H', '^', opts)
+-- map('n', 'L', '$', opts)
 
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', opts)
@@ -50,8 +50,6 @@ map('n', '[q', ':cprevious<CR>', opts)
 -- Buffer Navigation
 map('n', ']b', ':bn<CR>', opts)
 map('n', '[b', ':bp<CR>', opts)
-map('n', '<Tab>', ':bn<CR>', opts)
-map('n', '<Backspace>', ':bp<CR>', opts)
 
 -- Escape
 map('i', 'jk', '<ESC>', opts)
@@ -76,10 +74,10 @@ map('n', '<C-Left>', ':vertical resize -5<CR>', opts)
 map('n', '<C-Right>', ':vertical resize +5<CR>', opts)
 
 -- Indent
--- map('v', '<', '<gv', opts)
--- map('v', '>', '>gv', opts)
--- map('n', '<', '<<', opts)
--- map('n', '>', '>>', opts)
+map('v', '<', '<gv', opts)
+map('v', '>', '>gv', opts)
+map('n', '<', '<<', opts)
+map('n', '>', '>>', opts)
 
 -- Quickfix
 map('n', '<C-q>', ':call QuickFixToggle()<CR>', opts)
