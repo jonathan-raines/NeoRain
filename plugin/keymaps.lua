@@ -12,11 +12,11 @@ vim.g.maplocalleader = ' '
 
 map('n', '<leader><space>', '<c-^>', opts)
 
--- map('n', 'H', '^', opts)
--- map('n', 'L', '$', opts)
-
 -- Write / Quit
 map('n', '<leader>w', ':w<CR>', opts)
+
+map('n', '<C-s>', ':w<CR>', opts)
+map('i', '<C-s>', '<ESC>:w<CR>', opts)
 
 map('n', '<leader>q', ':q!<CR>', opts)
 map('n', '<leader>Q', ':bufdo bd!<CR>', opts)
@@ -50,6 +50,8 @@ map('n', '[q', ':cprevious<CR>', opts)
 -- Buffer Navigation
 map('n', ']b', ':bn<CR>', opts)
 map('n', '[b', ':bp<CR>', opts)
+map('n', ']B', ':blast<CR>', opts)
+map('n', '[B', ':bfirst<CR>', opts)
 
 -- Escape
 map('i', 'jk', '<ESC>', opts)
