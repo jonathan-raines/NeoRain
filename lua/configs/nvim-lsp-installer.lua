@@ -114,11 +114,16 @@ lsp_installer.on_server_ready(function(server)
           import_all_select_source = false,
 
           -- eslint
-          eslint_enable_code_actions = true,
-          eslint_enable_disable_comments = true,
-          eslint_bin = 'eslint',
+          eslint_enable_code_actions = false,
+          eslint_enable_disable_comments = false,
+          eslint_bin = 'eslint_d',
           eslint_enable_diagnostics = false,
-          eslint_opts = {},
+          eslint_opts = {
+            -- diagnostics_format = "#{m} [#{c}]",
+            condition = function(utils)
+              return utils.root_has_file '.eslintrc.js'
+            end,
+          },
 
           -- formatting
           enable_formatting = false,
