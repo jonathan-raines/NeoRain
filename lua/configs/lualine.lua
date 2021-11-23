@@ -58,6 +58,7 @@ require('lualine').setup {
         'branch',
         cond = nil,
       },
+      -- { 'b:gitsigns_head', icon = '' },
     },
     lualine_c = {
       {
@@ -109,25 +110,20 @@ require('lualine').setup {
         cond = conditions.hide_in_width,
       },
     },
-    -- lualine_y = {
-    --   { 'progress' },
-    -- lualine_z = {
-    -- {
-    --   function()
-    --     local current_line = vim.fn.line '.'
-    --     local total_lines = vim.fn.line '$'
-    --     local chars = { '__', '▁▁', '▂▂', '▃▃', '▄▄', '▅▅', '▆▆', '▇▇', '██' }
-    --     local line_ratio = current_line / total_lines
-    --     local index = math.ceil(line_ratio * #chars)
-    --     return chars[index]
-    --   end,
-    --   padding = { left = 0, right = 0 },
-    --   color = { fg = '#61afef', bg = '#1F2335' },
-    -- },
-    -- },
-    -- },
   },
   tabline = {
-    lualine_a = { 'buffers' },
+    lualine_a = {
+      {
+        'buffers',
+        filetype_names = {
+          TelescopePrompt = 'Telescope',
+          dashboard = 'Dashboard',
+          packer = 'Packer',
+          fzf = 'FZF',
+          alpha = 'Alpha',
+        }, -- shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+      },
+    },
   },
+  extensions = { 'quickfix' },
 }
