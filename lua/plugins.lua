@@ -280,10 +280,20 @@ require('packer').startup(function()
   --------------------------------
 
   -------------- UI -----------------
+  -- use {
+  --   'Mofiqul/dracula.nvim',
+  --   config = function()
+  --     require './configs/dracula'
+  --   end,
+  --   after = 'lualine.nvim',
+  -- }
+
   use {
-    'Mofiqul/dracula.nvim',
+    'shaunsingh/nord.nvim',
     config = function()
-      require './configs/dracula'
+      vim.g.nord_disable_background = true
+      require('nord').set()
+      vim.cmd [[colorscheme nord]]
     end,
     after = 'lualine.nvim',
   }
