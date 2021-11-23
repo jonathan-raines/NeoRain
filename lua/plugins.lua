@@ -312,5 +312,13 @@ require('packer').startup(function()
       require './configs/which-key'
     end,
   }
+
+  -- use {
+  --   'akinsho/nvim-toggleterm.lua',
+  --   config = function()
+  --     require './configs/nvim-toggleterm'
+  --   end,
+  --   event = 'BufEnter',
+  -- }
   --------------------------------
 end)
