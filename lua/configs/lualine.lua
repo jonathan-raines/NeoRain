@@ -56,14 +56,12 @@ require('lualine').setup {
     lualine_b = {
       {
         'branch',
-        color = { bg = '#1F2335' },
         cond = nil,
       },
     },
     lualine_c = {
       {
         'filename',
-        -- cond = conditions.buffer_not_empty,
       },
       {
         'diff',
@@ -108,24 +106,28 @@ require('lualine').setup {
       },
       {
         'filetype',
-        color = { fg = '#898E99' },
         cond = conditions.hide_in_width,
       },
     },
-    lualine_y = {},
-    lualine_z = {
-      {
-        function()
-          local current_line = vim.fn.line '.'
-          local total_lines = vim.fn.line '$'
-          local chars = { '__', '▁▁', '▂▂', '▃▃', '▄▄', '▅▅', '▆▆', '▇▇', '██' }
-          local line_ratio = current_line / total_lines
-          local index = math.ceil(line_ratio * #chars)
-          return chars[index]
-        end,
-        padding = { left = 0, right = 0 },
-        color = { fg = '#61afef', bg = '#1F2335' },
-      },
-    },
+    -- lualine_y = {
+    --   { 'progress' },
+    -- lualine_z = {
+    -- {
+    --   function()
+    --     local current_line = vim.fn.line '.'
+    --     local total_lines = vim.fn.line '$'
+    --     local chars = { '__', '▁▁', '▂▂', '▃▃', '▄▄', '▅▅', '▆▆', '▇▇', '██' }
+    --     local line_ratio = current_line / total_lines
+    --     local index = math.ceil(line_ratio * #chars)
+    --     return chars[index]
+    --   end,
+    --   padding = { left = 0, right = 0 },
+    --   color = { fg = '#61afef', bg = '#1F2335' },
+    -- },
+    -- },
+    -- },
+  },
+  tabline = {
+    lualine_a = { 'buffers' },
   },
 }
