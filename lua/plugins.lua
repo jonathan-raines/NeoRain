@@ -277,17 +277,14 @@ require('packer').startup(function()
       require './configs/nvim-treesitter'
     end,
   }
+
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
   --------------------------------
 
   -------------- UI -----------------
-  -- use {
-  --   'Mofiqul/dracula.nvim',
-  --   config = function()
-  --     require './configs/dracula'
-  --   end,
-  --   after = 'lualine.nvim',
-  -- }
-
   use {
     'shaunsingh/nord.nvim',
     config = function()
@@ -312,13 +309,5 @@ require('packer').startup(function()
       require './configs/which-key'
     end,
   }
-
-  -- use {
-  --   'akinsho/nvim-toggleterm.lua',
-  --   config = function()
-  --     require './configs/nvim-toggleterm'
-  --   end,
-  --   event = 'BufEnter',
-  -- }
   --------------------------------
 end)
