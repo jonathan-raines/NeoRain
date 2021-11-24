@@ -3,8 +3,6 @@ local vim = vim
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-map('n', 'Q', '<Nop>', opts)
-
 --Remap space as leader key
 map('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
@@ -19,7 +17,7 @@ map('n', '<C-s>', ':w<CR>', opts)
 map('i', '<C-s>', '<ESC>:w<CR>', opts)
 
 map('n', '<leader>q', ':q!<CR>', opts)
-map('n', '<leader>Q', ':bufdo bd!<CR>', opts)
+map('n', 'Q', ':bufdo bd!<CR>', opts)
 
 map('n', '<leader>c', ':bd!<CR>', opts)
 map('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', opts)
