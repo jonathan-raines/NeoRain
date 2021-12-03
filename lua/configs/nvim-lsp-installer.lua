@@ -85,9 +85,14 @@ lsp_installer.on_server_ready(function(server)
 
   if server.name == 'tsserver' then
     opts2 = {
+      cmd = { 'typescript-language-server', '--stdio' },
+      filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
       init_options = {
         hostInfo = 'neovim',
       },
+      root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
+      capabilities = capabilities,
+      ---@diagnostic disable-next-line: unused-local
       on_attach = function(client, bufnr)
         -- disable tsserver formatting if you plan on formatting via null-ls
         client.resolved_capabilities.document_formatting = false
@@ -103,37 +108,14 @@ lsp_installer.on_server_ready(function(server)
 
           -- import all
           import_all_timeout = 5000, -- ms
-          -- lower numbers indicate higher priority
           import_all_priorities = {
-            same_file = 1, -- add to existing import statement
-            local_files = 2, -- git files or files with relative path markers
-            buffer_content = 3, -- loaded buffer content
             buffers = 4, -- loaded buffer names
+            buffer_content = 3, -- loaded buffer content
+            local_files = 2, -- git files or files with relative path markers
+            same_file = 1, -- add to existing import statement
           },
           import_all_scan_buffers = 100,
           import_all_select_source = false,
-
-          -- eslint
-          eslint_enable_code_actions = false,
-          eslint_enable_disable_comments = false,
-          eslint_bin = 'eslint_d',
-          eslint_enable_diagnostics = false,
-          eslint_opts = {
-            -- diagnostics_format = "#{m} [#{c}]",
-            condition = function(utils)
-              return utils.root_has_file '.eslintrc.js'
-            end,
-          },
-
-          -- formatting
-          enable_formatting = false,
-          formatter = 'prettier',
-          formatter_opts = {},
-
-          -- update imports on file move
-          update_imports_on_move = false,
-          require_confirmation_on_move = false,
-          watch_dir = nil,
 
           -- filter diagnostics
           filter_out_diagnostics_by_severity = {},
@@ -142,18 +124,15 @@ lsp_installer.on_server_ready(function(server)
           -- inlay hints
           auto_inlay_hints = true,
           inlay_hints_highlight = 'Comment',
+
+          -- update imports on file move
+          update_imports_on_move = false,
+          require_confirmation_on_move = false,
+          watch_dir = nil,
         }
 
         -- required to fix code action ranges and filter diagnostics
         ts_utils.setup_client(client)
-
-        -- no default maps, so you may want to define some here
-        local opts3 = { silent = true }
-        table.insert(_G_mappings, {
-          map(bufnr, 'n', 'gs', ':TSLspOrganize<CR>', opts3),
-          map(bufnr, 'n', 'gr', ':TSLspRenameFile<CR>', opts3),
-          map(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', opts3),
-        })
       end,
     }
   end
