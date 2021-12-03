@@ -18,6 +18,8 @@ require('which-key').register({
     ['w'] = { '<cmd>lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>', 'Quick Commands Menu' },
     ['t'] = { '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>', 'Go to Terminal 1' },
     ['y'] = { '<cmd>lua require("harpoon.term").gotoTerminal(2)<CR>', 'Go to Terminal 2' },
+    ['T'] = { '<cmd>lua require("harpoon.tmux").gotoTerminal(1)<CR>', 'Go to Tmux Terminal 1' },
+    ['Y'] = { '<cmd>lua require("harpoon.tmux").gotoTerminal(2)<CR>', 'Go to Tmux Terminal 2' },
   },
 }, {
   prefix = '<leader>',
