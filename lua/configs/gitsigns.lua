@@ -69,7 +69,6 @@ wk.register({
   g = {
     name = 'Git',
     ['b'] = 'Blame Line',
-    ['g'] = { '<cmd>Neogit<CR>', 'Neogit' },
     ['p'] = 'Preview Hunk',
     ['r'] = 'Reset Hunk',
     ['R'] = 'Reset Buffer',
