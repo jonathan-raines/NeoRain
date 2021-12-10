@@ -41,12 +41,6 @@ require('telescope').setup {
     selection_strategy = 'reset',
     use_less = true,
   },
-  extensions = {
-    fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true,
-    },
-  },
 }
 
 local mappings = {}

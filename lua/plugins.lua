@@ -67,9 +67,9 @@ require('packer').startup(function()
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
       {
-        'nvim-telescope/telescope-fzy-native.nvim',
+        'nvim-telescope/telescope-fzf-native.nvim',
         config = function()
-          require('telescope').load_extension 'fzy_native'
+          require('telescope').load_extension 'fzf'
         end,
         run = 'make',
         after = 'telescope.nvim',
@@ -96,16 +96,6 @@ require('packer').startup(function()
       require('octo').setup()
     end,
     cmd = 'Octo',
-    opt = true,
-  }
-
-  use {
-    'TimUntersberger/neogit',
-    config = function()
-      require './configs/neogit'
-    end,
-    requires = { 'nvim-lua/plenary.nvim' },
-    cmd = 'Neogit',
     opt = true,
   }
   ----------------------------
@@ -308,6 +298,14 @@ require('packer').startup(function()
     config = function()
       require './configs/which-key'
     end,
+  }
+
+  use {
+    'akinsho/nvim-toggleterm.lua',
+    config = function()
+      require './configs/nvim-toggleterm'
+    end,
+    event = 'BufEnter',
   }
   --------------------------------
 end)
