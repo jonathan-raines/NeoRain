@@ -32,11 +32,8 @@ local sources = {
   null_ls.builtins.code_actions.refactoring,
 }
 
-require('null-ls').config {
+require('null-ls').setup {
   sources = sources,
-}
-
-require('lspconfig')['null-ls'].setup {
   on_attach = function()
     vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
   end,
