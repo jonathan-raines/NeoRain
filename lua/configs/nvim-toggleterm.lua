@@ -53,5 +53,12 @@ function _G_lazygit_toggle()
   lazygit:toggle()
 end
 
--- vim.api.nvim_set_keymap('n', 'gt', '<cmd>lua _G_horizontal_toggle()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gh', '<cmd>lua _G_horizontal_toggle()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua _G_lazygit_toggle()<CR>', { noremap = true, silent = true })
+
+require('which-key').register({
+  g = {
+    ['h'] = 'Horizontal Terminal',
+    ['l'] = 'Lazygit',
+  },
+}, opts)
