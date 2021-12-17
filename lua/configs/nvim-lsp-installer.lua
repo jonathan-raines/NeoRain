@@ -3,7 +3,7 @@ local lsp_installer = require 'nvim-lsp-installer'
 local map = vim.api.nvim_buf_set_keymap
 local opts = { noremap = true, silent = true }
 
-_G_mappings = {
+local mappings = {
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc'),
   map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts),
   map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts),
@@ -22,51 +22,33 @@ _G_mappings = {
 }
 
 ---@diagnostic disable: unused-local
-function _G_custom_on_attach(client, bufnr)
+local function custom_on_attach(client, bufnr)
   if client.resolved_capabilities.document_formatting then
     vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
   end
 
   -- Set autocommands conditional on server_capabilities
-  -- if client.resolved_capabilities.document_highlight then
-  --   vim.cmd [[
-  --             augroup lsp_document_highlight
-  --               autocmd! * <buffer>
-  --               autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-  --               autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-  --             augroup end
-  --
-  --           ]]
-  -- end
+  if client.resolved_capabilities.document_highlight then
+    vim.cmd [[
+               augroup lsp_document_highlight
+                 autocmd! * <buffer>
+                 autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                 autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+               augroup end
 
-  -- if client.resolved_capabilities.code_lens then
-  --   vim.cmd [[
-  --             augroup lsp_document_codelens
-  --               au! * <buffer>
-  --               autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
-  --             augroup end
-  --           ]]
-  -- end
+             ]]
+  end
 
-  require('which-key').register({
-    g = {
-      ['a'] = 'Code Action',
-      ['b'] = 'Comment Block',
-      ['bc'] = 'Comment Block',
-      ['c'] = 'Comment Line',
-      ['cc'] = 'Comment Line',
-      ['d'] = 'Definition',
-      ['D'] = 'Declaration',
-      ['e'] = 'Line Diagnostics',
-      ['i'] = 'Implementation',
-      ['p'] = 'Peek Definition',
-      ['r'] = 'Rename',
-      ['R'] = 'References',
-      ['x'] = 'Open File Under cursor',
-    },
-  }, opts)
+  if client.resolved_capabilities.code_lens then
+    vim.cmd [[
+               augroup lsp_document_codelens
+                 au! * <buffer>
+                 autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
+               augroup end
+             ]]
+  end
 
-  return _G_mappings
+  return mappings
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -143,6 +125,24 @@ end)
 
 require('lspconfig').solargraph.setup {
   filetypes = { 'ruby', 'rake' },
-  on_attach = _G_custom_on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
 }
+
+require('which-key').register({
+  g = {
+    ['a'] = 'Code Action',
+    ['b'] = 'Comment Block',
+    ['bc'] = 'Comment Block',
+    ['c'] = 'Comment Line',
+    ['cc'] = 'Comment Line',
+    ['d'] = 'Definition',
+    ['D'] = 'Declaration',
+    ['e'] = 'Line Diagnostics',
+    ['i'] = 'Implementation',
+    ['p'] = 'Peek Definition',
+    ['r'] = 'Rename',
+    ['R'] = 'References',
+    ['x'] = 'Open File Under cursor',
+  },
+}, opts)
