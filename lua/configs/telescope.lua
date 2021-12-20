@@ -47,7 +47,8 @@ local mappings = {}
 
 mappings.cwd_filebrowser = function()
   local opt = require('telescope.themes').get_ivy { cwd = vim.fn.expand '%:p:h' }
-  require('telescope.builtin').file_browser(opt)
+  -- require('telescope.builtin').file_browser(opt)
+  require('telescope').extensions.file_browser.file_browser(opt)
 end
 
 mappings.curr_buf = function()
@@ -64,7 +65,8 @@ wk.register({
     b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
     d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
-    e = { '<cmd>Telescope file_browser theme=get_ivy<cr>', 'File Browser' },
+    -- e = { '<cmd>Telescope file_browser theme=get_ivy<cr>', 'File Browser' },
+    e = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", 'File Browser' },
     g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
     o = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },

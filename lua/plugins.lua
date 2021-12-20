@@ -75,6 +75,28 @@ require('packer').startup(function()
         after = 'telescope.nvim',
       },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
+      {
+        'nvim-telescope/telescope-file-browser.nvim',
+        config = function()
+          require('telescope').setup {
+            extensions = {
+              file_browser = {
+                theme = 'ivy',
+                mappings = {
+                  ['i'] = {
+                    -- your custom insert mode mappings
+                  },
+                  ['n'] = {
+                    -- your custom normal mode mappings
+                  },
+                },
+              },
+            },
+          }
+          require('telescope').load_extension 'file_browser'
+        end,
+        after = 'telescope.nvim',
+      },
     },
     after = 'which-key.nvim',
   }
