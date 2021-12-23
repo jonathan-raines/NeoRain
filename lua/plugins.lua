@@ -159,16 +159,13 @@ require('packer').startup(function()
   ---------- LSP ----------
   use {
     'neovim/nvim-lspconfig',
-    config = function()
-      require './configs/nvim-lspconfig'
-    end,
     event = 'BufReadPre',
   }
 
   use {
     'williamboman/nvim-lsp-installer',
     config = function()
-      require './configs/nvim-lsp-installer'
+      require './configs/lsp'
     end,
     after = 'nvim-lspconfig',
   }
