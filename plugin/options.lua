@@ -44,48 +44,6 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
--- Highlight on yank
-vim.api.nvim_exec(
-  [[
-    augroup YankHighlight
-      autocmd!
-      autocmd TextYankPost * silent! lua vim.highlight.on_yank({timeout = 200})
-    augroup end
-  ]],
-  false
-)
-
-vim.api.nvim_exec(
-  [[
-    augroup TRIMWHITESPACE
-      autocmd!
-      autocmd BufWritePre * %s/\s\+$//e
-    augroup end
-  ]],
-  false
-)
-
-vim.api.nvim_exec(
-  [[
-    augroup neovim_terminal
-      autocmd!
-      autocmd TermOpen * startinsert
-      autocmd TermOpen * :set nonumber norelativenumber
-      autocmd TermOpen * :set nobuflisted
-      autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
-      autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
-    augroup end
-  ]],
-  false
-)
-
-vim.cmd [[
-  augroup cursor_location
-    autocmd!
-    autocmd BufReadPost * silent! normal! g`"zv
-  augroup end
-]] --Return to last cursor location in a file
-
 local disabled_built_ins = {
   'netrw',
   'netrwPlugin',
@@ -110,6 +68,3 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 1
 end
-
--- Prevents auto comment new line
-vim.cmd 'au BufEnter * set fo-=c fo-=r fo-=o'
