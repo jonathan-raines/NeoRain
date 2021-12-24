@@ -1,19 +1,27 @@
 local M = {}
 
-local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-if not status_ok then
-  return
-end
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  },
+}
+
+local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if status_ok then
+  M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+end
 
 local function lsp_document_codelens(client)
   if client.resolved_capabilities.code_lens then
     vim.cmd [[
                augroup lsp_document_codelens
-                 au! * <buffer>
-                 autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
+                autocmd! * <buffer>
+                autocmd InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+                autocmd InsertLeave <buffer> lua vim.lsp.codelens.display()
                augroup end
              ]]
   end
@@ -42,7 +50,6 @@ local function whichkey_document_keymaps()
       D = 'Declaration',
       e = 'Line Diagnostics',
       i = 'Implementation',
-      K = 'Hover',
       r = 'Rename',
       R = 'References',
     },
