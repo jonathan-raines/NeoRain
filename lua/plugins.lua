@@ -1,24 +1,45 @@
----@diagnostic disable: undefined-global
+local fn = vim.fn
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+-- Automatically install packer
+local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = fn.system {
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path,
+  }
+  print 'Installing packer close and reopen Neovim...'
+  vim.cmd [[packadd packer.nvim]]
 end
 
-vim.api.nvim_exec(
-  [[
-  augroup Packer
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
     autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-    autocmd BufWritePost plugins.lua PackerCompile
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
-]],
-  false
-)
+]]
 
-local use = require('packer').use
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+  return
+end
 
-require('packer').startup(function()
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require('packer.util').float { border = 'rounded' }
+    end,
+  },
+}
+
+return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
@@ -234,7 +255,6 @@ require('packer').startup(function()
           { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
           { 'rafamadriz/friendly-snippets', event = 'InsertEnter' },
         },
-        event = 'InsertEnter',
       },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
@@ -327,4 +347,9 @@ require('packer').startup(function()
     event = 'BufEnter',
   }
   --------------------------------
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
 end)
