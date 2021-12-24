@@ -34,10 +34,31 @@ local function lsp_highlight_document(client)
   end
 end
 
+local function whichkey_document_keymaps()
+  require('which-key').register {
+    g = {
+      a = 'Code Action',
+      d = 'Definition',
+      D = 'Declaration',
+      e = 'Line Diagnostics',
+      i = 'Implementation',
+      K = 'Hover',
+      r = 'Rename',
+      R = 'References',
+    },
+    ['['] = {
+      d = 'Previous Diagnostic',
+    },
+    [']'] = {
+      d = 'Next Diagnostic',
+    },
+  }
+end
+
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, 'n', 'ga', '<cmd>Telescope lsp_code_actions theme=get_cursor()<CR>', opts)
+  keymap(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   keymap(bufnr, 'n', 'ge', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
@@ -49,6 +70,7 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+  whichkey_document_keymaps()
 end
 
 M.on_attach = function(client, bufnr)
@@ -60,7 +82,7 @@ M.on_attach = function(client, bufnr)
     vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
   end
 
-    lsp_keymaps(bufnr)
+  lsp_keymaps(bufnr)
   lsp_document_codelens(client)
   lsp_highlight_document(client)
 end
