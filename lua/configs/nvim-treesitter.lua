@@ -1,3 +1,8 @@
+local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
+if not status_ok then
+  return
+end
+
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 parser_configs.http = {
   install_info = {
@@ -7,7 +12,7 @@ parser_configs.http = {
   },
 }
 
-require('nvim-treesitter.configs').setup {
+configs.setup {
   ensure_installed = 'maintained',
   ignore_installed = { 'haskell' },
   autopairs = { enable = true },
