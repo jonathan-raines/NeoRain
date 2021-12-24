@@ -1,31 +1,46 @@
-local cmp = require 'cmp'
+local cmp_status_ok, cmp = pcall(require, 'cmp')
+if not cmp_status_ok then
+  return
+end
 
-local icons = {
+local snip_status_ok, luasnip = pcall(require, 'luasnip')
+if not snip_status_ok then
+  return
+end
+
+require('luasnip/loaders/from_vscode').lazy_load()
+
+local check_backspace = function()
+  local col = vim.fn.col '.' - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s'
+end
+
+local kind_icons = {
   Text = '',
-  Method = '',
+  Method = 'm',
   Function = '',
-  Constructor = '',
-  Field = 'ﰠ',
-  Variable = '',
-  Class = 'ﴯ',
+  Constructor = '',
+  Field = '',
+  Variable = '',
+  Class = '',
   Interface = '',
   Module = '',
-  Property = 'ﰠ',
-  Unit = '塞',
+  Property = '',
+  Unit = '',
   Value = '',
   Enum = '',
   Keyword = '',
-  Snippet = '',
+  Snippet = '',
   Color = '',
   File = '',
-  Reference = '',
+  Reference = '',
   Folder = '',
   EnumMember = '',
-  Constant = '',
-  Struct = 'פּ',
+  Constant = '',
+  Struct = '',
   Event = '',
   Operator = '',
-  TypeParameter = '',
+  TypeParameter = '',
 }
 
 cmp.setup {
@@ -33,26 +48,26 @@ cmp.setup {
     border = 'single',
     winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
   },
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
+  },
   formatting = {
+    fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
-      vim_item.kind = string.format('%s %s', icons[vim_item.kind], vim_item.kind)
-
+      -- Kind icons
+      -- vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         nvim_lsp = '[LSP]',
-        nvim_lua = '[LUA]',
-        buffer = '[BUF]',
+        nvim_lua = '[NVIM_LUA]',
+        luasnip = '[Snippet]',
+        buffer = '[Buffer]',
+        path = '[Path]',
       })[entry.source.name]
-
       return vim_item
     end,
   },
-
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-
   mapping = {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -62,18 +77,45 @@ cmp.setup {
       select = true,
     },
     ['<C-Space>'] = cmp.mapping.complete(),
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expandable() then
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif check_backspace() then
+        fallback()
+      else
+        fallback()
+      end
+    end, {
+      'i',
+      's',
+    }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, {
+      'i',
+      's',
+    }),
   },
-
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
   sources = {
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'luasnip' },
     { name = 'buffer', keyword_length = 5 },
-  },
-
-  experimental = {
-    native_menu = false,
-    ghost_text = true,
   },
 }
