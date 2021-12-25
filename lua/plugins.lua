@@ -56,29 +56,29 @@ return packer.startup(function(use)
   }
 
   ---------- Database ----------
-  use {
-    'kristijanhusak/vim-dadbod-ui',
-    config = function()
-      require './configs/vim-dadbod-ui'
-    end,
-    requires = {
-      {
-        'tpope/vim-dadbod',
-        event = 'BufRead',
-      },
-      {
-        'kristijanhusak/vim-dadbod-completion',
-        config = function()
-          vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
-        end,
-        after = 'vim-dadbod',
-      },
-    },
-    after = 'vim-dadbod',
-  }
+  -- use {
+  --   'kristijanhusak/vim-dadbod-ui',
+  --   config = function()
+  --     require './configs/vim-dadbod-ui'
+  --   end,
+  --   requires = {
+  --     {
+  --       'tpope/vim-dadbod',
+  --       event = 'BufRead',
+  --     },
+  --     {
+  --       'kristijanhusak/vim-dadbod-completion',
+  --       config = function()
+  --         vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
+  --       end,
+  --       after = 'vim-dadbod',
+  --     },
+  --   },
+  --   after = 'vim-dadbod',
+  -- }
   ------------------------------
 
-  ---------- Fuzzy Finding ----------
+  ---------- Telescope ----------
   use {
     'nvim-telescope/telescope.nvim',
     config = function()
@@ -87,39 +87,43 @@ return packer.startup(function(use)
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        config = function()
-          require('telescope').load_extension 'fzf'
-        end,
-        run = 'make',
-        after = 'telescope.nvim',
-      },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
-      {
-        'nvim-telescope/telescope-file-browser.nvim',
-        config = function()
-          require('telescope').setup {
-            extensions = {
-              file_browser = {
-                theme = 'ivy',
-                mappings = {
-                  ['i'] = {
-                    -- your custom insert mode mappings
-                  },
-                  ['n'] = {
-                    -- your custom normal mode mappings
-                  },
-                },
-              },
-            },
-          }
-          require('telescope').load_extension 'file_browser'
-        end,
-        after = 'telescope.nvim',
-      },
     },
     after = 'which-key.nvim',
+  }
+
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    config = function()
+      require('telescope').load_extension 'fzf'
+    end,
+    run = 'make',
+    after = 'telescope.nvim',
+  }
+
+  use {
+    'nvim-telescope/telescope-file-browser.nvim',
+    config = function()
+      local status_ok, telescope = pcall(require, 'telescope')
+      if not status_ok then
+        return
+      end
+
+      telescope.setup {
+        extensions = {
+          file_browser = {
+            theme = 'ivy',
+            mappings = {
+              ['i'] = {},
+              ['n'] = {},
+            },
+          },
+        },
+      }
+
+      require('telescope').load_extension 'file_browser'
+    end,
+    after = 'telescope.nvim',
   }
   -----------------------------------
 
@@ -160,11 +164,6 @@ return packer.startup(function(use)
     'jose-elias-alvarez/nvim-lsp-ts-utils',
     requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig', 'jose-elias-alvarez/null-ls.nvim' },
     ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
-  }
-
-  use {
-    'tpope/vim-rails',
-    ft = { 'ruby', 'rake' },
   }
 
   use {
@@ -213,30 +212,24 @@ return packer.startup(function(use)
   ---------------------------
 
   ---------- MISC ----------
-  use {
-    'vim-test/vim-test',
-    config = function()
-      vim.cmd [[ let test#strategy = "harpoon" ]]
-    end,
-    requires = { 'ThePrimeagen/harpoon' },
-    cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
-    opt = true,
-  }
+  -- use {
+  --   'vim-test/vim-test',
+  --   config = function()
+  --     vim.cmd [[ let test#strategy = "harpoon" ]]
+  --   end,
+  --   requires = { 'ThePrimeagen/harpoon' },
+  --   cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
+  --   opt = true,
+  -- }
 
-  use {
-    'dstein64/vim-startuptime',
-    cmd = 'StartupTime',
-    opt = true,
-  }
-
-  use {
-    'NTBBloodbath/rest.nvim',
-    config = function()
-      require './configs/rest'
-    end,
-    requires = { 'nvim-lua/plenary.nvim' },
-    ft = { 'http' },
-  }
+  -- use {
+  --   'NTBBloodbath/rest.nvim',
+  --   config = function()
+  --     require './configs/rest'
+  --   end,
+  --   requires = { 'nvim-lua/plenary.nvim' },
+  --   ft = { 'http' },
+  -- }
   ------------------------------
 
   ---------- Text Editing ----------
