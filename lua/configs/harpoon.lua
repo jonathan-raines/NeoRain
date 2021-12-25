@@ -11,7 +11,12 @@ harpoon.setup {
   },
 }
 
-require('which-key').register({
+local status_ok, wk = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+
+wk.register({
   h = {
     name = 'Harpoon',
     ['p'] = { '<cmd>lua require("harpoon.mark").add_file()<CR>', 'Add File' },

@@ -15,6 +15,11 @@ if status_ok then
   M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 end
 
+local wk_status_ok, wk = pcall(require, 'which-key')
+if not wk_status_ok then
+  return
+end
+
 local function lsp_document_codelens(client)
   if client.resolved_capabilities.code_lens then
     vim.cmd [[
@@ -43,7 +48,7 @@ local function lsp_highlight_document(client)
 end
 
 local function whichkey_document_keymaps()
-  require('which-key').register {
+  wk.register {
     g = {
       a = 'Code Action',
       d = 'Definition',
