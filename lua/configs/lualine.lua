@@ -1,4 +1,8 @@
----@diagnostic disable: undefined-global
+local status_ok, lualine = pcall(require, 'lualine')
+if not status_ok then
+  return
+end
+
 local window_width_limit = 80
 
 local conditions = {
@@ -37,7 +41,7 @@ local function getclientnames()
   return table.concat(clientnames_tbl, ', ')
 end
 
-require('lualine').setup {
+lualine.setup {
   options = {
     component_separators = '',
     section_separators = '',

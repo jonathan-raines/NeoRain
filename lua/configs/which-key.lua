@@ -1,6 +1,12 @@
-require('which-key').setup {
+local status_ok, wk = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+
+wk.setup {
   plugins = {
-    registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    marks = true,
+    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     presets = {
       operators = false, -- adds help for operators like d, y, ...
       motions = false, -- adds help for motions
@@ -72,5 +78,4 @@ local mappings = {
   },
 }
 
-local wk = require 'which-key'
 wk.register(mappings, opts)

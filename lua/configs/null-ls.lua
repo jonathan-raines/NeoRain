@@ -1,5 +1,8 @@
----@diagnostic disable: undefined-global
-local null_ls = require 'null-ls'
+local status_ok, null_ls = pcall(require, 'null-ls')
+if not status_ok then
+  return
+end
+
 local sources = {
   null_ls.builtins.code_actions.eslint_d.with {
     condition = function(utils)
@@ -32,7 +35,7 @@ local sources = {
   null_ls.builtins.code_actions.refactoring,
 }
 
-require('null-ls').setup {
+null_ls.setup {
   sources = sources,
   on_attach = function()
     vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
