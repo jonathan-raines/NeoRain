@@ -17,10 +17,7 @@ configs.setup {
   ignore_installed = { 'haskell' },
   autopairs = { enable = true },
   autotag = { enable = true },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
+  context_commentstring = { enable = true, enable_autocmd = false },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -39,7 +36,7 @@ configs.setup {
   textobjects = {
     lsp_interop = {
       enable = true,
-      border = 'none',
+      border = 'rounded',
       peek_definition_code = {
         ['df'] = '@function.outer',
         ['dF'] = '@class.outer',
