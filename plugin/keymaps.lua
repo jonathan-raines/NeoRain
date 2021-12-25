@@ -1,5 +1,3 @@
----@diagnostic disable: undefined-global
-local vim = vim
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
@@ -22,10 +20,7 @@ keymap('n', '<leader><space>', '<c-^>', opts)
 
 -- Write / Quit
 keymap('n', '<leader>w', ':w<CR>', opts)
-keymap('n', '<C-s>', ':w<CR>', opts)
-
 keymap('n', '<leader>q', ':q!<CR>', opts)
-keymap('n', 'Q', ':bufdo bd!<CR>', opts)
 
 keymap('n', '<leader>c', ':bd!<CR>', opts)
 keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', opts)
