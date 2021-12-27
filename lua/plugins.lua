@@ -1,7 +1,5 @@
-local fn = vim.fn
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
 -- Automatically install packer
+local fn = vim.fn
 local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
@@ -104,8 +102,8 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = function()
-      local status_ok, telescope = pcall(require, 'telescope')
-      if not status_ok then
+      local telescope_status_ok, telescope = pcall(require, 'telescope')
+      if not telescope_status_ok then
         return
       end
 
@@ -134,7 +132,7 @@ return packer.startup(function(use)
       require './configs/gitsigns'
     end,
     requires = { 'nvim-lua/plenary.nvim' },
-    event = 'BufEnter',
+    event = 'BufRead',
   }
 
   use {
@@ -161,12 +159,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'jose-elias-alvarez/nvim-lsp-ts-utils',
-    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig', 'jose-elias-alvarez/null-ls.nvim' },
-    ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
-  }
-
-  use {
     'akinsho/flutter-tools.nvim',
     config = function()
       require './configs/flutter-tools'
@@ -179,7 +171,7 @@ return packer.startup(function(use)
   ---------- LSP ----------
   use {
     'neovim/nvim-lspconfig',
-    event = 'BufReadPre',
+    event = 'BufRead',
   }
 
   use {
@@ -190,26 +182,15 @@ return packer.startup(function(use)
     after = 'nvim-lspconfig',
   }
 
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require './configs/null-ls'
-    end,
-    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    event = 'BufReadPre',
-  }
+  -- use {
+  --   'jose-elias-alvarez/null-ls.nvim',
+  --   config = function()
+  --     require './configs/null-ls'
+  --   end,
+  --   requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+  --   event = 'BufRead',
+  -- }
   -------------------------
-
-  ---------- Marks ----------
-  use {
-    'ThePrimeagen/harpoon',
-    config = function()
-      require './configs/harpoon'
-    end,
-    requires = { 'popup.nvim', 'plenary.nvim' },
-    event = 'BufEnter',
-  }
-  ---------------------------
 
   ---------- MISC ----------
   -- use {
@@ -222,14 +203,35 @@ return packer.startup(function(use)
   --   opt = true,
   -- }
 
-  -- use {
-  --   'NTBBloodbath/rest.nvim',
-  --   config = function()
-  --     require './configs/rest'
-  --   end,
-  --   requires = { 'nvim-lua/plenary.nvim' },
-  --   ft = { 'http' },
-  -- }
+  use {
+    'NTBBloodbath/rest.nvim',
+    config = function()
+      require './configs/rest'
+    end,
+    requires = { 'nvim-lua/plenary.nvim' },
+    ft = { 'http' },
+  }
+
+  use {
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('trouble').setup {}
+    end,
+    cmd = { 'Trouble', 'TroubleToggle' },
+    opt = true,
+  }
+
+  use {
+    'KadoBOT/nvim-spotify',
+    requires = 'nvim-telescope/telescope.nvim',
+    config = function()
+      require './configs/nvim-spotify'
+    end,
+    run = 'make',
+    cmd = { 'Spotify', 'SpotifyDevices' },
+    opt = true,
+  }
   ------------------------------
 
   ---------- Text Editing ----------

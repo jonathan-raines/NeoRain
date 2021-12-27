@@ -22,13 +22,16 @@ end
 
 local function lsp_document_codelens(client)
   if client.resolved_capabilities.code_lens then
-    vim.cmd [[
-               augroup lsp_document_codelens
-                autocmd! * <buffer>
-                autocmd InsertLeave <buffer> lua vim.lsp.codelens.refresh()
-                autocmd InsertLeave <buffer> lua vim.lsp.codelens.display()
-               augroup end
-             ]]
+    vim.api.nvim_exec(
+      [[
+         augroup lsp_document_codelens
+          autocmd! * <buffer>
+          autocmd InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+          autocmd InsertLeave <buffer> lua vim.lsp.codelens.display()
+         augroup end
+       ]],
+      false
+    )
   end
 end
 
@@ -79,7 +82,8 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  keymap(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- keymap(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  keymap(bufnr, 'n', 'gR', '<cmd>TroubleToggle lsp_references<CR>', opts)
   keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   whichkey_document_keymaps()
