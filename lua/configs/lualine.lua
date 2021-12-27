@@ -3,6 +3,9 @@ if not status_ok then
   return
 end
 
+local status = require('nvim-spotify').status
+status:start()
+
 local window_width_limit = 80
 
 local conditions = {
@@ -82,6 +85,7 @@ lualine.setup {
       },
     },
     lualine_x = {
+      { status.listen, cond = nil },
       {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
