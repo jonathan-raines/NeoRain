@@ -229,6 +229,7 @@ return packer.startup(function(use)
       require './configs/nvim-spotify'
     end,
     run = 'make',
+    after = 'telescope.nvim',
     cmd = { 'Spotify', 'SpotifyDevices' },
     opt = true,
   }
