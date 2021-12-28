@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 local actions = require 'telescope.actions'
-local trouble = require 'trouble.providers.telescope'
 
 telescope.setup {
   defaults = {
@@ -16,11 +15,8 @@ telescope.setup {
     mappings = {
       i = {
         ['<ESC>'] = actions.close,
-        ['<c-t>'] = trouble.open_with_trouble,
       },
-      n = {
-        ['<c-t>'] = trouble.open_with_trouble,
-      },
+      n = {},
     },
   },
   pickers = {
