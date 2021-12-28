@@ -323,7 +323,6 @@ return packer.startup(function(use)
     config = function()
       require './configs/lualine'
     end,
-    after = 'nvim-spotify',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 

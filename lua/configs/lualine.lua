@@ -65,7 +65,6 @@ lualine.setup {
         'branch',
         cond = nil,
       },
-      -- { 'b:gitsigns_head', icon = '' },
     },
     lualine_c = {
       {
@@ -85,7 +84,7 @@ lualine.setup {
       },
     },
     lualine_x = {
-      { status.listen, cond = nil },
+      { status.listen },
       {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
