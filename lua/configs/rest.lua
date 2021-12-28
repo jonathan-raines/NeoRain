@@ -13,4 +13,4 @@ rest_nvim.setup {
   jump_to_request = true,
 }
 
-vim.api.nvim_set_keymap('n', 'Q', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<C-q>', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })
