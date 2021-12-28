@@ -3,6 +3,11 @@ if not status_ok then
   return
 end
 
+local function curr_buf()
+  local opt = require('telescope.themes').get_ivy()
+  require('telescope.builtin').current_buffer_fuzzy_find(opt)
+end
+
 wk.setup {
   plugins = {
     marks = true,
@@ -47,7 +52,19 @@ local mappings = {
   ['Q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
   ['W'] = 'which_key_ignore',
-  ['b'] = 'Buffers',
+  f = {
+    name = 'Telescope',
+    b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
+    d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
+    f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
+    e = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", 'File Browser' },
+    g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
+    o = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
+    s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
+    t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
+    w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
+  },
+  ['/'] = { curr_buf, 'Search Current Buffer' },
   o = {
     name = 'Octo',
     i = {

@@ -48,35 +48,7 @@ telescope.setup {
   },
 }
 
-local mappings = {}
-
-mappings.cwd_filebrowser = function()
-  local opt = require('telescope.themes').get_ivy { cwd = vim.fn.expand '%:p:h' }
-  telescope.extensions.file_browser.file_browser(opt)
-end
-
-mappings.curr_buf = function()
+function curr_buf()
   local opt = require('telescope.themes').get_ivy()
   require('telescope.builtin').current_buffer_fuzzy_find(opt)
 end
-
-local wk = require 'which-key'
-wk.register({
-  b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
-  e = { mappings.cwd_filebrowser, 'Find Files' },
-  f = {
-    name = 'Telescope',
-    b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
-    d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
-    f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
-    e = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", 'File Browser' },
-    g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
-    o = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
-    s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
-    t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
-    w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
-  },
-  ['/'] = { mappings.curr_buf, 'Search Current Buffer' },
-}, {
-  prefix = '<leader>',
-})
