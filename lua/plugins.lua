@@ -289,7 +289,6 @@ return packer.startup(function(use)
     config = function()
       require './configs/refactoring'
     end,
-    event = 'BufRead',
     ft = { 'go', 'lua', 'js', 'py', 'ts' },
   }
   -----------------------------------------
