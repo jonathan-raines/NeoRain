@@ -243,7 +243,7 @@ return packer.startup(function(use)
       { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
       { 'rafamadriz/friendly-snippets' },
     },
-    after = 'friendly-snippets',
+    event = 'InsertEnter',
   }
 
   use {
@@ -253,11 +253,12 @@ return packer.startup(function(use)
     end,
     requires = {
       { 'L3MON4D3/LuaSnip' },
-      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-buffer', event = 'InsertEnter' },
+      { 'hrsh7th/cmp-path', event = 'InsertEnter' },
+      { 'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter' },
+      { 'hrsh7th/cmp-nvim-lua', event = 'InsertEnter' },
     },
+    event = 'InsertEnter',
   }
 
   use {
@@ -300,6 +301,7 @@ return packer.startup(function(use)
     config = function()
       require './configs/nvim-treesitter'
     end,
+    event = 'BufRead',
   }
 
   use {
@@ -324,7 +326,6 @@ return packer.startup(function(use)
       require './configs/lualine'
     end,
     requires = { 'nvim-lua/plenary.nvim' },
-    event = 'UIEnter',
   }
 
   use {
