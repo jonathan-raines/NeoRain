@@ -226,8 +226,6 @@ return packer.startup(function(use)
       require './configs/nvim-spotify'
     end,
     run = 'make',
-    after = 'telescope.nvim',
-    cmd = { 'Spotify', 'SpotifyDevices' },
   }
   ------------------------------
 
@@ -325,6 +323,7 @@ return packer.startup(function(use)
     config = function()
       require './configs/lualine'
     end,
+    after = 'nvim-spotify',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
