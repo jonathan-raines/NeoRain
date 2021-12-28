@@ -191,14 +191,13 @@ return packer.startup(function(use)
   -------------------------
 
   ---------- MISC ----------
-  -- use {
-  --   'vim-test/vim-test',
-  --   config = function()
-  --     vim.cmd [[ let test#strategy = "harpoon" ]]
-  --   end,
-  --   requires = { 'ThePrimeagen/harpoon' },
-  --   cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
-  -- }
+  use {
+    'vim-test/vim-test',
+    config = function()
+      vim.cmd [[ let test#strategy = "neovim" ]]
+    end,
+    cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
+  }
 
   use {
     'NTBBloodbath/rest.nvim',
@@ -213,7 +212,9 @@ return packer.startup(function(use)
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('trouble').setup {}
+      require('trouble').setup {
+        -- auto_close = true,
+      }
     end,
     cmd = { 'Trouble', 'TroubleToggle' },
   }
