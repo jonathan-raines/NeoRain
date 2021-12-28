@@ -17,7 +17,7 @@ wk.setup {
       motions = false, -- adds help for motions
       text_objects = true, -- help for text objects triggered after entering an operator
       windows = false, -- default bindings on <c-w>
-      nav = true, -- misc bindings to work with windows
+      nav = false, -- misc bindings to work with windows
     },
   },
   key_labels = {
@@ -26,7 +26,7 @@ wk.setup {
     ['<tab>'] = 'TAB',
   },
   window = {
-    border = 'single', -- none, single, double, shadow
+    border = 'rounded', -- none, single, double, shadow
   },
   layout = {
     spacing = 8, -- spacing between columns
@@ -82,8 +82,17 @@ local mappings = {
   p = {
     name = 'Packer',
     c = { ':PackerCompile<CR>', 'PackerCompile' },
+    l = { ':PackerStatus<CR>', 'PackerStatus' },
     s = { ':PackerSync<CR>', 'PackerSync' },
-    t = { ':StartupTime<CR>', 'Startup Time' },
+    u = { ':PackerUpdate<CR>', 'PackerUpdate' },
+  },
+  s = {
+    name = 'Spotify',
+    d = { 'Devices' },
+    n = { 'Next Song' },
+    p = { 'Play / Pause' },
+    o = { 'Open Search' },
+    s = { 'Save Song' },
   },
   t = {
     name = 'Testing',
@@ -92,6 +101,14 @@ local mappings = {
     n = { ':TestNearest<CR>', 'Run Nearest Test' },
     s = { ':TestSuite<CR>', 'Run Test Suite' },
     v = { ':TestVisit<CR>', 'Visit Test File' },
+  },
+  x = {
+    name = 'Trouble',
+    x = { 'Trouble' },
+    d = { 'Document Diagnostics' },
+    w = { 'Workspace Diagnostics' },
+    q = { 'Trouble quickfix' },
+    l = { 'Trouble loclist' },
   },
 }
 

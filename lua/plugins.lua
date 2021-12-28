@@ -122,6 +122,45 @@ return packer.startup(function(use)
     end,
     cmd = { "lua require 'telescope'.extensions.file_browser.file_browser()" },
   }
+
+  use {
+    'LinArcX/telescope-command-palette.nvim',
+    config = function()
+      require('telescope').load_extension 'command_palette'
+      CpMenu = {
+        {
+          'Telescope',
+          { 'buffers (leader fb)', '<cmd>Telescope buffers theme=get_ivy<CR>' },
+          { 'document symbols (leader fd)', '<cmd>Telescope lsp_document_symbols' },
+          { 'file browser (leader fe)', ":lua require'telescope'.extensions.file_browser.file_browser()" },
+          { 'find files (leader ff)', ":lua require('telescope.builtin').find_files()" },
+          { 'find word (leader fg)', ":lua require('telescope.builtin').live_grep()" },
+          { 'git files ()', ":lua require('telescope.builtin').git_files()" },
+          { 'recent files (leader fo)', '<cmd>Telescope old_files<CR>' },
+        },
+        {
+          'Help',
+          { 'tips', ':help tips' },
+          { 'cheatsheet', ':help index' },
+          { 'tutorial', ':help tutor' },
+          { 'summary', ':help summary' },
+          { 'quick reference', ':help quickref' },
+          { 'search help(F1)', ":lua require('telescope.builtin').help_tags()", 1 },
+        },
+        {
+          'Vim',
+          { 'reload vimrc', ':source $MYVIMRC' },
+          { 'check health', ':checkhealth' },
+          { 'jumps (Alt-j)', ":lua require('telescope.builtin').jumplist()" },
+          { 'commands', ":lua require('telescope.builtin').commands()" },
+          { 'command history', ":lua require('telescope.builtin').command_history()" },
+          { 'registers (A-e)', ":lua require('telescope.builtin').registers()" },
+          { 'vim options', ":lua require('telescope.builtin').vim_options()" },
+          { 'keymaps', ":lua require('telescope.builtin').keymaps()" },
+        },
+      }
+    end,
+  }
   -----------------------------------
 
   ---------- Github ----------
