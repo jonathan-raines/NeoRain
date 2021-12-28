@@ -62,7 +62,7 @@ return packer.startup(function(use)
     requires = {
       {
         'tpope/vim-dadbod',
-        after = 'vim-dadbod-ui'
+        after = 'vim-dadbod-ui',
       },
       {
         'kristijanhusak/vim-dadbod-completion',
@@ -72,7 +72,7 @@ return packer.startup(function(use)
         after = 'vim-dadbod',
       },
     },
-    cmd = {"DBUI"},
+    cmd = { 'DBUI' },
   }
   ------------------------------
 
@@ -87,7 +87,7 @@ return packer.startup(function(use)
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
     },
-    cmd = {"Telescope"},
+    cmd = { 'Telescope' },
   }
 
   use {
@@ -181,14 +181,14 @@ return packer.startup(function(use)
     after = 'nvim-lspconfig',
   }
 
-  -- use {
-  --   'jose-elias-alvarez/null-ls.nvim',
-  --   config = function()
-  --     require './configs/null-ls'
-  --   end,
-  --   requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-  --   event = 'BufRead',
-  -- }
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require './configs/null-ls'
+    end,
+    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    event = 'BufRead',
+  }
   -------------------------
 
   ---------- MISC ----------
@@ -232,27 +232,31 @@ return packer.startup(function(use)
   ------------------------------
 
   ---------- Text Editing ----------
+  use { 'rafamadriz/friendly-snippets', event = 'InsertEnter' }
+
+  use {
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require('luasnip/loaders/from_vscode').lazy_load()
+    end,
+    requires = {
+      { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
+    },
+    after = 'friendly-snippets',
+  }
+
   use {
     'hrsh7th/nvim-cmp',
     config = function()
       require './configs/nvim-cmp'
     end,
     requires = {
-      {
-        'L3MON4D3/LuaSnip',
-        config = function()
-          require('luasnip/loaders/from_vscode').lazy_load()
-        end,
-        requires = {
-          { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
-          { 'rafamadriz/friendly-snippets', event = 'InsertEnter' },
-        },
-      },
+      { 'L3MON4D3/LuaSnip' },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-      after = 'friendly-snippets',
     },
   }
 
