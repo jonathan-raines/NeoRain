@@ -54,26 +54,26 @@ return packer.startup(function(use)
   }
 
   ---------- Database ----------
-  -- use {
-  --   'kristijanhusak/vim-dadbod-ui',
-  --   config = function()
-  --     require './configs/vim-dadbod-ui'
-  --   end,
-  --   requires = {
-  --     {
-  --       'tpope/vim-dadbod',
-  --       event = 'BufRead',
-  --     },
-  --     {
-  --       'kristijanhusak/vim-dadbod-completion',
-  --       config = function()
-  --         vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
-  --       end,
-  --       after = 'vim-dadbod',
-  --     },
-  --   },
-  --   after = 'vim-dadbod',
-  -- }
+  use {
+    'kristijanhusak/vim-dadbod-ui',
+    config = function()
+      require './configs/vim-dadbod-ui'
+    end,
+    requires = {
+      {
+        'tpope/vim-dadbod',
+        after = 'vim-dadbod-ui'
+      },
+      {
+        'kristijanhusak/vim-dadbod-completion',
+        config = function()
+          vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
+        end,
+        after = 'vim-dadbod',
+      },
+    },
+    cmd = {"DBUI"},
+  }
   ------------------------------
 
   ---------- Telescope ----------
@@ -141,7 +141,6 @@ return packer.startup(function(use)
       require('octo').setup()
     end,
     cmd = 'Octo',
-    opt = true,
   }
   ----------------------------
 
@@ -200,7 +199,6 @@ return packer.startup(function(use)
   --   end,
   --   requires = { 'ThePrimeagen/harpoon' },
   --   cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
-  --   opt = true,
   -- }
 
   use {
@@ -219,7 +217,6 @@ return packer.startup(function(use)
       require('trouble').setup {}
     end,
     cmd = { 'Trouble', 'TroubleToggle' },
-    opt = true,
   }
 
   use {
@@ -231,7 +228,6 @@ return packer.startup(function(use)
     run = 'make',
     after = 'telescope.nvim',
     cmd = { 'Spotify', 'SpotifyDevices' },
-    opt = true,
   }
   ------------------------------
 
