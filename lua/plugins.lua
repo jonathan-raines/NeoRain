@@ -87,7 +87,7 @@ return packer.startup(function(use)
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
     },
-    after = 'which-key.nvim',
+    cmd = {"Telescope"},
   }
 
   use {
