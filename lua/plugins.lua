@@ -87,7 +87,6 @@ return packer.startup(function(use)
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
     },
-    cmd = { 'Telescope' },
   }
 
   use {
@@ -121,7 +120,7 @@ return packer.startup(function(use)
 
       require('telescope').load_extension 'file_browser'
     end,
-    after = 'telescope.nvim',
+    cmd = { "lua require 'telescope'.extensions.file_browser.file_browser()" },
   }
   -----------------------------------
 
@@ -238,8 +237,8 @@ return packer.startup(function(use)
       require('luasnip/loaders/from_vscode').lazy_load()
     end,
     requires = {
-      { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
       { 'rafamadriz/friendly-snippets' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
     },
     event = 'InsertEnter',
   }
@@ -338,7 +337,6 @@ return packer.startup(function(use)
     config = function()
       require './configs/nvim-toggleterm'
     end,
-    event = 'BufEnter',
   }
   --------------------------------
   -- Automatically set up your configuration after cloning packer.nvim
