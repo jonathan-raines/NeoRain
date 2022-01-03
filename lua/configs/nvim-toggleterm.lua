@@ -1,5 +1,9 @@
----@diagnostic disable: undefined-global
-require('toggleterm').setup {
+local status_ok, toggleterm = pcall(require, 'toggleterm')
+if not status_ok then
+  return
+end
+
+toggleterm.setup {
   -- size can be a number or function which is passed the current terminal
   size = 20 or function(term)
     if term.direction == 'horizontal' then
@@ -29,36 +33,40 @@ require('toggleterm').setup {
   },
 }
 
-function _G.set_terminal_keymaps()
-  local opts = { noremap = true }
-  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
-end
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
+-- function _G.set_terminal_keymaps()
+--   local opts = { noremap = true }
+--   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+-- end
+--
+-- -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+-- vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
 
 local Terminal = require('toggleterm.terminal').Terminal
-local horizontal = Terminal:new { hidden = true, direction = 'horizontal' }
-local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
 
-function _G_horizontal_toggle()
+local horizontal = Terminal:new { hidden = true, direction = 'horizontal' }
+
+function _HORIZONTAL_TOGGLE()
   horizontal:toggle()
 end
 
-function _G_lazygit_toggle()
+local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
+
+function _LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap('n', 'gh', '<cmd>lua _G_horizontal_toggle()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua _G_lazygit_toggle()<CR>', { noremap = true, silent = true })
+local wk_status_ok, wk = pcall(require, 'which-key')
+if not wk_status_ok then
+  return
+end
 
-require('which-key').register({
+wk.register({
   g = {
-    ['h'] = 'Horizontal Terminal',
-    ['l'] = 'Lazygit',
+    ['h'] = { '<cmd>lua _HORIZONTAL_TOGGLE()<CR>', 'Horizontal Terminal' },
+    ['l'] = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
   },
 }, opts)

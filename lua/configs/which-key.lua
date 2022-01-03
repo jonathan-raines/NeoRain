@@ -1,12 +1,23 @@
-require('which-key').setup {
+local status_ok, wk = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+
+local function curr_buf()
+  local opt = require('telescope.themes').get_ivy()
+  require('telescope.builtin').current_buffer_fuzzy_find(opt)
+end
+
+wk.setup {
   plugins = {
-    registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    marks = true,
+    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     presets = {
       operators = false, -- adds help for operators like d, y, ...
       motions = false, -- adds help for motions
       text_objects = true, -- help for text objects triggered after entering an operator
       windows = false, -- default bindings on <c-w>
-      nav = true, -- misc bindings to work with windows
+      nav = false, -- misc bindings to work with windows
     },
   },
   key_labels = {
@@ -15,7 +26,7 @@ require('which-key').setup {
     ['<tab>'] = 'TAB',
   },
   window = {
-    border = 'single', -- none, single, double, shadow
+    border = 'rounded', -- none, single, double, shadow
   },
   layout = {
     spacing = 8, -- spacing between columns
@@ -41,7 +52,19 @@ local mappings = {
   ['Q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
   ['W'] = 'which_key_ignore',
-  ['b'] = 'Buffers',
+  f = {
+    name = 'Telescope',
+    b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
+    d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
+    f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
+    e = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>", 'File Browser' },
+    g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
+    o = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
+    s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
+    t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
+    w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
+  },
+  ['/'] = { curr_buf, 'Search Current Buffer' },
   o = {
     name = 'Octo',
     i = {
@@ -59,8 +82,17 @@ local mappings = {
   p = {
     name = 'Packer',
     c = { ':PackerCompile<CR>', 'PackerCompile' },
+    l = { ':PackerStatus<CR>', 'PackerStatus' },
     s = { ':PackerSync<CR>', 'PackerSync' },
-    t = { ':StartupTime<CR>', 'Startup Time' },
+    u = { ':PackerUpdate<CR>', 'PackerUpdate' },
+  },
+  s = {
+    name = 'Spotify',
+    d = { 'Devices' },
+    n = { 'Next Song' },
+    p = { 'Play / Pause' },
+    o = { 'Open Search' },
+    s = { 'Save Song' },
   },
   t = {
     name = 'Testing',
@@ -70,7 +102,14 @@ local mappings = {
     s = { ':TestSuite<CR>', 'Run Test Suite' },
     v = { ':TestVisit<CR>', 'Visit Test File' },
   },
+  x = {
+    name = 'Trouble',
+    x = { 'Trouble' },
+    d = { 'Document Diagnostics' },
+    w = { 'Workspace Diagnostics' },
+    q = { 'Trouble quickfix' },
+    l = { 'Trouble loclist' },
+  },
 }
 
-local wk = require 'which-key'
 wk.register(mappings, opts)

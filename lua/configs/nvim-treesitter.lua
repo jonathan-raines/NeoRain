@@ -1,3 +1,8 @@
+local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
+if not status_ok then
+  return
+end
+
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 parser_configs.http = {
   install_info = {
@@ -7,15 +12,12 @@ parser_configs.http = {
   },
 }
 
-require('nvim-treesitter.configs').setup {
+configs.setup {
   ensure_installed = 'maintained',
   ignore_installed = { 'haskell' },
   autopairs = { enable = true },
   autotag = { enable = true },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
+  context_commentstring = { enable = true, enable_autocmd = false },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -34,7 +36,7 @@ require('nvim-treesitter.configs').setup {
   textobjects = {
     lsp_interop = {
       enable = true,
-      border = 'none',
+      border = 'rounded',
       peek_definition_code = {
         ['df'] = '@function.outer',
         ['dF'] = '@class.outer',

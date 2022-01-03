@@ -1,30 +1,49 @@
----@diagnostic disable: undefined-global
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+-- Automatically install packer
+local fn = vim.fn
+local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = fn.system {
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path,
+  }
+  print 'Installing packer close and reopen Neovim...'
+  vim.cmd [[packadd packer.nvim]]
 end
 
-vim.api.nvim_exec(
-  [[
-  augroup Packer
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
     autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-    autocmd BufWritePost plugins.lua PackerCompile
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
-]],
-  false
-)
+]]
 
-local use = require('packer').use
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+  return
+end
 
-require('packer').startup(function()
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require('packer.util').float { border = 'rounded' }
+    end,
+  },
+}
+
+return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
     'lewis6991/impatient.nvim',
     config = function()
-      require 'impatient'
+      require('impatient').enable_profile()
     end,
   }
 
@@ -43,7 +62,7 @@ require('packer').startup(function()
     requires = {
       {
         'tpope/vim-dadbod',
-        event = 'BufRead',
+        after = 'vim-dadbod-ui',
       },
       {
         'kristijanhusak/vim-dadbod-completion',
@@ -53,11 +72,11 @@ require('packer').startup(function()
         after = 'vim-dadbod',
       },
     },
-    after = 'vim-dadbod',
+    cmd = { 'DBUI' },
   }
   ------------------------------
 
-  ---------- Fuzzy Finding ----------
+  ---------- Telescope ----------
   use {
     'nvim-telescope/telescope.nvim',
     config = function()
@@ -66,39 +85,81 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        config = function()
-          require('telescope').load_extension 'fzf'
-        end,
-        run = 'make',
-        after = 'telescope.nvim',
-      },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
-      {
-        'nvim-telescope/telescope-file-browser.nvim',
-        config = function()
-          require('telescope').setup {
-            extensions = {
-              file_browser = {
-                theme = 'ivy',
-                mappings = {
-                  ['i'] = {
-                    -- your custom insert mode mappings
-                  },
-                  ['n'] = {
-                    -- your custom normal mode mappings
-                  },
-                },
-              },
-            },
-          }
-          require('telescope').load_extension 'file_browser'
-        end,
-        after = 'telescope.nvim',
-      },
     },
-    after = 'which-key.nvim',
+  }
+
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    config = function()
+      require('telescope').load_extension 'fzf'
+    end,
+    run = 'make',
+    after = 'telescope.nvim',
+  }
+
+  use {
+    'nvim-telescope/telescope-file-browser.nvim',
+    config = function()
+      local telescope_status_ok, telescope = pcall(require, 'telescope')
+      if not telescope_status_ok then
+        return
+      end
+
+      telescope.setup {
+        extensions = {
+          file_browser = {
+            theme = 'ivy',
+            mappings = {
+              ['i'] = {},
+              ['n'] = {},
+            },
+          },
+        },
+      }
+
+      require('telescope').load_extension 'file_browser'
+    end,
+    cmd = { "lua require 'telescope'.extensions.file_browser.file_browser()" },
+  }
+
+  use {
+    'LinArcX/telescope-command-palette.nvim',
+    config = function()
+      require('telescope').load_extension 'command_palette'
+      CpMenu = {
+        {
+          'Telescope',
+          { 'buffers (leader fb)', '<cmd>Telescope buffers theme=get_ivy<CR>' },
+          { 'document symbols (leader fd)', '<cmd>Telescope lsp_document_symbols' },
+          { 'file browser (leader fe)', ":lua require'telescope'.extensions.file_browser.file_browser()" },
+          { 'find files (leader ff)', ":lua require('telescope.builtin').find_files()" },
+          { 'find word (leader fg)', ":lua require('telescope.builtin').live_grep()" },
+          { 'git files ()', ":lua require('telescope.builtin').git_files()" },
+          { 'recent files (leader fo)', '<cmd>Telescope old_files<CR>' },
+        },
+        {
+          'Help',
+          { 'tips', ':help tips' },
+          { 'cheatsheet', ':help index' },
+          { 'tutorial', ':help tutor' },
+          { 'summary', ':help summary' },
+          { 'quick reference', ':help quickref' },
+          { 'search help(F1)', ":lua require('telescope.builtin').help_tags()", 1 },
+        },
+        {
+          'Vim',
+          { 'reload vimrc', ':source $MYVIMRC' },
+          { 'check health', ':checkhealth' },
+          { 'jumps (Alt-j)', ":lua require('telescope.builtin').jumplist()" },
+          { 'commands', ":lua require('telescope.builtin').commands()" },
+          { 'command history', ":lua require('telescope.builtin').command_history()" },
+          { 'registers (A-e)', ":lua require('telescope.builtin').registers()" },
+          { 'vim options', ":lua require('telescope.builtin').vim_options()" },
+          { 'keymaps', ":lua require('telescope.builtin').keymaps()" },
+        },
+      }
+    end,
   }
   -----------------------------------
 
@@ -109,7 +170,7 @@ require('packer').startup(function()
       require './configs/gitsigns'
     end,
     requires = { 'nvim-lua/plenary.nvim' },
-    event = 'BufEnter',
+    event = 'BufRead',
   }
 
   use {
@@ -118,7 +179,6 @@ require('packer').startup(function()
       require('octo').setup()
     end,
     cmd = 'Octo',
-    opt = true,
   }
   ----------------------------
 
@@ -136,17 +196,6 @@ require('packer').startup(function()
   }
 
   use {
-    'jose-elias-alvarez/nvim-lsp-ts-utils',
-    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig', 'jose-elias-alvarez/null-ls.nvim' },
-    ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
-  }
-
-  use {
-    'tpope/vim-rails',
-    ft = { 'ruby', 'rake' },
-  }
-
-  use {
     'akinsho/flutter-tools.nvim',
     config = function()
       require './configs/flutter-tools'
@@ -159,16 +208,13 @@ require('packer').startup(function()
   ---------- LSP ----------
   use {
     'neovim/nvim-lspconfig',
-    config = function()
-      require './configs/nvim-lspconfig'
-    end,
-    event = 'BufReadPre',
+    event = 'BufRead',
   }
 
   use {
     'williamboman/nvim-lsp-installer',
     config = function()
-      require './configs/nvim-lsp-installer'
+      require './configs/lsp'
     end,
     after = 'nvim-lspconfig',
   }
@@ -179,36 +225,17 @@ require('packer').startup(function()
       require './configs/null-ls'
     end,
     requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    event = 'BufReadPre',
+    event = 'BufRead',
   }
   -------------------------
-
-  ---------- Marks ----------
-  use {
-    'ThePrimeagen/harpoon',
-    config = function()
-      require './configs/harpoon'
-    end,
-    requires = { 'popup.nvim', 'plenary.nvim' },
-    event = 'BufEnter',
-  }
-  ---------------------------
 
   ---------- MISC ----------
   use {
     'vim-test/vim-test',
     config = function()
-      vim.cmd [[ let test#strategy = "harpoon" ]]
+      vim.cmd [[ let test#strategy = "neovim" ]]
     end,
-    requires = { 'ThePrimeagen/harpoon' },
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
-    opt = true,
-  }
-
-  use {
-    'dstein64/vim-startuptime',
-    cmd = 'StartupTime',
-    opt = true,
   }
 
   use {
@@ -219,32 +246,56 @@ require('packer').startup(function()
     requires = { 'nvim-lua/plenary.nvim' },
     ft = { 'http' },
   }
+
+  use {
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('trouble').setup {
+        -- auto_close = true,
+      }
+    end,
+    cmd = { 'Trouble', 'TroubleToggle' },
+  }
+
+  use {
+    'KadoBOT/nvim-spotify',
+    requires = 'nvim-telescope/telescope.nvim',
+    config = function()
+      require './configs/nvim-spotify'
+    end,
+    run = 'make',
+  }
   ------------------------------
 
   ---------- Text Editing ----------
+  use { 'rafamadriz/friendly-snippets', event = 'InsertEnter' }
+
+  use {
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require('luasnip/loaders/from_vscode').lazy_load()
+    end,
+    requires = {
+      { 'rafamadriz/friendly-snippets' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
+    },
+    event = 'InsertEnter',
+  }
+
   use {
     'hrsh7th/nvim-cmp',
     config = function()
       require './configs/nvim-cmp'
     end,
     requires = {
-      {
-        'L3MON4D3/LuaSnip',
-        config = function()
-          require('luasnip/loaders/from_vscode').lazy_load()
-        end,
-        requires = {
-          { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
-          { 'rafamadriz/friendly-snippets', event = 'InsertEnter' },
-        },
-        event = 'InsertEnter',
-      },
-      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-      after = 'friendly-snippets',
+      { 'L3MON4D3/LuaSnip' },
+      { 'hrsh7th/cmp-buffer', event = 'InsertEnter' },
+      { 'hrsh7th/cmp-path', event = 'InsertEnter' },
+      { 'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter' },
+      { 'hrsh7th/cmp-nvim-lua', event = 'InsertEnter' },
     },
+    event = 'InsertEnter',
   }
 
   use {
@@ -276,7 +327,6 @@ require('packer').startup(function()
     config = function()
       require './configs/refactoring'
     end,
-    event = 'BufRead',
     ft = { 'go', 'lua', 'js', 'py', 'ts' },
   }
   -----------------------------------------
@@ -288,6 +338,7 @@ require('packer').startup(function()
     config = function()
       require './configs/nvim-treesitter'
     end,
+    event = 'BufRead',
   }
 
   use {
@@ -312,7 +363,6 @@ require('packer').startup(function()
       require './configs/lualine'
     end,
     requires = { 'nvim-lua/plenary.nvim' },
-    event = 'UIEnter',
   }
 
   use {
@@ -327,7 +377,11 @@ require('packer').startup(function()
     config = function()
       require './configs/nvim-toggleterm'
     end,
-    event = 'BufEnter',
   }
   --------------------------------
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
 end)

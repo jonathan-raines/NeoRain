@@ -1,5 +1,9 @@
----@diagnostic disable: undefined-global
-require('rest-nvim').setup {
+local status_ok, rest_nvim = pcall(require, 'rest-nvim')
+if not status_ok then
+  return
+end
+
+rest_nvim.setup {
   result_split_horizontal = false,
   skip_ssl_verification = false,
   highlight = {
@@ -9,4 +13,4 @@ require('rest-nvim').setup {
   jump_to_request = true,
 }
 
-vim.api.nvim_set_keymap('n', 'Q', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<C-q>', "<cmd>lua require'rest-nvim'.run()<CR>", { silent = true, noremap = true })

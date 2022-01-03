@@ -1,6 +1,9 @@
----@diagnostic disable: undefined-global
-local refactor = require 'refactoring'
-refactor.setup {}
+local status_ok, refactoring = pcall(require, 'refactoring')
+if not status_ok then
+  return
+end
+
+refactoring.setup {}
 
 -- telescope refactoring helper
 local function refactor(prompt_bufnr)
@@ -8,11 +11,7 @@ local function refactor(prompt_bufnr)
   require('telescope.actions').close(prompt_bufnr)
   require('refactoring').refactor(content.value)
 end
--- NOTE: M is a global object
--- for the sake of simplicity in this example
--- you can extract this function and the helper above
--- and then require the file and call the extracted function
--- in the mappings below
+
 M = {}
 M.refactors = function()
   local opts = require('telescope.themes').get_cursor() -- set personal telescope options

@@ -1,86 +1,100 @@
----@diagnostic disable: undefined-global
-local vim = vim
-local map = vim.api.nvim_set_keymap
+local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+local term_opts = { silent = true }
 
 --Remap space as leader key
-map('', '<Space>', '<Nop>', opts)
+keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-map('n', '<leader><space>', '<c-^>', opts)
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
+
+-- Normal Mode --
+keymap('n', '<leader><space>', '<c-^>', opts)
 
 -- Write / Quit
-map('n', '<leader>w', ':w<CR>', opts)
+keymap('n', '<leader>w', ':w<CR>', opts)
+keymap('n', '<leader>q', ':q!<CR>', opts)
 
-map('n', '<C-s>', ':w<CR>', opts)
-map('i', '<C-s>', '<ESC>:w<CR>', opts)
-
-map('n', '<leader>q', ':q!<CR>', opts)
-map('n', 'Q', ':bufdo bd!<CR>', opts)
-
-map('n', '<leader>c', ':bd!<CR>', opts)
-map('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', opts)
+keymap('n', '<leader>c', ':bd!<CR>', opts)
+keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', opts)
 
 -- Keeping it centered
-map('n', 'n', 'nzzzv', opts)
-map('n', 'N', 'Nzzzv', opts)
-map('n', 'J', 'mzJ`z', opts)
-map('n', '{', '{zz', opts)
-map('n', '}', '}zz', opts)
-map('n', '<C-o>', '<C-o>zz', opts)
-map('n', '<C-i>', '<C-i>zz', opts)
+keymap('n', 'n', 'nzzzv', opts)
+keymap('n', 'N', 'Nzzzv', opts)
+keymap('n', 'J', 'mzJ`z', opts)
+keymap('n', '{', '{zz', opts)
+keymap('n', '}', '}zz', opts)
+keymap('n', '<C-o>', '<C-o>zz', opts)
+keymap('n', '<C-i>', '<C-i>zz', opts)
+
+-- Quickfix Navigation
+keymap('n', ']q', ':cnext<CR>', opts)
+keymap('n', '[q', ':cprevious<CR>', opts)
+
+-- Buffer Navigation
+keymap('n', ']b', ':bn<CR>', opts)
+keymap('n', '[b', ':bp<CR>', opts)
+keymap('n', ']B', ':blast<CR>', opts)
+keymap('n', '[B', ':bfirst<CR>', opts)
+
+-- Move Lines Around
+keymap('n', '<A-j>', ':m .+1<CR>==', opts)
+keymap('n', '<A-k>', ':m .-2<CR>==', opts)
+
+-- Indent
+keymap('n', '<', '<<', opts)
+keymap('n', '>', '>>', opts)
+
+-- Quickfix
+keymap('n', '<C-q>', ':call QuickFixToggle()<CR>', opts)
+
+-- Move Windows Around
+keymap('n', '<C-h>', '<C-w>h', opts)
+keymap('n', '<C-j>', '<C-w>j', opts)
+keymap('n', '<C-k>', '<C-w>k', opts)
+keymap('n', '<C-l>', '<C-w>l', opts)
+
+-- Resize windows
+keymap('n', '<C-Up>', ':resize -5<CR>', opts)
+keymap('n', '<C-Down>', ':resize +5<CR>', opts)
+keymap('n', '<C-Left>', ':vertical resize -5<CR>', opts)
+keymap('n', '<C-Right>', ':vertical resize +5<CR>', opts)
+
+-- Insert Mode --
+
+-- Save
+keymap('i', '<C-s>', '<ESC>:w<CR>', opts)
 
 -- Undo break points
-map('i', ',', ',<c-g>u', opts)
-map('i', '.', '.<c-g>u', opts)
-map('i', '!', '!<c-g>u', opts)
-map('i', '?', '?<c-g>u', opts)
+keymap('i', ',', ',<c-g>u', opts)
+keymap('i', '.', '.<c-g>u', opts)
+keymap('i', '!', '!<c-g>u', opts)
+keymap('i', '?', '?<c-g>u', opts)
+
+-- Escape
+keymap('i', 'jk', '<ESC>', opts)
+
+-- Visual Mode --
+keymap('v', 'jk', '<ESC>', opts)
+
+-- Move Lines Around
+keymap('v', '<A-j>', ":m '>+1<CR>gv-gv", opts)
+keymap('v', '<A-k>', ":m '<-2<CR>gv-gv", opts)
+
+-- Indent
+keymap('v', '<', '<gv', opts)
+keymap('v', '>', '>gv', opts)
 
 -- Jumplist mutations
 vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
 vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
-
--- Quickfix Navigation
-map('n', ']q', ':cnext<CR>', opts)
-map('n', '[q', ':cprevious<CR>', opts)
-
--- Buffer Navigation
-map('n', ']b', ':bn<CR>', opts)
-map('n', '[b', ':bp<CR>', opts)
-map('n', ']B', ':blast<CR>', opts)
-map('n', '[B', ':bfirst<CR>', opts)
-
--- Escape
-map('i', 'jk', '<ESC>', opts)
-map('v', 'jk', '<ESC>', opts)
-
--- Move Lines Around
-map('n', '<A-j>', ':m .+1<CR>==', opts)
-map('n', '<A-k>', ':m .-2<CR>==', opts)
-map('v', '<A-j>', ":m '>+1<CR>gv-gv", opts)
-map('v', '<A-k>', ":m '<-2<CR>gv-gv", opts)
-
--- Move Windows Around
-map('n', '<C-h>', '<C-w>h', opts)
-map('n', '<C-j>', '<C-w>j', opts)
-map('n', '<C-k>', '<C-w>k', opts)
-map('n', '<C-l>', '<C-w>l', opts)
-
--- Resize windows
-map('n', '<C-Up>', ':resize -5<CR>', opts)
-map('n', '<C-Down>', ':resize +5<CR>', opts)
-map('n', '<C-Left>', ':vertical resize -5<CR>', opts)
-map('n', '<C-Right>', ':vertical resize +5<CR>', opts)
-
--- Indent
-map('v', '<', '<gv', opts)
-map('v', '>', '>gv', opts)
-map('n', '<', '<<', opts)
-map('n', '>', '>>', opts)
-
--- Quickfix
-map('n', '<C-q>', ':call QuickFixToggle()<CR>', opts)
 
 -- QuickFixToggle
 vim.api.nvim_exec(
@@ -108,14 +122,23 @@ vim.api.nvim_exec(
   false
 )
 
-function _G_set_terminal_keymaps()
-  local opts = { noremap = true }
-  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
-end
+-- Terminal Mode --
+keymap('t', 'jk', '<C-\\><C-n>', term_opts)
+keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
+keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
+keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
+keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd 'autocmd! TermOpen term://* lua _G_set_terminal_keymaps()'
+-- Spotify
+vim.api.nvim_set_keymap('n', '<leader>sn', '<Plug>(SpotifySkip)', { silent = true }) -- Skip the current track
+vim.api.nvim_set_keymap('n', '<leader>sp', '<Plug>(SpotifyPause)', { silent = true }) -- Pause/Resume the current track
+vim.api.nvim_set_keymap('n', '<leader>ss', '<Plug>(SpotifySave)', { silent = true }) -- Add the current track to your library
+vim.api.nvim_set_keymap('n', '<leader>so', ':Spotify<CR>', { silent = true }) -- Open Spotify Search window
+vim.api.nvim_set_keymap('n', '<leader>sd', ':SpotifyDevices<CR>', { silent = true }) -- Open Spotify Devices window
+
+-- Trouble
+vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>TroubleToggle<cr>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true })
