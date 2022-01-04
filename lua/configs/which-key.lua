@@ -113,3 +113,9 @@ local mappings = {
 }
 
 wk.register(mappings, opts)
+
+wk.register {
+  g = {
+    j = { '<cmd>DBUIToggle<CR>', 'Database' },
+  },
+}
