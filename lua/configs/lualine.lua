@@ -122,6 +122,7 @@ lualine.setup {
     lualine_a = {
       {
         'buffers',
+        show_filename_only = true,
         filetype_names = {
           TelescopePrompt = 'Telescope',
           dashboard = 'Dashboard',
