@@ -72,7 +72,7 @@ return packer.startup(function(use)
         after = 'vim-dadbod',
       },
     },
-    cmd = { 'DBUI' },
+    cmd = { 'DBUI', 'DBUIToggle' },
   }
   ------------------------------
 
@@ -202,6 +202,11 @@ return packer.startup(function(use)
     end,
     requires = 'nvim-lua/plenary.nvim',
     ft = { 'dart' },
+  }
+
+  use {
+    'tpope/vim-rails',
+    ft = { 'ruby' },
   }
   ---------------------------------------
 
@@ -371,6 +376,7 @@ return packer.startup(function(use)
     config = function()
       require './configs/lualine'
     end,
+    -- commit = '4b68b8dd2aa5bb74fe8cd058797322d81df1f455',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
