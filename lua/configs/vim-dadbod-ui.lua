@@ -12,5 +12,3 @@ vim.cmd [[
     \  { 'name': 'media_test', 'url': 'postgres://postgres:welcome@localhost:5433/thrillshare_test' }
     \ ]
   ]]
-
-vim.api.nvim_set_keymap('n', 'gj', ':DBUI<CR>', { noremap = true, silent = true })
