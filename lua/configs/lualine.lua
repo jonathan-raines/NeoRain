@@ -6,6 +6,8 @@ end
 local status = require('nvim-spotify').status
 status:start()
 
+local gps = require 'nvim-gps'
+
 local window_width_limit = 80
 
 local conditions = {
@@ -80,8 +82,8 @@ lualine.setup {
           removed = { fg = '#c94f6d' },
         },
         color = {},
-        cond = nil,
       },
+      { gps.get_location, cond = (vim.treesitter.highlighter.active and gps.is_available) },
     },
     lualine_x = {
       { status.listen },
