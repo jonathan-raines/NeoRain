@@ -280,6 +280,28 @@ return packer.startup(function(use)
     end,
     run = 'make',
   }
+
+  use {
+    'unblevable/quick-scope',
+    config = function()
+      vim.cmd [[
+        augroup qs_colors
+          autocmd!
+          autocmd ColorScheme * highlight QuickScopePrimary gui=underline cterm=underline
+          autocmd ColorScheme * highlight QuickScopeSecondary gui=underline cterm=underline
+        augroup END
+      ]]
+    end,
+  }
+
+  -- use {
+  --   'gukz/ftFT.nvim',
+  --   -- This will turn on all functions, if you don't like some of them, add more config to disable/change them
+  --   config = function()
+  --     vim.g.ftFT_sight_disable = 1 -- if set this, will not have sight line
+  --     require('ftFT').setup()
+  --   end,
+  -- }
   ------------------------------
 
   ---------- Text Editing ----------
@@ -363,11 +385,70 @@ return packer.startup(function(use)
 
   -------------- UI -----------------
   use {
-    'shaunsingh/nord.nvim',
+    'catppuccin/nvim',
     config = function()
-      require('nord').set()
-      vim.cmd [[colorscheme nord]]
+      local catppuccin = require 'catppuccin'
+
+      -- configure it
+      catppuccin.setup {
+        transparent_background = false,
+        term_colors = false,
+        styles = {
+          comments = 'italic',
+          functions = 'italic',
+          keywords = 'italic',
+          strings = 'NONE',
+          variables = 'italic',
+        },
+        integrations = {
+          treesitter = true,
+          native_lsp = {
+            enabled = true,
+            virtual_text = {
+              errors = 'italic',
+              hints = 'italic',
+              warnings = 'italic',
+              information = 'italic',
+            },
+            underlines = {
+              errors = 'underline',
+              hints = 'underline',
+              warnings = 'underline',
+              information = 'underline',
+            },
+          },
+          lsp_trouble = true,
+          cmp = true,
+          lsp_saga = false,
+          gitgutter = false,
+          gitsigns = true,
+          telescope = true,
+          nvimtree = {
+            enabled = false,
+            show_root = false,
+          },
+          which_key = true,
+          indent_blankline = {
+            enabled = false,
+            colored_indent_levels = false,
+          },
+          dashboard = false,
+          neogit = false,
+          vim_sneak = false,
+          fern = false,
+          barbar = false,
+          bufferline = true,
+          markdown = true,
+          lightspeed = false,
+          ts_rainbow = false,
+          hop = false,
+          notify = true,
+          telekasten = true,
+        },
+      }
+      vim.cmd [[ colorscheme catppuccin ]]
     end,
+    as = 'catppuccin',
     after = 'lualine.nvim',
   }
 
