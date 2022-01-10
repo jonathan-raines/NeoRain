@@ -38,16 +38,14 @@ packer.init {
 }
 
 return packer.startup(function(use)
-  use 'wbthomason/packer.nvim'
-
   use {
-    'lewis6991/impatient.nvim',
-    config = function()
-      require('impatient').enable_profile()
-    end,
-  }
-
-  use {
+    { 'wbthomason/packer.nvim' },
+    {
+      'lewis6991/impatient.nvim',
+      config = function()
+        require('impatient').enable_profile()
+      end,
+    },
     { 'nathom/filetype.nvim' },
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-lua/popup.nvim' },
@@ -101,12 +99,7 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = function()
-      local telescope_status_ok, telescope = pcall(require, 'telescope')
-      if not telescope_status_ok then
-        return
-      end
-
-      telescope.setup {
+      require('telescope').setup {
         extensions = {
           file_browser = {
             theme = 'ivy',
@@ -120,7 +113,7 @@ return packer.startup(function(use)
 
       require('telescope').load_extension 'file_browser'
     end,
-    cmd = { "lua require 'telescope'.extensions.file_browser.file_browser()" },
+    after = 'telescope.nvim',
   }
 
   use {
@@ -160,6 +153,7 @@ return packer.startup(function(use)
         },
       }
     end,
+    after = 'telescope.nvim',
   }
   -----------------------------------
 
@@ -374,12 +368,19 @@ return packer.startup(function(use)
     config = function()
       require './configs/nvim-treesitter'
     end,
-    event = 'BufRead',
   }
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
+  }
+
+  use {
+    'SmiteshP/nvim-gps',
+    config = function()
+      require('nvim-gps').setup()
+    end,
+    requires = 'nvim-treesitter/nvim-treesitter',
   }
   --------------------------------
 
@@ -387,10 +388,7 @@ return packer.startup(function(use)
   use {
     'catppuccin/nvim',
     config = function()
-      local catppuccin = require 'catppuccin'
-
-      -- configure it
-      catppuccin.setup {
+      require('catppuccin').setup {
         transparent_background = false,
         term_colors = false,
         styles = {
