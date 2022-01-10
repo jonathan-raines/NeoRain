@@ -158,13 +158,6 @@ vim.api.nvim_set_keymap('n', '<leader>ss', '<Plug>(SpotifySave)', { silent = tru
 vim.api.nvim_set_keymap('n', '<leader>so', ':Spotify<CR>', { silent = true }) -- Open Spotify Search window
 vim.api.nvim_set_keymap('n', '<leader>sd', ':SpotifyDevices<CR>', { silent = true }) -- Open Spotify Devices window
 
--- Trouble
-vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>TroubleToggle<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true })
-
 -- Refactoring
 vim.api.nvim_set_keymap(
   'v',

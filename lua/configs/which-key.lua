@@ -94,14 +94,6 @@ local mappings = {
     s = { ':TestSuite<CR>', 'Run Test Suite' },
     v = { ':TestVisit<CR>', 'Visit Test File' },
   },
-  x = {
-    name = 'Trouble',
-    x = { 'Trouble' },
-    d = { 'Document Diagnostics' },
-    w = { 'Workspace Diagnostics' },
-    q = { 'Trouble quickfix' },
-    l = { 'Trouble loclist' },
-  },
 }
 
 wk.register(mappings, opts)
