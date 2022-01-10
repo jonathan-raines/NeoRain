@@ -1,6 +1,4 @@
-local harpoon = require 'harpoon'
-
-harpoon.setup {
+require('harpoon').setup {
   global_settings = {
     -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
     save_on_toggle = false,
@@ -19,9 +17,7 @@ harpoon.setup {
   },
 }
 
-local wk = require 'which-key'
-
-wk.register({
+require('which-key').register({
   h = {
     name = 'Harpoon',
     ['p'] = { '<cmd>lua require("harpoon.mark").add_file()<CR>', 'Add File' },
@@ -40,6 +36,4 @@ wk.register({
   prefix = '<leader>',
 })
 
-local telescope = require 'telescope'
-
-telescope.load_extension 'harpoon'
+require('telescope').load_extension 'harpoon'

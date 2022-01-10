@@ -1,4 +1,3 @@
-local lualine = require 'lualine'
 local gps = require 'nvim-gps'
 
 local status = require('nvim-spotify').status
@@ -42,7 +41,7 @@ local function getclientnames()
   return table.concat(clientnames_tbl, ', ')
 end
 
-lualine.setup {
+require('lualine').setup {
   options = {
     component_separators = '',
     section_separators = '',

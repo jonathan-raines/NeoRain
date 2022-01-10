@@ -1,14 +1,10 @@
-local flutter_tools = require 'flutter-tools'
-
-flutter_tools.setup {
+require('flutter-tools').setup {
   lsp = {
     on_attach = require('lsp.handlers').on_attach(),
   },
 }
 
-local wk = require 'which-key'
-
-wk.register({
+require('which-key').register({
   f = {
     y = { '<cmd>Telescope flutter commands theme=dropdown<cr>', 'Flutter Commands' },
   },

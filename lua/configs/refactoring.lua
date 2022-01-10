@@ -1,6 +1,4 @@
-local refactoring = require 'refactoring'
-
-refactoring.setup {}
+require('refactoring').setup {}
 
 -- telescope refactoring helper
 local function refactor(prompt_bufnr)

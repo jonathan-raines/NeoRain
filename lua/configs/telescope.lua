@@ -1,7 +1,6 @@
-local telescope = require 'telescope'
 local actions = require 'telescope.actions'
 
-telescope.setup {
+require('telescope').setup {
   defaults = {
     layout_config = {
       height = 0.9,

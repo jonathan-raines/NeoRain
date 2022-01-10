@@ -1,6 +1,4 @@
-local rest_nvim = require 'rest-nvim'
-
-rest_nvim.setup {
+require('rest-nvim').setup {
   result_split_horizontal = false,
   skip_ssl_verification = false,
   highlight = {
