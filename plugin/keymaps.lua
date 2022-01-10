@@ -122,6 +122,29 @@ vim.api.nvim_exec(
   false
 )
 
+function EscapePair()
+  local closers = { ')', ']', '}', '>', "'", '"', '`', ',' }
+  local line = vim.api.nvim_get_current_line()
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local after = line:sub(col + 1, -1)
+  local closer_col = #after + 1
+  local closer_i = nil
+  for i, closer in ipairs(closers) do
+    local cur_index, _ = after:find(closer)
+    if cur_index and (cur_index < closer_col) then
+      closer_col = cur_index
+      closer_i = i
+    end
+  end
+  if closer_i then
+    vim.api.nvim_win_set_cursor(0, { row, col + closer_col })
+  else
+    vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+  end
+end
+
+vim.api.nvim_set_keymap('i', '<A-l>', '<cmd>lua EscapePair()<CR>', { noremap = true, silent = true })
+
 -- Terminal Mode --
 keymap('t', 'jk', '<C-\\><C-n>', term_opts)
 keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
@@ -135,10 +158,3 @@ vim.api.nvim_set_keymap('n', '<leader>sp', '<Plug>(SpotifyPause)', { silent = tr
 vim.api.nvim_set_keymap('n', '<leader>ss', '<Plug>(SpotifySave)', { silent = true }) -- Add the current track to your library
 vim.api.nvim_set_keymap('n', '<leader>so', ':Spotify<CR>', { silent = true }) -- Open Spotify Search window
 vim.api.nvim_set_keymap('n', '<leader>sd', ':SpotifyDevices<CR>', { silent = true }) -- Open Spotify Devices window
-
--- Trouble
-vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>TroubleToggle<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true })
