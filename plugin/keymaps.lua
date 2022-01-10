@@ -145,13 +145,6 @@ end
 
 vim.api.nvim_set_keymap('i', '<A-l>', '<cmd>lua EscapePair()<CR>', { noremap = true, silent = true })
 
--- Terminal Mode --
-keymap('t', 'jk', '<C-\\><C-n>', term_opts)
-keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
-keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
-keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
-keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
-
 -- Spotify
 vim.api.nvim_set_keymap('n', '<leader>sn', '<Plug>(SpotifySkip)', { silent = true }) -- Skip the current track
 vim.api.nvim_set_keymap('n', '<leader>sp', '<Plug>(SpotifyPause)', { silent = true }) -- Pause/Resume the current track
