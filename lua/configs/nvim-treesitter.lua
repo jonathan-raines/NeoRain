@@ -1,9 +1,6 @@
-local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
-if not status_ok then
-  return
-end
-
+local configs = require 'nvim-treesitter.configs'
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
+
 parser_configs.http = {
   install_info = {
     url = 'https://github.com/NTBBloodbath/tree-sitter-http',

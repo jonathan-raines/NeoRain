@@ -1,7 +1,4 @@
-local status_ok, spotify = pcall(require, 'nvim-spotify')
-if not status_ok then
-  return
-end
+local spotify = require 'nvim-spotify'
 
 spotify.setup {
   status = {

@@ -1,7 +1,4 @@
-local status_ok, refactoring = pcall(require, 'refactoring')
-if not status_ok then
-  return
-end
+local refactoring = require 'refactoring'
 
 refactoring.setup {}
 
@@ -13,6 +10,7 @@ local function refactor(prompt_bufnr)
 end
 
 M = {}
+
 M.refactors = function()
   local opts = require('telescope.themes').get_cursor() -- set personal telescope options
   require('telescope.pickers').new(opts, {

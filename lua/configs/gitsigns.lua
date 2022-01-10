@@ -1,7 +1,4 @@
-local status_ok, gitsigns = pcall(require, 'gitsigns')
-if not status_ok then
-  return
-end
+local gitsigns = require 'gitsigns'
 
 gitsigns.setup {
   signs = {
@@ -68,10 +65,7 @@ gitsigns.setup {
   },
 }
 
-local wk_status_ok, wk = pcall(require, 'which-key')
-if not wk_status_ok then
-  return
-end
+local wk = require 'which-key'
 
 wk.register({
   g = {

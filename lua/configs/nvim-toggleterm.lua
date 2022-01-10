@@ -1,7 +1,4 @@
-local status_ok, toggleterm = pcall(require, 'toggleterm')
-if not status_ok then
-  return
-end
+local toggleterm = require 'toggleterm'
 
 toggleterm.setup {
   -- size can be a number or function which is passed the current terminal
@@ -59,10 +56,7 @@ function _LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
 
-local wk_status_ok, wk = pcall(require, 'which-key')
-if not wk_status_ok then
-  return
-end
+local wk = require 'which-key'
 
 wk.register({
   g = {

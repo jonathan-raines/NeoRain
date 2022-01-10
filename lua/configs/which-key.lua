@@ -1,12 +1,4 @@
-local status_ok, wk = pcall(require, 'which-key')
-if not status_ok then
-  return
-end
-
-local function curr_buf()
-  local opt = require('telescope.themes').get_ivy()
-  require('telescope.builtin').current_buffer_fuzzy_find(opt)
-end
+local wk = require 'which-key'
 
 wk.setup {
   plugins = {
@@ -47,11 +39,8 @@ local mappings = {
   ['<space>'] = 'which_key_ignore',
   ['c'] = 'which_key_ignore',
   ['C'] = 'which_key_ignore',
-  ['e'] = 'which_key_ignore',
   ['q'] = 'which_key_ignore',
-  ['Q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
-  ['W'] = 'which_key_ignore',
   a = { 'which_key_ignore' },
   A = { 'which_key_ignore' },
   f = {
@@ -67,7 +56,7 @@ local mappings = {
     t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
     w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
   },
-  ['/'] = { curr_buf, 'Search Current Buffer' },
+  ['/'] = { _CURR_BUF, 'Search Current Buffer' },
   o = {
     name = 'Octo',
     i = {

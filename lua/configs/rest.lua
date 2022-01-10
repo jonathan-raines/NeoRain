@@ -1,7 +1,4 @@
-local status_ok, rest_nvim = pcall(require, 'rest-nvim')
-if not status_ok then
-  return
-end
+local rest_nvim = require 'rest-nvim'
 
 rest_nvim.setup {
   result_split_horizontal = false,

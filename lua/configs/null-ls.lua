@@ -1,7 +1,4 @@
-local status_ok, null_ls = pcall(require, 'null-ls')
-if not status_ok then
-  return
-end
+local null_ls = require 'null-ls'
 
 local sources = {
   null_ls.builtins.code_actions.eslint_d.with {

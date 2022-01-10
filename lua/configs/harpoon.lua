@@ -1,7 +1,4 @@
-local status_ok, harpoon = pcall(require, 'harpoon')
-if not status_ok then
-  return
-end
+local harpoon = require 'harpoon'
 
 harpoon.setup {
   global_settings = {
@@ -22,10 +19,7 @@ harpoon.setup {
   },
 }
 
-local wk_ok, wk = pcall(require, 'which-key')
-if not wk_ok then
-  return
-end
+local wk = require 'which-key'
 
 wk.register({
   h = {
@@ -46,9 +40,6 @@ wk.register({
   prefix = '<leader>',
 })
 
-local telescope_ok, telescope = pcall(require, 'telescope')
-if not telescope_ok then
-  return
-end
+local telescope = require 'telescope'
 
 telescope.load_extension 'harpoon'

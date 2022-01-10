@@ -1,8 +1,4 @@
-local status_ok, telescope = pcall(require, 'telescope')
-if not status_ok then
-  return
-end
-
+local telescope = require 'telescope'
 local actions = require 'telescope.actions'
 
 telescope.setup {
@@ -26,10 +22,10 @@ telescope.setup {
       sort_lastused = true,
       mappings = {
         i = {
-          ['<c-d>'] = require('telescope.actions').delete_buffer,
+          ['<c-d>'] = actions.delete_buffer,
         },
         n = {
-          ['<c-d>'] = require('telescope.actions').delete_buffer,
+          ['<c-d>'] = actions.delete_buffer,
         },
       },
     },
@@ -48,7 +44,7 @@ telescope.setup {
   },
 }
 
-function curr_buf()
+function _CURR_BUF()
   local opt = require('telescope.themes').get_ivy()
   require('telescope.builtin').current_buffer_fuzzy_find(opt)
 end

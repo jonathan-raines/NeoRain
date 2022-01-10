@@ -10,15 +10,12 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
-local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-if status_ok then
+local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+if cmp_nvim_lsp then
   M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 end
 
-local wk_status_ok, wk = pcall(require, 'which-key')
-if not wk_status_ok then
-  return
-end
+local wk = require 'which-key'
 
 local function lsp_document_codelens(client)
   if client.resolved_capabilities.code_lens then

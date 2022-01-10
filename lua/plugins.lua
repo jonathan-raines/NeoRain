@@ -99,7 +99,9 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = function()
-      require('telescope').setup {
+      local telescope = require 'telescope'
+
+      telescope.setup {
         extensions = {
           file_browser = {
             theme = 'ivy',
@@ -111,7 +113,7 @@ return packer.startup(function(use)
         },
       }
 
-      require('telescope').load_extension 'file_browser'
+      telescope.load_extension 'file_browser'
     end,
     after = 'telescope.nvim',
   }
@@ -215,11 +217,11 @@ return packer.startup(function(use)
 
   use {
     'KadoBOT/nvim-spotify',
-    requires = 'nvim-telescope/telescope.nvim',
     config = function()
       require './configs/nvim-spotify'
     end,
     run = 'make',
+    requires = 'nvim-telescope/telescope.nvim',
   }
   ------------------------------
 
@@ -345,18 +347,14 @@ return packer.startup(function(use)
   use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
 
   use {
-    'unblevable/quick-scope',
+    'gukz/ftFT.nvim',
     config = function()
-      vim.cmd [[
-        augroup qs_colors
-          autocmd!
-          autocmd ColorScheme * highlight QuickScopePrimary gui=underline cterm=underline
-          autocmd ColorScheme * highlight QuickScopeSecondary gui=underline cterm=underline
-        augroup END
-      ]]
+      vim.g.ftFT_sight_disable = 1 -- if set this, will not have sight line
+      require('ftFT').setup()
     end,
   }
   --------------------------------
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
