@@ -48,7 +48,7 @@ lualine.setup {
   options = {
     component_separators = '',
     section_separators = '',
-    theme = 'nord',
+    theme = 'catppuccin',
   },
   sections = {
     lualine_a = {
@@ -132,6 +132,9 @@ lualine.setup {
         }, -- shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
       },
     },
+    lualine_z = {
+      'tabs',
+    },
   },
-  extensions = { 'quickfix' },
+  extensions = { 'quickfix', 'toggleterm' },
 }
