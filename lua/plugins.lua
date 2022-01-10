@@ -376,7 +376,6 @@ return packer.startup(function(use)
     config = function()
       require './configs/lualine'
     end,
-    -- commit = '4b68b8dd2aa5bb74fe8cd058797322d81df1f455',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
