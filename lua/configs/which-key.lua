@@ -52,6 +52,8 @@ local mappings = {
   ['Q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
   ['W'] = 'which_key_ignore',
+  a = { 'which_key_ignore' },
+  A = { 'which_key_ignore' },
   f = {
     name = 'Telescope',
     b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
@@ -59,6 +61,7 @@ local mappings = {
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
     e = { "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<CR>", 'File Browser' },
     g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
+    h = { '<cmd>Telescope harpoon marks<cr>', 'Harpoon Marks' },
     o = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
     s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
     t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },

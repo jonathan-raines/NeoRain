@@ -37,6 +37,8 @@ keymap('n', '<C-i>', '<C-i>zz', opts)
 -- Quickfix Navigation
 keymap('n', ']q', ':cnext<CR>', opts)
 keymap('n', '[q', ':cprevious<CR>', opts)
+keymap('n', ']Q', ':cfirst<CR>', opts)
+keymap('n', '[Q', ':clast<CR>', opts)
 
 -- Buffer Navigation
 keymap('n', ']b', ':bn<CR>', opts)
@@ -51,6 +53,10 @@ keymap('n', '<A-k>', ':m .-2<CR>==', opts)
 -- Indent
 keymap('n', '<', '<<', opts)
 keymap('n', '>', '>>', opts)
+
+-- Add / Subtract
+keymap('n', '+', '<C-a>', opts)
+keymap('n', '-', '<C-x>', opts)
 
 -- Quickfix
 keymap('n', '<C-q>', ':call QuickFixToggle()<CR>', opts)
@@ -158,3 +164,29 @@ vim.api.nvim_set_keymap('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<c
 vim.api.nvim_set_keymap('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>xl', '<cmd>Trouble loclist<cr>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', { silent = true, noremap = true })
+
+-- Refactoring
+vim.api.nvim_set_keymap(
+  'v',
+  '<Leader>re',
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
+  { noremap = true, silent = true, expr = false }
+)
+vim.api.nvim_set_keymap(
+  'v',
+  '<Leader>rf',
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]],
+  { noremap = true, silent = true, expr = false }
+)
+vim.api.nvim_set_keymap(
+  'v',
+  '<Leader>rv',
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
+  { noremap = true, silent = true, expr = false }
+)
+vim.api.nvim_set_keymap(
+  'v',
+  '<Leader>ri',
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+  { noremap = true, silent = true, expr = false }
+)

@@ -1,4 +1,4 @@
--- Automatically install packer
+-- Automatically install packr
 local fn = vim.fn
 local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -117,43 +117,10 @@ return packer.startup(function(use)
   }
 
   use {
-    'LinArcX/telescope-command-palette.nvim',
+    'ThePrimeagen/harpoon',
     config = function()
-      require('telescope').load_extension 'command_palette'
-      CpMenu = {
-        {
-          'Telescope',
-          { 'buffers (leader fb)', '<cmd>Telescope buffers theme=get_ivy<CR>' },
-          { 'document symbols (leader fd)', '<cmd>Telescope lsp_document_symbols' },
-          { 'file browser (leader fe)', ":lua require'telescope'.extensions.file_browser.file_browser()" },
-          { 'find files (leader ff)', ":lua require('telescope.builtin').find_files()" },
-          { 'find word (leader fg)', ":lua require('telescope.builtin').live_grep()" },
-          { 'git files ()', ":lua require('telescope.builtin').git_files()" },
-          { 'recent files (leader fo)', '<cmd>Telescope old_files<CR>' },
-        },
-        {
-          'Help',
-          { 'tips', ':help tips' },
-          { 'cheatsheet', ':help index' },
-          { 'tutorial', ':help tutor' },
-          { 'summary', ':help summary' },
-          { 'quick reference', ':help quickref' },
-          { 'search help(F1)', ":lua require('telescope.builtin').help_tags()", 1 },
-        },
-        {
-          'Vim',
-          { 'reload vimrc', ':source $MYVIMRC' },
-          { 'check health', ':checkhealth' },
-          { 'jumps (Alt-j)', ":lua require('telescope.builtin').jumplist()" },
-          { 'commands', ":lua require('telescope.builtin').commands()" },
-          { 'command history', ":lua require('telescope.builtin').command_history()" },
-          { 'registers (A-e)', ":lua require('telescope.builtin').registers()" },
-          { 'vim options', ":lua require('telescope.builtin').vim_options()" },
-          { 'keymaps', ":lua require('telescope.builtin').keymaps()" },
-        },
-      }
+      require './configs/harpoon'
     end,
-    after = 'telescope.nvim',
   }
   -----------------------------------
 
@@ -241,29 +208,9 @@ return packer.startup(function(use)
       )
       vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')}]]
       vim.cmd [[ let test#transformation = 'docker']]
-      vim.cmd [[ let test#strategy = "neovim" ]]
+      vim.cmd [[ let test#strategy = "harpoon" ]]
     end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
-  }
-
-  use {
-    'NTBBloodbath/rest.nvim',
-    config = function()
-      require './configs/rest'
-    end,
-    requires = { 'nvim-lua/plenary.nvim' },
-    ft = { 'http' },
-  }
-
-  use {
-    'folke/trouble.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('trouble').setup {
-        -- auto_close = true,
-      }
-    end,
-    cmd = { 'Trouble', 'TroubleToggle' },
   }
 
   use {
@@ -274,31 +221,9 @@ return packer.startup(function(use)
     end,
     run = 'make',
   }
-
-  use {
-    'unblevable/quick-scope',
-    config = function()
-      vim.cmd [[
-        augroup qs_colors
-          autocmd!
-          autocmd ColorScheme * highlight QuickScopePrimary gui=underline cterm=underline
-          autocmd ColorScheme * highlight QuickScopeSecondary gui=underline cterm=underline
-        augroup END
-      ]]
-    end,
-  }
-
-  -- use {
-  --   'gukz/ftFT.nvim',
-  --   -- This will turn on all functions, if you don't like some of them, add more config to disable/change them
-  --   config = function()
-  --     vim.g.ftFT_sight_disable = 1 -- if set this, will not have sight line
-  --     require('ftFT').setup()
-  --   end,
-  -- }
   ------------------------------
 
-  ---------- Text Editing ----------
+  ---------- Completion ----------
   use { 'rafamadriz/friendly-snippets' }
 
   use {
@@ -325,7 +250,9 @@ return packer.startup(function(use)
       { 'hrsh7th/cmp-nvim-lua' },
     },
   }
+  ------------------------------
 
+  ---------- Text Editing ----------
   use {
     'windwp/nvim-autopairs',
     config = function()
@@ -347,6 +274,7 @@ return packer.startup(function(use)
     config = function()
       require('surround').setup { mappings_style = 'sandwich' }
     end,
+    commit = '00c384773a5a0b7cd556113dc7b3ab5799f6fdbc',
     event = 'BufRead',
   }
 
@@ -380,107 +308,13 @@ return packer.startup(function(use)
     end,
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-
-  use {
-    'romgrk/nvim-treesitter-context',
-    config = function()
-      require('treesitter-context').setup {
-        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-        throttle = true, -- Throttles plugin updates (may improve performance)
-        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-        patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-          -- For all filetypes
-          -- Note that setting an entry here replaces all other patterns for this entry.
-          -- By setting the 'default' entry below, you can control which nodes you want to
-          -- appear in the context window.
-          default = {
-            'class',
-            'function',
-            'method',
-            -- 'for', -- These won't appear in the context
-            -- 'while',
-            -- 'if',
-            -- 'switch',
-            -- 'case',
-          },
-          -- Example for a specific filetype.
-          -- If a pattern is missing, *open a PR* so everyone can benefit.
-          --   rust = {
-          --       'impl_item',
-          --   },
-        },
-        exact_patterns = {
-          -- Example for a specific filetype with Lua patterns
-          -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
-          -- exactly match "impl_item" only)
-          -- rust = true,
-        },
-      }
-    end,
-  }
   --------------------------------
 
   -------------- UI -----------------
   use {
     'catppuccin/nvim',
     config = function()
-      require('catppuccin').setup {
-        transparent_background = false,
-        term_colors = false,
-        styles = {
-          comments = 'italic',
-          functions = 'italic',
-          keywords = 'italic',
-          strings = 'NONE',
-          variables = 'italic',
-        },
-        integrations = {
-          treesitter = true,
-          native_lsp = {
-            enabled = true,
-            virtual_text = {
-              errors = 'italic',
-              hints = 'italic',
-              warnings = 'italic',
-              information = 'italic',
-            },
-            underlines = {
-              errors = 'underline',
-              hints = 'underline',
-              warnings = 'underline',
-              information = 'underline',
-            },
-          },
-          lsp_trouble = true,
-          cmp = true,
-          lsp_saga = false,
-          gitgutter = false,
-          gitsigns = true,
-          telescope = true,
-          nvimtree = {
-            enabled = false,
-            show_root = false,
-          },
-          which_key = true,
-          indent_blankline = {
-            enabled = false,
-            colored_indent_levels = false,
-          },
-          dashboard = false,
-          neogit = false,
-          vim_sneak = false,
-          fern = false,
-          barbar = false,
-          bufferline = true,
-          markdown = true,
-          lightspeed = false,
-          ts_rainbow = false,
-          hop = false,
-          notify = true,
-          telekasten = true,
-        },
-      }
-      vim.cmd [[ colorscheme catppuccin ]]
+      require './configs/catppuccin'
     end,
     as = 'catppuccin',
     after = 'lualine.nvim',
@@ -509,6 +343,19 @@ return packer.startup(function(use)
   }
 
   use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
+
+  use {
+    'unblevable/quick-scope',
+    config = function()
+      vim.cmd [[
+        augroup qs_colors
+          autocmd!
+          autocmd ColorScheme * highlight QuickScopePrimary gui=underline cterm=underline
+          autocmd ColorScheme * highlight QuickScopeSecondary gui=underline cterm=underline
+        augroup END
+      ]]
+    end,
+  }
   --------------------------------
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
