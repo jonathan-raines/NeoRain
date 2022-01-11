@@ -25,7 +25,7 @@ require('catppuccin').setup {
         information = 'underline',
       },
     },
-    lsp_trouble = true,
+    lsp_trouble = false,
     cmp = true,
     lsp_saga = false,
     gitgutter = false,

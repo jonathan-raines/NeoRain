@@ -10,12 +10,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
-local cmp_nvim_lsp = require 'cmp_nvim_lsp'
-if cmp_nvim_lsp then
-  M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-end
-
-local wk = require 'which-key'
+M.capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local function lsp_document_codelens(client)
   if client.resolved_capabilities.code_lens then
@@ -48,7 +43,7 @@ local function lsp_highlight_document(client)
 end
 
 local function whichkey_document_keymaps()
-  wk.register {
+  require('which-key').register {
     g = {
       a = 'Code Action',
       d = 'Definition',
