@@ -1,6 +1,5 @@
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
 
 --Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
@@ -74,9 +73,6 @@ keymap('n', '<C-Left>', ':vertical resize -5<CR>', opts)
 keymap('n', '<C-Right>', ':vertical resize +5<CR>', opts)
 
 -- Insert Mode --
-
--- Save
-keymap('i', '<C-s>', '<ESC>:w<CR>', opts)
 
 -- Undo break points
 keymap('i', ',', ',<c-g>u', opts)
