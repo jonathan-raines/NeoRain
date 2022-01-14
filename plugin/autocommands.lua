@@ -40,5 +40,17 @@ vim.api.nvim_exec(
   false
 )
 
+vim.api.nvim_exec(
+  [[
+    augroup _general_settings
+      autocmd!
+      autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
+      autocmd BufWinEnter * :set formatoptions-=cro
+      autocmd FileType qf set nobuflisted
+    augroup end
+  ]],
+  false
+)
+
 -- Prevents auto comment new line
-vim.cmd 'au BufEnter * set fo-=c fo-=r fo-=o'
+-- vim.cmd 'au BufEnter * set fo-=c fo-=r fo-=o'
