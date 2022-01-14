@@ -35,5 +35,3 @@ require('which-key').register({
 }, {
   prefix = '<leader>',
 })
-
-require('telescope').load_extension 'harpoon'
