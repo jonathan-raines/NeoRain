@@ -41,8 +41,8 @@ local mappings = {
   ['C'] = 'which_key_ignore',
   ['q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
-  a = { 'which_key_ignore' },
-  A = { 'which_key_ignore' },
+  a = 'which_key_ignore',
+  A = 'which_key_ignore',
   f = {
     name = 'Telescope',
     b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
