@@ -147,13 +147,6 @@ end
 
 vim.api.nvim_set_keymap('i', '<A-l>', '<cmd>lua EscapePair()<CR>', { noremap = true, silent = true })
 
--- Spotify
-vim.api.nvim_set_keymap('n', '<leader>sn', '<Plug>(SpotifySkip)', { silent = true }) -- Skip the current track
-vim.api.nvim_set_keymap('n', '<leader>sp', '<Plug>(SpotifyPause)', { silent = true }) -- Pause/Resume the current track
-vim.api.nvim_set_keymap('n', '<leader>ss', '<Plug>(SpotifySave)', { silent = true }) -- Add the current track to your library
-vim.api.nvim_set_keymap('n', '<leader>so', ':Spotify<CR>', { silent = true }) -- Open Spotify Search window
-vim.api.nvim_set_keymap('n', '<leader>sd', ':SpotifyDevices<CR>', { silent = true }) -- Open Spotify Devices window
-
 -- Refactoring
 vim.api.nvim_set_keymap(
   'v',

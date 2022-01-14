@@ -214,15 +214,6 @@ return packer.startup(function(use)
     end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
-
-  use {
-    'KadoBOT/nvim-spotify',
-    config = function()
-      require './configs/nvim-spotify'
-    end,
-    run = 'make',
-    requires = 'nvim-telescope/telescope.nvim',
-  }
   ------------------------------
 
   ---------- Completion ----------
@@ -287,6 +278,7 @@ return packer.startup(function(use)
     end,
     ft = { 'go', 'lua', 'js', 'py', 'ts' },
   }
+
   -----------------------------------------
 
   ---------- Treesitter ----------
@@ -343,8 +335,6 @@ return packer.startup(function(use)
       require './configs/nvim-toggleterm'
     end,
   }
-
-  use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
 
   use {
     'gukz/ftFT.nvim',
