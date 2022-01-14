@@ -167,11 +167,6 @@ return packer.startup(function(use)
     requires = 'nvim-lua/plenary.nvim',
     ft = { 'dart' },
   }
-
-  use {
-    'tpope/vim-rails',
-    ft = { 'ruby' },
-  }
   ---------------------------------------
 
   ---------- LSP ----------
