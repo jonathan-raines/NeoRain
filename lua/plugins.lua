@@ -259,15 +259,6 @@ return packer.startup(function(use)
     commit = '00c384773a5a0b7cd556113dc7b3ab5799f6fdbc',
     event = 'BufRead',
   }
-
-  use {
-    'ThePrimeagen/refactoring.nvim',
-    config = function()
-      require './configs/refactoring'
-    end,
-    ft = { 'go', 'lua', 'js', 'py', 'ts' },
-  }
-
   -----------------------------------------
 
   ---------- Treesitter ----------
