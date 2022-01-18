@@ -34,6 +34,7 @@ require('telescope').setup {
     find_files = {
       hidden = true,
       file_ignore_patterns = { '.git/' },
+      find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
     },
     live_grep = {
       file_ignore_patterns = { '.git/' },
