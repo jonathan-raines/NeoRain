@@ -118,13 +118,6 @@ return packer.startup(function(use)
     end,
     after = 'telescope.nvim',
   }
-
-  use {
-    'ThePrimeagen/harpoon',
-    config = function()
-      require './configs/harpoon'
-    end,
-  }
   -----------------------------------
 
   ---------- Github ----------
@@ -206,7 +199,7 @@ return packer.startup(function(use)
       )
       vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')}]]
       vim.cmd [[ let test#transformation = 'docker']]
-      vim.cmd [[ let test#strategy = "harpoon" ]]
+      vim.cmd [[ let test#strategy = "neovim" ]]
     end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
