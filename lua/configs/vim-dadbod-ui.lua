@@ -12,3 +12,5 @@ vim.cmd [[
     \  { 'name': 'media_test', 'url': 'postgres://postgres:welcome@localhost:5433/thrillshare_test' }
     \ ]
   ]]
+
+vim.cmd [[ autocmd Filetype dbout set colorcolumn="" ]]
