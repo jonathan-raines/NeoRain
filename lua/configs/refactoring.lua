@@ -37,4 +37,15 @@ vim.api.nvim_set_keymap(
   [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]],
   { noremap = true, silent = true, expr = false }
 )
-vim.api.nvim_set_keymap('v', '<Leader>rt', [[ <Esc><Cmd>lua M.refactors()<CR>]], { noremap = true, silent = true, expr = false })
+vim.api.nvim_set_keymap(
+  'v',
+  '<Leader>rv',
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
+  { noremap = true, silent = true, expr = false }
+)
+vim.api.nvim_set_keymap(
+  'v',
+  '<Leader>ri',
+  [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+  { noremap = true, silent = true, expr = false }
+)
