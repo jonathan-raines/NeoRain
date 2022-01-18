@@ -203,6 +203,14 @@ return packer.startup(function(use)
     end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
+
+  use {
+    'gukz/ftFT.nvim',
+    config = function()
+      vim.g.ftFT_sight_disable = 1 -- if set this, will not have sight line
+      require('ftFT').setup()
+    end,
+  }
   ------------------------------
 
   ---------- Completion ----------
@@ -251,14 +259,14 @@ return packer.startup(function(use)
     event = 'BufRead',
   }
 
-  use {
-    'blackCauldron7/surround.nvim',
-    config = function()
-      require('surround').setup { mappings_style = 'sandwich' }
-    end,
-    commit = '00c384773a5a0b7cd556113dc7b3ab5799f6fdbc',
-    event = 'BufRead',
-  }
+  -- use {
+  --   'blackCauldron7/surround.nvim',
+  --   config = function()
+  --     require('surround').setup { mappings_style = 'sandwich' }
+  --   end,
+  --   commit = '00c384773a5a0b7cd556113dc7b3ab5799f6fdbc',
+  --   event = 'BufRead',
+  -- }
   -----------------------------------------
 
   ---------- Treesitter ----------
@@ -317,11 +325,11 @@ return packer.startup(function(use)
   }
 
   use {
-    'gukz/ftFT.nvim',
+    'akinsho/bufferline.nvim',
     config = function()
-      vim.g.ftFT_sight_disable = 1 -- if set this, will not have sight line
-      require('ftFT').setup()
+      require './configs/bufferline'
     end,
+    requires = 'kyazdani42/nvim-web-devicons',
   }
   --------------------------------
 

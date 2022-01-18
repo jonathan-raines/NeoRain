@@ -111,23 +111,5 @@ require('lualine').setup {
       },
     },
   },
-  tabline = {
-    lualine_a = {
-      {
-        'buffers',
-        show_filename_only = true,
-        filetype_names = {
-          TelescopePrompt = 'Telescope',
-          dashboard = 'Dashboard',
-          packer = 'Packer',
-          fzf = 'FZF',
-          alpha = 'Alpha',
-        }, -- shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
-      },
-    },
-    lualine_z = {
-      'tabs',
-    },
-  },
   extensions = { 'quickfix', 'toggleterm' },
 }
