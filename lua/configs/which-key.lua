@@ -52,6 +52,7 @@ local mappings = {
     g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
     h = { '<cmd>Telescope harpoon marks<cr>', 'Harpoon Marks' },
     o = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
+    r = { '<cmd>Telescope resume<cr>', 'Resume Last Picker' },
     s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
     t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
     w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
