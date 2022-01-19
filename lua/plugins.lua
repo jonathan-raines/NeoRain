@@ -258,15 +258,6 @@ return packer.startup(function(use)
     end,
     event = 'BufRead',
   }
-
-  -- use {
-  --   'blackCauldron7/surround.nvim',
-  --   config = function()
-  --     require('surround').setup { mappings_style = 'sandwich' }
-  --   end,
-  --   commit = '00c384773a5a0b7cd556113dc7b3ab5799f6fdbc',
-  --   event = 'BufRead',
-  -- }
   -----------------------------------------
 
   ---------- Treesitter ----------
