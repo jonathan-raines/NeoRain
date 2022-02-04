@@ -368,14 +368,6 @@ return packer.startup(function(use)
       require './configs/nvim-toggleterm'
     end,
   }
-
-  use {
-    'akinsho/bufferline.nvim',
-    config = function()
-      require './configs/bufferline'
-    end,
-    requires = 'kyazdani42/nvim-web-devicons',
-  }
   --------------------------------
 
   -- Automatically set up your configuration after cloning packer.nvim
