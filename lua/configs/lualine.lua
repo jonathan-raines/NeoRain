@@ -111,5 +111,24 @@ require('lualine').setup {
       },
     },
   },
+  tabline = {
+    lualine_a = {
+      {
+        'buffers',
+        filetype_names = {
+          TelescopePrompt = 'Telescope',
+          dashboard = 'Dashboard',
+          packer = 'Packer',
+          fzf = 'FZF',
+          qf = 'QuickFix',
+        }, -- shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+      },
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { 'tabs' },
+  },
   extensions = { 'quickfix', 'toggleterm' },
 }
