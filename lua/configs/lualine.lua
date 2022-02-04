@@ -47,11 +47,11 @@ require('lualine').setup {
   sections = {
     lualine_a = {
       {
-        function()
+        'mode',
+        fmt = function()
           return ' '
         end,
         padding = { left = 0, right = 0 },
-        cond = nil,
       },
     },
     lualine_b = {
