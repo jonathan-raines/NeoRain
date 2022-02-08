@@ -56,7 +56,7 @@ local mappings = {
     t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
     w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
   },
-  ['/'] = { _CURR_BUF, 'Search Current Buffer' },
+  ['/'] = { '<cmd>lua _CURR_BUF()<CR>', 'Search Current Buffer' },
   o = {
     name = 'Octo',
     i = {
