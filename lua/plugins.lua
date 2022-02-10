@@ -177,12 +177,17 @@ return packer.startup(function(use)
   }
 
   use {
-    'jose-elias-alvarez/null-ls.nvim',
+    'mhartington/formatter.nvim',
     config = function()
-      require './configs/null-ls'
+      require './configs/formatter-nvim'
     end,
-    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    event = 'BufRead',
+  }
+
+  use {
+    'mfussenegger/nvim-lint',
+    config = function()
+      require './configs/nvim-lint'
+    end,
   }
   -------------------------
 
