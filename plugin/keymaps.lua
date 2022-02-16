@@ -44,8 +44,8 @@ keymap('n', ']B', '<cmd>blast<CR>', opts)
 keymap('n', '[B', '<cmd>bfirst<CR>', opts)
 
 -- Move Lines Around
-keymap('n', '<A-j>', '<cmd>m .+1<CR>==', opts)
-keymap('n', '<A-k>', '<cmd>m .-2<CR>==', opts)
+keymap('n', '<A-j>', ':m .+1<CR>==', opts)
+keymap('n', '<A-k>', ':m .-2<CR>==', opts)
 
 -- Indent
 keymap('n', '<', '<<', opts)
@@ -65,10 +65,10 @@ keymap('n', '<C-k>', '<C-w>k', opts)
 keymap('n', '<C-l>', '<C-w>l', opts)
 
 -- Resize windows
-keymap('n', '<C-Up>', '<cmd>resize -5<CR>', opts)
-keymap('n', '<C-Down>', '<cmd>resize +5<CR>', opts)
-keymap('n', '<C-Left>', '<cmd>vertical resize -5<CR>', opts)
-keymap('n', '<C-Right>', '<cmd>vertical resize +5<CR>', opts)
+keymap('n', '<C-Up>', ':resize -5<CR>', opts)
+keymap('n', '<C-Down>', ':resize +5<CR>', opts)
+keymap('n', '<C-Left>', ':vertical resize -5<CR>', opts)
+keymap('n', '<C-Right>', ':vertical resize +5<CR>', opts)
 
 -- Insert Mode --
 
@@ -85,8 +85,8 @@ keymap('i', 'jk', '<ESC>', opts)
 keymap('v', 'jk', '<ESC>', opts)
 
 -- Move Lines Around
-keymap('v', '<A-j>', "<cmd>m '>+1<CR>gv-gv", opts)
-keymap('v', '<A-k>', "<cmd>m '<-2<CR>gv-gv", opts)
+keymap('v', '<A-j>', ":m '>+1<CR>gv-gv", opts)
+keymap('v', '<A-k>', ":m '<-2<CR>gv-gv", opts)
 
 -- Indent
 keymap('v', '<', '<gv', opts)
