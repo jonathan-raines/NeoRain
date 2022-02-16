@@ -18,11 +18,9 @@ vim.g.maplocalleader = ' '
 keymap('n', '<leader><space>', '<c-^>', opts)
 
 -- Write / Quit
-keymap('n', '<leader>w', ':w<CR>', opts)
-keymap('n', '<leader>q', ':q!<CR>', opts)
-
-keymap('n', '<leader>c', ':bd!<CR>', opts)
-keymap('n', '<leader>C', ':call DeleteHiddenBuffers()<CR>', opts)
+keymap('n', '<leader>w', '<cmd>up<CR>', opts)
+keymap('n', '<leader>c', '<cmd>bd<CR>', opts)
+keymap('n', '<leader>C', '<cmd>call DeleteHiddenBuffers()<CR>', opts)
 
 -- Keeping it centered
 keymap('n', 'n', 'nzzzv', opts)
@@ -34,20 +32,20 @@ keymap('n', '<C-o>', '<C-o>zz', opts)
 keymap('n', '<C-i>', '<C-i>zz', opts)
 
 -- Quickfix Navigation
-keymap('n', ']q', ':cnext<CR>', opts)
-keymap('n', '[q', ':cprevious<CR>', opts)
-keymap('n', ']Q', ':cfirst<CR>', opts)
-keymap('n', '[Q', ':clast<CR>', opts)
+keymap('n', ']q', '<cmd>cnext<CR>', opts)
+keymap('n', '[q', '<cmd>cprevious<CR>', opts)
+keymap('n', ']Q', '<cmd>cfirst<CR>', opts)
+keymap('n', '[Q', '<cmd>clast<CR>', opts)
 
 -- Buffer Navigation
-keymap('n', ']b', ':bn<CR>', opts)
-keymap('n', '[b', ':bp<CR>', opts)
-keymap('n', ']B', ':blast<CR>', opts)
-keymap('n', '[B', ':bfirst<CR>', opts)
+keymap('n', ']b', '<cmd>bn<CR>', opts)
+keymap('n', '[b', '<cmd>bp<CR>', opts)
+keymap('n', ']B', '<cmd>blast<CR>', opts)
+keymap('n', '[B', '<cmd>bfirst<CR>', opts)
 
 -- Move Lines Around
-keymap('n', '<A-j>', ':m .+1<CR>==', opts)
-keymap('n', '<A-k>', ':m .-2<CR>==', opts)
+keymap('n', '<A-j>', '<cmd>m .+1<CR>==', opts)
+keymap('n', '<A-k>', '<cmd>m .-2<CR>==', opts)
 
 -- Indent
 keymap('n', '<', '<<', opts)
@@ -58,7 +56,7 @@ keymap('n', '+', '<C-a>', opts)
 keymap('n', '-', '<C-x>', opts)
 
 -- Quickfix
-keymap('n', '<C-q>', ':call QuickFixToggle()<CR>', opts)
+keymap('n', '<C-q>', '<cmd>call QuickFixToggle()<CR>', opts)
 
 -- Move Windows Around
 keymap('n', '<C-h>', '<C-w>h', opts)
@@ -67,10 +65,10 @@ keymap('n', '<C-k>', '<C-w>k', opts)
 keymap('n', '<C-l>', '<C-w>l', opts)
 
 -- Resize windows
-keymap('n', '<C-Up>', ':resize -5<CR>', opts)
-keymap('n', '<C-Down>', ':resize +5<CR>', opts)
-keymap('n', '<C-Left>', ':vertical resize -5<CR>', opts)
-keymap('n', '<C-Right>', ':vertical resize +5<CR>', opts)
+keymap('n', '<C-Up>', '<cmd>resize -5<CR>', opts)
+keymap('n', '<C-Down>', '<cmd>resize +5<CR>', opts)
+keymap('n', '<C-Left>', '<cmd>vertical resize -5<CR>', opts)
+keymap('n', '<C-Right>', '<cmd>vertical resize +5<CR>', opts)
 
 -- Insert Mode --
 
@@ -87,8 +85,8 @@ keymap('i', 'jk', '<ESC>', opts)
 keymap('v', 'jk', '<ESC>', opts)
 
 -- Move Lines Around
-keymap('v', '<A-j>', ":m '>+1<CR>gv-gv", opts)
-keymap('v', '<A-k>', ":m '<-2<CR>gv-gv", opts)
+keymap('v', '<A-j>', "<cmd>m '>+1<CR>gv-gv", opts)
+keymap('v', '<A-k>', "<cmd>m '<-2<CR>gv-gv", opts)
 
 -- Indent
 keymap('v', '<', '<gv', opts)
