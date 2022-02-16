@@ -95,6 +95,8 @@ wk.register(mappings, opts)
 
 wk.register {
   g = {
+    b = { 'Block Comment' },
+    c = { 'Line Comment' },
     j = { '<cmd>DBUIToggle<CR>', 'Database' },
   },
 }
