@@ -13,4 +13,12 @@ vim.cmd [[
     \ ]
   ]]
 
-vim.cmd [[ autocmd Filetype dbout set colorcolumn="" ]]
+vim.api.nvim_create_augroup('DadBodUI', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Highlight text when yanking',
+  group = 'DadBodUI',
+  pattern = 'dbout',
+  callback = function()
+    vim.cmd [[ set colorcolumn="" ]]
+  end,
+})

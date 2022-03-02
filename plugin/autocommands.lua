@@ -1,56 +1,83 @@
--- Highlight on yank
-vim.api.nvim_exec(
-  [[
-    augroup YankHighlight
-      autocmd!
-      autocmd TextYankPost * silent! lua vim.highlight.on_yank({timeout = 200})
-    augroup end
-  ]],
-  false
-)
+vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 
-vim.api.nvim_exec(
-  [[
-    augroup TrimWhitespace
-      autocmd!
-      autocmd BufWritePre * %s/\s\+$//e
-    augroup end
-  ]],
-  false
-)
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight text when yanking',
+  group = 'YankHighlight',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'Visual' }
+  end,
+})
 
-vim.cmd [[
-  augroup CursorLocation
-    autocmd!
-    autocmd BufReadPost * silent! normal! g`"zv
-  augroup end
-]] --Return to last cursor location in a file
+vim.api.nvim_create_augroup('TrimWhitespace', { clear = true })
 
-vim.api.nvim_exec(
-  [[
-    augroup NeovimTerminal
-      autocmd!
-      autocmd TermOpen * startinsert
-      autocmd TermOpen * :set nonumber norelativenumber
-      autocmd TermOpen * :set nobuflisted
-      autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
-      autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
-    augroup end
-  ]],
-  false
-)
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = 'TrimWhitespace',
+  pattern = '*',
+  command = [[:%s/\s\+$//e]],
+})
 
-vim.api.nvim_exec(
-  [[
-    augroup _general_settings
-      autocmd!
-      autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
-      autocmd BufWinEnter * :set formatoptions-=cro
-      autocmd FileType qf set nobuflisted
-    augroup end
-  ]],
-  false
-)
+vim.api.nvim_create_augroup('CursorLocation', { clear = true })
 
--- Prevents auto comment new line
--- vim.cmd 'au BufEnter * set fo-=c fo-=r fo-=o'
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = 'CursorLocation',
+  pattern = '*',
+  command = 'silent! normal! g`"zv',
+})
+
+vim.api.nvim_create_augroup('NeovimTerminal', { clear = true })
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = 'NeovimTerminal',
+  pattern = '*',
+  command = 'startinsert',
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = 'NeovimTerminal',
+  pattern = '*',
+  command = 'set nonumber norelativenumber nobuflisted',
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = 'NeovimTerminal',
+  pattern = '*',
+  command = 'nnoremap <buffer> <C-c> i<C-c>',
+})
+
+vim.api.nvim_create_autocmd('TermClose', {
+  group = 'NeovimTerminal',
+  pattern = '*',
+  command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif",
+})
+
+vim.api.nvim_create_augroup('GeneralSettings', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'GeneralSettings',
+  pattern = 'qf,help,man,lspinfo',
+  callback = function()
+    vim.keymap.set('n', 'q', '<cmd>close<CR>')
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  desc = 'Open file at the last position it was edited earlier',
+  group = 'GeneralSettings',
+  pattern = '*',
+  command = 'set formatoptions-=cro',
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'GeneralSettings',
+  pattern = 'qf',
+  command = 'set nobuflisted',
+})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  desc = 'Create missing directories before saving the buffer',
+  group = 'GeneralSettings',
+  callback = function()
+    vim.fn.mkdir(vim.fn.expand '%:p:h', 'p')
+  end,
+})

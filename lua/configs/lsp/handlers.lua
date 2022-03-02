@@ -86,7 +86,13 @@ M.on_attach = function(client, bufnr)
   end
 
   if client.resolved_capabilities.document_formatting then
-    vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      desc = 'Autoformat buffer on save',
+      pattern = '<buffer>',
+      callback = function()
+        vim.lsp.buf.formatting_sync()
+      end,
+    })
   end
 
   lsp_keymaps(bufnr)

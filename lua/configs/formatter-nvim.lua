@@ -30,12 +30,11 @@ require('formatter').setup {
   },
 }
 
-vim.api.nvim_exec(
-  [[
-    augroup FormatAutogroup
-      autocmd!
-      autocmd BufWritePost *.js,*.vue,*.lua FormatWrite
-    augroup END
-  ]],
-  true
-)
+vim.api.nvim_create_augroup('FormatAutogroup', { clear = true })
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  desc = 'Use external formatter to format buffer',
+  group = 'FormatAutogroup',
+  pattern = '*.js,*.vue,*.lua',
+  command = 'FormatWrite',
+})
