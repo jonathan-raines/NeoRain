@@ -20,7 +20,7 @@ keymap('n', '<leader><space>', '<c-^>', opts)
 -- Write / Quit
 keymap('n', '<leader>w', '<cmd>up<CR>', opts)
 keymap('n', '<leader>q', 'ZZ', opts)
-keymap('n', '<leader>c', '<cmd>bd<CR>', opts)
+keymap('n', '<leader>c', '<cmd>bd!<CR>', opts)
 keymap('n', '<leader>C', '<cmd>call DeleteHiddenBuffers()<CR>', opts)
 
 -- Keeping it centered
