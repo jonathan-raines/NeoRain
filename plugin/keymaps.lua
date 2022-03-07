@@ -1,4 +1,4 @@
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 --Remap space as leader key
@@ -144,4 +144,4 @@ function EscapePair()
   end
 end
 
-vim.api.nvim_set_keymap('i', '<A-l>', '<cmd>lua EscapePair()<CR>', { noremap = true, silent = true })
+keymap('i', '<A-l>', '<cmd>lua EscapePair()<CR>', { noremap = true, silent = true })
