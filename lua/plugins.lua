@@ -165,15 +165,9 @@ return packer.startup(function(use)
   ---------- LSP ----------
   use {
     'neovim/nvim-lspconfig',
-    event = 'BufRead',
-  }
-
-  use {
-    'williamboman/nvim-lsp-installer',
     config = function()
       require './configs/lsp'
     end,
-    after = 'nvim-lspconfig',
   }
 
   use {
@@ -183,12 +177,12 @@ return packer.startup(function(use)
     end,
   }
 
-  use {
-    'mfussenegger/nvim-lint',
-    config = function()
-      require './configs/nvim-lint'
-    end,
-  }
+  -- use {
+  --   'mfussenegger/nvim-lint',
+  --   config = function()
+  --     require './configs/nvim-lint'
+  --   end,
+  -- }
   -------------------------
 
   ---------- MISC ----------
