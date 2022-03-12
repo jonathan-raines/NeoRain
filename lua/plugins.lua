@@ -168,6 +168,7 @@ return packer.startup(function(use)
     config = function()
       require './configs/lsp'
     end,
+    event = 'BufReadPre',
   }
 
   use {
@@ -175,6 +176,7 @@ return packer.startup(function(use)
     config = function()
       require './configs/formatter-nvim'
     end,
+    event = 'BufWritePre',
   }
   -------------------------
 
