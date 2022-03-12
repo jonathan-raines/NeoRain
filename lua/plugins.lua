@@ -176,13 +176,6 @@ return packer.startup(function(use)
       require './configs/formatter-nvim'
     end,
   }
-
-  -- use {
-  --   'mfussenegger/nvim-lint',
-  --   config = function()
-  --     require './configs/nvim-lint'
-  --   end,
-  -- }
   -------------------------
 
   ---------- MISC ----------
