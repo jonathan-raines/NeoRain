@@ -65,6 +65,8 @@ end
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
   keymap(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -77,6 +79,12 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+  keymap(bufnr, 'n', 'gq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  keymap(bufnr, 'n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  keymap(bufnr, 'n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  keymap(bufnr, 'n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   whichkey_document_keymaps()
 end
 
@@ -86,8 +94,10 @@ M.on_attach = function(client, bufnr)
   end
 
   if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
     vim.api.nvim_create_autocmd('BufWritePre', {
       desc = 'Autoformat buffer on save',
+      group = 'FormatOnSave',
       pattern = '<buffer>',
       callback = function()
         vim.lsp.buf.formatting_sync()
