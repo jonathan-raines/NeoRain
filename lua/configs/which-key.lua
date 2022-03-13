@@ -49,6 +49,16 @@ local mappings = {
     w = { 'Workplace Symbols' },
   },
   ['/'] = { 'Search Current Buffer' },
+  h = {
+    name = 'Harpoon',
+    p = { 'Add File' },
+    q = { 'Menu' },
+    a = { 'Navigate to File 1' },
+    s = { 'Navigate to File 2' },
+    d = { 'Navigate to File 3' },
+    f = { 'Navigate to File 4' },
+    t = { 'Navigate to Terminal 1' },
+  },
   o = {
     name = 'Octo',
     i = {
