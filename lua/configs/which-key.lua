@@ -43,7 +43,6 @@ local mappings = {
   ['w'] = 'which_key_ignore',
   ['a'] = 'which_key_ignore',
   ['A'] = 'which_key_ignore',
-  b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
   f = {
     name = 'Telescope',
     b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
@@ -51,7 +50,7 @@ local mappings = {
     f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
     e = { '<cmd>Telescope file_browser<CR>', 'File Browser' },
     g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
-    o = { '<cmd>Telescope oldfiles<cr>', 'Open Recent File' },
+    o = { '<cmd>Telescope oldfiles cwd_only=v:true<cr>', 'Open Recent File' },
     q = { '<cmd>Telescope quickfix<cr>', 'Open Quickfix' },
     r = { '<cmd>Telescope resume<cr>', 'Resume Last Picker' },
     s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
