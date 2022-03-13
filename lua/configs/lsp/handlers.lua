@@ -49,7 +49,9 @@ local function whichkey_document_keymaps()
       d = 'Definition',
       D = 'Declaration',
       e = 'Line Diagnostics',
+      F = 'Formatting',
       i = 'Implementation',
+      q = 'Set Loclist',
       r = 'Rename',
       R = 'References',
     },
@@ -83,7 +85,6 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, 'n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   keymap(bufnr, 'n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   keymap(bufnr, 'n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   whichkey_document_keymaps()
 end

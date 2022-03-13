@@ -26,15 +26,6 @@ wk.setup {
   ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
 }
 
-local opts = {
-  mode = 'n', -- NORMAL mode
-  prefix = '<leader>',
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = false, -- use `nowait` when creating keymaps
-}
-
 local mappings = {
   ['<space>'] = 'which_key_ignore',
   ['c'] = 'which_key_ignore',
@@ -45,57 +36,56 @@ local mappings = {
   ['A'] = 'which_key_ignore',
   f = {
     name = 'Telescope',
-    b = { '<cmd>Telescope buffers theme=get_ivy<CR>', 'Buffers' },
-    d = { '<cmd>Telescope lsp_document_symbols<cr>', 'Document Symbols' },
-    f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
-    e = { '<cmd>Telescope file_browser<CR>', 'File Browser' },
-    g = { '<cmd>Telescope live_grep<cr>', 'Live Grep' },
-    o = { '<cmd>Telescope oldfiles cwd_only=v:true<cr>', 'Open Recent File' },
-    q = { '<cmd>Telescope quickfix<cr>', 'Open Quickfix' },
-    r = { '<cmd>Telescope resume<cr>', 'Resume Last Picker' },
-    s = { '<cmd>Telescope grep_string<cr>', 'Grep String' },
-    t = { '<cmd>Telescope treesitter<cr>', 'Treesitter' },
-    w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workplace Symbols' },
+    b = { 'Buffers' },
+    d = { 'Document Symbols' },
+    f = { 'Find Files' },
+    e = { 'File Browser' },
+    g = { 'Live Grep' },
+    o = { 'Open Recent File' },
+    q = { 'Open Quickfix' },
+    r = { 'Resume Last Picker' },
+    s = { 'Grep String' },
+    t = { 'Treesitter' },
+    w = { 'Workplace Symbols' },
   },
-  ['/'] = { '<cmd>lua _CURR_BUF()<CR>', 'Search Current Buffer' },
+  ['/'] = { 'Search Current Buffer' },
   o = {
     name = 'Octo',
     i = {
       name = 'Issues',
-      c = { '<cmd>Octo issue create<CR>', 'Create Issue' },
-      l = { '<cmd>Octo issue list<CR>', 'List Issues' },
+      c = { 'Create Issue' },
+      l = { 'List Issues' },
     },
-    p = { '<cmd>Octo pr list<CR>', 'List Pull Requests' },
+    p = { 'List Pull Requests' },
     r = {
       name = 'Review',
-      s = { '<cmd>Octo review start<CR>', 'Start Review' },
-      f = { '<cmd>Octo review submit<CR>', 'Submit Review' },
+      s = { 'Start Review' },
+      f = { 'Submit Review' },
     },
   },
   p = {
     name = 'Packer',
-    c = { '<cmd>PackerCompile<CR>', 'PackerCompile' },
-    i = { '<cmd>PackerInstall<CR>', 'PackerInstall' },
-    l = { '<cmd>PackerStatus<CR>', 'PackerStatus' },
-    s = { '<cmd>PackerSync<CR>', 'PackerSync' },
-    u = { '<cmd>PackerUpdate<CR>', 'PackerUpdate' },
+    c = { 'PackerCompile' },
+    i = { 'PackerInstall' },
+    l = { 'PackerStatus' },
+    s = { 'PackerSync' },
+    u = { 'PackerUpdate' },
   },
   t = {
     name = 'Testing',
-    f = { '<cmd>TestFile<CR>', 'Run Test File' },
-    l = { '<cmd>TestLast<CR>', 'Run Last Test' },
-    n = { '<cmd>TestNearest<CR>', 'Run Nearest Test' },
-    s = { '<cmd>TestSuite<CR>', 'Run Test Suite' },
-    v = { '<cmd>TestVisit<CR>', 'Visit Test File' },
+    f = { 'Run Test File' },
+    l = { 'Run Last Test' },
+    n = { 'Run Nearest Test' },
+    s = { 'Run Test Suite' },
+    v = { 'Visit Test File' },
   },
 }
 
-wk.register(mappings, opts)
+wk.register(mappings, { prefix = '<leader>' })
 
 wk.register {
   g = {
     b = { 'Block Comment' },
     c = { 'Line Comment' },
-    j = { '<cmd>DBUIToggle<CR>', 'Database' },
   },
 }
