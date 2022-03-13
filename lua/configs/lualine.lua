@@ -125,6 +125,7 @@ require('lualine').setup {
           fzf = 'FZF',
           qf = 'QuickFix',
         }, -- shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+        mode = 2,
       },
     },
     lualine_b = {},
