@@ -43,7 +43,12 @@ local function lsp_highlight_document(client)
 end
 
 local function whichkey_document_keymaps()
-  require('which-key').register {
+  local wk_ok, wk = pcall(require, 'which-key')
+  if not wk_ok then
+    return
+  end
+
+  wk.register {
     g = {
       a = 'Code Action',
       d = 'Definition',

@@ -54,11 +54,14 @@ function _LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
 
-local wk = require 'which-key'
+local wk_ok, wk = pcall(require, 'which-key')
+if not wk_ok then
+  return
+end
 
-wk.register({
+wk.register {
   g = {
     ['h'] = { '<cmd>lua _HORIZONTAL_TOGGLE()<CR>', 'Horizontal Terminal' },
     ['l'] = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
   },
-}, opts)
+}

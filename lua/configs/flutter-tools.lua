@@ -4,7 +4,12 @@ require('flutter-tools').setup {
   },
 }
 
-require('which-key').register({
+local wk_ok, wk = pcall(require, 'which-key')
+if not wk_ok then
+  return
+end
+
+wk.register({
   f = {
     y = { '<cmd>Telescope flutter commands theme=dropdown<cr>', 'Flutter Commands' },
   },
