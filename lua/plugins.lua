@@ -193,7 +193,7 @@ return packer.startup(function(use)
       )
       vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')}]]
       vim.cmd [[ let test#transformation = 'docker']]
-      vim.cmd [[ let test#strategy = "neovim" ]]
+      vim.cmd [[ let test#strategy = "harpoon" ]]
     end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
