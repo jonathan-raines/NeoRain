@@ -3,8 +3,8 @@ local actions = require 'telescope.actions'
 require('telescope').setup {
   defaults = {
     layout_config = {
-      height = 0.9,
-      width = 0.9,
+      height = 0.85,
+      width = 0.95,
     },
     file_sorter = require('telescope.sorters').get_fzy_sorter,
     mappings = {

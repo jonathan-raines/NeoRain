@@ -45,10 +45,9 @@ for k, v in pairs(options) do
 end
 
 local disabled_built_ins = {
-  -- 'netrw',
-  -- 'netrwPlugin',
-  -- 'netrwSettings',
-  -- 'netrwFileHandlers',
+  'netrw',
+  'netrwPlugin',
+  'netrwSettings',
   'gzip',
   'zip',
   'zipPlugin',
@@ -59,10 +58,11 @@ local disabled_built_ins = {
   'vimball',
   'vimballPlugin',
   '2html_plugin',
+  'matchit',
+  'matchparen',
   'logipat',
   'rrhelper',
-  'spellfile_plugin',
-  'matchit',
+  -- 'spellfile_plugin',
 }
 
 for _, plugin in pairs(disabled_built_ins) do

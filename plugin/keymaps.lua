@@ -101,11 +101,11 @@ vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 vim.api.nvim_exec(
   [[
   function! QuickFixToggle()
-      if empty(filter(getwininfo(), 'v:val.quickfix'))
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
       copen
-      else
+    else
       cclose
-      endif
+    endif
   endfunction]],
   false
 )
