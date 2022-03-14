@@ -60,8 +60,6 @@ if not wk_ok then
 end
 
 wk.register {
-  g = {
-    ['h'] = { '<cmd>lua _HORIZONTAL_TOGGLE()<CR>', 'Horizontal Terminal' },
-    ['l'] = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
-  },
+  ['<M-t>'] = { '<cmd>lua _HORIZONTAL_TOGGLE()<CR>', 'Horizontal Terminal' },
+  ['<M-y>'] = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
 }
