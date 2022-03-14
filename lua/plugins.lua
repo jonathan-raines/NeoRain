@@ -28,15 +28,6 @@ if not status_ok then
   return
 end
 
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require('packer.util').float { border = 'rounded' }
-    end,
-  },
-}
-
 return packer.startup(function(use)
   use {
     { 'wbthomason/packer.nvim' },
@@ -100,21 +91,7 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = function()
-      local telescope = require 'telescope'
-
-      telescope.setup {
-        extensions = {
-          file_browser = {
-            theme = 'ivy',
-            mappings = {
-              ['i'] = {},
-              ['n'] = {},
-            },
-          },
-        },
-      }
-
-      telescope.load_extension 'file_browser'
+      require './configs/telescope-file-browser'
     end,
     after = 'telescope.nvim',
   }
@@ -184,16 +161,7 @@ return packer.startup(function(use)
   use {
     'vim-test/vim-test',
     config = function()
-      vim.api.nvim_exec(
-        [[
-          function! DockerTransform(cmd)
-            return "docker-compose exec $(tmux display-message -p '#S') " .a:cmd
-          endfunction]],
-        false
-      )
-      vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')}]]
-      vim.cmd [[ let test#transformation = 'docker']]
-      vim.cmd [[ let test#strategy = "harpoon" ]]
+      require './configs/vim-test'
     end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
@@ -201,9 +169,14 @@ return packer.startup(function(use)
   use {
     'gukz/ftFT.nvim',
     config = function()
-      vim.g.ftFT_sight_disable = 1 -- if set this, will not have sight line
-      require('ftFT').setup()
+      require './configs/ftFT'
     end,
+    event = 'BufRead',
+  }
+
+  use {
+    'dstein64/vim-startuptime',
+    cmd = 'StartupTime',
   }
   ------------------------------
 
@@ -217,7 +190,6 @@ return packer.startup(function(use)
     end,
     requires = {
       { 'rafamadriz/friendly-snippets' },
-      { 'saadparwaiz1/cmp_luasnip' },
     },
   }
 
@@ -227,11 +199,12 @@ return packer.startup(function(use)
       require './configs/nvim-cmp'
     end,
     requires = {
-      { 'L3MON4D3/LuaSnip' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+      { 'saadparwaiz1/cmp_luasnip' },
     },
   }
   ------------------------------
@@ -266,59 +239,7 @@ return packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
     config = function()
-      require('nvim-treesitter.configs').setup {
-        textobjects = {
-          lsp_interop = {
-            enable = true,
-            border = 'rounded',
-            peek_definition_code = {
-              ['df'] = '@function.outer',
-              ['dF'] = '@class.outer',
-            },
-          },
-          move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-              [']m'] = '@function.outer',
-              [']]'] = '@class.outer',
-            },
-            goto_next_end = {
-              [']M'] = '@function.outer',
-              [']['] = '@class.outer',
-            },
-            goto_previous_start = {
-              ['[m'] = '@function.outer',
-              ['[['] = '@class.outer',
-            },
-            goto_previous_end = {
-              ['[M'] = '@function.outer',
-              ['[]'] = '@class.outer',
-            },
-          },
-          select = {
-            enable = true,
-            -- Automatically jump forward to textobj, similar to targets.vim
-            lookahead = true,
-            keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
-            },
-          },
-          swap = {
-            enable = false,
-            swap_next = {
-              ['<leader>a'] = '@parameter.inner',
-            },
-            swap_previous = {
-              ['<leader>A'] = '@parameter.inner',
-            },
-          },
-        },
-      }
+      require './configs/nvim-treesitter-textobjects'
     end,
     after = 'nvim-treesitter',
   }
@@ -326,17 +247,7 @@ return packer.startup(function(use)
   use {
     'RRethy/nvim-treesitter-textsubjects',
     config = function()
-      require('nvim-treesitter.configs').setup {
-        textsubjects = {
-          enable = true,
-          prev_selection = ',', -- (Optional) keymap to select the previous selection
-          keymaps = {
-            ['.'] = 'textsubjects-smart',
-            [';'] = 'textsubjects-container-outer',
-            ['i;'] = 'textsubjects-container-inner',
-          },
-        },
-      }
+      require './configs/nvim-treesitter-textsubjects'
     end,
     after = 'nvim-treesitter',
   }
@@ -373,6 +284,7 @@ return packer.startup(function(use)
     config = function()
       require './configs/which-key'
     end,
+    disable = false,
   }
 
   use {
