@@ -1,6 +1,7 @@
 -- Automatically install packr
 local fn = vim.fn
 local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
     'git',
@@ -203,36 +204,38 @@ return packer.startup(function(use)
 
   use {
     'dstein64/vim-startuptime',
+    config = [[vim.g.startuptime_tries = 10]],
     cmd = 'StartupTime',
   }
   ------------------------------
 
   ---------- Completion ----------
-  use { 'rafamadriz/friendly-snippets' }
-
-  use {
-    'L3MON4D3/LuaSnip',
-    config = function()
-      require('luasnip/loaders/from_vscode').lazy_load()
-    end,
-    requires = {
-      { 'rafamadriz/friendly-snippets' },
-    },
-  }
-
   use {
     'hrsh7th/nvim-cmp',
+    requires = {
+      {
+        'L3MON4D3/LuaSnip',
+        config = function()
+          require('luasnip/loaders/from_vscode').lazy_load()
+        end,
+        requires = {
+          { 'rafamadriz/friendly-snippets' },
+        },
+        after = 'nvim-cmp',
+      },
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+      { 'lukas-reineke/cmp-under-comparator', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
+    },
     config = function()
       require './configs/nvim-cmp'
     end,
-    requires = {
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
-      { 'saadparwaiz1/cmp_luasnip' },
-    },
+    event = 'InsertEnter *',
   }
   ------------------------------
 
