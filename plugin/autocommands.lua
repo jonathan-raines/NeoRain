@@ -20,6 +20,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 vim.api.nvim_create_augroup('CursorLocation', { clear = true })
 
 vim.api.nvim_create_autocmd('BufReadPost', {
+  desc = 'Open file at the last position it was edited earlier',
   group = 'CursorLocation',
   pattern = '*',
   command = 'silent! normal! g`"zv',
@@ -59,13 +60,6 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.keymap.set('n', 'q', '<cmd>close<CR>')
   end,
-})
-
-vim.api.nvim_create_autocmd('BufWinEnter', {
-  desc = 'Open file at the last position it was edited earlier',
-  group = 'GeneralSettings',
-  pattern = '*',
-  command = 'set formatoptions-=cro',
 })
 
 vim.api.nvim_create_autocmd('FileType', {
