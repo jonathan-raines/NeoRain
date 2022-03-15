@@ -37,6 +37,7 @@ local mappings = {
   f = {
     name = 'Telescope',
     b = { 'Buffers' },
+    c = { 'Colorscheme' },
     d = { 'Document Symbols' },
     f = { 'Find Files' },
     e = { 'File Browser' },

@@ -51,10 +51,10 @@ require('lualine').setup {
     lualine_a = {
       {
         'mode',
-        fmt = function()
-          return ' '
-        end,
-        padding = { left = 0, right = 0 },
+        -- fmt = function()
+        --   return ' '
+        -- end,
+        padding = { left = 1, right = 1 },
       },
     },
     lualine_b = {
