@@ -172,6 +172,7 @@ keymap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
 
 -- Telescope
 keymap('n', '<leader>fb', '<cmd>Telescope buffers theme=get_ivy<CR>', opts)
+keymap('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', opts)
 keymap('n', '<leader>fd', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 keymap('n', '<leader>fe', '<cmd>Telescope file_browser<CR>', opts)
 keymap('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opts)
