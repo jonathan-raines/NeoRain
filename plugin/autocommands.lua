@@ -62,6 +62,13 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'No commenting new line',
+  group = 'GeneralSettings',
+  pattern = '*',
+  command = 'set fo-=c fo-=r fo-=o',
+})
+
 vim.api.nvim_create_autocmd('FileType', {
   group = 'GeneralSettings',
   pattern = 'qf',
