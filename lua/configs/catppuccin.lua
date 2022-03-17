@@ -54,5 +54,3 @@ require('catppuccin').setup {
     telekasten = false,
   },
 }
-
-vim.cmd [[ colorscheme catppuccin ]]
