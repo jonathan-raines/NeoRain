@@ -145,10 +145,3 @@ function EscapePair()
 end
 
 keymap('i', '<A-l>', '<cmd>lua EscapePair()<CR>', opts)
-
--- Packer
-keymap('n', '<leader>pc', '<cmd>PackerCompile<CR>', opts)
-keymap('n', '<leader>pi', '<cmd>PackerInstall<CR>', opts)
-keymap('n', '<leader>pl', '<cmd>PackerStatus<CR>', opts)
-keymap('n', '<leader>ps', '<cmd>PackerSync<CR>', opts)
-keymap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)

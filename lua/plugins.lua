@@ -31,7 +31,33 @@ end
 
 return packer.startup(function(use)
   use {
-    { 'wbthomason/packer.nvim' },
+    {
+      'wbthomason/packer.nvim',
+      config = function()
+        local keymap = vim.keymap.set
+        local opts = { noremap = true, silent = true }
+
+        -- Packer
+        keymap('n', '<leader>pc', '<cmd>PackerCompile<CR>', opts)
+        keymap('n', '<leader>pi', '<cmd>PackerInstall<CR>', opts)
+        keymap('n', '<leader>pl', '<cmd>PackerStatus<CR>', opts)
+        keymap('n', '<leader>ps', '<cmd>PackerSync<CR>', opts)
+        keymap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
+
+        local mappings = {
+          p = {
+            name = 'Packer',
+            c = { 'PackerCompile' },
+            i = { 'PackerInstall' },
+            l = { 'PackerStatus' },
+            s = { 'PackerSync' },
+            u = { 'PackerUpdate' },
+          },
+        }
+
+        require('which-key').register(mappings, { prefix = '<leader>' })
+      end,
+    },
     {
       'lewis6991/impatient.nvim',
       config = function()

@@ -34,14 +34,6 @@ local mappings = {
   ['w'] = 'which_key_ignore',
   ['a'] = 'which_key_ignore',
   ['A'] = 'which_key_ignore',
-  p = {
-    name = 'Packer',
-    c = { 'PackerCompile' },
-    i = { 'PackerInstall' },
-    l = { 'PackerStatus' },
-    s = { 'PackerSync' },
-    u = { 'PackerUpdate' },
-  },
 }
 
 wk.register(mappings, { prefix = '<leader>' })
