@@ -409,26 +409,28 @@ return packer.startup(function(use)
     as = 'catppuccin',
     after = 'lualine.nvim',
     cmd = 'colorscheme catppuccin',
+    disable = false,
   }
 
   use {
-    'mhdahmad/gruvbox.lua',
+    'ellisonleao/gruvbox.nvim',
     after = 'lualine.nvim',
     cmd = 'colorscheme gruvbox',
-    disable = true,
+    disable = false,
   }
 
   use {
     'eddyekofo94/gruvbox-flat.nvim',
     after = 'lualine.nvim',
     cmd = 'colorscheme gruvbox-flat',
-    disable = false,
+    disable = true,
   }
 
   use {
     'savq/melange',
     after = 'lualine.nvim',
     cmd = 'colorscheme melange',
+    disable = false,
   }
 
   use {
@@ -437,6 +439,7 @@ return packer.startup(function(use)
       vim.cmd [[colorscheme kanagawa]]
     end,
     after = 'lualine.nvim',
+    disable = false,
   }
 
   use {
