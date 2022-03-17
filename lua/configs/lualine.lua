@@ -1,5 +1,3 @@
-local gps = require 'nvim-gps'
-
 local window_width_limit = 80
 
 local conditions = {
@@ -78,7 +76,6 @@ require('lualine').setup {
         },
         color = {},
       },
-      { gps.get_location, cond = (vim.treesitter.highlighter.active and gps.is_available) },
     },
     lualine_x = {
       {
