@@ -15,83 +15,102 @@ vim.g.maplocalleader = ' '
 --   command_mode = "c",
 
 -- Normal Mode --
-keymap('n', '<leader><space>', '<c-^>', opts)
+local normal_keymaps = {
+  -- Alternate file
+  ['<leader><space>'] = '<c-^>',
 
--- Write / Quit
-keymap('n', '<leader>w', '<cmd>up<CR>', opts)
-keymap('n', '<leader>q', 'ZZ', opts)
-keymap('n', '<leader>c', '<cmd>bd!<CR>', opts)
-keymap('n', '<leader>C', '<cmd>call DeleteHiddenBuffers()<CR>', opts)
+  -- Write / Quit
+  ['<leader>w'] = '<cmd>up<CR>',
+  ['<leader>q'] = 'ZZ',
+  ['<leader>c'] = '<cmd>bd!<CR>',
+  ['<leader>C'] = '<cmd>call DeleteHiddenBuffers()<CR>',
 
--- Keeping it centered
-keymap('n', 'n', 'nzzzv', opts)
-keymap('n', 'N', 'Nzzzv', opts)
-keymap('n', 'J', 'mzJ`z', opts)
-keymap('n', '{', '{zz', opts)
-keymap('n', '}', '}zz', opts)
-keymap('n', '<C-o>', '<C-o>zz', opts)
-keymap('n', '<C-i>', '<C-i>zz', opts)
+  -- Keeping it centered
+  ['n'] = 'nzzzv',
+  ['N'] = 'Nzzzv',
+  ['J'] = 'mzJ`z',
+  ['{'] = '{zz',
+  ['}'] = '}zz',
+  ['<C-o>'] = '<C-o>zz',
+  ['<C-i>'] = '<C-i>zz',
 
--- Quickfix Navigation
-keymap('n', ']q', '<cmd>cnext<CR>', opts)
-keymap('n', '[q', '<cmd>cprevious<CR>', opts)
-keymap('n', ']Q', '<cmd>cfirst<CR>', opts)
-keymap('n', '[Q', '<cmd>clast<CR>', opts)
+  -- Quickfix Navigation
+  [']q'] = '<cmd>cnext<CR>',
+  ['[q'] = '<cmd>cprevious<CR>',
+  [']Q'] = '<cmd>cfirst<CR>',
+  ['[Q'] = '<cmd>clast<CR>',
 
--- Buffer Navigation
-keymap('n', ']b', '<cmd>bn<CR>', opts)
-keymap('n', '[b', '<cmd>bp<CR>', opts)
-keymap('n', ']B', '<cmd>blast<CR>', opts)
-keymap('n', '[B', '<cmd>bfirst<CR>', opts)
+  -- Buffer Navigation
+  [']b'] = '<cmd>bn<CR>',
+  ['[b'] = '<cmd>bp<CR>',
+  [']B'] = '<cmd>blast<CR>',
+  ['[B'] = '<cmd>bfirst<CR>',
 
--- Move Lines Around
-keymap('n', '<A-j>', ':m .+1<CR>==', opts)
-keymap('n', '<A-k>', ':m .-2<CR>==', opts)
+  -- Indent
+  ['<'] = '<<',
+  ['>'] = '>>',
 
--- Indent
-keymap('n', '<', '<<', opts)
-keymap('n', '>', '>>', opts)
+  -- Add / Subtract
+  ['+'] = '<C-a>',
+  ['-'] = '<C-x>',
 
--- Add / Subtract
-keymap('n', '+', '<C-a>', opts)
-keymap('n', '-', '<C-x>', opts)
+  -- Move Windows Around
+  ['<C-h>'] = '<C-w>h',
+  ['<C-j>'] = '<C-w>j',
+  ['<C-k>'] = '<C-w>k',
+  ['<C-l>'] = '<C-w>l',
 
--- Quickfix
-keymap('n', '<C-q>', '<cmd>call QuickFixToggle()<CR>', opts)
+  -- Move Lines Around
+  ['<A-j>'] = ':m .+1<CR>==',
+  ['<A-k>'] = ':m .-2<CR>==',
 
--- Move Windows Around
-keymap('n', '<C-h>', '<C-w>h', opts)
-keymap('n', '<C-j>', '<C-w>j', opts)
-keymap('n', '<C-k>', '<C-w>k', opts)
-keymap('n', '<C-l>', '<C-w>l', opts)
+  -- Quickfix
+  ['<C-q>'] = '<cmd>call QuickFixToggle()<CR>',
 
--- Resize windows
-keymap('n', '<C-Up>', ':resize -5<CR>', opts)
-keymap('n', '<C-Down>', ':resize +5<CR>', opts)
-keymap('n', '<C-Left>', ':vertical resize -5<CR>', opts)
-keymap('n', '<C-Right>', ':vertical resize +5<CR>', opts)
+  -- Resize windows
+  ['<C-Up>'] = ':resize -5<CR>',
+  ['<C-Down>'] = ':resize +5<CR>',
+  ['<C-Left>'] = ':vertical resize -5<CR>',
+  ['<C-Right>'] = ':vertical resize +5<CR>',
+}
 
--- Insert Mode --
+local insert_keymaps = {
+  -- Escape
+  ['jk'] = '<ESC>',
 
--- Undo break points
-keymap('i', ',', ',<c-g>u', opts)
-keymap('i', '.', '.<c-g>u', opts)
-keymap('i', '!', '!<c-g>u', opts)
-keymap('i', '?', '?<c-g>u', opts)
+  -- Undo break points
+  [','] = ',<c-g>u',
+  ['.'] = '.<c-g>u',
+  ['!'] = '!<c-g>u',
+  ['?'] = '?<c-g>u',
 
--- Escape
-keymap('i', 'jk', '<ESC>', opts)
+  -- Escape closing character
+  ['<A-l>'] = '<cmd>lua EscapePair()<CR>',
+}
 
--- Visual Mode --
-keymap('v', 'jk', '<ESC>', opts)
+local visual_keymaps = {
+  ['jk'] = '<ESC>',
 
--- Move Lines Around
-keymap('v', '<A-j>', ":m '>+1<CR>gv-gv", opts)
-keymap('v', '<A-k>', ":m '<-2<CR>gv-gv", opts)
+  -- Move Lines Around
+  ['<A-j>'] = ":m '>+1<CR>gv-gv",
+  ['<A-k>'] = ":m '<-2<CR>gv-gv",
 
--- Indent
-keymap('v', '<', '<gv', opts)
-keymap('v', '>', '>gv', opts)
+  -- Indent
+  ['<'] = '<gv',
+  ['>'] = '>gv',
+}
+
+for key, cmd in pairs(normal_keymaps) do
+  keymap('n', key, cmd, opts)
+end
+
+for key, cmd in pairs(insert_keymaps) do
+  keymap('i', key, cmd, opts)
+end
+
+for key, cmd in pairs(visual_keymaps) do
+  keymap('v', key, cmd, opts)
+end
 
 -- Jumplist mutations
 vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
@@ -143,5 +162,3 @@ function EscapePair()
     vim.api.nvim_win_set_cursor(0, { row, col + 1 })
   end
 end
-
-keymap('i', '<A-l>', '<cmd>lua EscapePair()<CR>', opts)

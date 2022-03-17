@@ -37,12 +37,17 @@ return packer.startup(function(use)
         local keymap = vim.keymap.set
         local opts = { noremap = true, silent = true }
 
-        -- Packer
-        keymap('n', '<leader>pc', '<cmd>PackerCompile<CR>', opts)
-        keymap('n', '<leader>pi', '<cmd>PackerInstall<CR>', opts)
-        keymap('n', '<leader>pl', '<cmd>PackerStatus<CR>', opts)
-        keymap('n', '<leader>ps', '<cmd>PackerSync<CR>', opts)
-        keymap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
+        local keymaps = {
+          ['<leader>pc'] = '<cmd>PackerCompile<CR>',
+          ['<leader>pi'] = '<cmd>PackerInstall<CR>',
+          ['<leader>pl'] = '<cmd>PackerStatus<CR>',
+          ['<leader>ps'] = '<cmd>PackerSync<CR>',
+          ['<leader>pu'] = '<cmd>PackerUpdate<CR>',
+        }
+
+        for key, cmd in pairs(keymaps) do
+          keymap('n', key, cmd, opts)
+        end
 
         local mappings = {
           p = {
@@ -99,20 +104,25 @@ return packer.startup(function(use)
       local keymap = vim.keymap.set
       local opts = { noremap = true, silent = true }
 
-      -- Telescope
-      keymap('n', '<leader>fb', '<cmd>Telescope buffers theme=get_ivy<CR>', opts)
-      keymap('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', opts)
-      keymap('n', '<leader>fd', '<cmd>Telescope lsp_document_symbols<CR>', opts)
-      keymap('n', '<leader>fe', '<cmd>Telescope file_browser<CR>', opts)
-      keymap('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opts)
-      keymap('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', opts)
-      keymap('n', '<leader>fo', '<cmd>Telescope oldfiles cwd_only=v:true<CR>', opts)
-      keymap('n', '<leader>fq', '<cmd>Telescope quickfix<CR>', opts)
-      keymap('n', '<leader>fr', '<cmd>Telescope resume<CR>', opts)
-      keymap('n', '<leader>fs', '<cmd>Telescope grep_string<CR>', opts)
-      keymap('n', '<leader>ft', '<cmd>Telescope treesitter<CR>', opts)
-      keymap('n', '<leader>fw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
-      keymap('n', '<leader>/', '<cmd>lua _CURR_BUF()<CR>', opts)
+      local keymaps = {
+        ['<leader>fb'] = '<cmd>Telescope buffers theme=get_ivy<CR>',
+        ['<leader>fc'] = '<cmd>Telescope colorscheme<CR>',
+        ['<leader>fd'] = '<cmd>Telescope lsp_document_symbols<CR>',
+        ['<leader>fe'] = '<cmd>Telescope file_browser<CR>',
+        ['<leader>ff'] = '<cmd>Telescope find_files<CR>',
+        ['<leader>fg'] = '<cmd>Telescope live_grep<CR>',
+        ['<leader>fo'] = '<cmd>Telescope oldfiles cwd_only=v:true<CR>',
+        ['<leader>fq'] = '<cmd>Telescope quickfix<CR>',
+        ['<leader>fr'] = '<cmd>Telescope resume<CR>',
+        ['<leader>fs'] = '<cmd>Telescope grep_string<CR>',
+        ['<leader>ft'] = '<cmd>Telescope treesitter<CR>',
+        ['<leader>fw'] = '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>',
+        ['<leader>/'] = '<cmd>lua _CURR_BUF()<CR>',
+      }
+
+      for key, cmd in pairs(keymaps) do
+        keymap('n', key, cmd, opts)
+      end
 
       local mappings = {
         f = {
@@ -180,12 +190,17 @@ return packer.startup(function(use)
       local keymap = vim.keymap.set
       local opts = { noremap = true, silent = true }
 
-      -- Octo
-      keymap('n', '<leader>oic', '<cmd>Octo issue create<CR>', opts)
-      keymap('n', '<leader>oil', '<cmd>Octo issue list<CR>', opts)
-      keymap('n', '<leader>op', '<cmd>Octo pr list<CR>', opts)
-      keymap('n', '<leader>ors', '<cmd>Octo review start<CR>', opts)
-      keymap('n', '<leader>orf', '<cmd>Octo review submit<CR>', opts)
+      local keymaps = {
+        ['<leader>oic'] = '<cmd>Octo issue create<CR>',
+        ['<leader>oil'] = '<cmd>Octo issue list<CR>',
+        ['<leader>op'] = '<cmd>Octo pr list<CR>',
+        ['<leader>ors'] = '<cmd>Octo review start<CR>',
+        ['<leader>orf'] = '<cmd>Octo review submit<CR>',
+      }
+
+      for key, cmd in pairs(keymaps) do
+        keymap('n', key, cmd, opts)
+      end
 
       local mappings = {
         o = {
@@ -261,12 +276,17 @@ return packer.startup(function(use)
       local keymap = vim.keymap.set
       local opts = { noremap = true, silent = true }
 
-      -- Vim-Test
-      keymap('n', '<leader>tf', '<cmd>TestFile<CR>', opts)
-      keymap('n', '<leader>tl', '<cmd>TestLast<CR>', opts)
-      keymap('n', '<leader>tn', '<cmd>TestNearest<CR>', opts)
-      keymap('n', '<leader>ts', '<cmd>TestSuite<CR>', opts)
-      keymap('n', '<leader>tv', '<cmd>TestVisit<CR>', opts)
+      local keymaps = {
+        ['<leader>tf'] = '<cmd>TestFile<CR>',
+        ['<leader>tl'] = '<cmd>TestLast<CR>',
+        ['<leader>tn'] = '<cmd>TestNearest<CR>',
+        ['<leader>ts'] = '<cmd>TestSuite<CR>',
+        ['<leader>tv'] = '<cmd>TestVisit<CR>',
+      }
+
+      for key, cmd in pairs(keymaps) do
+        keymap('n', key, cmd, opts)
+      end
 
       local mappings = {
         t = {
@@ -301,16 +321,21 @@ return packer.startup(function(use)
       local keymap = vim.keymap.set
       local opts = { noremap = true, silent = true }
 
-      -- Harpoon
-      keymap('n', '<leader>hp', '<cmd>lua require("harpoon.mark").add_file()<CR>', opts)
-      keymap('n', '<leader>hq', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
-      keymap('n', '<leader>ha', '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', opts)
-      keymap('n', '<leader>hs', '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', opts)
-      keymap('n', '<leader>hd', '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', opts)
-      keymap('n', '<leader>hf', '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', opts)
-      keymap('n', '<leader>ht', '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>', opts)
-      keymap('n', '<leader>hy', '<cmd>lua require("harpoon.term").gotoTerminal(2)<CR>', opts)
-      keymap('n', '<leader>hl', '<cmd>lua require("harpoon.tmux").sendCommand(99, "lazygit && exit")<CR>', opts)
+      local keymaps = {
+        ['<leader>hp'] = '<cmd>lua require("harpoon.mark").add_file()<CR>',
+        ['<leader>hq'] = '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
+        ['<leader>ha'] = '<cmd>lua require("harpoon.ui").nav_file(1)<CR>',
+        ['<leader>hs'] = '<cmd>lua require("harpoon.ui").nav_file(2)<CR>',
+        ['<leader>hd'] = '<cmd>lua require("harpoon.ui").nav_file(3)<CR>',
+        ['<leader>hf'] = '<cmd>lua require("harpoon.ui").nav_file(4)<CR>',
+        ['<leader>ht'] = '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>',
+        ['<leader>hy'] = '<cmd>lua require("harpoon.term").gotoTerminal(2)<CR>',
+        ['<leader>hl'] = '<cmd>lua require("harpoon.tmux").sendCommand(99, "lazygit && exit")<CR>',
+      }
+
+      for key, cmd in pairs(keymaps) do
+        keymap('n', key, cmd, opts)
+      end
 
       local mappings = {
         h = {
