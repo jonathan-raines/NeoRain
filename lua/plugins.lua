@@ -34,33 +34,7 @@ return packer.startup(function(use)
     {
       'wbthomason/packer.nvim',
       config = function()
-        local keymap = vim.keymap.set
-        local opts = { noremap = true, silent = true }
-
-        local keymaps = {
-          ['<leader>pc'] = '<cmd>PackerCompile<CR>',
-          ['<leader>pi'] = '<cmd>PackerInstall<CR>',
-          ['<leader>pl'] = '<cmd>PackerStatus<CR>',
-          ['<leader>ps'] = '<cmd>PackerSync<CR>',
-          ['<leader>pu'] = '<cmd>PackerUpdate<CR>',
-        }
-
-        for key, cmd in pairs(keymaps) do
-          keymap('n', key, cmd, opts)
-        end
-
-        local mappings = {
-          p = {
-            name = 'Packer',
-            c = { 'PackerCompile' },
-            i = { 'PackerInstall' },
-            l = { 'PackerStatus' },
-            s = { 'PackerSync' },
-            u = { 'PackerUpdate' },
-          },
-        }
-
-        require('which-key').register(mappings, { prefix = '<leader>' })
+        require 'configs.packer.setup'
       end,
     },
     {
@@ -101,52 +75,10 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     setup = function()
-      local keymap = vim.keymap.set
-      local opts = { noremap = true, silent = true }
-
-      local keymaps = {
-        ['<leader>fb'] = '<cmd>Telescope buffers theme=get_ivy<CR>',
-        ['<leader>fc'] = '<cmd>Telescope colorscheme<CR>',
-        ['<leader>fd'] = '<cmd>Telescope lsp_document_symbols<CR>',
-        ['<leader>fe'] = '<cmd>Telescope file_browser<CR>',
-        ['<leader>ff'] = '<cmd>Telescope find_files<CR>',
-        ['<leader>fg'] = '<cmd>Telescope live_grep<CR>',
-        ['<leader>fo'] = '<cmd>Telescope oldfiles cwd_only=v:true<CR>',
-        ['<leader>fq'] = '<cmd>Telescope quickfix<CR>',
-        ['<leader>fr'] = '<cmd>Telescope resume<CR>',
-        ['<leader>fs'] = '<cmd>Telescope grep_string<CR>',
-        ['<leader>ft'] = '<cmd>Telescope treesitter<CR>',
-        ['<leader>fw'] = '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>',
-        ['<leader>/'] = '<cmd>lua _CURR_BUF()<CR>',
-      }
-
-      for key, cmd in pairs(keymaps) do
-        keymap('n', key, cmd, opts)
-      end
-
-      local mappings = {
-        f = {
-          name = 'Telescope',
-          b = { 'Buffers' },
-          c = { 'Colorscheme' },
-          d = { 'Document Symbols' },
-          f = { 'Find Files' },
-          e = { 'File Browser' },
-          g = { 'Live Grep' },
-          o = { 'Open Recent File' },
-          q = { 'Open Quickfix' },
-          r = { 'Resume Last Picker' },
-          s = { 'Grep String' },
-          t = { 'Treesitter' },
-          w = { 'Workplace Symbols' },
-        },
-        ['/'] = { 'Search Current Buffer' },
-      }
-
-      require('which-key').register(mappings, { prefix = '<leader>' })
+      require 'configs.telescope.setup'
     end,
     config = function()
-      require './configs/telescope'
+      require 'configs.telescope.config'
     end,
     requires = {
       { 'nvim-lua/popup.nvim' },
@@ -187,39 +119,7 @@ return packer.startup(function(use)
   use {
     'pwntester/octo.nvim',
     setup = function()
-      local keymap = vim.keymap.set
-      local opts = { noremap = true, silent = true }
-
-      local keymaps = {
-        ['<leader>oic'] = '<cmd>Octo issue create<CR>',
-        ['<leader>oil'] = '<cmd>Octo issue list<CR>',
-        ['<leader>op'] = '<cmd>Octo pr list<CR>',
-        ['<leader>ors'] = '<cmd>Octo review start<CR>',
-        ['<leader>orf'] = '<cmd>Octo review submit<CR>',
-      }
-
-      for key, cmd in pairs(keymaps) do
-        keymap('n', key, cmd, opts)
-      end
-
-      local mappings = {
-        o = {
-          name = 'Octo',
-          i = {
-            name = 'Issues',
-            c = { 'Create Issue' },
-            l = { 'List Issues' },
-          },
-          p = { 'List Pull Requests' },
-          r = {
-            name = 'Review',
-            s = { 'Start Review' },
-            f = { 'Submit Review' },
-          },
-        },
-      }
-
-      require('which-key').register(mappings, { prefix = '<leader>' })
+      require 'configs.octo.setup'
     end,
     config = function()
       require('octo').setup()
@@ -273,36 +173,10 @@ return packer.startup(function(use)
   use {
     'vim-test/vim-test',
     setup = function()
-      local keymap = vim.keymap.set
-      local opts = { noremap = true, silent = true }
-
-      local keymaps = {
-        ['<leader>tf'] = '<cmd>TestFile<CR>',
-        ['<leader>tl'] = '<cmd>TestLast<CR>',
-        ['<leader>tn'] = '<cmd>TestNearest<CR>',
-        ['<leader>ts'] = '<cmd>TestSuite<CR>',
-        ['<leader>tv'] = '<cmd>TestVisit<CR>',
-      }
-
-      for key, cmd in pairs(keymaps) do
-        keymap('n', key, cmd, opts)
-      end
-
-      local mappings = {
-        t = {
-          name = 'Testing',
-          f = { 'Run Test File' },
-          l = { 'Run Last Test' },
-          n = { 'Run Nearest Test' },
-          s = { 'Run Test Suite' },
-          v = { 'Visit Test File' },
-        },
-      }
-
-      require('which-key').register(mappings, { prefix = '<leader>' })
+      require 'configs.vim-test.setup'
     end,
     config = function()
-      require './configs/vim-test'
+      require 'configs.vim-test.config'
     end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
@@ -318,42 +192,10 @@ return packer.startup(function(use)
   use {
     'ThePrimeagen/harpoon',
     setup = function()
-      local keymap = vim.keymap.set
-      local opts = { noremap = true, silent = true }
-
-      local keymaps = {
-        ['<leader>hp'] = '<cmd>lua require("harpoon.mark").add_file()<CR>',
-        ['<leader>hq'] = '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
-        ['<leader>ha'] = '<cmd>lua require("harpoon.ui").nav_file(1)<CR>',
-        ['<leader>hs'] = '<cmd>lua require("harpoon.ui").nav_file(2)<CR>',
-        ['<leader>hd'] = '<cmd>lua require("harpoon.ui").nav_file(3)<CR>',
-        ['<leader>hf'] = '<cmd>lua require("harpoon.ui").nav_file(4)<CR>',
-        ['<leader>ht'] = '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>',
-        ['<leader>hy'] = '<cmd>lua require("harpoon.term").gotoTerminal(2)<CR>',
-        ['<leader>hl'] = '<cmd>lua require("harpoon.tmux").sendCommand(99, "lazygit && exit")<CR>',
-      }
-
-      for key, cmd in pairs(keymaps) do
-        keymap('n', key, cmd, opts)
-      end
-
-      local mappings = {
-        h = {
-          name = 'Harpoon',
-          p = { 'Add File' },
-          q = { 'Menu' },
-          a = { 'Navigate to File 1' },
-          s = { 'Navigate to File 2' },
-          d = { 'Navigate to File 3' },
-          f = { 'Navigate to File 4' },
-          t = { 'Navigate to Terminal 1' },
-        },
-      }
-
-      require('which-key').register(mappings, { prefix = '<leader>' })
+      require 'configs.harpoon.setup'
     end,
     config = function()
-      require './configs/harpoon'
+      require 'configs.harpoon.config'
     end,
     module = 'harpoon',
   }
