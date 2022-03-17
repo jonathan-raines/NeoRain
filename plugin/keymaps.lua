@@ -146,48 +146,9 @@ end
 
 keymap('i', '<A-l>', '<cmd>lua EscapePair()<CR>', opts)
 
--- Harpoon
-keymap('n', '<leader>hp', '<cmd>lua require("harpoon.mark").add_file()<CR>', opts)
-keymap('n', '<leader>hq', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
-keymap('n', '<leader>ha', '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', opts)
-keymap('n', '<leader>hs', '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', opts)
-keymap('n', '<leader>hd', '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', opts)
-keymap('n', '<leader>hf', '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', opts)
-keymap('n', '<leader>ht', '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>', opts)
-keymap('n', '<leader>hy', '<cmd>lua require("harpoon.term").gotoTerminal(2)<CR>', opts)
-
--- Octo
-keymap('n', '<leader>oic', '<cmd>Octo issue create<CR>', opts)
-keymap('n', '<leader>oil', '<cmd>Octo issue list<CR>', opts)
-keymap('n', '<leader>op', '<cmd>Octo pr list<CR>', opts)
-keymap('n', '<leader>ors', '<cmd>Octo review start<CR>', opts)
-keymap('n', '<leader>orf', '<cmd>Octo review submit<CR>', opts)
-
 -- Packer
 keymap('n', '<leader>pc', '<cmd>PackerCompile<CR>', opts)
 keymap('n', '<leader>pi', '<cmd>PackerInstall<CR>', opts)
 keymap('n', '<leader>pl', '<cmd>PackerStatus<CR>', opts)
 keymap('n', '<leader>ps', '<cmd>PackerSync<CR>', opts)
 keymap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
-
--- Telescope
-keymap('n', '<leader>fb', '<cmd>Telescope buffers theme=get_ivy<CR>', opts)
-keymap('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', opts)
-keymap('n', '<leader>fd', '<cmd>Telescope lsp_document_symbols<CR>', opts)
-keymap('n', '<leader>fe', '<cmd>Telescope file_browser<CR>', opts)
-keymap('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opts)
-keymap('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', opts)
-keymap('n', '<leader>fo', '<cmd>Telescope oldfiles cwd_only=v:true<CR>', opts)
-keymap('n', '<leader>fq', '<cmd>Telescope quickfix<CR>', opts)
-keymap('n', '<leader>fr', '<cmd>Telescope resume<CR>', opts)
-keymap('n', '<leader>fs', '<cmd>Telescope grep_string<CR>', opts)
-keymap('n', '<leader>ft', '<cmd>Telescope treesitter<CR>', opts)
-keymap('n', '<leader>fw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
-keymap('n', '<leader>/', '<cmd>lua _CURR_BUF()<CR>', opts)
-
--- Vim-Test
-keymap('n', '<leader>tf', '<cmd>TestFile<CR>', opts)
-keymap('n', '<leader>tl', '<cmd>TestLast<CR>', opts)
-keymap('n', '<leader>tn', '<cmd>TestNearest<CR>', opts)
-keymap('n', '<leader>ts', '<cmd>TestSuite<CR>', opts)
-keymap('n', '<leader>tv', '<cmd>TestVisit<CR>', opts)

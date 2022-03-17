@@ -69,6 +69,46 @@ return packer.startup(function(use)
   ---------- Telescope ----------
   use {
     'nvim-telescope/telescope.nvim',
+    setup = function()
+      local keymap = vim.keymap.set
+      local opts = { noremap = true, silent = true }
+
+      -- Telescope
+      keymap('n', '<leader>fb', '<cmd>Telescope buffers theme=get_ivy<CR>', opts)
+      keymap('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', opts)
+      keymap('n', '<leader>fd', '<cmd>Telescope lsp_document_symbols<CR>', opts)
+      keymap('n', '<leader>fe', '<cmd>Telescope file_browser<CR>', opts)
+      keymap('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opts)
+      keymap('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', opts)
+      keymap('n', '<leader>fo', '<cmd>Telescope oldfiles cwd_only=v:true<CR>', opts)
+      keymap('n', '<leader>fq', '<cmd>Telescope quickfix<CR>', opts)
+      keymap('n', '<leader>fr', '<cmd>Telescope resume<CR>', opts)
+      keymap('n', '<leader>fs', '<cmd>Telescope grep_string<CR>', opts)
+      keymap('n', '<leader>ft', '<cmd>Telescope treesitter<CR>', opts)
+      keymap('n', '<leader>fw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
+      keymap('n', '<leader>/', '<cmd>lua _CURR_BUF()<CR>', opts)
+
+      local mappings = {
+        f = {
+          name = 'Telescope',
+          b = { 'Buffers' },
+          c = { 'Colorscheme' },
+          d = { 'Document Symbols' },
+          f = { 'Find Files' },
+          e = { 'File Browser' },
+          g = { 'Live Grep' },
+          o = { 'Open Recent File' },
+          q = { 'Open Quickfix' },
+          r = { 'Resume Last Picker' },
+          s = { 'Grep String' },
+          t = { 'Treesitter' },
+          w = { 'Workplace Symbols' },
+        },
+        ['/'] = { 'Search Current Buffer' },
+      }
+
+      require('which-key').register(mappings, { prefix = '<leader>' })
+    end,
     config = function()
       require './configs/telescope'
     end,
@@ -110,6 +150,36 @@ return packer.startup(function(use)
 
   use {
     'pwntester/octo.nvim',
+    setup = function()
+      local keymap = vim.keymap.set
+      local opts = { noremap = true, silent = true }
+
+      -- Octo
+      keymap('n', '<leader>oic', '<cmd>Octo issue create<CR>', opts)
+      keymap('n', '<leader>oil', '<cmd>Octo issue list<CR>', opts)
+      keymap('n', '<leader>op', '<cmd>Octo pr list<CR>', opts)
+      keymap('n', '<leader>ors', '<cmd>Octo review start<CR>', opts)
+      keymap('n', '<leader>orf', '<cmd>Octo review submit<CR>', opts)
+
+      local mappings = {
+        o = {
+          name = 'Octo',
+          i = {
+            name = 'Issues',
+            c = { 'Create Issue' },
+            l = { 'List Issues' },
+          },
+          p = { 'List Pull Requests' },
+          r = {
+            name = 'Review',
+            s = { 'Start Review' },
+            f = { 'Submit Review' },
+          },
+        },
+      }
+
+      require('which-key').register(mappings, { prefix = '<leader>' })
+    end,
     config = function()
       require('octo').setup()
     end,
@@ -161,6 +231,30 @@ return packer.startup(function(use)
   ---------- MISC ----------
   use {
     'vim-test/vim-test',
+    setup = function()
+      local keymap = vim.keymap.set
+      local opts = { noremap = true, silent = true }
+
+      -- Vim-Test
+      keymap('n', '<leader>tf', '<cmd>TestFile<CR>', opts)
+      keymap('n', '<leader>tl', '<cmd>TestLast<CR>', opts)
+      keymap('n', '<leader>tn', '<cmd>TestNearest<CR>', opts)
+      keymap('n', '<leader>ts', '<cmd>TestSuite<CR>', opts)
+      keymap('n', '<leader>tv', '<cmd>TestVisit<CR>', opts)
+
+      local mappings = {
+        t = {
+          name = 'Testing',
+          f = { 'Run Test File' },
+          l = { 'Run Last Test' },
+          n = { 'Run Nearest Test' },
+          s = { 'Run Test Suite' },
+          v = { 'Visit Test File' },
+        },
+      }
+
+      require('which-key').register(mappings, { prefix = '<leader>' })
+    end,
     config = function()
       require './configs/vim-test'
     end,
@@ -177,9 +271,40 @@ return packer.startup(function(use)
 
   use {
     'ThePrimeagen/harpoon',
+    setup = function()
+      local keymap = vim.keymap.set
+      local opts = { noremap = true, silent = true }
+
+      -- Harpoon
+      keymap('n', '<leader>hp', '<cmd>lua require("harpoon.mark").add_file()<CR>', opts)
+      keymap('n', '<leader>hq', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
+      keymap('n', '<leader>ha', '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', opts)
+      keymap('n', '<leader>hs', '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', opts)
+      keymap('n', '<leader>hd', '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', opts)
+      keymap('n', '<leader>hf', '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', opts)
+      keymap('n', '<leader>ht', '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>', opts)
+      keymap('n', '<leader>hy', '<cmd>lua require("harpoon.term").gotoTerminal(2)<CR>', opts)
+      keymap('n', '<leader>hl', '<cmd>lua require("harpoon.tmux").sendCommand(99, "lazygit && exit")<CR>', opts)
+
+      local mappings = {
+        h = {
+          name = 'Harpoon',
+          p = { 'Add File' },
+          q = { 'Menu' },
+          a = { 'Navigate to File 1' },
+          s = { 'Navigate to File 2' },
+          d = { 'Navigate to File 3' },
+          f = { 'Navigate to File 4' },
+          t = { 'Navigate to Terminal 1' },
+        },
+      }
+
+      require('which-key').register(mappings, { prefix = '<leader>' })
+    end,
     config = function()
       require './configs/harpoon'
     end,
+    module = 'harpoon',
   }
 
   use {
@@ -244,10 +369,22 @@ return packer.startup(function(use)
     config = function()
       require './configs/nvim-treesitter'
     end,
+    event = 'BufRead',
   }
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    setup = function()
+      local mappings = {
+        d = {
+          name = 'Peek',
+          f = { 'Peek Function' },
+          F = { 'Peek Class' },
+        },
+      }
+
+      require('which-key').register(mappings, { prefix = '<leader>' })
+    end,
     config = function()
       require './configs/nvim-treesitter-textobjects'
     end,
@@ -261,14 +398,6 @@ return packer.startup(function(use)
     end,
     after = 'nvim-treesitter',
   }
-
-  use {
-    'SmiteshP/nvim-gps',
-    config = function()
-      require('nvim-gps').setup()
-    end,
-    requires = 'nvim-treesitter/nvim-treesitter',
-  }
   --------------------------------
 
   -------------- UI -----------------
@@ -278,6 +407,35 @@ return packer.startup(function(use)
       require './configs/catppuccin'
     end,
     as = 'catppuccin',
+    after = 'lualine.nvim',
+    cmd = 'colorscheme catppuccin',
+  }
+
+  use {
+    'mhdahmad/gruvbox.lua',
+    after = 'lualine.nvim',
+    cmd = 'colorscheme gruvbox',
+    disable = true,
+  }
+
+  use {
+    'eddyekofo94/gruvbox-flat.nvim',
+    after = 'lualine.nvim',
+    cmd = 'colorscheme gruvbox-flat',
+    disable = false,
+  }
+
+  use {
+    'savq/melange',
+    after = 'lualine.nvim',
+    cmd = 'colorscheme melange',
+  }
+
+  use {
+    'rebelot/kanagawa.nvim',
+    config = function()
+      vim.cmd [[colorscheme kanagawa]]
+    end,
     after = 'lualine.nvim',
   }
 
@@ -299,9 +457,20 @@ return packer.startup(function(use)
 
   use {
     'akinsho/nvim-toggleterm.lua',
+    setup = function()
+      local mappings = {
+        j = {
+          name = 'Terminal',
+          l = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
+        },
+      }
+
+      require('which-key').register(mappings, { prefix = '<leader>' })
+    end,
     config = function()
       require './configs/nvim-toggleterm'
     end,
+    event = 'BufWinEnter',
   }
   --------------------------------
 
