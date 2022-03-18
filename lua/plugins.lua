@@ -354,17 +354,10 @@ return packer.startup(function(use)
   use {
     'akinsho/nvim-toggleterm.lua',
     setup = function()
-      local mappings = {
-        j = {
-          name = 'Terminal',
-          l = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
-        },
-      }
-
-      require('which-key').register(mappings, { prefix = '<leader>' })
+      require 'configs.nvim-toggleterm.setup'
     end,
     config = function()
-      require './configs/nvim-toggleterm'
+      require 'configs.nvim-toggleterm.config'
     end,
     event = 'BufWinEnter',
   }
