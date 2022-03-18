@@ -39,6 +39,9 @@ local options = {
 }
 
 vim.opt.shortmess:append 'cI'
+-- vim.opt.path:append '**'
+
+vim.cmd [[set path+=**]]
 
 for k, v in pairs(options) do
   vim.opt[k] = v
@@ -62,7 +65,7 @@ local disabled_built_ins = {
   'matchparen',
   'logipat',
   'rrhelper',
-  -- 'spellfile_plugin',
+  'spellfile_plugin',
 }
 
 for _, plugin in pairs(disabled_built_ins) do

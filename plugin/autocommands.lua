@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 vim.api.nvim_create_autocmd('VimEnter', {
-  desc = 'Activate global statusline',
+  desc = 'Thin border between windows on global statusline',
   group = 'GeneralSettings',
   command = 'highlight WinSeparator guibg=None',
 })
