@@ -10,6 +10,8 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<ESC>'] = actions.close,
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
       },
       n = {},
     },
@@ -17,7 +19,7 @@ require('telescope').setup {
   pickers = {
     buffers = {
       show_all_buffers = true,
-      ignore_current_buffer = false,
+      ignore_current_buffer = true,
       sort_lastused = true,
       mappings = {
         i = {

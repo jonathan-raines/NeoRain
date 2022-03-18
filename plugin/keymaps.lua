@@ -22,7 +22,7 @@ local normal_keymaps = {
   -- Write / Quit
   ['<leader>w'] = '<cmd>up<CR>',
   ['<leader>q'] = 'ZZ',
-  ['<leader>c'] = '<cmd>bd!<CR>',
+  ['<leader>c'] = '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>',
   ['<leader>C'] = '<cmd>call DeleteHiddenBuffers()<CR>',
 
   -- Keeping it centered
@@ -33,18 +33,16 @@ local normal_keymaps = {
   ['}'] = '}zz',
   ['<C-o>'] = '<C-o>zz',
   ['<C-i>'] = '<C-i>zz',
+  ['<C-d>'] = '<C-d>zz',
+  ['<C-u>'] = '<C-u>zz',
 
   -- Quickfix Navigation
-  [']q'] = '<cmd>cnext<CR>',
-  ['[q'] = '<cmd>cprevious<CR>',
-  [']Q'] = '<cmd>cfirst<CR>',
-  ['[Q'] = '<cmd>clast<CR>',
+  [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
+  ['[q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>',
 
   -- Buffer Navigation
-  [']b'] = '<cmd>bn<CR>',
-  ['[b'] = '<cmd>bp<CR>',
-  [']B'] = '<cmd>blast<CR>',
-  ['[B'] = '<cmd>bfirst<CR>',
+  ['<C-j>'] = '<cmd>bp<CR>',
+  ['<C-k>'] = '<cmd>bn<CR>',
 
   -- Indent
   ['<'] = '<<',
@@ -56,8 +54,6 @@ local normal_keymaps = {
 
   -- Move Windows Around
   ['<C-h>'] = '<C-w>h',
-  ['<C-j>'] = '<C-w>j',
-  ['<C-k>'] = '<C-w>k',
   ['<C-l>'] = '<C-w>l',
 
   -- Move Lines Around

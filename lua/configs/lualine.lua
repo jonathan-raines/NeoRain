@@ -123,7 +123,7 @@ require('lualine').setup {
           fzf = 'FZF',
           qf = 'QuickFix',
         }, -- shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
-        mode = 2,
+        -- mode = 2,
         max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
         -- it can also be a function that returns
         -- the value of `max_length` dynamically.

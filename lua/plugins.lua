@@ -45,7 +45,6 @@ return packer.startup(function(use)
     },
     { 'nathom/filetype.nvim' },
     { 'nvim-lua/plenary.nvim' },
-    { 'nvim-lua/popup.nvim' },
   }
 
   ---------- Database ----------
@@ -81,7 +80,7 @@ return packer.startup(function(use)
       require 'configs.telescope.config'
     end,
     requires = {
-      { 'nvim-lua/popup.nvim' },
+      -- { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
     },
