@@ -328,7 +328,8 @@ return packer.startup(function(use)
   use {
     'rebelot/kanagawa.nvim',
     config = function()
-      vim.cmd [[colorscheme kanagawa]]
+      require 'configs.kanagawa'
+      vim.cmd 'colorscheme kanagawa'
     end,
     after = 'lualine.nvim',
     disable = false,
