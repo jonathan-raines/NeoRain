@@ -23,7 +23,6 @@ local normal_keymaps = {
   ['<leader>w'] = '<cmd>up<CR>',
   ['<leader>q'] = 'ZZ',
   ['<leader>c'] = '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>',
-  ['<leader>C'] = '<cmd>call DeleteHiddenBuffers()<CR>',
 
   -- Keeping it centered
   ['n'] = 'nzzzv',
@@ -61,7 +60,7 @@ local normal_keymaps = {
   ['<A-k>'] = ':m .-2<CR>==',
 
   -- Quickfix
-  ['<C-q>'] = '<cmd>call QuickFixToggle()<CR>',
+  ['<C-q>'] = '<cmd>lua QuickFixToggle()<CR>',
 
   -- Resize windows
   ['<C-Up>'] = ':resize -5<CR>',
@@ -113,30 +112,13 @@ vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
 vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 
 -- QuickFixToggle
-vim.api.nvim_exec(
-  [[
-  function! QuickFixToggle()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-      copen
-    else
-      cclose
-    endif
-  endfunction]],
-  false
-)
-
--- Delete Hidden Buffers
-vim.api.nvim_exec(
-  [[
-  function! DeleteHiddenBuffers() " Vim with the 'hidden' option
-		let tpbl=[]
-		call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-		for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-			silent execute 'bwipeout!' buf
-		endfor
-	endfunction]],
-  false
-)
+function QuickFixToggle()
+  if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1 then
+    vim.cmd 'copen'
+  else
+    vim.cmd 'cclose'
+  end
+end
 
 function EscapePair()
   local closers = { ')', ']', '}', '>', "'", '"', '`', ',' }
