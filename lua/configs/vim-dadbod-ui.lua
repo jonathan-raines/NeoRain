@@ -22,3 +22,12 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.cmd [[ set colorcolumn="" ]]
   end,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Setup Dadbod completion plugin',
+  group = 'DadBodUI',
+  pattern = 'sql,mysql,plsql',
+  callback = function()
+    require('cmp').setup.buffer { sources = { { name = 'vim-dadbod-completion' } } }
+  end,
+})

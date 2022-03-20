@@ -51,7 +51,7 @@ return packer.startup(function(use)
   use {
     'kristijanhusak/vim-dadbod-ui',
     config = function()
-      require './configs/vim-dadbod-ui'
+      require 'configs.vim-dadbod-ui'
     end,
     requires = {
       {
@@ -60,9 +60,6 @@ return packer.startup(function(use)
       },
       {
         'kristijanhusak/vim-dadbod-completion',
-        config = function()
-          vim.cmd [[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]]
-        end,
         after = 'vim-dadbod',
       },
     },
@@ -80,7 +77,6 @@ return packer.startup(function(use)
       require 'configs.telescope.config'
     end,
     requires = {
-      -- { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
     },
@@ -99,7 +95,7 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = function()
-      require './configs/telescope-file-browser'
+      require 'configs.telescope-file-browser'
     end,
     after = 'telescope.nvim',
   }
@@ -109,7 +105,7 @@ return packer.startup(function(use)
   use {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require './configs/gitsigns'
+      require 'configs.gitsigns'
     end,
     requires = { 'nvim-lua/plenary.nvim' },
     event = 'BufRead',
@@ -143,7 +139,7 @@ return packer.startup(function(use)
   use {
     'akinsho/flutter-tools.nvim',
     config = function()
-      require './configs/flutter-tools'
+      require 'configs.flutter-tools'
     end,
     requires = 'nvim-lua/plenary.nvim',
     ft = { 'dart' },
@@ -154,7 +150,7 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = function()
-      require './configs/lsp'
+      require 'configs.lsp'
     end,
     event = 'BufReadPre',
   }
@@ -162,7 +158,7 @@ return packer.startup(function(use)
   use {
     'mhartington/formatter.nvim',
     config = function()
-      require './configs/formatter-nvim'
+      require 'configs.formatter-nvim'
     end,
     event = 'BufWritePre',
   }
@@ -183,7 +179,7 @@ return packer.startup(function(use)
   use {
     'gukz/ftFT.nvim',
     config = function()
-      require './configs/ftFT'
+      require 'configs.ftFT'
     end,
     event = 'BufRead',
   }
@@ -216,7 +212,7 @@ return packer.startup(function(use)
           require('luasnip/loaders/from_vscode').lazy_load()
         end,
         requires = {
-          { 'rafamadriz/friendly-snippets' },
+          { 'rafamadriz/friendly-snippets', event = 'InsertEnter' },
         },
         after = 'nvim-cmp',
       },
@@ -230,7 +226,7 @@ return packer.startup(function(use)
       { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
     },
     config = function()
-      require './configs/nvim-cmp'
+      require 'configs.nvim-cmp'
     end,
     event = 'InsertEnter *',
   }
@@ -240,7 +236,7 @@ return packer.startup(function(use)
   use {
     'windwp/nvim-autopairs',
     config = function()
-      require './configs/nvim-autopairs'
+      require 'configs.nvim-autopairs'
     end,
     event = 'InsertEnter',
   }
@@ -248,7 +244,7 @@ return packer.startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-      require './configs/comment'
+      require 'configs.comment'
     end,
     event = 'BufRead',
   }
@@ -259,7 +255,7 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
-      require './configs/nvim-treesitter'
+      require 'configs.nvim-treesitter'
     end,
     event = 'BufRead',
   }
@@ -267,18 +263,10 @@ return packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
     setup = function()
-      local mappings = {
-        d = {
-          name = 'Peek',
-          f = { 'Peek Function' },
-          F = { 'Peek Class' },
-        },
-      }
-
-      require('which-key').register(mappings, { prefix = '<leader>' })
+      require 'configs.treesitter-textobjects.setup'
     end,
     config = function()
-      require './configs/nvim-treesitter-textobjects'
+      require 'configs.treesitter-textobjects.config'
     end,
     after = 'nvim-treesitter',
   }
@@ -286,7 +274,7 @@ return packer.startup(function(use)
   use {
     'RRethy/nvim-treesitter-textsubjects',
     config = function()
-      require './configs/nvim-treesitter-textsubjects'
+      require 'configs.nvim-treesitter-textsubjects'
     end,
     after = 'nvim-treesitter',
   }
@@ -296,7 +284,7 @@ return packer.startup(function(use)
   use {
     'catppuccin/nvim',
     config = function()
-      require './configs/catppuccin'
+      require 'configs.themes.catppuccin'
     end,
     as = 'catppuccin',
     after = 'lualine.nvim',
@@ -328,7 +316,7 @@ return packer.startup(function(use)
   use {
     'rebelot/kanagawa.nvim',
     config = function()
-      require 'configs.kanagawa'
+      require 'configs.themes.kanagawa'
       vim.cmd 'colorscheme kanagawa'
     end,
     after = 'lualine.nvim',
@@ -338,7 +326,7 @@ return packer.startup(function(use)
   use {
     'nvim-lualine/lualine.nvim',
     config = function()
-      require './configs/lualine'
+      require 'configs.lualine'
     end,
     requires = { 'nvim-lua/plenary.nvim' },
   }
@@ -346,7 +334,7 @@ return packer.startup(function(use)
   use {
     'folke/which-key.nvim',
     config = function()
-      require './configs/which-key'
+      require 'configs.which-key'
     end,
     disable = false,
   }
