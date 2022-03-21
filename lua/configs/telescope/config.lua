@@ -15,6 +15,17 @@ require('telescope').setup {
       },
       n = {},
     },
+    -- Remove indentation at the beginning of a line
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--trim', -- add this value
+    },
   },
   pickers = {
     buffers = {
