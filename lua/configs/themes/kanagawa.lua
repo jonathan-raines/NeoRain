@@ -15,3 +15,5 @@ require('kanagawa').setup {
   colors = {},
   overrides = {},
 }
+
+vim.cmd 'colorscheme kanagawa'

@@ -45,18 +45,14 @@ wk.register {
   [']'] = {
     ['['] = { 'Next Class Outer End' },
     [']'] = { 'Next Class Outer Start' },
-    b = { 'Next Buffer' },
     q = { 'Next QuickFix Item' },
     Q = { 'Last QuickFix Item' },
     m = { 'Next Function Outer Start' },
     M = { 'Next Function Outer End' },
-    B = { 'Last Buffer' },
   },
   ['['] = {
     ['['] = { 'Previous Class Outer Start' },
     [']'] = { 'Previous Class Outer End' },
-    b = { 'Previous Buffer' },
-    B = { 'First Buffer' },
     q = { 'Previous QuickFix Item' },
     Q = { 'First QuickFix Item' },
     m = { 'Previous Function Outer Start' },

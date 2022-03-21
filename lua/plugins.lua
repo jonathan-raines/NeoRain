@@ -33,15 +33,11 @@ return packer.startup(function(use)
   use {
     {
       'wbthomason/packer.nvim',
-      config = function()
-        require 'configs.packer.setup'
-      end,
+      config = "require 'configs.packer.setup'",
     },
     {
       'lewis6991/impatient.nvim',
-      config = function()
-        require('impatient').enable_profile()
-      end,
+      config = "require('impatient').enable_profile()",
     },
     { 'nathom/filetype.nvim' },
     { 'nvim-lua/plenary.nvim' },
@@ -50,18 +46,10 @@ return packer.startup(function(use)
   ---------- Database ----------
   use {
     'kristijanhusak/vim-dadbod-ui',
-    config = function()
-      require 'configs.vim-dadbod-ui'
-    end,
+    config = "require 'configs.vim-dadbod-ui'",
     requires = {
-      {
-        'tpope/vim-dadbod',
-        after = 'vim-dadbod-ui',
-      },
-      {
-        'kristijanhusak/vim-dadbod-completion',
-        after = 'vim-dadbod',
-      },
+      { 'tpope/vim-dadbod', after = 'vim-dadbod-ui' },
+      { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
     },
     cmd = { 'DBUI', 'DBUIToggle' },
   }
@@ -70,12 +58,8 @@ return packer.startup(function(use)
   ---------- Telescope ----------
   use {
     'nvim-telescope/telescope.nvim',
-    setup = function()
-      require 'configs.telescope.setup'
-    end,
-    config = function()
-      require 'configs.telescope.config'
-    end,
+    setup = "require 'configs.telescope.setup'",
+    config = "require 'configs.telescope.config'",
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons', after = 'telescope.nvim' },
@@ -85,18 +69,14 @@ return packer.startup(function(use)
 
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
-    config = function()
-      require('telescope').load_extension 'fzf'
-    end,
+    config = "require('telescope').load_extension 'fzf'",
     run = 'make',
     after = 'telescope.nvim',
   }
 
   use {
     'nvim-telescope/telescope-file-browser.nvim',
-    config = function()
-      require 'configs.telescope-file-browser'
-    end,
+    config = "require 'configs.telescope-file-browser'",
     after = 'telescope.nvim',
   }
   -----------------------------------
@@ -104,22 +84,16 @@ return packer.startup(function(use)
   ---------- Github ----------
   use {
     'lewis6991/gitsigns.nvim',
-    config = function()
-      require 'configs.gitsigns'
-    end,
+    config = "require 'configs.gitsigns'",
     requires = { 'nvim-lua/plenary.nvim' },
     event = 'BufRead',
   }
 
   use {
     'pwntester/octo.nvim',
-    setup = function()
-      require 'configs.octo.setup'
-    end,
-    config = function()
-      require('octo').setup()
-    end,
-    cmd = 'Octo',
+    setup = "require 'configs.octo.setup'",
+    config = "require('octo').setup()",
+    cmd = { 'Octo' },
   }
   ----------------------------
 
@@ -138,9 +112,7 @@ return packer.startup(function(use)
 
   use {
     'akinsho/flutter-tools.nvim',
-    config = function()
-      require 'configs.flutter-tools'
-    end,
+    config = "require 'configs.flutter-tools'",
     requires = 'nvim-lua/plenary.nvim',
     ft = { 'dart' },
   }
@@ -149,17 +121,13 @@ return packer.startup(function(use)
   ---------- LSP ----------
   use {
     'neovim/nvim-lspconfig',
-    config = function()
-      require 'configs.lsp'
-    end,
+    config = "require 'configs.lsp'",
     event = 'BufReadPre',
   }
 
   use {
     'mhartington/formatter.nvim',
-    config = function()
-      require 'configs.formatter-nvim'
-    end,
+    config = "require 'configs.formatter-nvim'",
     event = 'BufWritePre',
   }
   -------------------------
@@ -167,38 +135,28 @@ return packer.startup(function(use)
   ---------- MISC ----------
   use {
     'vim-test/vim-test',
-    setup = function()
-      require 'configs.vim-test.setup'
-    end,
-    config = function()
-      require 'configs.vim-test.config'
-    end,
+    setup = "require 'configs.vim-test.setup'",
+    config = "require 'configs.vim-test.config'",
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
 
   use {
     'gukz/ftFT.nvim',
-    config = function()
-      require 'configs.ftFT'
-    end,
+    config = "require 'configs.ftFT'",
     event = 'BufRead',
   }
 
   use {
     'ThePrimeagen/harpoon',
-    setup = function()
-      require 'configs.harpoon.setup'
-    end,
-    config = function()
-      require 'configs.harpoon.config'
-    end,
+    setup = "require 'configs.harpoon.setup'",
+    config = "require 'configs.harpoon.config'",
     module = 'harpoon',
   }
 
   use {
     'dstein64/vim-startuptime',
-    config = [[vim.g.startuptime_tries = 10]],
-    cmd = 'StartupTime',
+    config = 'vim.g.startuptime_tries = 10',
+    cmd = { 'StartupTime' },
   }
   ------------------------------
 
@@ -208,9 +166,7 @@ return packer.startup(function(use)
     requires = {
       {
         'L3MON4D3/LuaSnip',
-        config = function()
-          require('luasnip/loaders/from_vscode').lazy_load()
-        end,
+        config = " require('luasnip/loaders/from_vscode').lazy_load()",
         requires = {
           { 'rafamadriz/friendly-snippets', event = 'InsertEnter' },
         },
@@ -225,9 +181,7 @@ return packer.startup(function(use)
       { 'lukas-reineke/cmp-under-comparator', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
     },
-    config = function()
-      require 'configs.nvim-cmp'
-    end,
+    config = "require 'configs.nvim-cmp'",
     event = 'InsertEnter *',
   }
   ------------------------------
@@ -235,17 +189,13 @@ return packer.startup(function(use)
   ---------- Text Editing ----------
   use {
     'windwp/nvim-autopairs',
-    config = function()
-      require 'configs.nvim-autopairs'
-    end,
+    config = "require 'configs.nvim-autopairs'",
     event = 'InsertEnter',
   }
 
   use {
     'numToStr/Comment.nvim',
-    config = function()
-      require 'configs.comment'
-    end,
+    config = "require 'configs.comment'",
     event = 'BufRead',
   }
   -----------------------------------------
@@ -254,28 +204,20 @@ return packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function()
-      require 'configs.nvim-treesitter'
-    end,
+    config = "require 'configs.nvim-treesitter'",
     event = 'BufRead',
   }
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    setup = function()
-      require 'configs.treesitter-textobjects.setup'
-    end,
-    config = function()
-      require 'configs.treesitter-textobjects.config'
-    end,
+    setup = "require 'configs.treesitter-textobjects.setup'",
+    config = "require 'configs.treesitter-textobjects.config'",
     after = 'nvim-treesitter',
   }
 
   use {
     'RRethy/nvim-treesitter-textsubjects',
-    config = function()
-      require 'configs.nvim-treesitter-textsubjects'
-    end,
+    config = "require 'configs.nvim-treesitter-textsubjects'",
     after = 'nvim-treesitter',
   }
   --------------------------------
@@ -283,9 +225,7 @@ return packer.startup(function(use)
   -------------- UI -----------------
   use {
     'catppuccin/nvim',
-    config = function()
-      require 'configs.themes.catppuccin'
-    end,
+    config = "require 'configs.themes.catppuccin'",
     as = 'catppuccin',
     after = 'lualine.nvim',
     cmd = 'colorscheme catppuccin',
@@ -315,38 +255,27 @@ return packer.startup(function(use)
 
   use {
     'rebelot/kanagawa.nvim',
-    config = function()
-      require 'configs.themes.kanagawa'
-      vim.cmd 'colorscheme kanagawa'
-    end,
+    config = "require 'configs.themes.kanagawa'",
     after = 'lualine.nvim',
     disable = false,
   }
 
   use {
     'nvim-lualine/lualine.nvim',
-    config = function()
-      require 'configs.lualine'
-    end,
+    config = "require 'configs.lualine'",
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
   use {
     'folke/which-key.nvim',
-    config = function()
-      require 'configs.which-key'
-    end,
+    config = "require 'configs.which-key'",
     disable = false,
   }
 
   use {
     'akinsho/nvim-toggleterm.lua',
-    setup = function()
-      require 'configs.nvim-toggleterm.setup'
-    end,
-    config = function()
-      require 'configs.nvim-toggleterm.config'
-    end,
+    setup = "require 'configs.nvim-toggleterm.setup'",
+    config = "require 'configs.nvim-toggleterm.config'",
     event = 'BufWinEnter',
   }
   --------------------------------
