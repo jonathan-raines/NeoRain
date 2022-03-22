@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
   command = 'highlight WinSeparator guibg=None',
 })
 
-vim.api.nvim_create_autocmd({ 'VimEnter', 'WinEnter', 'BufWinEnter' }, {
+vim.api.nvim_create_autocmd('WinEnter', {
   desc = 'Show cursorline in active window',
   group = 'GeneralSettings',
   pattern = '*',
