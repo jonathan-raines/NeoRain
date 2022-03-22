@@ -25,15 +25,7 @@ local normal_keymaps = {
   ['<leader>c'] = '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>',
 
   -- Keeping it centered
-  -- ['n'] = 'nzzzv',
-  -- ['N'] = 'Nzzzv',
   ['J'] = 'mzJ`z',
-  -- ['{'] = '{zz',
-  -- ['}'] = '}zz',
-  -- ['<C-o>'] = '<C-o>zz',
-  -- ['<C-i>'] = '<C-i>zz',
-  -- ['<C-d>'] = '<C-d>zz',
-  -- ['<C-u>'] = '<C-u>zz',
 
   -- Quickfix Navigation
   [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
