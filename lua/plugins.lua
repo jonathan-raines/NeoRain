@@ -164,6 +164,7 @@ return packer.startup(function(use)
     setup = "require('configs.rest.setup')",
     config = "require('configs.rest.config')",
     requires = { 'nvim-lua/plenary.nvim' },
+    ft = { 'http' },
   }
   ------------------------------
 
@@ -251,13 +252,6 @@ return packer.startup(function(use)
     after = 'lualine.nvim',
     cmd = 'colorscheme gruvbox-flat',
     disable = true,
-  }
-
-  use {
-    'savq/melange',
-    after = 'lualine.nvim',
-    cmd = 'colorscheme melange',
-    disable = false,
   }
 
   use {
