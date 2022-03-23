@@ -25,7 +25,15 @@ local normal_keymaps = {
   ['<leader>c'] = '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>',
 
   -- Keeping it centered
+  ['n'] = 'nzzzv',
+  ['N'] = 'Nzzzv',
   ['J'] = 'mzJ`z',
+  ['{'] = '{zz',
+  ['}'] = '}zz',
+  ['<C-o>'] = '<C-o>zz',
+  ['<C-i>'] = '<C-i>zz',
+  ['<C-d>'] = '<C-d>zz',
+  ['<C-u>'] = '<C-u>zz',
 
   -- Quickfix Navigation
   [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
@@ -132,30 +140,3 @@ function EscapePair()
     vim.api.nvim_win_set_cursor(0, { row, col + 1 })
   end
 end
-
-vim.api.nvim_exec(
-  [[
-    :function StayCenteredI()
-    :  let line = line(".")
-    :  if line != get(b:, 'last_line', 0)
-    :    let col = getcurpos()[4]
-    :    normal! zz
-    :    call cursor(line, col)
-    :    let b:last_line = line
-    :  endif
-    :endfunction
-    :function StayCentered()
-    :  let line = line(".")
-    :  if line != get(b:, 'last_line', 0)
-    :    normal! zz
-    :    let b:last_line = line
-    :  endif
-    :endfunction
-    augroup StayCentered
-      autocmd!
-      autocmd CursorMovedI * :call StayCenteredI()
-      autocmd CursorMoved * :call StayCentered()
-    augroup END
-  ]],
-  true
-)
