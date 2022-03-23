@@ -29,6 +29,7 @@ wk.setup {
 local mappings = {
   ['<space>'] = 'which_key_ignore',
   ['c'] = 'which_key_ignore',
+  ['C'] = 'which_key_ignore',
   ['q'] = 'which_key_ignore',
   ['w'] = 'which_key_ignore',
   ['a'] = 'which_key_ignore',

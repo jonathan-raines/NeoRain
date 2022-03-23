@@ -23,6 +23,7 @@ local normal_keymaps = {
   ['<leader>w'] = '<cmd>up<CR>',
   ['<leader>q'] = 'ZZ',
   ['<leader>c'] = '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>',
+  ['<leader>C'] = '<cmd>%bd|e#|bd#<CR>',
 
   -- Keeping it centered
   ['n'] = 'nzzzv',
