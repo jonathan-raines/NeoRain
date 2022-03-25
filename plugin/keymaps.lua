@@ -26,15 +26,9 @@ local normal_keymaps = {
   ['<leader>C'] = '<cmd>%bd|e#|bd#<CR>',
 
   -- Keeping it centered
+  ['J'] = 'mzJ`z',
   ['n'] = 'nzzzv',
   ['N'] = 'Nzzzv',
-  ['J'] = 'mzJ`z',
-  ['{'] = '{zz',
-  ['}'] = '}zz',
-  ['<C-o>'] = '<C-o>zz',
-  ['<C-i>'] = '<C-i>zz',
-  ['<C-d>'] = '<C-d>zz',
-  ['<C-u>'] = '<C-u>zz',
 
   -- Quickfix Navigation
   [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
@@ -74,12 +68,6 @@ local insert_keymaps = {
   -- Escape
   ['jk'] = '<ESC>',
 
-  -- Undo break points
-  [','] = ',<c-g>u',
-  ['.'] = '.<c-g>u',
-  ['!'] = '!<c-g>u',
-  ['?'] = '?<c-g>u',
-
   -- Escape closing character
   ['<A-l>'] = '<cmd>lua EscapePair()<CR>',
 }
@@ -95,6 +83,18 @@ local visual_keymaps = {
   ['<'] = '<gv',
   ['>'] = '>gv',
 }
+
+-- Center navigation commands
+local navigation = { '{', '}', '<C-o>', '<C-i>', '<C-d>', '<C-u>', '*', '#' }
+for _, char in ipairs(navigation) do
+  keymap('n', char, char .. 'zz')
+end
+
+-- Undo break points
+local break_points = { '<Space>', '-', '_', ':', '.', '/' }
+for _, char in ipairs(break_points) do
+  keymap('i', char, char .. '<C-g>u')
+end
 
 for key, cmd in pairs(normal_keymaps) do
   keymap('n', key, cmd, opts)
