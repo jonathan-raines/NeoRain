@@ -85,7 +85,7 @@ local visual_keymaps = {
 }
 
 -- Center navigation commands
-local navigation = { '{', '}', '<C-o>', '<C-i>', '<C-d>', '<C-u>', '*', '#' }
+local navigation = { '{', '}', '<C-o>', '<C-i>', '<C-d>', '<C-u>', '<C-f>', '<C-b>', '*', '#' }
 for _, char in ipairs(navigation) do
   keymap('n', char, char .. 'zz')
 end
