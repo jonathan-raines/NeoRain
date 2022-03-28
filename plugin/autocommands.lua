@@ -56,7 +56,7 @@ vim.api.nvim_create_augroup('GeneralSettings', { clear = true })
 
 vim.api.nvim_create_autocmd('FileType', {
   group = 'GeneralSettings',
-  pattern = 'qf,help,man,lspinfo',
+  pattern = 'help,man,lspinfo',
   callback = function()
     vim.keymap.set('n', 'q', '<cmd>close<CR>')
   end,
