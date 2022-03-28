@@ -96,14 +96,17 @@ for _, char in ipairs(break_points) do
   keymap('i', char, char .. '<C-g>u')
 end
 
+-- Map Normal Mode
 for key, cmd in pairs(normal_keymaps) do
   keymap('n', key, cmd, opts)
 end
 
+-- Map Insert Mode
 for key, cmd in pairs(insert_keymaps) do
   keymap('i', key, cmd, opts)
 end
 
+-- Map Visual Mode
 for key, cmd in pairs(visual_keymaps) do
   keymap('v', key, cmd, opts)
 end
@@ -141,3 +144,30 @@ function EscapePair()
     vim.api.nvim_win_set_cursor(0, { row, col + 1 })
   end
 end
+
+-- vim.api.nvim_exec(
+--   [[
+--     :function StayCenteredI()
+--     :  let line = line(".")
+--     :  if line != get(b:, 'last_line', 0)
+--     :    let col = getcurpos()[4]
+--     :    normal! zz
+--     :    call cursor(line, col)
+--     :    let b:last_line = line
+--     :  endif
+--     :endfunction
+--     :function StayCentered()
+--     :  let line = line(".")
+--     :  if line != get(b:, 'last_line', 0)
+--     :    normal! zz
+--     :    let b:last_line = line
+--     :  endif
+--     :endfunction
+--     augroup StayCentered
+--       autocmd!
+--       autocmd CursorMovedI * :call StayCenteredI()
+--       autocmd CursorMoved * :call StayCentered()
+--     augroup END
+--   ]],
+--   true
+-- )
