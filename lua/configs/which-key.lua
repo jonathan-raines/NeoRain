@@ -34,6 +34,7 @@ local mappings = {
   ['w'] = 'which_key_ignore',
   ['a'] = 'which_key_ignore',
   ['A'] = 'which_key_ignore',
+  ['gg'] = { '<cmd>Neogit<CR>', 'Neogit' },
 }
 
 wk.register(mappings, { prefix = '<leader>' })
