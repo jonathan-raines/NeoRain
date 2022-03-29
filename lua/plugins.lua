@@ -95,6 +95,12 @@ return packer.startup(function(use)
     config = "require('octo').setup()",
     cmd = { 'Octo' },
   }
+
+  use {
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim',
+    cmd = { 'Neogit' },
+  }
   ----------------------------
 
   ---------- Language Specific ----------
@@ -143,8 +149,16 @@ return packer.startup(function(use)
   use {
     'gukz/ftFT.nvim',
     config = "require 'configs.ftFT'",
-    event = 'BufRead',
+    keys = { 'f', 'F', 't', 'T' },
   }
+
+  -- use {
+  --   'unblevable/quick-scope',
+  --   config = function()
+  --     vim.cmd [[ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] ]]
+  --   end,
+  --   keys = { 'f', 'F', 't', 'T' },
+  -- }
 
   use {
     'ThePrimeagen/harpoon',
@@ -165,6 +179,12 @@ return packer.startup(function(use)
     config = "require('configs.rest.config')",
     requires = { 'nvim-lua/plenary.nvim' },
     ft = { 'http' },
+  }
+
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = "require 'colorizer'.setup()",
+    ft = { 'js', 'css', 'html', 'vue', 'lua' },
   }
   ------------------------------
 
@@ -204,7 +224,7 @@ return packer.startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = "require 'configs.comment'",
-    event = 'BufRead',
+    keys = { 'gc', 'gcc', 'gb', 'gbc' },
   }
   -----------------------------------------
 
@@ -227,6 +247,13 @@ return packer.startup(function(use)
     'RRethy/nvim-treesitter-textsubjects',
     config = "require 'configs.nvim-treesitter-textsubjects'",
     after = 'nvim-treesitter',
+  }
+
+  use {
+    'SmiteshP/nvim-gps',
+    requires = 'nvim-treesitter',
+    module = 'nvim-gps',
+    config = "require('nvim-gps').setup()",
   }
   --------------------------------
 
