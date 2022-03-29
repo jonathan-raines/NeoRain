@@ -53,9 +53,9 @@ local function whichkey_document_keymaps()
       a = 'Code Action',
       d = 'Definition',
       D = 'Declaration',
-      e = 'Line Diagnostics',
       F = 'Formatting',
       i = 'Implementation',
+      l = 'Line Diagnostics',
       q = 'Set Loclist',
       rn = 'Rename',
       rr = 'References',
@@ -99,14 +99,10 @@ M.on_attach = function(client, bufnr)
   end
 
   if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
     vim.api.nvim_create_autocmd('BufWritePre', {
       desc = 'Autoformat buffer on save',
-      group = 'FormatOnSave',
       pattern = '<buffer>',
-      callback = function()
-        vim.lsp.buf.formatting_sync()
-      end,
+      callback = 'vim.lsp.buf.formatting_sync()',
     })
   end
 
