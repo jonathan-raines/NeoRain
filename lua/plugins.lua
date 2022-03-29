@@ -152,14 +152,6 @@ return packer.startup(function(use)
     keys = { 'f', 'F', 't', 'T' },
   }
 
-  -- use {
-  --   'unblevable/quick-scope',
-  --   config = function()
-  --     vim.cmd [[ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] ]]
-  --   end,
-  --   keys = { 'f', 'F', 't', 'T' },
-  -- }
-
   use {
     'ThePrimeagen/harpoon',
     setup = "require 'configs.harpoon.setup'",
