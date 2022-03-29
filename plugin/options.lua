@@ -1,23 +1,24 @@
 local options = {
   backup = false, -- creates a backup file
   clipboard = 'unnamedplus', -- allows neovim to access the system clipboard
-  colorcolumn = '100', -- creates column at number specified
-  completeopt = { 'menuone', 'noselect' }, -- mostly just for cmp
+  completeopt = { 'menu', 'menuone', 'noselect' }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
-  fileencoding = 'utf-8', -- the encoding written to a file
   foldexpr = 'nvim_treesitter#foldexpr()',
   foldlevelstart = 99,
   foldmethod = 'expr',
   hlsearch = false, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
+  inccommand = 'split', -- preview incremental substitute
   mouse = 'a', -- allow the mouse to be used in neovim
   number = true,
   numberwidth = 4, -- set number column width to 2 {default 4}
+  pumblend = 10, -- pop up blend
   pumheight = 10, -- pop up menu height
   relativenumber = true,
-  scrolloff = 3,
+  scrolloff = 4,
+  shiftround = true, -- round indent
   shiftwidth = 2, -- the number of spaces inserted for each indentation
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
   sidescrolloff = 8,
@@ -39,9 +40,7 @@ local options = {
 }
 
 vim.opt.shortmess:append 'cI'
--- vim.opt.path:append '**'
-
-vim.cmd [[set path+=**]]
+vim.opt.path:append '**'
 
 for k, v in pairs(options) do
   vim.opt[k] = v
@@ -50,7 +49,6 @@ end
 local disabled_built_ins = {
   'netrw',
   'netrwPlugin',
-  'netrwSettings',
   'gzip',
   'zip',
   'zipPlugin',
