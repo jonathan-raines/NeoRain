@@ -26,14 +26,3 @@ require('bufferline').setup {
 
 vim.api.nvim_set_keymap('n', '<C-]>', ':BufferLinePick<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-[>', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
-
--- require('which-key').register({
---   b = {
---     c = { ':BufferLinePickClose<CR>', 'Buffer Pick Close' },
---     h = { ':BufferLineCloseLeft<CR>', 'Close Buffers to the Left' },
---     j = { ':BufferLinePick<CR>', 'Buffer Pick' },
---     l = { ':BufferLineCloseRight<cr>', 'Close Buffers to the Right' },
---   },
--- }, {
---   prefix = '<leader>',
--- })
