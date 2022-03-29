@@ -54,12 +54,7 @@ require('lualine').setup {
         padding = { left = 1, right = 1 },
       },
     },
-    lualine_b = {
-      {
-        'branch',
-        cond = nil,
-      },
-    },
+    lualine_b = { 'branch', cond = nil },
     lualine_c = {
       {
         'filename',
@@ -121,7 +116,10 @@ require('lualine').setup {
       },
     },
     lualine_y = {
-      -- { require('github-notifications').statusline_notification_count },
+      {
+        require('github-notifications').statusline_notification_count,
+        cond = nil,
+      },
     },
     lualine_z = {
       {
