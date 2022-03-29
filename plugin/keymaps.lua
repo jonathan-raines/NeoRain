@@ -70,6 +70,9 @@ local insert_keymaps = {
 
   -- Escape closing character
   ['<A-l>'] = '<cmd>lua EscapePair()<CR>',
+
+  -- save in insert mode
+  ['<C-s>'] = '<ESC>:up<CR>',
 }
 
 local visual_keymaps = {
@@ -79,7 +82,7 @@ local visual_keymaps = {
   ['<A-j>'] = ":m '>+1<CR>gv-gv",
   ['<A-k>'] = ":m '<-2<CR>gv-gv",
 
-  -- Indent
+  -- Better Indenting
   ['<'] = '<gv',
   ['>'] = '>gv',
 }
@@ -91,7 +94,7 @@ for _, char in ipairs(navigation) do
 end
 
 -- Undo break points
-local break_points = { '<Space>', '-', '_', ':', '.', '/' }
+local break_points = { ',', '.', ';' } -- { '<Space>', '-', '_', ':', '.', '/' }
 for _, char in ipairs(break_points) do
   keymap('i', char, char .. '<C-g>u')
 end
