@@ -216,7 +216,7 @@ return packer.startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = "require 'configs.comment'",
-    keys = { 'gc', 'gcc', 'gb', 'gbc' },
+    event = 'BufRead',
   }
   -----------------------------------------
 
@@ -289,6 +289,7 @@ return packer.startup(function(use)
   use {
     'folke/which-key.nvim',
     config = "require 'configs.which-key'",
+    module = 'which-key',
     disable = false,
   }
 
@@ -296,6 +297,12 @@ return packer.startup(function(use)
     'akinsho/nvim-toggleterm.lua',
     setup = "require 'configs.nvim-toggleterm.setup'",
     config = "require 'configs.nvim-toggleterm.config'",
+    event = 'BufWinEnter',
+  }
+
+  use {
+    'akinsho/nvim-bufferline.lua',
+    config = "require 'configs.bufferline'",
     event = 'BufWinEnter',
   }
   --------------------------------
