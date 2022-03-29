@@ -35,8 +35,8 @@ local normal_keymaps = {
   ['[q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>',
 
   -- Buffer Navigation
-  ['<C-j>'] = '<cmd>bp<CR>',
-  ['<C-k>'] = '<cmd>bn<CR>',
+  ['<Backspace>'] = '<cmd>bp<CR>',
+  ['<Tab>'] = '<cmd>bn<CR>',
 
   -- Indent
   ['<'] = '<<',
@@ -49,6 +49,8 @@ local normal_keymaps = {
   -- Move Windows Around
   ['<C-h>'] = '<C-w>h',
   ['<C-l>'] = '<C-w>l',
+  ['<C-j>'] = '<C-w>j',
+  ['<C-k>'] = '<C-w>k',
 
   -- Move Lines Around
   ['<A-j>'] = ':m .+1<CR>==',

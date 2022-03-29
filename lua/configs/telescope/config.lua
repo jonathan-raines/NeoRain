@@ -10,8 +10,6 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<ESC>'] = actions.close,
-        ['<C-j>'] = actions.move_selection_next,
-        ['<C-k>'] = actions.move_selection_previous,
       },
       n = {},
     },
@@ -34,10 +32,10 @@ require('telescope').setup {
       sort_lastused = true,
       mappings = {
         i = {
-          ['<c-d>'] = actions.delete_buffer,
+          ['<A-d>'] = actions.delete_buffer,
         },
         n = {
-          ['<c-d>'] = actions.delete_buffer,
+          ['<A-d>'] = actions.delete_buffer,
         },
       },
     },
