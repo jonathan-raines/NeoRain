@@ -41,7 +41,7 @@ require('lualine').setup {
     icons_enabled = true,
     theme = 'auto',
     component_separators = { left = ' ', right = ' ' },
-    section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {},
     always_divide_middle = true,
     globalstatus = true,
@@ -50,9 +50,7 @@ require('lualine').setup {
     lualine_a = {
       {
         'mode',
-        -- fmt = function()
-        --   return ' '
-        -- end,
+        separator = { left = '', right = '' },
         padding = { left = 1, right = 1 },
       },
     },
@@ -76,6 +74,17 @@ require('lualine').setup {
           removed = { fg = '#c94f6d' },
         },
         color = {},
+      },
+      {
+        function()
+          local gps = require 'nvim-gps'
+          return gps.get_location()
+        end,
+        cond = function()
+          local gps = require 'nvim-gps'
+          return pcall(require, 'nvim-treesitter.parsers') and gps.is_available()
+        end,
+        color = { fg = '#7fb4ca' },
       },
     },
     lualine_x = {
@@ -111,29 +120,16 @@ require('lualine').setup {
         cond = conditions.hide_in_width,
       },
     },
-  },
-  tabline = {
-    lualine_a = {
+    lualine_y = {
+      -- { require('github-notifications').statusline_notification_count },
+    },
+    lualine_z = {
       {
-        'buffers',
-        filetype_names = {
-          TelescopePrompt = 'Telescope',
-          dashboard = 'Dashboard',
-          packer = 'Packer',
-          fzf = 'FZF',
-          qf = 'QuickFix',
-        }, -- shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
-        -- mode = 2,
-        max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
-        -- it can also be a function that returns
-        -- the value of `max_length` dynamically.
+        'location',
+        separator = { left = '', right = '' },
+        padding = { left = 1, right = 1 },
       },
     },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = { 'tabs' },
   },
   extensions = { 'quickfix', 'toggleterm' },
 }
