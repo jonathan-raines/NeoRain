@@ -22,7 +22,7 @@ local normal_keymaps = {
   -- Write / Quit
   ['<leader>w'] = '<cmd>up<CR>',
   ['<leader>q'] = 'ZZ',
-  ['<leader>c'] = '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>',
+  ['<leader>c'] = '<cmd>execute (v:count > 0 ? v:count : "") . "bd!"<CR>',
   ['<leader>C'] = '<cmd>%bd|e#|bd#<CR>',
 
   -- Keeping it centered
@@ -57,7 +57,7 @@ local normal_keymaps = {
   ['<A-k>'] = ':m .-2<CR>==',
 
   -- Quickfix
-  ['<C-q>'] = '<cmd>lua QuickFixToggle()<CR>',
+  ['<C-q>'] = "<cmd>lua require('utils').quick_fix_toggle()<CR>",
 
   -- Resize windows
   ['<C-Up>'] = ':resize -5<CR>',
@@ -71,7 +71,7 @@ local insert_keymaps = {
   ['jk'] = '<ESC>',
 
   -- Escape closing character
-  ['<A-l>'] = '<cmd>lua EscapePair()<CR>',
+  ['<A-l>'] = "<cmd>lua require('utils').escape_pair()<CR>",
 
   -- save in insert mode
   ['<C-s>'] = '<ESC>:up<CR>',
@@ -96,7 +96,7 @@ for _, char in ipairs(navigation) do
 end
 
 -- Undo break points
-local break_points = { ',', '.', ';' } -- { '<Space>', '-', '_', ':', '.', '/' }
+local break_points = { ',', '.', ';' }
 for _, char in ipairs(break_points) do
   keymap('i', char, char .. '<C-g>u')
 end
@@ -119,33 +119,3 @@ end
 -- Jumplist mutations
 vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
 vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
-
--- QuickFixToggle
-function QuickFixToggle()
-  if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1 then
-    vim.cmd 'copen'
-  else
-    vim.cmd 'cclose'
-  end
-end
-
-function EscapePair()
-  local closers = { ')', ']', '}', '>', "'", '"', '`', ',' }
-  local line = vim.api.nvim_get_current_line()
-  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-  local after = line:sub(col + 1, -1)
-  local closer_col = #after + 1
-  local closer_i = nil
-  for i, closer in ipairs(closers) do
-    local cur_index, _ = after:find(closer)
-    if cur_index and (cur_index < closer_col) then
-      closer_col = cur_index
-      closer_i = i
-    end
-  end
-  if closer_i then
-    vim.api.nvim_win_set_cursor(0, { row, col + closer_col })
-  else
-    vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-  end
-end

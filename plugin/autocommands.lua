@@ -30,6 +30,12 @@ vim.api.nvim_create_augroup('NeovimTerminal', { clear = true })
 
 vim.api.nvim_create_autocmd('TermOpen', {
   group = 'NeovimTerminal',
+  pattern = 'term://*',
+  command = "lua require('utils').set_terminal_keymaps()",
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = 'NeovimTerminal',
   pattern = '*',
   command = 'startinsert',
 })
