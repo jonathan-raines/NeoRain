@@ -67,8 +67,5 @@ local disabled_built_ins = {
 }
 
 for _, plugin in ipairs(disabled_built_ins) do
-  vim.g['loaded_' .. plugin] = 1
+  vim.g['loaded_' .. plugin] = false
 end
-
-vim.g.do_filetype_lua = 1
-vim.g.did_load_filetype = 0
