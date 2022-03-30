@@ -38,4 +38,44 @@ function M.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], term_opts)
 end
 
+function M.get_client_names()
+  local bufnr = vim.fn.bufnr ''
+  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+  local clients = vim.lsp.buf_get_clients(bufnr)
+  local clientnames_tbl = {}
+
+  for _, v in pairs(clients) do
+    local filetypes = v.config.filetypes
+    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 and v.name then
+      table.insert(clientnames_tbl, v.name)
+    end
+  end
+
+  return table.concat(clientnames_tbl, ', ')
+end
+
+function M.lsp_progress()
+  local Lsp = vim.lsp.util.get_progress_messages()[1]
+
+  if Lsp then
+    local msg = Lsp.message or ''
+    local percentage = Lsp.percentage or 0
+    local title = Lsp.title or ''
+
+    local spinners = { '', '', '' }
+    local success_icon = { '', '', '' }
+
+    local ms = vim.loop.hrtime() / 1000000
+    local frame = math.floor(ms / 120) % #spinners
+
+    if percentage >= 70 then
+      return string.format(' %%<%s %s %s (%s%%%%) ', success_icon[frame + 1], title, msg, percentage)
+    end
+
+    return string.format(' %%<%s %s %s (%s%%%%) ', spinners[frame + 1], title, msg, percentage)
+  end
+
+  return ''
+end
+
 return M
