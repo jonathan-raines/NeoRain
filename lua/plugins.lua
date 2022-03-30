@@ -173,6 +173,12 @@ return packer.startup(function(use)
     keys = { 'f', 'F', 't', 'T' },
   }
 
+  use {
+    'max397574/better-escape.nvim',
+    config = "require('better_escape').setup()",
+    event = 'InsertEnter',
+  }
+
   -- Possible Deletion
   use {
     'ThePrimeagen/harpoon',

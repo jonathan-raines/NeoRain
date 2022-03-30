@@ -68,7 +68,7 @@ local normal_keymaps = {
 
 local insert_keymaps = {
   -- Escape
-  ['jk'] = '<ESC>',
+  -- ['jk'] = '<ESC>',
 
   -- Escape closing character
   ['<A-l>'] = "<cmd>lua require('utils').escape_pair()<CR>",
@@ -78,7 +78,7 @@ local insert_keymaps = {
 }
 
 local visual_keymaps = {
-  ['jk'] = '<ESC>',
+  -- ['jk'] = '<ESC>',
 
   -- Move Lines Around
   ['<A-j>'] = ":m '>+1<CR>gv-gv",
