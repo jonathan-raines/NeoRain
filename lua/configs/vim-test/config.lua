@@ -9,4 +9,4 @@ vim.api.nvim_exec(
 
 vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')}]]
 vim.cmd [[ let test#transformation = 'docker']]
-vim.cmd [[ let test#strategy = "neovim" ]]
+vim.cmd [[ let g:test#basic#start_normal = 1 " If using basic strategy ]]
