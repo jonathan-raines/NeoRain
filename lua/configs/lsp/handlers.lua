@@ -101,8 +101,10 @@ M.on_attach = function(client, bufnr)
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_create_autocmd('BufWritePre', {
       desc = 'Autoformat buffer on save',
-      pattern = '<buffer>',
-      callback = 'vim.lsp.buf.formatting_sync()',
+      buffer = 0,
+      callback = function()
+        vim.lsp.buf.formatting_sync()
+      end,
     })
   end
 
