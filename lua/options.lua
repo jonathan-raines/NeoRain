@@ -30,6 +30,7 @@ local options = {
   swapfile = false, -- creates a swapfile
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
+  textwidth = 100,
   timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (4000ms default)
