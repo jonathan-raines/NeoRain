@@ -1,7 +1,8 @@
 local mappings = {
   j = {
     name = 'Terminal',
-    l = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
+    d = { '<cmd>lua _LAZYDOCKER_TOGGLE()<CR>', 'Lazy Docker' },
+    l = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazy Git' },
   },
 }
 

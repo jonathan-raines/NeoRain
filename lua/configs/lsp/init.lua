@@ -9,6 +9,7 @@ local lspconfig = require 'lspconfig'
 
 local servers = {
   ['bashls'] = require 'configs.lsp.settings.bashls',
+  ['clangd'] = {},
   ['eslint'] = require 'configs.lsp.settings.eslint',
   ['jsonls'] = require 'configs.lsp.settings.jsonls',
   ['solargraph'] = require 'configs.lsp.settings.solargraph',
