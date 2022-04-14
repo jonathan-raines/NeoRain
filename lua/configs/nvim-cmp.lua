@@ -37,12 +37,7 @@ local kind_icons = {
 }
 
 cmp.setup {
-  documentation = {
-    border = 'single',
-    winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
-  },
   experimental = {
-    native_menu = false,
     ghost_text = true,
   },
   formatting = {
@@ -64,6 +59,8 @@ cmp.setup {
   mapping = {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-y>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
@@ -100,5 +97,16 @@ cmp.setup {
     { name = 'buffer' },
     { name = 'path' },
     { name = 'nvim_lua' },
+  },
+  view = {
+    entries = {
+      native = true,
+    },
+  },
+  window = {
+    documentation = {
+      border = 'single',
+      winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
+    },
   },
 }

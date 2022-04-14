@@ -10,7 +10,7 @@ parser_configs.http = {
 }
 
 configs.setup {
-  ensure_installed = 'maintained',
+  ensure_installed = { 'all' },
   ignore_installed = { 'haskell' },
   autopairs = { enable = true },
   autotag = { enable = true },
