@@ -132,6 +132,7 @@ return packer.startup(function(use)
     config = "require 'configs.flutter-tools'",
     requires = 'nvim-lua/plenary.nvim',
     ft = { 'dart' },
+    disable = true,
   }
 
   ---------------------
@@ -280,13 +281,6 @@ return packer.startup(function(use)
     'rebelot/kanagawa.nvim',
     config = "require 'configs.themes.kanagawa'",
     after = 'lualine.nvim',
-    disable = false,
-  }
-
-  use {
-    'ray-x/starry.nvim',
-    after = 'lualine.nvim',
-    cmd = 'Starry',
     disable = false,
   }
 

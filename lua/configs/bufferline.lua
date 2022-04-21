@@ -1,14 +1,7 @@
 require('bufferline').setup {
-  highlights = {
-    fill = {
-      -- guibg = '#16161D',
-    },
-  },
   options = {
-    mode = 'buffers',
     show_buffer_close_icons = false,
     show_close_icons = false,
-    show_tab_indications = true,
     offsets = {
       {
         filetype = 'NvimTree',
@@ -24,5 +17,6 @@ require('bufferline').setup {
   },
 }
 
-vim.api.nvim_set_keymap('n', '<C-]>', ':BufferLinePick<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-[>', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-]>', '<cmd>BufferLinePick<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-[>', '<cmd>BufferLinePickClose<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-p>', '<cmd>BufferLinePickClose<CR>', { noremap = true, silent = true })
