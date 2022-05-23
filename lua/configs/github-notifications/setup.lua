@@ -11,6 +11,7 @@ end
 
 local mappings = {
   g = {
+    name = 'Git',
     n = { 'Github Notifications' },
   },
 }
