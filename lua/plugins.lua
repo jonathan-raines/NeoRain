@@ -180,23 +180,6 @@ return packer.startup(function(use)
     event = 'InsertEnter',
   }
 
-  -- Possible Deletion
-  use {
-    'ThePrimeagen/harpoon',
-    setup = "require 'configs.harpoon.setup'",
-    config = "require 'configs.harpoon.config'",
-    module = 'harpoon',
-  }
-
-  -- Possible Deletion
-  use {
-    'NTBBloodbath/rest.nvim',
-    setup = "require('configs.rest.setup')",
-    config = "require('configs.rest.config')",
-    requires = { 'nvim-lua/plenary.nvim' },
-    ft = { 'http' },
-  }
-
   use {
     'norcalli/nvim-colorizer.lua',
     config = "require 'colorizer'.setup()",
@@ -288,12 +271,6 @@ return packer.startup(function(use)
     'nvim-lualine/lualine.nvim',
     config = "require 'configs.lualine'",
     requires = { 'nvim-lua/plenary.nvim' },
-  }
-
-  use {
-    'akinsho/nvim-bufferline.lua',
-    config = "require 'configs.bufferline'",
-    event = 'BufWinEnter',
   }
 
   -----------------
