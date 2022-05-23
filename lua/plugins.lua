@@ -291,6 +291,11 @@ return packer.startup(function(use)
     event = 'BufWinEnter',
   }
 
+  use {
+    'matbme/JABS.nvim',
+    config = "require 'configs.jabs'",
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
