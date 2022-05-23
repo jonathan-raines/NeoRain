@@ -78,5 +78,9 @@ require('lualine').setup {
       },
     },
   },
+  tabline = {
+    lualine_a = { { 'buffers', mode = 4, symbols = { alternate_file = '# ' } } },
+    lualine_z = { 'tabs' }
+  },
   extensions = { 'quickfix', 'toggleterm' },
 }
