@@ -89,21 +89,21 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, 'n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   keymap(bufnr, 'n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   keymap(bufnr, 'n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.format { async = false }<CR>', opts)
   whichkey_document_keymaps()
 end
 
 M.on_attach = function(client, bufnr)
   if client.name == 'tsserver' then
-    client.server_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
   end
 
-  if client.server_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_create_autocmd('BufWritePre', {
       desc = 'Autoformat buffer on save',
       buffer = 0,
       callback = function()
-        vim.lsp.buf.formatting_sync()
+        vim.lsp.buf.format { async = false }
       end,
     })
   end
