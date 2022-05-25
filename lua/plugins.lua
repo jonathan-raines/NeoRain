@@ -97,7 +97,7 @@ return packer.startup(function(use)
     'lewis6991/gitsigns.nvim',
     config = "require 'configs.gitsigns'",
     requires = { 'nvim-lua/plenary.nvim' },
-    event = 'BufRead',
+    event = 'BufReadPre',
   }
 
   use {
@@ -132,7 +132,6 @@ return packer.startup(function(use)
     config = "require 'configs.flutter-tools'",
     requires = 'nvim-lua/plenary.nvim',
     ft = { 'dart' },
-    disable = true,
   }
 
   ---------------------
@@ -229,7 +228,7 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = "require 'configs.nvim-treesitter'",
-    event = 'BufRead',
+    event = 'BufReadPre',
   }
 
   use {
@@ -294,6 +293,7 @@ return packer.startup(function(use)
   use {
     'matbme/JABS.nvim',
     config = "require 'configs.jabs'",
+    keys = { '<leader>b' }
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
