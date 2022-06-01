@@ -144,12 +144,6 @@ return packer.startup(function(use)
     event = 'BufReadPre',
   }
 
-  use {
-    'mhartington/formatter.nvim',
-    config = "require 'configs.formatter-nvim'",
-    event = 'BufWritePre',
-  }
-
   ----------
   -- MISC --
   ----------
