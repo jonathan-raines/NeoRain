@@ -23,9 +23,7 @@ require('lualine').setup {
       require('github-notifications').statusline_notification_count,
     },
     lualine_c = {
-      {
-        'filename',
-      },
+      { 'buffers' },
       {
         'diff',
         source = function()
@@ -78,9 +76,6 @@ require('lualine').setup {
       },
     },
   },
-  tabline = {
-    lualine_a = { { 'buffers', mode = 4, symbols = { alternate_file = '# ' } } },
-    lualine_z = { 'tabs' }
-  },
+  tabline = {},
   extensions = { 'quickfix', 'toggleterm' },
 }
