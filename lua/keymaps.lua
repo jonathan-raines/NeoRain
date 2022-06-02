@@ -67,9 +67,6 @@ local normal_keymaps = {
 }
 
 local insert_keymaps = {
-  -- Escape
-  -- ['jk'] = '<ESC>',
-
   -- Escape closing character
   ['<A-l>'] = "<cmd>lua require('utils').escape_pair()<CR>",
 
@@ -78,8 +75,6 @@ local insert_keymaps = {
 }
 
 local visual_keymaps = {
-  -- ['jk'] = '<ESC>',
-
   -- Move Lines Around
   ['<A-j>'] = ":m '>+1<CR>gv-gv",
   ['<A-k>'] = ":m '<-2<CR>gv-gv",
@@ -123,4 +118,5 @@ vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 if vim.opt.diff:get() == true then
   keymap('n', '<C-f>', '<cmd>diffget LOCAL<CR>', opts)
   keymap('n', '<C-j>', '<cmd>diffget REMOTE<CR>', opts)
+  keymap('n', '<leader>w', '<cmd>wqa<CR>', opts)
 end
