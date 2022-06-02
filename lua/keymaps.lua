@@ -119,3 +119,8 @@ end
 -- Jumplist mutations
 vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
 vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
+
+if vim.opt.diff:get() == true then
+  keymap('n', '<C-f>', '<cmd>diffget LOCAL<CR>', opts)
+  keymap('n', '<C-j>', '<cmd>diffget REMOTE<CR>', opts)
+end
