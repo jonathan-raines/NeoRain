@@ -34,7 +34,7 @@ return packer.startup(function(use)
   -- Package Manager --
   ---------------------
 
-  use { 'wbthomason/packer.nvim', config = "require 'configs.packer.setup'" }
+  use { 'wbthomason/packer.nvim', config = "require 'configs.packer'.setup()" }
 
   ----------------------
   -- Required plugins --
@@ -67,8 +67,8 @@ return packer.startup(function(use)
   ---------------
   use {
     'nvim-telescope/telescope.nvim',
-    setup = "require 'configs.telescope.setup'",
-    config = "require 'configs.telescope.config'",
+    setup = "require 'configs.telescope'.setup()",
+    config = "require 'configs.telescope'.config()",
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons' },
@@ -102,8 +102,8 @@ return packer.startup(function(use)
 
   use {
     'pwntester/octo.nvim',
-    setup = "require 'configs.octo.setup'",
-    config = "require('octo').setup()",
+    setup = "require 'configs.octo'.setup()",
+    config = "require 'configs.octo'.config()",
     cmd = { 'Octo' },
   }
 
@@ -115,8 +115,8 @@ return packer.startup(function(use)
 
   use {
     'rlch/github-notifications.nvim',
-    setup = "require('configs.github-notifications.setup')",
-    config = "require('configs.github-notifications.config')",
+    setup = "require 'configs.github-notifications'.setup()",
+    config = "require 'configs.github-notifications'.config()",
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
@@ -144,7 +144,7 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = "require 'configs.lsp'",
-    event = 'BufReadPre',
+    event = 'BufRead',
   }
 
   ----------
@@ -152,15 +152,9 @@ return packer.startup(function(use)
   ----------
 
   use {
-    'dstein64/vim-startuptime',
-    config = 'vim.g.startuptime_tries = 10',
-    cmd = { 'StartupTime' },
-  }
-
-  use {
     'vim-test/vim-test',
-    setup = "require 'configs.vim-test.setup'",
-    config = "require 'configs.vim-test.config'",
+    setup = "require 'configs.vim-test'.setup()",
+    config = "require 'configs.vim-test'.config()",
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
 
@@ -225,13 +219,13 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = "require 'configs.nvim-treesitter'",
-    event = 'BufReadPre',
+    event = 'BufRead',
   }
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    setup = "require 'configs.treesitter-textobjects.setup'",
-    config = "require 'configs.treesitter-textobjects.config'",
+    setup = "require 'configs.treesitter-textobjects'.setup()",
+    config = "require 'configs.treesitter-textobjects'.config()",
     after = 'nvim-treesitter',
   }
 
@@ -251,16 +245,12 @@ return packer.startup(function(use)
 
   use {
     'ellisonleao/gruvbox.nvim',
-    after = 'lualine.nvim',
     cmd = 'colorscheme gruvbox',
-    disable = false,
   }
 
   use {
     'rebelot/kanagawa.nvim',
-    config = "require 'configs.themes.kanagawa'",
-    after = 'lualine.nvim',
-    disable = false,
+    config = "require 'configs.kanagawa'",
   }
 
   use {
@@ -282,8 +272,8 @@ return packer.startup(function(use)
 
   use {
     'akinsho/nvim-toggleterm.lua',
-    setup = "require 'configs.nvim-toggleterm.setup'",
-    config = "require 'configs.nvim-toggleterm.config'",
+    setup = "require 'configs.nvim-toggleterm'.setup()",
+    config = "require 'configs.nvim-toggleterm'.config()",
     event = 'BufWinEnter',
   }
 

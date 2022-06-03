@@ -1,22 +1,25 @@
-require('configs.lsp.handlers').setup()
+local handlers = require('configs.lsp.handlers')
+
+handlers.setup()
 
 local opts = {
-  on_attach = require('configs.lsp.handlers').on_attach,
-  capabilities = require('configs.lsp.handlers').capabilities,
+  on_attach = handlers.on_attach,
+  capabilities = handlers.capabilities,
 }
 
 local lspconfig = require 'lspconfig'
+local server_settings = require 'configs.lsp.server_settings'
 
 local servers = {
-  ['bashls'] = require 'configs.lsp.settings.bashls',
+  ['bashls'] = {},
   ['clangd'] = {},
-  ['eslint'] = require 'configs.lsp.settings.eslint',
-  ['jsonls'] = require 'configs.lsp.settings.jsonls',
-  ['solargraph'] = require 'configs.lsp.settings.solargraph',
-  ['sumneko_lua'] = require 'configs.lsp.settings.sumneko_lua',
-  ['tsserver'] = require 'configs.lsp.settings.tsserver',
-  ['vuels'] = require 'configs.lsp.settings.vuels',
-  ['yamlls'] = require 'configs.lsp.settings.yamlls',
+  ['eslint'] = {},
+  ['jsonls'] = server_settings.jsonls(),
+  ['solargraph'] = {},
+  ['sumneko_lua'] = server_settings.sumneko_lua(),
+  ['tsserver'] = {},
+  ['vuels'] = {},
+  ['yamlls'] = {}
 }
 
 for lsp, lsp_opts in pairs(servers) do
