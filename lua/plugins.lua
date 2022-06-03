@@ -144,7 +144,6 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = "require 'configs.lsp'",
-    event = 'CursorHold'
   }
 
   ----------
