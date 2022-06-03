@@ -5,61 +5,37 @@ function M.setup()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    -- ['<leader>b'] = '<cmd>Telescope buffers theme=get_ivy<CR>',
-    ['<leader>fb'] = '<cmd>Telescope buffers theme=get_ivy<CR>',
-    ['<leader>fc'] = '<cmd>Telescope colorscheme<CR>',
-    ['<leader>fd'] = '<cmd>Telescope lsp_document_symbols<CR>',
-    ['<leader>fe'] = '<cmd>Telescope file_browser<CR>',
-    ['<leader>ff'] = '<cmd>Telescope find_files<CR>',
-    ['<leader>fh'] = '<cmd>Telescope git_status<CR>',
-    ['<leader>fg'] = '<cmd>Telescope live_grep<CR>',
-    ['<leader>fo'] = '<cmd>Telescope oldfiles cwd_only=v:true<CR>',
-    ['<leader>fq'] = '<cmd>Telescope quickfix<CR>',
-    ['<leader>fr'] = '<cmd>Telescope resume<CR>',
-    ['<leader>fs'] = '<cmd>Telescope grep_string<CR>',
-    ['<leader>ft'] = '<cmd>Telescope treesitter<CR>',
-    ['<leader>fw'] = '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>',
-    ['<leader>/'] = '<cmd>lua _CURR_BUF()<CR>',
+    ['<leader>fb'] = { '<cmd>Telescope buffers theme=get_ivy<CR>', { desc = 'Buffers' } },
+    ['<leader>fc'] = { '<cmd>Telescope colorscheme<CR>', { desc = 'Colorscheme' } },
+    ['<leader>fd'] = { '<cmd>Telescope lsp_document_symbols<CR>', { desc = 'Document Symbols' } },
+    ['<leader>fe'] = { '<cmd>Telescope file_browser<CR>', { desc = 'File Browser' } },
+    ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', { desc = 'Find Files' } },
+    ['<leader>fh'] = { '<cmd>Telescope git_status<CR>', { desc = 'Git Status' } },
+    ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', { desc = 'Live Grep' } },
+    ['<leader>fo'] = { '<cmd>Telescope oldfiles cwd_only=v:true<CR>', { desc = 'Recent Files' } },
+    ['<leader>fq'] = { '<cmd>Telescope quickfix<CR>', { desc = 'QuickFix' } },
+    ['<leader>fr'] = { '<cmd>Telescope resume<CR>', { desc = 'Resume' } },
+    ['<leader>fs'] = { '<cmd>Telescope grep_string<CR>', { desc = 'Grep String' } },
+    ['<leader>ft'] = { '<cmd>Telescope treesitter<CR>', { desc = 'Treesitter' } },
+    ['<leader>fw'] = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', { desc = 'Workplace Symbols' } },
+    ['<leader>/'] = { '<cmd>lua _CURR_BUF()<CR>', { desc = 'Search Current Buffer' } },
   }
 
-  for key, cmd in pairs(keymaps) do
-    keymap('n', key, cmd, opts)
+  for key, val in pairs(keymaps) do
+    keymap('n', key, val[1], vim.tbl_deep_extend('force', opts, val[2]))
   end
-
-  local mappings = {
-    b = { 'Buffers' },
-    f = {
-      name = 'Telescope',
-      b = { 'Buffers' },
-      c = { 'Colorscheme' },
-      d = { 'Document Symbols' },
-      f = { 'Find Files' },
-      e = { 'File Browser' },
-      g = { 'Live Grep' },
-      h = { 'Git Status' },
-      o = { 'Open Recent File' },
-      q = { 'Open Quickfix' },
-      r = { 'Resume Last Picker' },
-      s = { 'Grep String' },
-      t = { 'Treesitter' },
-      w = { 'Workplace Symbols' },
-    },
-    ['/'] = { 'Search Current Buffer' },
-  }
-
-  require('which-key').register(mappings, { prefix = '<leader>' })
 end
 
 function M.config()
   local actions = require 'telescope.actions'
 
-  require('telescope').setup {
+  require 'telescope'.setup {
     defaults = {
       layout_config = {
         height = 0.85,
         width = 0.95,
       },
-      file_sorter = require('telescope.sorters').get_fzy_sorter,
+      file_sorter = require 'telescope.sorters'.get_fzy_sorter,
       mappings = {
         i = {
           ['<ESC>'] = actions.close,
@@ -109,8 +85,8 @@ function M.config()
   }
 
   function _CURR_BUF()
-    local opt = require('telescope.themes').get_ivy()
-    require('telescope.builtin').current_buffer_fuzzy_find(opt)
+    local opt = require 'telescope.themes'.get_ivy()
+    require 'telescope.builtin'.current_buffer_fuzzy_find(opt)
   end
 end
 

@@ -17,53 +17,53 @@ vim.g.maplocalleader = ' '
 -- Normal Mode --
 local normal_keymaps = {
   -- Alternate file
-  ['<leader><space>'] = '<c-^>',
+  ['<leader><space>'] = { '<c-^>', { desc = 'Alternate Buffer' } },
 
   -- Write / Quit
-  ['<leader>w'] = '<cmd>up<CR>',
-  ['<leader>q'] = 'ZZ',
-  ['<leader>c'] = '<cmd>execute (v:count > 0 ? v:count : "") . "bd!"<CR>',
-  ['<leader>C'] = '<cmd>%bd|e#|bd#<CR>',
+  ['<leader>w'] = { '<cmd>up<CR>', { desc = 'Write' } },
+  ['<leader>q'] = { 'ZZ', { desc = 'Quit' } },
+  ['<leader>c'] = { '<cmd>execute (v:count > 0 ? v:count : "") . "bd!"<CR>', { desc = 'Close Buffer' } },
+  ['<leader>C'] = { '<cmd>%bd|e#|bd#<CR>', { desc = 'Close All But Current Buffer' } },
 
   -- Keeping it centered
-  ['J'] = 'mzJ`z',
-  ['n'] = 'nzzzv',
-  ['N'] = 'Nzzzv',
+  ['J'] = { 'mzJ`z', { desc = '' } },
+  ['n'] = { 'nzzzv', { desc = '' } },
+  ['N'] = { 'Nzzzv', { desc = '' } },
 
   -- Quickfix Navigation
-  [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
-  ['[q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>',
+  [']q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>', { desc = 'Next QuickFix Item' } },
+  ['[q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>', { desc = 'Previous QuickFix Item' } },
 
   -- Buffer Navigation
-  ['<Backspace>'] = '<cmd>bp<CR>',
-  ['<Tab>'] = '<cmd>bn<CR>',
+  ['<Backspace>'] = { '<cmd>bp<CR>', { desc = 'Previous Buffer' } },
+  ['<Tab>'] = { '<cmd>bn<CR>', { desc = 'Next Buffer' } },
 
   -- Indent
-  ['<'] = '<<',
-  ['>'] = '>>',
+  ['<'] = { '<<', { desc = '' } },
+  ['>'] = { '>>', { desc = '' } },
 
   -- Add / Subtract
-  ['+'] = '<C-a>',
-  ['-'] = '<C-x>',
+  ['+'] = { '<C-a>', { desc = '' } },
+  ['-'] = { '<C-x>', { desc = '' } },
 
   -- Move Windows Around
-  ['<C-h>'] = '<C-w>h',
-  ['<C-l>'] = '<C-w>l',
-  ['<C-j>'] = '<C-w>j',
-  ['<C-k>'] = '<C-w>k',
+  ['<C-h>'] = { '<C-w>h', { desc = '' } },
+  ['<C-l>'] = { '<C-w>l', { desc = '' } },
+  ['<C-j>'] = { '<C-w>j', { desc = '' } },
+  ['<C-k>'] = { '<C-w>k', { desc = '' } },
 
   -- Move Lines Around
-  ['<A-j>'] = ':m .+1<CR>==',
-  ['<A-k>'] = ':m .-2<CR>==',
+  ['<A-j>'] = { ':m .+1<CR>==', { desc = '' } },
+  ['<A-k>'] = { ':m .-2<CR>==', { desc = '' } },
 
   -- Quickfix
-  ['<C-q>'] = "<cmd>lua require('utils').quick_fix_toggle()<CR>",
+  ['<C-q>'] = { "<cmd>lua require('utils').quick_fix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
 
   -- Resize windows
-  ['<C-Up>'] = ':resize -5<CR>',
-  ['<C-Down>'] = ':resize +5<CR>',
-  ['<C-Left>'] = ':vertical resize -5<CR>',
-  ['<C-Right>'] = ':vertical resize +5<CR>',
+  ['<C-Up>'] = { ':resize -5<CR>', { desc = '' } },
+  ['<C-Down>'] = { ':resize +5<CR>', { desc = '' } },
+  ['<C-Left>'] = { ':vertical resize -5<CR>', { desc = '' } },
+  ['<C-Right>'] = { ':vertical resize +5<CR>', { desc = '' } },
 }
 
 local insert_keymaps = {
@@ -97,8 +97,8 @@ for _, char in ipairs(break_points) do
 end
 
 -- Map Normal Mode
-for key, cmd in pairs(normal_keymaps) do
-  keymap('n', key, cmd, opts)
+for key, val in pairs(normal_keymaps) do
+  keymap('n', key, val[1], vim.tbl_deep_extend('force', opts, val[2]))
 end
 
 -- Map Insert Mode

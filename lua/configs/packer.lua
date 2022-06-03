@@ -5,31 +5,17 @@ function M.setup()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    ['<leader>pc'] = '<cmd>PackerCompile profile=true<CR>',
-    ['<leader>pi'] = '<cmd>PackerInstall<CR>',
-    ['<leader>pl'] = '<cmd>PackerStatus<CR>',
-    ['<leader>pp'] = '<cmd>PackerProfile<CR>',
-    ['<leader>ps'] = '<cmd>PackerSync<CR>',
-    ['<leader>pu'] = '<cmd>PackerUpdate<CR>',
+    ['<leader>pc'] = { '<cmd>PackerCompile profile=true<CR>', { desc = 'Compile' } },
+    ['<leader>pi'] = { '<cmd>PackerInstall<CR>', { desc = 'Install' } },
+    ['<leader>pl'] = { '<cmd>PackerStatus<CR>', { desc = 'Status' } },
+    ['<leader>pp'] = { '<cmd>PackerProfile<CR>', { desc = 'Profile' } },
+    ['<leader>ps'] = { '<cmd>PackerSync<CR>', { desc = 'Sync' } },
+    ['<leader>pu'] = { '<cmd>PackerUpdate<CR>', { desc = 'Update' } },
   }
 
-  for key, cmd in pairs(keymaps) do
-    keymap('n', key, cmd, opts)
+  for key, val in pairs(keymaps) do
+    keymap('n', key, val[1], vim.tbl_deep_extend('force', opts, val[2]))
   end
-
-  local mappings = {
-    p = {
-      name = 'Packer',
-      c = { 'PackerCompile' },
-      i = { 'PackerInstall' },
-      l = { 'PackerStatus' },
-      p = { 'PackerProfile' },
-      s = { 'PackerSync' },
-      u = { 'PackerUpdate' },
-    },
-  }
-
-  require('which-key').register(mappings, { prefix = '<leader>' })
 end
 
 return M

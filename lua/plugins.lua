@@ -86,7 +86,7 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = "require 'configs.telescope-file-browser'",
-    keys = { '<leader>fe' }
+    after = 'telescope.nvim',
   }
 
   ------------
@@ -115,7 +115,7 @@ return packer.startup(function(use)
 
   use {
     'rlch/github-notifications.nvim',
-    setup = "require 'configs.github-notifications'.setup()",
+    -- setup = "require 'configs.github-notifications'.setup()",
     config = "require 'configs.github-notifications'.config()",
     requires = {
       'nvim-lua/plenary.nvim',
@@ -156,7 +156,7 @@ return packer.startup(function(use)
 
   use {
     'vim-test/vim-test',
-    setup = "require 'configs.vim-test'.setup()",
+    -- setup = "require 'configs.vim-test'.setup()",
     config = "require 'configs.vim-test'.config()",
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
@@ -226,7 +226,7 @@ return packer.startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    setup = "require 'configs.treesitter-textobjects'.setup()",
+    -- setup = "require 'configs.treesitter-textobjects'.setup()",
     config = "require 'configs.treesitter-textobjects'.config()",
     after = 'nvim-treesitter',
   }
@@ -266,13 +266,19 @@ return packer.startup(function(use)
   -----------------
 
   use {
-    'folke/which-key.nvim',
-    config = "require 'configs.which-key'",
+    'linty-org/key-menu.nvim',
+    config = function()
+      require 'key-menu'.set('n', 'g')
+      require 'key-menu'.set('n', '<Space>')
+      require 'key-menu'.set('n', '<leader>f', { desc = 'Telescope' })
+      require 'key-menu'.set('n', '<leader>o', { desc = 'Octo' })
+      require 'key-menu'.set('n', '<leader>p', { desc = 'Packer' })
+    end
   }
 
   use {
     'akinsho/nvim-toggleterm.lua',
-    setup = "require 'configs.nvim-toggleterm'.setup()",
+    -- setup = "require 'configs.nvim-toggleterm'.setup()",
     config = "require 'configs.nvim-toggleterm'.config()",
   }
 
