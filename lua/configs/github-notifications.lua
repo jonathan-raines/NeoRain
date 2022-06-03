@@ -12,20 +12,23 @@ function M.setup()
     keymap('n', key, cmd, opts)
   end
 
-  local mappings = {
-    g = {
-      name = 'Git',
-      n = { 'Github Notifications' },
-    },
-  }
+  local wk_ok, wk = pcall(require, 'which-key')
+  if wk_ok then
+    local mappings = {
+      g = {
+        name = 'Git',
+        n = { 'Github Notifications' },
+      },
+    }
 
-  require('which-key').register(mappings, { prefix = '<leader>' })
+    wk.register(mappings, { prefix = '<leader>' })
+  end
 end
 
 function M.config()
   local secrets = require 'secrets'
 
-  require('github-notifications').setup {
+  require 'github-notifications'.setup {
     username = secrets.username,
     token = secrets.token,
   }

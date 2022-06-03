@@ -16,18 +16,21 @@ function M.setup()
     keymap('n', key, cmd, opts)
   end
 
-  local mappings = {
-    t = {
-      name = 'Testing',
-      f = { 'Run Test File' },
-      l = { 'Run Last Test' },
-      n = { 'Run Nearest Test' },
-      s = { 'Run Test Suite' },
-      v = { 'Visit Test File' },
-    },
-  }
+  local wk_ok, wk = pcall(require, 'which-key')
+  if wk_ok then
+    local mappings = {
+      t = {
+        name = 'Testing',
+        f = { 'Run Test File' },
+        l = { 'Run Last Test' },
+        n = { 'Run Nearest Test' },
+        s = { 'Run Test Suite' },
+        v = { 'Visit Test File' },
+      },
+    }
 
-  require('which-key').register(mappings, { prefix = '<leader>' })
+    wk.register(mappings, { prefix = '<leader>' })
+  end
 end
 
 function M.config()

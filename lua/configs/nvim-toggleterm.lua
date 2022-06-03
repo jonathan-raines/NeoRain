@@ -1,19 +1,22 @@
 local M = {}
 
 function M.setup()
-  local mappings = {
-    j = {
-      name = 'Terminal',
-      d = { '<cmd>lua _LAZYDOCKER_TOGGLE()<CR>', 'Lazy Docker' },
-      l = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazy Git' },
-    },
-  }
+  local wk_ok, wk = pcall(require, 'which-key')
+  if wk_ok then
+    local mappings = {
+      j = {
+        name = 'Terminal',
+        d = { '<cmd>lua _LAZYDOCKER_TOGGLE()<CR>', 'Lazy Docker' },
+        l = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazy Git' },
+      },
+    }
 
-  require('which-key').register(mappings, { prefix = '<leader>' })
+    wk.register(mappings, { prefix = '<leader>' })
+  end
 end
 
 function M.config()
-  require('toggleterm').setup {
+  require 'toggleterm'.setup {
     -- size can be a number or function which is passed the current terminal
     size = 20 or function(term)
       if term.direction == 'horizontal' then
@@ -43,7 +46,7 @@ function M.config()
     },
   }
 
-  local Terminal = require('toggleterm.terminal').Terminal
+  local Terminal = require 'toggleterm.terminal'.Terminal
   local lazygit = Terminal:new { cmd = 'lazygit', hidden = true }
   local lazydocker = Terminal:new { cmd = 'lazydocker', hidden = true }
 

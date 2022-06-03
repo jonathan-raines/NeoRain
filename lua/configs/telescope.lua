@@ -26,40 +26,43 @@ function M.setup()
     keymap('n', key, cmd, opts)
   end
 
-  local mappings = {
-    b = { 'Buffers' },
-    f = {
-      name = 'Telescope',
+  local wk_ok, wk = pcall(require, 'which-key')
+  if wk_ok then
+    local mappings = {
       b = { 'Buffers' },
-      c = { 'Colorscheme' },
-      d = { 'Document Symbols' },
-      f = { 'Find Files' },
-      e = { 'File Browser' },
-      g = { 'Live Grep' },
-      h = { 'Git Status' },
-      o = { 'Open Recent File' },
-      q = { 'Open Quickfix' },
-      r = { 'Resume Last Picker' },
-      s = { 'Grep String' },
-      t = { 'Treesitter' },
-      w = { 'Workplace Symbols' },
-    },
-    ['/'] = { 'Search Current Buffer' },
-  }
+      f = {
+        name = 'Telescope',
+        b = { 'Buffers' },
+        c = { 'Colorscheme' },
+        d = { 'Document Symbols' },
+        f = { 'Find Files' },
+        e = { 'File Browser' },
+        g = { 'Live Grep' },
+        h = { 'Git Status' },
+        o = { 'Open Recent File' },
+        q = { 'Open Quickfix' },
+        r = { 'Resume Last Picker' },
+        s = { 'Grep String' },
+        t = { 'Treesitter' },
+        w = { 'Workplace Symbols' },
+      },
+      ['/'] = { 'Search Current Buffer' },
+    }
 
-  require('which-key').register(mappings, { prefix = '<leader>' })
+    wk.register(mappings, { prefix = '<leader>' })
+  end
 end
 
 function M.config()
   local actions = require 'telescope.actions'
 
-  require('telescope').setup {
+  require 'telescope'.setup {
     defaults = {
       layout_config = {
         height = 0.85,
         width = 0.95,
       },
-      file_sorter = require('telescope.sorters').get_fzy_sorter,
+      file_sorter = require 'telescope.sorters'.get_fzy_sorter,
       mappings = {
         i = {
           ['<ESC>'] = actions.close,
@@ -109,8 +112,8 @@ function M.config()
   }
 
   function _CURR_BUF()
-    local opt = require('telescope.themes').get_ivy()
-    require('telescope.builtin').current_buffer_fuzzy_find(opt)
+    local opt = require 'telescope.themes'.get_ivy()
+    require 'telescope.builtin'.current_buffer_fuzzy_find(opt)
   end
 end
 

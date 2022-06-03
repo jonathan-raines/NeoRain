@@ -1,4 +1,4 @@
-require('gitsigns').setup {
+require 'gitsigns'.setup {
   signs = {
     add = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
     change = { hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
@@ -64,27 +64,25 @@ require('gitsigns').setup {
 }
 
 local wk_ok, wk = pcall(require, 'which-key')
-if not wk_ok then
-  return
+if wk_ok then
+  wk.register({
+    g = {
+      name = 'Git',
+      ['b'] = 'Blame Line',
+      ['p'] = 'Preview Hunk',
+      ['r'] = 'Reset Hunk',
+      ['R'] = 'Reset Buffer',
+      ['s'] = 'Stage Hunk',
+      ['S'] = 'Stage Buffer',
+      ['u'] = 'Undo Stage Hunk',
+      ['U'] = 'Reset Buffer Index',
+    },
+  }, {
+    prefix = '<leader>',
+  })
+
+  wk.register {
+    [']c'] = { 'Get next hunk' },
+    ['[c'] = { 'Get previous hunk' },
+  }
 end
-
-wk.register({
-  g = {
-    name = 'Git',
-    ['b'] = 'Blame Line',
-    ['p'] = 'Preview Hunk',
-    ['r'] = 'Reset Hunk',
-    ['R'] = 'Reset Buffer',
-    ['s'] = 'Stage Hunk',
-    ['S'] = 'Stage Buffer',
-    ['u'] = 'Undo Stage Hunk',
-    ['U'] = 'Reset Buffer Index',
-  },
-}, {
-  prefix = '<leader>',
-})
-
-wk.register {
-  [']c'] = { 'Get next hunk' },
-  ['[c'] = { 'Get previous hunk' },
-}

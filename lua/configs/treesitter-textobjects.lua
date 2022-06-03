@@ -1,19 +1,22 @@
 local M = {}
 
 function M.setup()
-  local mappings = {
-    d = {
-      name = 'Peek',
-      f = { 'Peek Function' },
-      F = { 'Peek Class' },
-    },
-  }
+  local wk_ok, wk = pcall(require, 'which-key')
+  if wk_ok then
+    local mappings = {
+      d = {
+        name = 'Peek',
+        f = { 'Peek Function' },
+        F = { 'Peek Class' },
+      },
+    }
 
-  require('which-key').register(mappings, { prefix = '<leader>' })
+    wk.register(mappings, { prefix = '<leader>' })
+  end
 end
 
 function M.config()
-  require('nvim-treesitter.configs').setup {
+  require 'nvim-treesitter.configs'.setup {
     textobjects = {
       lsp_interop = {
         enable = true,

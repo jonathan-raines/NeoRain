@@ -16,28 +16,31 @@ function M.setup()
     keymap('n', key, cmd, opts)
   end
 
-  local mappings = {
-    o = {
-      name = 'Octo',
-      i = {
-        name = 'Issues',
-        c = { 'Create Issue' },
-        l = { 'List Issues' },
+  local wk_ok, wk = pcall(require, 'which-key')
+  if wk_ok then
+    local mappings = {
+      o = {
+        name = 'Octo',
+        i = {
+          name = 'Issues',
+          c = { 'Create Issue' },
+          l = { 'List Issues' },
+        },
+        p = { 'List Pull Requests' },
+        r = {
+          name = 'Review',
+          s = { 'Start Review' },
+          f = { 'Submit Review' },
+        },
       },
-      p = { 'List Pull Requests' },
-      r = {
-        name = 'Review',
-        s = { 'Start Review' },
-        f = { 'Submit Review' },
-      },
-    },
-  }
+    }
 
-  require('which-key').register(mappings, { prefix = '<leader>' })
+    wk.register(mappings, { prefix = '<leader>' })
+  end
 end
 
 function M.config()
-  require('octo').setup()
+  require 'octo'.setup()
 end
 
 return M

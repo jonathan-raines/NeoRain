@@ -20,6 +20,9 @@ require 'jabs'.setup {
   row = ui.height / 2, -- Window appears in the vertical middle
 }
 
-require 'which-key'.register({
-  b = { '<cmd>JABSOpen<CR>', 'Buffer Switch' }
-}, { prefix = '<leader>' })
+local wk_ok, wk = pcall(require, 'which-key')
+if wk_ok then
+  wk.register({
+    b = { '<cmd>JABSOpen<CR>', 'Buffer Switch' }
+  }, { prefix = '<leader>' })
+end

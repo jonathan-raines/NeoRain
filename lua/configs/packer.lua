@@ -17,19 +17,22 @@ function M.setup()
     keymap('n', key, cmd, opts)
   end
 
-  local mappings = {
-    p = {
-      name = 'Packer',
-      c = { 'PackerCompile' },
-      i = { 'PackerInstall' },
-      l = { 'PackerStatus' },
-      p = { 'PackerProfile' },
-      s = { 'PackerSync' },
-      u = { 'PackerUpdate' },
-    },
-  }
+  local wk_ok, wk = pcall(require, 'which-key')
+  if wk_ok then
+    local mappings = {
+      p = {
+        name = 'Packer',
+        c = { 'PackerCompile' },
+        i = { 'PackerInstall' },
+        l = { 'PackerStatus' },
+        p = { 'PackerProfile' },
+        s = { 'PackerSync' },
+        u = { 'PackerUpdate' },
+      },
+    }
 
-  require('which-key').register(mappings, { prefix = '<leader>' })
+    require 'which-key'.register(mappings, { prefix = '<leader>' })
+  end
 end
 
 return M

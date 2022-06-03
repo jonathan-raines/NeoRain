@@ -10,7 +10,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
-M.capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+M.capabilities = require 'cmp_nvim_lsp'.update_capabilities(capabilities)
 
 local function lsp_document_codelens(client)
   if client.server_capabilities.code_lens then
@@ -44,29 +44,27 @@ end
 
 local function whichkey_document_keymaps()
   local wk_ok, wk = pcall(require, 'which-key')
-  if not wk_ok then
-    return
+  if wk_ok then
+    wk.register {
+      g = {
+        a = 'Code Action',
+        d = 'Definition',
+        D = 'Declaration',
+        F = 'Formatting',
+        i = 'Implementation',
+        l = 'Line Diagnostics',
+        q = 'Set Loclist',
+        rn = 'Rename',
+        rr = 'References',
+      },
+      ['['] = {
+        d = 'Previous Diagnostic',
+      },
+      [']'] = {
+        d = 'Next Diagnostic',
+      },
+    }
   end
-
-  wk.register {
-    g = {
-      a = 'Code Action',
-      d = 'Definition',
-      D = 'Declaration',
-      F = 'Formatting',
-      i = 'Implementation',
-      l = 'Line Diagnostics',
-      q = 'Set Loclist',
-      rn = 'Rename',
-      rr = 'References',
-    },
-    ['['] = {
-      d = 'Previous Diagnostic',
-    },
-    [']'] = {
-      d = 'Next Diagnostic',
-    },
-  }
 end
 
 local function lsp_keymaps(bufnr)
