@@ -86,7 +86,7 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = "require 'configs.telescope-file-browser'",
-    after = 'telescope.nvim',
+    keys = { '<leader>fe' }
   }
 
   ------------
@@ -124,7 +124,11 @@ return packer.startup(function(use)
   }
 
 
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewFocusFiles', 'DiffviewToggleFiles' }
+  }
 
   -------------------------------
   -- Language specific plugins --
@@ -264,15 +268,12 @@ return packer.startup(function(use)
   use {
     'folke/which-key.nvim',
     config = "require 'configs.which-key'",
-    module = 'which-key',
-    disable = false,
   }
 
   use {
     'akinsho/nvim-toggleterm.lua',
     setup = "require 'configs.nvim-toggleterm'.setup()",
     config = "require 'configs.nvim-toggleterm'.config()",
-    event = 'BufWinEnter',
   }
 
   use {
