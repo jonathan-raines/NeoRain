@@ -62,7 +62,7 @@ vim.api.nvim_create_augroup('GeneralSettings', { clear = true })
 
 vim.api.nvim_create_autocmd('FileType', {
   group = 'GeneralSettings',
-  pattern = 'help,man,lspinfo,startuptime,qf',
+  pattern = 'help,man,lspinfo,qf',
   callback = function()
     vim.keymap.set('n', 'q', '<cmd>quit<CR>', { buffer = true })
   end,
@@ -79,6 +79,12 @@ vim.api.nvim_create_autocmd('FileType', {
   group = 'GeneralSettings',
   pattern = 'qf',
   command = 'set nobuflisted',
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'GeneralSettings',
+  pattern = 'rake',
+  command = 'set ft=ruby',
 })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
