@@ -44,10 +44,6 @@ return packer.startup(function(use)
 
   use { 'nathom/filetype.nvim' }
 
-  use { 'nvim-lua/plenary.nvim' }
-
-  use { 'kyazdani42/nvim-web-devicons' }
-
   --------------
   -- Database --
   --------------
@@ -86,7 +82,7 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = "require 'configs.telescope-file-browser'",
-    keys = { '<leader>fe' }
+    after = 'telescope.nvim',
   }
 
   ------------
@@ -148,6 +144,7 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = "require 'configs.lsp'",
+    event = 'CursorHold'
   }
 
   ----------
@@ -222,6 +219,7 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = "require 'configs.nvim-treesitter'",
+    event = 'CursorHold'
   }
 
   use {
@@ -267,7 +265,7 @@ return packer.startup(function(use)
 
   use {
     'folke/which-key.nvim',
-    config = "require 'configs.which-key'",
+    config = "require 'configs.which-key'.config()",
   }
 
   use {

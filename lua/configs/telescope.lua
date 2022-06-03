@@ -5,7 +5,6 @@ function M.setup()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    -- ['<leader>b'] = '<cmd>Telescope buffers theme=get_ivy<CR>',
     ['<leader>fb'] = '<cmd>Telescope buffers theme=get_ivy<CR>',
     ['<leader>fc'] = '<cmd>Telescope colorscheme<CR>',
     ['<leader>fd'] = '<cmd>Telescope lsp_document_symbols<CR>',
