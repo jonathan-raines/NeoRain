@@ -144,7 +144,6 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = "require 'configs.lsp'",
-    event = 'BufRead',
   }
 
   ----------
@@ -202,13 +201,13 @@ return packer.startup(function(use)
         after = 'nvim-cmp',
       },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
     },
     config = "require 'configs.nvim-cmp'",
-    event = 'InsertEnter *',
+    event = 'InsertEnter',
   }
 
   ----------------
@@ -219,7 +218,6 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = "require 'configs.nvim-treesitter'",
-    event = 'BufRead',
   }
 
   use {
