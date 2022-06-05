@@ -23,6 +23,6 @@ require 'jabs'.setup {
 local wk_ok, wk = pcall(require, 'which-key')
 if wk_ok then
   wk.register({
-    b = { '<cmd>JABSOpen<CR>', 'Buffer Switch' }
+    b = { '<cmd>JABSOpen<CR>', 'Buffers' }
   }, { prefix = '<leader>' })
 end

@@ -42,10 +42,6 @@ local normal_keymaps = {
   ['<'] = '<<',
   ['>'] = '>>',
 
-  -- Add / Subtract
-  ['+'] = '<C-a>',
-  ['-'] = '<C-x>',
-
   -- Move Windows Around
   ['<C-h>'] = '<C-w>h',
   ['<C-l>'] = '<C-w>l',
@@ -69,9 +65,6 @@ local normal_keymaps = {
 local insert_keymaps = {
   -- Escape closing character
   ['<A-l>'] = "<cmd>lua require('utils').escape_pair()<CR>",
-
-  -- save in insert mode
-  ['<C-s>'] = '<ESC>:up<CR>',
 }
 
 local visual_keymaps = {
