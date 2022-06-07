@@ -160,12 +160,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'norcalli/nvim-colorizer.lua',
-    config = "require 'colorizer'.setup()",
-    ft = { 'js', 'css', 'html', 'vue', 'lua' },
-  }
-
-  use {
     'windwp/nvim-autopairs',
     config = "require 'configs.nvim-autopairs'",
     event = 'InsertEnter',
