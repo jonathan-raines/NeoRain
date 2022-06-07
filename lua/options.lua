@@ -5,6 +5,7 @@ local options = {
   completeopt = { 'menu', 'menuone', 'noselect' }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   cursorline = true, -- highlight the current line
+  cursorlineopt = 'number',
   expandtab = true, -- convert tabs to spaces
   foldexpr = 'nvim_treesitter#foldexpr()',
   foldlevelstart = 99,
