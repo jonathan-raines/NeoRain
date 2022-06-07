@@ -30,10 +30,6 @@ local normal_keymaps = {
   ['n'] = 'nzzzv',
   ['N'] = 'Nzzzv',
 
-  -- Quickfix Navigation
-  [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
-  ['[q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>',
-
   -- Buffer Navigation
   ['<Backspace>'] = '<cmd>bp<CR>',
   ['<Tab>'] = '<cmd>bn<CR>',
@@ -54,6 +50,8 @@ local normal_keymaps = {
 
   -- Quickfix
   ['<C-q>'] = "<cmd>lua require('utils').quick_fix_toggle()<CR>",
+  [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
+  ['[q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>',
 
   -- Resize windows
   ['<C-Up>'] = ':resize -5<CR>',
