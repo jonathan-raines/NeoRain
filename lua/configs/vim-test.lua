@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+M.setup = function()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
 
@@ -33,7 +33,7 @@ function M.setup()
   end
 end
 
-function M.config()
+M.config = function()
   vim.api.nvim_exec(
     [[
     function! DockerTransform(cmd)

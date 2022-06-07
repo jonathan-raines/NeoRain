@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+M.setup = function()
   local wk_ok, wk = pcall(require, 'which-key')
   if wk_ok then
     local mappings = {
@@ -15,7 +15,7 @@ function M.setup()
   end
 end
 
-function M.config()
+M.config = function()
   require 'nvim-treesitter.configs'.setup {
     textobjects = {
       lsp_interop = {

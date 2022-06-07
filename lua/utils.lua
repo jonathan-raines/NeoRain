@@ -1,6 +1,6 @@
 local M = {}
 
-function M.quick_fix_toggle()
+M.quick_fix_toggle = function()
   if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1 then
     vim.cmd 'copen'
   else
@@ -8,7 +8,7 @@ function M.quick_fix_toggle()
   end
 end
 
-function M.escape_pair()
+M.escape_pair = function()
   local closers = { ')', ']', '}', '>', "'", '"', '`', ',' }
   local line = vim.api.nvim_get_current_line()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -29,7 +29,7 @@ function M.escape_pair()
   end
 end
 
-function M.set_terminal_keymaps()
+M.set_terminal_keymaps = function()
   local term_opts = { noremap = true }
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], term_opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], term_opts)
@@ -38,7 +38,7 @@ function M.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], term_opts)
 end
 
-function M.get_client_names()
+M.get_client_names = function()
   local bufnr = vim.fn.bufnr ''
   local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
   local clients = vim.lsp.buf_get_clients(bufnr)
@@ -54,7 +54,7 @@ function M.get_client_names()
   return table.concat(clientnames_tbl, ', ')
 end
 
-function M.lsp_progress()
+M.lsp_progress = function()
   local Lsp = vim.lsp.util.get_progress_messages()[1]
 
   if Lsp then

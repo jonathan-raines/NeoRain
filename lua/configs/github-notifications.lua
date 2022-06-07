@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+M.setup = function()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
 
@@ -25,7 +25,7 @@ function M.setup()
   end
 end
 
-function M.config()
+M.config = function()
   local secrets = require 'secrets'
 
   require 'github-notifications'.setup {

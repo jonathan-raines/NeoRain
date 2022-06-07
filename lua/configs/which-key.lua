@@ -1,6 +1,6 @@
 local M = {}
 
-function M.config()
+M.config = function()
   local wk = require 'which-key'
 
   wk.setup {
