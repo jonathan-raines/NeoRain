@@ -1,6 +1,6 @@
 local utils = require 'utils'
 
-require('lualine').setup {
+require 'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
@@ -18,10 +18,7 @@ require('lualine').setup {
         padding = { left = 1, right = 1 },
       },
     },
-    lualine_b = {
-      'branch',
-      require('github-notifications').statusline_notification_count,
-    },
+    lualine_b = { 'branch', },
     lualine_c = {
       { 'buffers' },
       {

@@ -110,17 +110,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'rlch/github-notifications.nvim',
-    setup = "require 'configs.github-notifications'.setup()",
-    config = "require 'configs.github-notifications'.config()",
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
-  }
-
-
-  use {
     'sindrets/diffview.nvim',
     requires = 'nvim-lua/plenary.nvim',
     cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewFocusFiles', 'DiffviewToggleFiles' }
