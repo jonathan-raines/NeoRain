@@ -133,7 +133,7 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = "require 'configs.lsp'",
-    event = { 'BufReadPre', 'BufNew' }
+    event = { 'BufReadPre', 'BufNewFile' }
   }
 
   ----------
@@ -208,7 +208,7 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = "require 'configs.nvim-treesitter'",
-    event = { 'BufReadPre', 'BufNewFile' }
+    event = { 'BufRead', 'BufNewFile' }
   }
 
   use {
