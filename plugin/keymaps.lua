@@ -41,12 +41,10 @@ local normal_keymaps = {
   -- Move Windows Around
   ['<C-h>'] = '<C-w>h',
   ['<C-l>'] = '<C-w>l',
-  ['<C-j>'] = '<C-w>j',
-  ['<C-k>'] = '<C-w>k',
 
   -- Move Lines Around
-  ['<A-j>'] = ':m .+1<CR>==',
-  ['<A-k>'] = ':m .-2<CR>==',
+  ['<C-j>'] = ':m .+1<CR>==',
+  ['<C-k>'] = ':m .-2<CR>==',
 
   -- Quickfix
   ['<C-q>'] = "<cmd>lua require('utils').quick_fix_toggle()<CR>",
@@ -67,8 +65,8 @@ local insert_keymaps = {
 
 local visual_keymaps = {
   -- Move Lines Around
-  ['<A-j>'] = ":m '>+1<CR>gv-gv",
-  ['<A-k>'] = ":m '<-2<CR>gv-gv",
+  ['<C-j>'] = ":m '>+1<CR>gv-gv",
+  ['<C-k>'] = ":m '<-2<CR>gv-gv",
 
   -- Better Indenting
   ['<'] = '<gv',
