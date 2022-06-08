@@ -44,8 +44,7 @@ local options = {
 
 vim.opt.shortmess:append 'cI'
 vim.opt.path:append '**'
--- vim.cmd [[set winbar=%=%m\ %f]]
-vim.cmd [[set winbar=%m\ %f]]
+vim.o.winbar = '%m %f'
 
 for k, v in pairs(options) do
   vim.opt[k] = v
