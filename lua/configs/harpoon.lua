@@ -20,6 +20,8 @@ if wk_ok then
       ['c'] = { '<cmd>lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>', 'Commands Menu' },
       ['t'] = { '<cmd>lua require("harpoon.term").gotoTerminal(1)<CR>', 'Go to Terminal 1' },
       ['r'] = { '<cmd>lua require("harpoon.term").gotoTerminal(2)<CR>', 'Go to Terminal 2' },
+      ['T'] = { '<cmd>lua require("harpoon.tmux").gotoTerminal(1)<CR>', 'Go to Tmux Terminal 1' },
+      ['R'] = { '<cmd>lua require("harpoon.tmux").gotoTerminal(2)<CR>', 'Go to Tmux Terminal 2' },
     },
   }, {
     prefix = '<leader>',

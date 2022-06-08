@@ -60,7 +60,7 @@ local normal_keymaps = {
 
 local insert_keymaps = {
   -- Escape closing character
-  ['<A-l>'] = "<cmd>lua require('utils').escape_pair()<CR>",
+  ['<C-l>'] = "<cmd>lua require('utils').escape_pair()<CR>",
 }
 
 local visual_keymaps = {
