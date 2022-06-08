@@ -1,9 +1,7 @@
 local options = {
-  backup = false, -- creates a backup file
   clipboard = 'unnamedplus', -- allows neovim to access the system clipboard
   colorcolumn = '100',
   completeopt = { 'menu', 'menuone', 'noselect' }, -- mostly just for cmp
-  conceallevel = 0, -- so that `` is visible in markdown files
   cursorline = true, -- highlight the current line
   cursorlineopt = 'number',
   expandtab = true, -- convert tabs to spaces
@@ -15,11 +13,8 @@ local options = {
   inccommand = 'split', -- preview incremental substitute
   mouse = 'a', -- allow the mouse to be used in neovim
   number = true,
-  numberwidth = 4, -- set number column width to 2 {default 4}
-  pumblend = 10, -- pop up blend
-  pumheight = 10, -- pop up menu height
   relativenumber = true,
-  scrolloff = 4,
+  scrolloff = 8,
   shiftround = true, -- round indent
   shiftwidth = 2, -- the number of spaces inserted for each indentation
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
@@ -32,7 +27,6 @@ local options = {
   swapfile = false, -- creates a swapfile
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
-  textwidth = 100,
   timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (4000ms default)
@@ -41,6 +35,7 @@ local options = {
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   wrap = false, -- display lines as one long line
 }
+
 
 vim.opt.shortmess:append 'cI'
 vim.opt.path:append '**'
