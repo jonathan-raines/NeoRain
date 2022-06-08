@@ -15,12 +15,15 @@ require 'lualine'.setup {
       {
         'mode',
         separator = { left = '', right = '' },
-        padding = { left = 1, right = 1 },
       },
     },
     lualine_b = { 'branch', },
     lualine_c = {
-      { 'buffers' },
+      {
+        'buffers',
+        hide_filename_extension = true,
+        mode = 4
+      },
       {
         'diff',
         source = function()
@@ -33,12 +36,7 @@ require 'lualine'.setup {
             }
           end
         end,
-        symbols = { added = '  ', modified = '柳', removed = ' ' },
-        diff_color = {
-          added = { fg = '#97c374' },
-          modified = { fg = '#dbc074' },
-          removed = { fg = '#c94f6d' },
-        },
+        symbols = { added = ' ', modified = '柳', removed = ' ' },
       },
     },
     lualine_x = {
@@ -66,11 +64,7 @@ require 'lualine'.setup {
       { 'filetype' },
     },
     lualine_z = {
-      {
-        'location',
-        separator = { left = '', right = '' },
-        padding = { left = 1, right = 1 },
-      },
+      { 'tabs' }
     },
   },
   tabline = {},
