@@ -91,7 +91,8 @@ return packer.startup(function(use)
 
   use {
     'lewis6991/gitsigns.nvim',
-    config = "require 'configs.gitsigns'",
+    setup = "require 'configs.gitsigns'.setup()",
+    config = "require 'configs.gitsigns'.config()",
     requires = { 'nvim-lua/plenary.nvim' },
     event = 'BufReadPre',
   }
