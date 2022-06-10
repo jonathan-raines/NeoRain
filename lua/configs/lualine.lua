@@ -14,7 +14,8 @@ require 'lualine'.setup {
     lualine_a = {
       {
         'mode',
-        separator = { left = '', right = '' },
+        -- separator = { left = '', right = '' },
+        separator = { right = '' },
       },
     },
     lualine_b = { 'branch', },
@@ -64,7 +65,10 @@ require 'lualine'.setup {
       { 'filetype' },
     },
     lualine_z = {
-      { 'tabs' }
+      {
+        'tabs',
+        -- separator = { left = '', right = '' },
+      },
     },
   },
   tabline = {},
