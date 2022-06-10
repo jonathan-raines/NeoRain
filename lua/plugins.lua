@@ -98,8 +98,7 @@ return packer.startup(function(use)
 
   use {
     'pwntester/octo.nvim',
-    setup = "require 'configs.octo'.setup()",
-    config = "require 'configs.octo'.config()",
+    config = "require 'octo'.setup()",
     cmd = { 'Octo' },
   }
 
