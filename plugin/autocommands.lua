@@ -57,11 +57,6 @@ augroups.misc = {
     event = 'VimEnter',
     command = 'highlight WinSeparator guibg=None',
   },
-  rake_filetype = {
-    event = 'FileType',
-    pattern = 'rake',
-    command = 'set ft=ruby',
-  },
   trim_whitespace = {
     desc = 'Trim whitespace on save',
     event = 'BufWritePre',
