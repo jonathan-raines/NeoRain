@@ -241,10 +241,7 @@ return packer.startup(function(use)
   -- Theme, Statusbar, Bufferbar --
   ---------------------------------
 
-  use {
-    'ellisonleao/gruvbox.nvim',
-    cmd = 'colorscheme gruvbox',
-  }
+  use { 'ellisonleao/gruvbox.nvim' }
 
   use {
     'rebelot/kanagawa.nvim',
