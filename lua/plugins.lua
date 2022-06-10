@@ -126,6 +126,15 @@ return packer.startup(function(use)
     ft = { 'dart' },
   }
 
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn['mkdp#util#install']() end,
+    config = function()
+      vim.g.mkdp_auto_start = 1
+    end,
+    ft = { 'markdown' }
+  }
+
   ---------------------
   -- Language Server --
   ---------------------

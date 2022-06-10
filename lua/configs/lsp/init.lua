@@ -1,4 +1,4 @@
-local handlers = require('configs.lsp.handlers')
+local handlers = require 'configs.lsp.handlers'
 
 handlers.setup()
 
@@ -15,6 +15,7 @@ local servers = {
   ['clangd'] = {},
   ['eslint'] = {},
   ['jsonls'] = {},
+  ['marksman'] = {},
   ['solargraph'] = {},
   ['sumneko_lua'] = server_settings.sumneko_lua(),
   ['tsserver'] = {},
