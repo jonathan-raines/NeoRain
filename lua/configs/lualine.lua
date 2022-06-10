@@ -1,6 +1,6 @@
 local utils = require 'utils'
 
-require('lualine').setup {
+require 'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
@@ -14,16 +14,17 @@ require('lualine').setup {
     lualine_a = {
       {
         'mode',
-        separator = { left = '', right = '' },
-        padding = { left = 1, right = 1 },
+        -- separator = { left = '', right = '' },
+        separator = { right = '' },
       },
     },
-    lualine_b = {
-      'branch',
-      require('github-notifications').statusline_notification_count,
-    },
+    lualine_b = { 'branch', },
     lualine_c = {
-      { 'buffers' },
+      {
+        'buffers',
+        hide_filename_extension = true,
+        mode = 4
+      },
       {
         'diff',
         source = function()
@@ -36,12 +37,7 @@ require('lualine').setup {
             }
           end
         end,
-        symbols = { added = '  ', modified = '柳', removed = ' ' },
-        diff_color = {
-          added = { fg = '#97c374' },
-          modified = { fg = '#dbc074' },
-          removed = { fg = '#c94f6d' },
-        },
+        symbols = { added = ' ', modified = '柳', removed = ' ' },
       },
     },
     lualine_x = {
@@ -70,9 +66,8 @@ require('lualine').setup {
     },
     lualine_z = {
       {
-        'location',
-        separator = { left = '', right = '' },
-        padding = { left = 1, right = 1 },
+        'tabs',
+        -- separator = { left = '', right = '' },
       },
     },
   },

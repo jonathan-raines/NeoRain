@@ -34,7 +34,7 @@ return packer.startup(function(use)
   -- Package Manager --
   ---------------------
 
-  use { 'wbthomason/packer.nvim', config = "require 'configs.packer.setup'" }
+  use { 'wbthomason/packer.nvim', config = "require 'configs.packer'.setup()" }
 
   ----------------------
   -- Required plugins --
@@ -43,10 +43,6 @@ return packer.startup(function(use)
   use { 'lewis6991/impatient.nvim', config = "require('impatient').enable_profile()" }
 
   use { 'nathom/filetype.nvim' }
-
-  use { 'nvim-lua/plenary.nvim' }
-
-  use { 'kyazdani42/nvim-web-devicons' }
 
   --------------
   -- Database --
@@ -67,8 +63,8 @@ return packer.startup(function(use)
   ---------------
   use {
     'nvim-telescope/telescope.nvim',
-    setup = "require 'configs.telescope.setup'",
-    config = "require 'configs.telescope.config'",
+    setup = "require 'configs.telescope'.setup()",
+    config = "require 'configs.telescope'.config()",
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons' },
@@ -102,8 +98,7 @@ return packer.startup(function(use)
 
   use {
     'pwntester/octo.nvim',
-    setup = "require 'configs.octo.setup'",
-    config = "require('octo').setup()",
+    config = "require 'octo'.setup()",
     cmd = { 'Octo' },
   }
 
@@ -114,17 +109,10 @@ return packer.startup(function(use)
   }
 
   use {
-    'rlch/github-notifications.nvim',
-    setup = "require('configs.github-notifications.setup')",
-    config = "require('configs.github-notifications.config')",
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewFocusFiles', 'DiffviewToggleFiles' }
   }
-
-
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   -------------------------------
   -- Language specific plugins --
@@ -137,6 +125,15 @@ return packer.startup(function(use)
     ft = { 'dart' },
   }
 
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn['mkdp#util#install']() end,
+    config = function()
+      vim.g.mkdp_auto_start = 1
+    end,
+    ft = { 'markdown' }
+  }
+
   ---------------------
   -- Language Server --
   ---------------------
@@ -144,7 +141,7 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = "require 'configs.lsp'",
-    event = 'BufReadPre',
+    event = { 'BufReadPre', 'BufNewFile' }
   }
 
   ----------
@@ -152,15 +149,9 @@ return packer.startup(function(use)
   ----------
 
   use {
-    'dstein64/vim-startuptime',
-    config = 'vim.g.startuptime_tries = 10',
-    cmd = { 'StartupTime' },
-  }
-
-  use {
     'vim-test/vim-test',
-    setup = "require 'configs.vim-test.setup'",
-    config = "require 'configs.vim-test.config'",
+    setup = "require 'configs.vim-test'.setup()",
+    config = "require 'configs.vim-test'.config()",
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
 
@@ -177,12 +168,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'norcalli/nvim-colorizer.lua',
-    config = "require 'colorizer'.setup()",
-    ft = { 'js', 'css', 'html', 'vue', 'lua' },
-  }
-
-  use {
     'windwp/nvim-autopairs',
     config = "require 'configs.nvim-autopairs'",
     event = 'InsertEnter',
@@ -194,6 +179,12 @@ return packer.startup(function(use)
     keys = { 'gc', 'gb' },
   }
 
+  use {
+    'ThePrimeagen/harpoon',
+    config = "require 'configs.harpoon'",
+    requires = { 'plenary.nvim' },
+    keys = { '<leader>h' }
+  }
   --------------------
   -- Autocompletion --
   --------------------
@@ -208,13 +199,13 @@ return packer.startup(function(use)
         after = 'nvim-cmp',
       },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp', event = { 'BufReadPre', 'BufNew' } },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
     },
     config = "require 'configs.nvim-cmp'",
-    event = 'InsertEnter *',
+    event = 'InsertEnter',
   }
 
   ----------------
@@ -225,13 +216,13 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = "require 'configs.nvim-treesitter'",
-    event = 'BufReadPre',
+    event = { 'BufRead', 'BufNewFile' }
   }
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    setup = "require 'configs.treesitter-textobjects.setup'",
-    config = "require 'configs.treesitter-textobjects.config'",
+    setup = "require 'configs.treesitter-textobjects'.setup()",
+    config = "require 'configs.treesitter-textobjects'.config()",
     after = 'nvim-treesitter',
   }
 
@@ -249,18 +240,11 @@ return packer.startup(function(use)
   -- Theme, Statusbar, Bufferbar --
   ---------------------------------
 
-  use {
-    'ellisonleao/gruvbox.nvim',
-    after = 'lualine.nvim',
-    cmd = 'colorscheme gruvbox',
-    disable = false,
-  }
+  use { 'ellisonleao/gruvbox.nvim' }
 
   use {
     'rebelot/kanagawa.nvim',
-    config = "require 'configs.themes.kanagawa'",
-    after = 'lualine.nvim',
-    disable = false,
+    config = "require 'configs.kanagawa'",
   }
 
   use {
@@ -275,16 +259,13 @@ return packer.startup(function(use)
 
   use {
     'folke/which-key.nvim',
-    config = "require 'configs.which-key'",
-    module = 'which-key',
-    disable = false,
+    config = "require 'configs.which-key'.config()",
   }
 
   use {
     'akinsho/nvim-toggleterm.lua',
-    setup = "require 'configs.nvim-toggleterm.setup'",
-    config = "require 'configs.nvim-toggleterm.config'",
-    event = 'BufWinEnter',
+    setup = "require 'configs.nvim-toggleterm'.setup()",
+    config = "require 'configs.nvim-toggleterm'.config()",
   }
 
   use {
@@ -296,6 +277,6 @@ return packer.startup(function(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
-    require('packer').sync()
+    require 'packer'.sync()
   end
 end)

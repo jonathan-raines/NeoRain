@@ -30,10 +30,6 @@ local normal_keymaps = {
   ['n'] = 'nzzzv',
   ['N'] = 'Nzzzv',
 
-  -- Quickfix Navigation
-  [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
-  ['[q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>',
-
   -- Buffer Navigation
   ['<Backspace>'] = '<cmd>bp<CR>',
   ['<Tab>'] = '<cmd>bn<CR>',
@@ -42,22 +38,18 @@ local normal_keymaps = {
   ['<'] = '<<',
   ['>'] = '>>',
 
-  -- Add / Subtract
-  ['+'] = '<C-a>',
-  ['-'] = '<C-x>',
-
   -- Move Windows Around
   ['<C-h>'] = '<C-w>h',
   ['<C-l>'] = '<C-w>l',
-  ['<C-j>'] = '<C-w>j',
-  ['<C-k>'] = '<C-w>k',
 
   -- Move Lines Around
-  ['<A-j>'] = ':m .+1<CR>==',
-  ['<A-k>'] = ':m .-2<CR>==',
+  ['<C-j>'] = ':m .+1<CR>==',
+  ['<C-k>'] = ':m .-2<CR>==',
 
   -- Quickfix
   ['<C-q>'] = "<cmd>lua require('utils').quick_fix_toggle()<CR>",
+  [']q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>',
+  ['[q'] = '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>',
 
   -- Resize windows
   ['<C-Up>'] = ':resize -5<CR>',
@@ -68,16 +60,13 @@ local normal_keymaps = {
 
 local insert_keymaps = {
   -- Escape closing character
-  ['<A-l>'] = "<cmd>lua require('utils').escape_pair()<CR>",
-
-  -- save in insert mode
-  ['<C-s>'] = '<ESC>:up<CR>',
+  ['<C-l>'] = "<cmd>lua require('utils').escape_pair()<CR>",
 }
 
 local visual_keymaps = {
   -- Move Lines Around
-  ['<A-j>'] = ":m '>+1<CR>gv-gv",
-  ['<A-k>'] = ":m '<-2<CR>gv-gv",
+  ['<C-j>'] = ":m '>+1<CR>gv-gv",
+  ['<C-k>'] = ":m '<-2<CR>gv-gv",
 
   -- Better Indenting
   ['<'] = '<gv',

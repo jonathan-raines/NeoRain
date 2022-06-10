@@ -8,6 +8,8 @@ vim.cmd [[
     \  { 'name': 'auth_test', 'url': 'postgres://postgres:welcome@localhost:5433/oauth_service_test' },
     \  { 'name': 'engage_develop', 'url': 'postgres://postgres:welcome@localhost:5433/engage_development' },
     \  { 'name': 'engage_test', 'url': 'postgres://postgres:welcome@localhost:5433/engage_test' },
+    \  { 'name': 'files_develop', 'url': 'postgres://postgres:welcome@localhost:5433/files_development' },
+    \  { 'name': 'files_test', 'url': 'postgres://postgres:welcome@localhost:5433/files_test' },
     \  { 'name': 'media_develop', 'url': 'postgres://postgres:welcome@localhost:5433/thrillshare_development' },
     \  { 'name': 'media_test', 'url': 'postgres://postgres:welcome@localhost:5433/thrillshare_test' }
     \ ]
@@ -28,6 +30,6 @@ vim.api.nvim_create_autocmd('FileType', {
   group = 'DadBodUI',
   pattern = 'sql,mysql,plsql',
   callback = function()
-    require('cmp').setup.buffer { sources = { { name = 'vim-dadbod-completion' } } }
+    require 'cmp'.setup.buffer { sources = { { name = 'vim-dadbod-completion' } } }
   end,
 })
