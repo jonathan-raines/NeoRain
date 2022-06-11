@@ -197,7 +197,7 @@ return packer.startup(function(use)
         'L3MON4D3/LuaSnip',
         config = " require('luasnip/loaders/from_vscode').lazy_load()",
         requires = { { 'rafamadriz/friendly-snippets', event = 'InsertEnter' } },
-        after = 'nvim-cmp',
+        event = 'InsertEnter'
       },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp', event = { 'BufReadPre', 'BufNew' } },
