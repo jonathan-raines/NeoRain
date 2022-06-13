@@ -5,26 +5,16 @@ function _CURR_BUF()
   require 'telescope.builtin'.current_buffer_fuzzy_find(opt)
 end
 
-function _FIND_FILES()
-  local is_git = os.execute 'git status &>/dev/null'
-  if (is_git == 0) then
-    vim.cmd ':Telescope git_files'
-  else
-    vim.cmd ':Telescope find_files'
-  end
-end
-
--- Telescope bindings
 M.setup = function()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
     ['<leader>fb'] = '<cmd>Telescope buffers theme=get_ivy<CR>',
-    ['<leader>fc'] = '<cmd>Telescope colorscheme<CR>',
+    ['<leader>fc'] = '<cmd>Telescope command_history<CR>',
     ['<leader>fd'] = '<cmd>Telescope lsp_document_symbols<CR>',
     ['<leader>fe'] = '<cmd>Telescope file_browser<CR>',
-    ['<leader>ff'] = '<cmd>lua _FIND_FILES()<CR>',
+    ['<leader>ff'] = '<cmd>Telescope find_files<CR>',
     ['<leader>fh'] = '<cmd>Telescope git_status<CR>',
     ['<leader>fg'] = '<cmd>Telescope live_grep<CR>',
     ['<leader>fo'] = '<cmd>Telescope oldfiles cwd_only=v:true<CR>',
