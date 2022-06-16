@@ -239,19 +239,13 @@ return packer.startup(function(use)
     'navarasu/onedark.nvim',
     config = function()
       require 'onedark'.setup { style = 'deep' }
-      -- require 'onedark'.load()
+      require 'onedark'.load()
     end,
   }
 
-  use { 'Mofiqul/dracula.nvim' }
+  use { 'luisiacc/gruvbox-baby' }
 
-  use {
-    'shatur/neovim-ayu',
-    config = function()
-      require 'ayu'.setup {}
-      require 'ayu'.colorscheme {}
-    end
-  }
+  use { 'Mofiqul/dracula.nvim' }
 
   use {
     'nvim-lualine/lualine.nvim',

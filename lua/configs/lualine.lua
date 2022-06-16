@@ -23,9 +23,6 @@ require 'lualine'.setup {
         'buffers',
         hide_filename_extension = true,
         mode = 4,
-        buffers_color = {
-          active = 'lualine_a_normal'
-        },
         separator = { right = '' },
       },
       {
@@ -68,10 +65,7 @@ require 'lualine'.setup {
       { 'filetype' },
     },
     lualine_z = {
-      {
-        'tabs',
-        -- separator = { left = '', right = '' },
-      },
+      { 'tabs' },
     },
   },
   tabline = {},
