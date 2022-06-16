@@ -38,7 +38,6 @@ M.config = function()
     ['a'] = 'which_key_ignore',
     ['A'] = 'which_key_ignore',
     ['gg'] = { '<cmd>Neogit<CR>', 'Neogit' },
-    ['h'] = 'Harpoon'
   }
 
   wk.register(mappings, { prefix = '<leader>' })

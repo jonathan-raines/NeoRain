@@ -180,12 +180,6 @@ return packer.startup(function(use)
     keys = { 'gc', 'gb' },
   }
 
-  use {
-    'ThePrimeagen/harpoon',
-    config = "require 'configs.harpoon'",
-    requires = { 'plenary.nvim' },
-    keys = { '<leader>h' }
-  }
   --------------------
   -- Autocompletion --
   --------------------
