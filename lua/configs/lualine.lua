@@ -14,7 +14,6 @@ require 'lualine'.setup {
     lualine_a = {
       {
         'mode',
-        -- separator = { left = '', right = '' },
         separator = { right = '' },
       },
     },
@@ -23,7 +22,11 @@ require 'lualine'.setup {
       {
         'buffers',
         hide_filename_extension = true,
-        mode = 4
+        mode = 4,
+        buffers_color = {
+          active = 'lualine_a_normal'
+        },
+        separator = { right = '' },
       },
       {
         'diff',
