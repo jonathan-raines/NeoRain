@@ -235,11 +235,22 @@ return packer.startup(function(use)
   -- Theme, Statusbar, Bufferbar --
   ---------------------------------
 
-  use { 'ellisonleao/gruvbox.nvim' }
+  use {
+    'navarasu/onedark.nvim',
+    config = function()
+      require 'onedark'.setup { style = 'deep' }
+      -- require 'onedark'.load()
+    end,
+  }
+
+  use { 'Mofiqul/dracula.nvim' }
 
   use {
-    'rebelot/kanagawa.nvim',
-    config = "require 'configs.kanagawa'",
+    'shatur/neovim-ayu',
+    config = function()
+      require 'ayu'.setup {}
+      require 'ayu'.colorscheme {}
+    end
   }
 
   use {
