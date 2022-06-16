@@ -61,6 +61,7 @@ return packer.startup(function(use)
   ---------------
   -- Telescope --
   ---------------
+
   use {
     'nvim-telescope/telescope.nvim',
     setup = "require 'configs.telescope'.setup()",
@@ -238,7 +239,6 @@ return packer.startup(function(use)
   use {
     'navarasu/onedark.nvim',
     config = function()
-      require 'onedark'.setup { style = 'deep' }
       require 'onedark'.load()
     end,
   }
