@@ -158,9 +158,12 @@ return packer.startup(function(use)
   }
 
   use {
-    'gukz/ftFT.nvim',
-    config = "require 'configs.ftFT'",
-    keys = { 'f', 'F', 't', 'T' },
+    'jinh0/eyeliner.nvim',
+    config = function()
+      require 'eyeliner'.setup {
+        bold = true
+      }
+    end
   }
 
   use {
