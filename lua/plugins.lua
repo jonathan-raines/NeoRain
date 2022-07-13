@@ -109,11 +109,11 @@ return packer.startup(function(use)
     cmd = { 'Neogit' },
   }
 
-  use {
-    'sindrets/diffview.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-    cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewFocusFiles', 'DiffviewToggleFiles' }
-  }
+  -- use {
+  --   'sindrets/diffview.nvim',
+  --   requires = 'nvim-lua/plenary.nvim',
+  --   cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewFocusFiles', 'DiffviewToggleFiles' }
+  -- }
 
   -------------------------------
   -- Language specific plugins --
