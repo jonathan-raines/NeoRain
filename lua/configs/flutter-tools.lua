@@ -4,13 +4,5 @@ require 'flutter-tools'.setup {
   },
 }
 
-local wk_ok, wk = pcall(require, 'which-key')
-if wk_ok then
-  wk.register({
-    f = {
-      y = { '<cmd>Telescope flutter commands theme=dropdown<cr>', 'Flutter Commands' },
-    },
-  }, {
-    prefix = '<leader>',
-  })
-end
+vim.keymap.set('n', '<leader>fy', '<CMD>Telescope flutter commands theme=dropdown<CR>',
+  { noremap = true, silent = true, desc = 'Flutter Commands' })

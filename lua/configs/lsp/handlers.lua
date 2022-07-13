@@ -42,53 +42,44 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function whichkey_document_keymaps()
-  local wk_ok, wk = pcall(require, 'which-key')
-  if wk_ok then
-    wk.register {
-      g = {
-        a = 'Code Action',
-        d = 'Definition',
-        D = 'Declaration',
-        F = 'Formatting',
-        i = 'Implementation',
-        l = 'Line Diagnostics',
-        q = 'Set Loclist',
-        rn = 'Rename',
-        rr = 'References',
-      },
-      ['['] = {
-        d = 'Previous Diagnostic',
-      },
-      [']'] = {
-        d = 'Next Diagnostic',
-      },
-    }
-  end
-end
-
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
+
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  keymap(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  keymap(bufnr, 'n', 'grn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  keymap(bufnr, 'n', 'grr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-  keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  keymap(bufnr, 'n', 'gq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  keymap(bufnr, 'n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  keymap(bufnr, 'n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  keymap(bufnr, 'n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.format { async = false }<CR>', opts)
-  whichkey_document_keymaps()
+  keymap(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Code Action' }))
+  keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Definition' }))
+  keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Declaration' }))
+  keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Implementation' }))
+  keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Line Diagnostics' }))
+  keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Hover' }))
+  keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Signature Help' }))
+  keymap(bufnr, 'n', 'grn', '<cmd>lua vim.lsp.buf.rename()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Rename' }))
+  keymap(bufnr, 'n', 'grr', '<cmd>lua vim.lsp.buf.references()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'References' }))
+  keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Previous Diagnostics' }))
+  keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Next Diagnostics' }))
+  keymap(bufnr, 'n', 'gq', '<cmd>lua vim.diagnostic.setloclist()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Set Local List' }))
+  keymap(bufnr, 'n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Add Workspace Folder' }))
+  keymap(bufnr, 'n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Remove Workspace Folder' }))
+  keymap(bufnr, 'n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'List Workspace Folders' }))
+  keymap(bufnr, 'n', 'gF', '<CMD>lua vim.lsp.buf.format { async = false }<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Format [LSP]' }))
 end
 
 M.on_attach = function(client, bufnr)

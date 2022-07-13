@@ -5,31 +5,15 @@ M.setup = function()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    ['<leader>tf'] = '<cmd>TestFile<CR>',
-    ['<leader>tl'] = '<cmd>TestLast<CR>',
-    ['<leader>tn'] = '<cmd>TestNearest<CR>',
-    ['<leader>ts'] = '<cmd>TestSuite<CR>',
-    ['<leader>tv'] = '<cmd>TestVisit<CR>',
+    ['<leader>tf'] = { '<cmd>TestFile<CR>', { desc = 'Test File' } },
+    ['<leader>tl'] = { '<cmd>TestLast<CR>', { desc = 'Test Last' } },
+    ['<leader>tn'] = { '<cmd>TestNearest<CR>', { desc = 'Test Nearest' } },
+    ['<leader>ts'] = { '<cmd>TestSuite<CR>', { desc = 'Test Suite' } },
+    ['<leader>tv'] = { '<cmd>TestVisit<CR>', { desc = 'Visit Test File' } },
   }
 
-  for key, cmd in pairs(keymaps) do
-    keymap('n', key, cmd, opts)
-  end
-
-  local wk_ok, wk = pcall(require, 'which-key')
-  if wk_ok then
-    local mappings = {
-      t = {
-        name = 'Testing',
-        f = { 'Run Test File' },
-        l = { 'Run Last Test' },
-        n = { 'Run Nearest Test' },
-        s = { 'Run Test Suite' },
-        v = { 'Visit Test File' },
-      },
-    }
-
-    wk.register(mappings, { prefix = '<leader>' })
+  for key, val in pairs(keymaps) do
+    keymap('n', key, val[1], vim.tbl_extend('keep', opts, val[2]))
   end
 end
 

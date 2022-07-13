@@ -1,20 +1,5 @@
 local M = {}
 
-M.setup = function()
-  local wk_ok, wk = pcall(require, 'which-key')
-  if wk_ok then
-    local mappings = {
-      d = {
-        name = 'Peek',
-        f = { 'Peek Function' },
-        F = { 'Peek Class' },
-      },
-    }
-
-    wk.register(mappings, { prefix = '<leader>' })
-  end
-end
-
 M.config = function()
   require 'nvim-treesitter.configs'.setup {
     textobjects = {

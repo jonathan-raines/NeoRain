@@ -92,7 +92,6 @@ return packer.startup(function(use)
 
   use {
     'lewis6991/gitsigns.nvim',
-    setup = "require 'configs.gitsigns'.setup()",
     config = "require 'configs.gitsigns'.config()",
     requires = { 'nvim-lua/plenary.nvim' },
     event = 'BufReadPre',
@@ -161,7 +160,7 @@ return packer.startup(function(use)
     'jinh0/eyeliner.nvim',
     config = function()
       require 'eyeliner'.setup {
-        bold = true
+        bold = false,
       }
     end
   }
@@ -220,7 +219,6 @@ return packer.startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    setup = "require 'configs.treesitter-textobjects'.setup()",
     config = "require 'configs.treesitter-textobjects'.config()",
     after = 'nvim-treesitter',
   }
@@ -273,8 +271,9 @@ return packer.startup(function(use)
 
   use {
     'matbme/JABS.nvim',
-    config = "require 'configs.jabs'",
-    keys = { '<leader>b' }
+    setup = "require 'configs.jabs'.setup()",
+    config = "require 'configs.jabs'.config()",
+    cmd = { 'JABSOpen' }
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

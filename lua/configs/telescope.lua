@@ -10,50 +10,24 @@ M.setup = function()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    ['<leader>fb'] = '<cmd>Telescope buffers theme=get_ivy<CR>',
-    ['<leader>fc'] = '<cmd>Telescope command_history<CR>',
-    ['<leader>fd'] = '<cmd>Telescope lsp_document_symbols<CR>',
-    ['<leader>fe'] = '<cmd>Telescope file_browser<CR>',
-    ['<leader>ff'] = '<cmd>Telescope find_files<CR>',
-    ['<leader>fh'] = '<cmd>Telescope git_status<CR>',
-    ['<leader>fg'] = '<cmd>Telescope live_grep<CR>',
-    ['<leader>fo'] = '<cmd>Telescope oldfiles cwd_only=v:true<CR>',
-    ['<leader>fq'] = '<cmd>Telescope quickfix<CR>',
-    ['<leader>fr'] = '<cmd>Telescope resume<CR>',
-    ['<leader>fs'] = '<cmd>Telescope grep_string<CR>',
-    ['<leader>ft'] = '<cmd>Telescope treesitter<CR>',
-    ['<leader>fw'] = '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>',
-    ['<leader>/'] = '<cmd>lua _CURR_BUF()<CR>',
+    ['<leader>fb'] = { '<cmd>Telescope buffers theme=get_ivy<CR>', { desc = 'Buffers' } },
+    ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
+    ['<leader>fd'] = { '<cmd>Telescope lsp_document_symbols<CR>', { desc = 'Document Symbols' } },
+    ['<leader>fe'] = { '<cmd>Telescope file_browser<CR>', { desc = 'File Browser' } },
+    ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', { desc = 'Find Files' } },
+    ['<leader>fh'] = { '<cmd>Telescope git_status<CR>', { desc = 'Git Status' } },
+    ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', { desc = 'Live Grep' } },
+    ['<leader>fo'] = { '<cmd>Telescope oldfiles cwd_only=v:true<CR>', { desc = 'Recent Files' } },
+    ['<leader>fq'] = { '<cmd>Telescope quickfix<CR>', { desc = 'Quickfix' } },
+    ['<leader>fr'] = { '<cmd>Telescope resume<CR>', { desc = 'Resume' } },
+    ['<leader>fs'] = { '<cmd>Telescope grep_string<CR>', { desc = 'Grep String' } },
+    ['<leader>ft'] = { '<cmd>Telescope treesitter<CR>', { desc = 'Treesitter' } },
+    ['<leader>fw'] = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', { desc = 'Workplace Symbols' } },
+    ['<leader>/'] = { '<cmd>lua _CURR_BUF()<CR>', { desc = 'Current Buffer' } },
   }
 
-  for key, cmd in pairs(keymaps) do
-    keymap('n', key, cmd, opts)
-  end
-
-  local wk_ok, wk = pcall(require, 'which-key')
-  if wk_ok then
-    local mappings = {
-      b = { 'Buffers' },
-      f = {
-        name = 'Telescope',
-        b = { 'Buffers' },
-        c = { 'Colorscheme' },
-        d = { 'Document Symbols' },
-        f = { 'Find Files' },
-        e = { 'File Browser' },
-        g = { 'Live Grep' },
-        h = { 'Git Status' },
-        o = { 'Open Recent File' },
-        q = { 'Open Quickfix' },
-        r = { 'Resume Last Picker' },
-        s = { 'Grep String' },
-        t = { 'Treesitter' },
-        w = { 'Workplace Symbols' },
-      },
-      ['/'] = { 'Search Current Buffer' },
-    }
-
-    wk.register(mappings, { prefix = '<leader>' })
+  for key, val in pairs(keymaps) do
+    keymap('n', key, val[1], vim.tbl_extend('keep', opts, val[2]))
   end
 end
 

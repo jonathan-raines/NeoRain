@@ -24,5 +24,5 @@ local servers = {
 }
 
 for lsp, lsp_opts in pairs(servers) do
-  lspconfig[lsp].setup(vim.tbl_deep_extend('force', lsp_opts, opts))
+  lspconfig[lsp].setup(vim.tbl_extend('keep', lsp_opts, opts))
 end

@@ -1,17 +1,15 @@
 local M = {}
 
 M.setup = function()
-  local wk_ok, wk = pcall(require, 'which-key')
-  if wk_ok then
-    local mappings = {
-      j = {
-        name = 'Terminal',
-        d = { '<cmd>lua _LAZYDOCKER_TOGGLE()<CR>', 'Lazy Docker' },
-        l = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazy Git' },
-      },
-    }
+  local keymap = vim.keymap.set
+  local opts = { noremap = true, silent = true }
+  local mappings = {
+    ['<leader>jd'] = { '<cmd>lua _LAZYDOCKER_TOGGLE()<CR>', { desc = 'Lazy Docker' } },
+    ['<leader>jl'] = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', { desc = 'Lazy Git' } },
+  }
 
-    wk.register(mappings, { prefix = '<leader>' })
+  for key, val in pairs(mappings) do
+    keymap('n', key, val[1], vim.tbl_extend('keep', opts, val[2]))
   end
 end
 
