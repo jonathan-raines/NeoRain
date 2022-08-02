@@ -20,7 +20,7 @@ local normal_keymaps = {
 
   ['<leader>w'] = { '<cmd>up<CR>', { desc = 'Write' } },
   ['<leader>q'] = { 'ZZ', { desc = 'Quit' } },
-  ['<leader>c'] = { '<cmd>execute (v:count > 0 ? v:count : "") . "bd!"<CR>', { desc = 'Close Buffer' } },
+  ['<leader>c'] = { '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
   ['<leader>C'] = { '<cmd>%bd|e#|bd#<CR>', { desc = 'Close All But Current Buffer' } },
 
   ['J'] = { 'mzJ`z', { desc = 'Join on same line' } },
@@ -51,6 +51,7 @@ local normal_keymaps = {
 
 local insert_keymaps = {
   ['<C-l>'] = { "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
+  ['jk'] = { '<ESC>', { desc = 'Exit insert mode' } }
 }
 
 local visual_keymaps = {
@@ -61,6 +62,8 @@ local visual_keymaps = {
   -- Better Indenting
   ['<'] = { '<gv', { desc = 'Keep visual selection on indent decrease' } },
   ['>'] = { '>gv', { desc = 'Keep visual selection on indent increase' } },
+
+  ['jk'] = { '<ESC>', { desc = 'Exit visual mode' } }
 }
 
 -- Center navigation commands

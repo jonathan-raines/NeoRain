@@ -26,6 +26,13 @@ M.config = function()
     },
     ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
   }
+
+  require 'which-key'.register({
+    f = { name = 'Telescope' },
+    h = { name = 'Git' },
+    p = { name = 'Packer' },
+    t = { name = 'Test' },
+  }, { prefix = '<leader>' })
 end
 
 return M

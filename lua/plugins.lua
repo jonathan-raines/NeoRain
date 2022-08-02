@@ -48,15 +48,15 @@ return packer.startup(function(use)
   -- Database --
   --------------
 
-  use {
-    'kristijanhusak/vim-dadbod-ui',
-    config = "require 'configs.vim-dadbod-ui'",
-    requires = {
-      { 'tpope/vim-dadbod', after = 'vim-dadbod-ui' },
-      { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
-    },
-    cmd = { 'DBUI', 'DBUIToggle' },
-  }
+  -- use {
+  --   'kristijanhusak/vim-dadbod-ui',
+  --   config = "require 'configs.vim-dadbod-ui'",
+  --   requires = {
+  --     { 'tpope/vim-dadbod', after = 'vim-dadbod-ui' },
+  --     { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
+  --   },
+  --   cmd = { 'DBUI', 'DBUIToggle' },
+  -- }
 
   ---------------
   -- Telescope --
@@ -103,11 +103,11 @@ return packer.startup(function(use)
     cmd = { 'Octo' },
   }
 
-  use {
-    'TimUntersberger/neogit',
-    requires = 'nvim-lua/plenary.nvim',
-    cmd = { 'Neogit' },
-  }
+  -- use {
+  --   'TimUntersberger/neogit',
+  --   requires = 'nvim-lua/plenary.nvim',
+  --   cmd = { 'Neogit' },
+  -- }
 
   -- use {
   --   'sindrets/diffview.nvim',
@@ -119,21 +119,18 @@ return packer.startup(function(use)
   -- Language specific plugins --
   -------------------------------
 
-  use {
-    'akinsho/flutter-tools.nvim',
-    config = "require 'configs.flutter-tools'",
-    requires = 'nvim-lua/plenary.nvim',
-    ft = { 'dart' },
-  }
+  -- use {
+  --   'akinsho/flutter-tools.nvim',
+  --   config = "require 'configs.flutter-tools'",
+  --   requires = 'nvim-lua/plenary.nvim',
+  --   ft = { 'dart' },
+  -- }
 
-  use {
-    'iamcco/markdown-preview.nvim',
-    run = function() vim.fn['mkdp#util#install']() end,
-    config = function()
-      vim.g.mkdp_auto_start = 1
-    end,
-    ft = { 'markdown' }
-  }
+  -- use {
+  --   'iamcco/markdown-preview.nvim',
+  --   run = function() vim.fn['mkdp#util#install']() end,
+  --   ft = { 'markdown' }
+  -- }
 
   ---------------------
   -- Language Server --
@@ -156,20 +153,14 @@ return packer.startup(function(use)
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
 
-  use {
-    'jinh0/eyeliner.nvim',
-    config = function()
-      require 'eyeliner'.setup {
-        bold = false,
-      }
-    end
-  }
-
-  use {
-    'max397574/better-escape.nvim',
-    config = "require('better_escape').setup()",
-    event = 'InsertEnter',
-  }
+  -- use {
+  --   'jinh0/eyeliner.nvim',
+  --   config = function()
+  --     require 'eyeliner'.setup {
+  --       bold = false,
+  --     }
+  --   end
+  -- }
 
   use {
     'windwp/nvim-autopairs',
@@ -196,11 +187,11 @@ return packer.startup(function(use)
         requires = { { 'rafamadriz/friendly-snippets', event = 'InsertEnter' } },
         event = 'InsertEnter'
       },
-      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp', event = { 'BufReadPre', 'BufNew' } },
-      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-lspconfig' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      -- { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      -- { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     },
     config = "require 'configs.nvim-cmp'",
     event = 'InsertEnter',
@@ -217,21 +208,21 @@ return packer.startup(function(use)
     event = { 'BufRead', 'BufNewFile' }
   }
 
-  use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    config = "require 'configs.treesitter-textobjects'.config()",
-    after = 'nvim-treesitter',
-  }
+  -- use {
+  --   'nvim-treesitter/nvim-treesitter-textobjects',
+  --   config = "require 'configs.treesitter-textobjects'.config()",
+  --   after = 'nvim-treesitter',
+  -- }
 
-  use {
-    'windwp/nvim-ts-autotag',
-    ft = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue' },
-  }
+  -- use {
+  --   'windwp/nvim-ts-autotag',
+  --   ft = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue' },
+  -- }
 
-  use {
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    ft = { 'js', 'css', 'html', 'vue', 'lua' },
-  }
+  -- use {
+  --   'JoosepAlviste/nvim-ts-context-commentstring',
+  --   ft = { 'js', 'css', 'html', 'vue', 'lua' },
+  -- }
 
   ---------------------------------
   -- Theme, Statusbar, Bufferbar --
@@ -244,9 +235,9 @@ return packer.startup(function(use)
     end,
   }
 
-  use { 'luisiacc/gruvbox-baby' }
+  -- use { 'luisiacc/gruvbox-baby' }
 
-  use { 'Mofiqul/dracula.nvim' }
+  -- use { 'Mofiqul/dracula.nvim' }
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -263,18 +254,18 @@ return packer.startup(function(use)
     config = "require 'configs.which-key'.config()",
   }
 
-  use {
-    'akinsho/nvim-toggleterm.lua',
-    setup = "require 'configs.nvim-toggleterm'.setup()",
-    config = "require 'configs.nvim-toggleterm'.config()",
-  }
+  -- use {
+  --   'akinsho/nvim-toggleterm.lua',
+  --   setup = "require 'configs.nvim-toggleterm'.setup()",
+  --   config = "require 'configs.nvim-toggleterm'.config()",
+  -- }
 
-  use {
-    'matbme/JABS.nvim',
-    setup = "require 'configs.jabs'.setup()",
-    config = "require 'configs.jabs'.config()",
-    cmd = { 'JABSOpen' }
-  }
+  -- use {
+  --   'matbme/JABS.nvim',
+  --   setup = "require 'configs.jabs'.setup()",
+  --   config = "require 'configs.jabs'.config()",
+  --   cmd = { 'JABSOpen' }
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

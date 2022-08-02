@@ -4,7 +4,6 @@ M.setup = function()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
   local mappings = {
-    ['<leader>jd'] = { '<cmd>lua _LAZYDOCKER_TOGGLE()<CR>', { desc = 'Lazy Docker' } },
     ['<leader>jl'] = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', { desc = 'Lazy Git' } },
   }
 
@@ -46,14 +45,9 @@ M.config = function()
 
   local Terminal = require 'toggleterm.terminal'.Terminal
   local lazygit = Terminal:new { cmd = 'lazygit', hidden = true }
-  local lazydocker = Terminal:new { cmd = 'lazydocker', hidden = true }
 
   function _LAZYGIT_TOGGLE()
     lazygit:toggle()
-  end
-
-  function _LAZYDOCKER_TOGGLE()
-    lazydocker:toggle()
   end
 end
 
