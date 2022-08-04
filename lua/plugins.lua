@@ -97,41 +97,6 @@ return packer.startup(function(use)
     event = 'BufReadPre',
   }
 
-  use {
-    'pwntester/octo.nvim',
-    config = "require 'octo'.setup()",
-    cmd = { 'Octo' },
-  }
-
-  -- use {
-  --   'TimUntersberger/neogit',
-  --   requires = 'nvim-lua/plenary.nvim',
-  --   cmd = { 'Neogit' },
-  -- }
-
-  -- use {
-  --   'sindrets/diffview.nvim',
-  --   requires = 'nvim-lua/plenary.nvim',
-  --   cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewFocusFiles', 'DiffviewToggleFiles' }
-  -- }
-
-  -------------------------------
-  -- Language specific plugins --
-  -------------------------------
-
-  -- use {
-  --   'akinsho/flutter-tools.nvim',
-  --   config = "require 'configs.flutter-tools'",
-  --   requires = 'nvim-lua/plenary.nvim',
-  --   ft = { 'dart' },
-  -- }
-
-  -- use {
-  --   'iamcco/markdown-preview.nvim',
-  --   run = function() vim.fn['mkdp#util#install']() end,
-  --   ft = { 'markdown' }
-  -- }
-
   ---------------------
   -- Language Server --
   ---------------------
@@ -152,15 +117,6 @@ return packer.startup(function(use)
     config = "require 'configs.vim-test'.config()",
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
-
-  -- use {
-  --   'jinh0/eyeliner.nvim',
-  --   config = function()
-  --     require 'eyeliner'.setup {
-  --       bold = false,
-  --     }
-  --   end
-  -- }
 
   use {
     'windwp/nvim-autopairs',
@@ -190,7 +146,7 @@ return packer.startup(function(use)
       { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-lspconfig' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-      -- { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       -- { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     },
     config = "require 'configs.nvim-cmp'",
@@ -207,22 +163,6 @@ return packer.startup(function(use)
     config = "require 'configs.nvim-treesitter'",
     event = { 'BufRead', 'BufNewFile' }
   }
-
-  -- use {
-  --   'nvim-treesitter/nvim-treesitter-textobjects',
-  --   config = "require 'configs.treesitter-textobjects'.config()",
-  --   after = 'nvim-treesitter',
-  -- }
-
-  -- use {
-  --   'windwp/nvim-ts-autotag',
-  --   ft = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue' },
-  -- }
-
-  -- use {
-  --   'JoosepAlviste/nvim-ts-context-commentstring',
-  --   ft = { 'js', 'css', 'html', 'vue', 'lua' },
-  -- }
 
   ---------------------------------
   -- Theme, Statusbar, Bufferbar --
@@ -253,19 +193,6 @@ return packer.startup(function(use)
     'folke/which-key.nvim',
     config = "require 'configs.which-key'.config()",
   }
-
-  -- use {
-  --   'akinsho/nvim-toggleterm.lua',
-  --   setup = "require 'configs.nvim-toggleterm'.setup()",
-  --   config = "require 'configs.nvim-toggleterm'.config()",
-  -- }
-
-  -- use {
-  --   'matbme/JABS.nvim',
-  --   setup = "require 'configs.jabs'.setup()",
-  --   config = "require 'configs.jabs'.config()",
-  --   cmd = { 'JABSOpen' }
-  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
