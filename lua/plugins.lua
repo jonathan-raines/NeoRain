@@ -235,9 +235,9 @@ return packer.startup(function(use)
     end,
   }
 
-  -- use { 'luisiacc/gruvbox-baby' }
+  use { 'luisiacc/gruvbox-baby' }
 
-  -- use { 'Mofiqul/dracula.nvim' }
+  use { 'Mofiqul/dracula.nvim' }
 
   use {
     'nvim-lualine/lualine.nvim',
