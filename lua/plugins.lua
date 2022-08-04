@@ -42,8 +42,6 @@ return packer.startup(function(use)
 
   use { 'lewis6991/impatient.nvim', config = "require('impatient').enable_profile()" }
 
-  use { 'nathom/filetype.nvim' }
-
   --------------
   -- Database --
   --------------
@@ -94,7 +92,6 @@ return packer.startup(function(use)
     'lewis6991/gitsigns.nvim',
     config = "require 'configs.gitsigns'.config()",
     requires = { 'nvim-lua/plenary.nvim' },
-    event = 'BufReadPre',
   }
 
   ---------------------
@@ -104,7 +101,6 @@ return packer.startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config = "require 'configs.lsp'",
-    event = { 'BufReadPre', 'BufNewFile' }
   }
 
   ----------
@@ -143,11 +139,11 @@ return packer.startup(function(use)
         requires = { { 'rafamadriz/friendly-snippets', event = 'InsertEnter' } },
         event = 'InsertEnter'
       },
-      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-lspconfig' },
+      { 'hrsh7th/cmp-nvim-lsp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      -- { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     },
     config = "require 'configs.nvim-cmp'",
     event = 'InsertEnter',

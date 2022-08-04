@@ -69,7 +69,7 @@ M.config = function()
             ['<A-d>'] = actions.delete_buffer,
           },
           n = {
-            ['<A-d>'] = actions.delete_buffer,
+            ['d'] = actions.delete_buffer,
           },
         },
       },
