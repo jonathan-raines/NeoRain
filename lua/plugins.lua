@@ -136,8 +136,7 @@ return packer.startup(function(use)
       {
         'L3MON4D3/LuaSnip',
         config = " require('luasnip/loaders/from_vscode').lazy_load()",
-        requires = { { 'rafamadriz/friendly-snippets', event = 'InsertEnter' } },
-        event = 'InsertEnter'
+        requires = { { 'rafamadriz/friendly-snippets' } },
       },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
@@ -171,9 +170,9 @@ return packer.startup(function(use)
     end,
   }
 
-  use { 'luisiacc/gruvbox-baby' }
+  -- use { 'luisiacc/gruvbox-baby' }
 
-  use { 'Mofiqul/dracula.nvim' }
+  -- use { 'Mofiqul/dracula.nvim' }
 
   use {
     'nvim-lualine/lualine.nvim',
