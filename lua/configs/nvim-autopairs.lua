@@ -1,24 +1,14 @@
 local npairs = require 'nvim-autopairs'
+local Rule = require 'nvim-autopairs.rule'
 
 npairs.setup {
+  fast_wrap = {},
   check_ts = true,
-  disable_filetype = { 'TelescopePrompt', 'vim' },
-  fast_wrap = {
-    map = '<M-e>',
-    chars = { '{', '[', '(', '"', "'" },
-    pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
-    offset = 0, -- Offset from pattern match
-    end_key = '$',
-    keys = 'qwertyuiopzxcvbnmasdfghjkl',
-    check_comma = true,
-    highlight = 'PmenuSel',
-    highlight_grey = 'LineNr',
-  },
   ts_config = {
-    lua = { 'string', 'source' }, -- it will not add pair on that treesitter node
-    javascript = { 'string', 'template_string' },
+    lua = { 'string' }, -- it will not add a pair on that treesitter node
+    javascript = { 'template_string' },
     java = false, -- don't check treesitter on java
-  },
+  }
 }
 
 npairs.add_rules(require 'nvim-autopairs.rules.endwise-lua')
@@ -26,6 +16,5 @@ npairs.add_rules(require 'nvim-autopairs.rules.endwise-ruby')
 
 local cmp_ok, cmp = pcall('require', 'cmp')
 if cmp_ok then
-  -- Integration w/ nvim-cmp
   cmp.event:on('confirm_done', require 'nvim-autopairs.completion.cmp'.on_confirm_done())
 end
