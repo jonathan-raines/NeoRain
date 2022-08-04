@@ -123,7 +123,6 @@ return packer.startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = "require 'configs.comment'",
-    keys = { 'gc', 'gb' },
   }
 
   --------------------
@@ -170,9 +169,9 @@ return packer.startup(function(use)
     end,
   }
 
-  -- use { 'luisiacc/gruvbox-baby' }
+  use { 'luisiacc/gruvbox-baby' }
 
-  -- use { 'Mofiqul/dracula.nvim' }
+  use { 'Mofiqul/dracula.nvim' }
 
   use {
     'nvim-lualine/lualine.nvim',
