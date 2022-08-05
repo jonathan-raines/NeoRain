@@ -171,8 +171,6 @@ return packer.startup(function(use)
 
   use { 'luisiacc/gruvbox-baby' }
 
-  use { 'Mofiqul/dracula.nvim' }
-
   use {
     'nvim-lualine/lualine.nvim',
     config = "require 'configs.lualine'",
