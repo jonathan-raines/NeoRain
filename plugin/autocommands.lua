@@ -45,7 +45,7 @@ augroups.misc = {
     end,
   },
   show_cursorline = {
-    desc = 'Hide cursorline in inactive window',
+    desc = 'Show cursorline in active window',
     event = 'WinEnter',
     pattern = '*',
     callback = function()
