@@ -153,29 +153,29 @@ return packer.startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
     config = "require 'configs.nvim-treesitter'",
+    run = ':TSUpdate',
     event = { 'BufRead', 'BufNewFile' }
   }
 
-  ---------------------------------
-  -- Theme, Statusbar, Bufferbar --
-  ---------------------------------
+  -------------------
+  -- COLOR SCHEMES --
+  -------------------
+
+  -- use { 'navarasu/onedark.nvim',
+  --   config = function()
+  --     require 'onedark'.load()
+  --   end,
+  -- }
+
+  use { 'sainnhe/gruvbox-material', }
 
   use {
-    'navarasu/onedark.nvim',
-    config = function()
-      require 'onedark'.load()
-    end,
+    'sainnhe/sonokai',
+    config = 'vim.cmd[[colorscheme sonokai]]'
   }
 
-  use { 'luisiacc/gruvbox-baby' }
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    config = "require 'configs.lualine'",
-    requires = { 'nvim-lua/plenary.nvim' },
-  }
+  use 'Tsuzat/NeoSolarized.nvim'
 
   -----------------
   -- UI Elements --
@@ -184,6 +184,12 @@ return packer.startup(function(use)
   use {
     'folke/which-key.nvim',
     config = "require 'configs.which-key'.config()",
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = "require 'configs.lualine'",
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
