@@ -252,11 +252,20 @@ return packer.startup(function(use)
   }
 
   use {
-    'nvim-lualine/lualine.nvim',
+    'akinsho/bufferline.nvim',
     config = function()
-      require 'configs.lualine'
+      require 'configs.bufferline'
     end,
-    requires = { 'nvim-lua/plenary.nvim' },
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+
+  use {
+    'feline-nvim/feline.nvim',
+    config = "require 'configs.feline'",
+    requires = {
+      { 'kyazdani42/nvim-web-devicons' },
+      { 'lewis6991/gitsigns.nvim' },
+    }
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
