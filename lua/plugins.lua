@@ -72,7 +72,9 @@ return packer.startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim',
-    setup = "require 'configs.telescope'.setup()",
+    setup = function()
+      require 'configs.telescope'.setup()
+    end,
     config = function()
       require 'configs.telescope'.config()
     end,
@@ -142,7 +144,9 @@ return packer.startup(function(use)
 
   use {
     'vim-test/vim-test',
-    setup = "require 'configs.vim-test'.setup()",
+    setup = function()
+      require 'configs.vim-test'.setup()
+    end,
     config = function()
       require 'configs.vim-test'.config()
     end,
