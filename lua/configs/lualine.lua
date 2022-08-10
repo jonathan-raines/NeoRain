@@ -65,7 +65,6 @@ require 'lualine'.setup {
         icon = ' ',
       },
       { utils.lsp_progress() },
-      { 'filetype' },
     },
     lualine_z = {
       { 'tabs' },
