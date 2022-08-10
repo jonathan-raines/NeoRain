@@ -190,20 +190,10 @@ return packer.startup(function(use)
   -- COLOR SCHEMES --
   -------------------
 
-  -- use { 'navarasu/onedark.nvim',
-  --   config = function()
-  --     require 'onedark'.load()
-  --   end,
-  -- }
-
-  use { 'sainnhe/gruvbox-material', }
-
   use {
-    'sainnhe/sonokai',
-    config = 'vim.cmd[[colorscheme sonokai]]'
+    'tanvirtin/monokai.nvim',
+    config = 'vim.cmd[[ colorscheme monokai_pro ]]'
   }
-
-  use 'Tsuzat/NeoSolarized.nvim'
 
   -----------------
   -- UI Elements --
