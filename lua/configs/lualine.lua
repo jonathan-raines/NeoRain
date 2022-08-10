@@ -24,6 +24,9 @@ require 'lualine'.setup {
         hide_filename_extension = true,
         mode = 4,
         separator = { right = '' },
+        buffers_color = {
+          inactive = { fg = '#72696A' }, -- Color for inactive buffer.
+        },
       },
       {
         'diff',

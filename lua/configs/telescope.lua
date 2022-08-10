@@ -13,7 +13,7 @@ M.setup = function()
     ['<leader>fb'] = { '<cmd>Telescope buffers theme=get_ivy<CR>', { desc = 'Buffers' } },
     ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
     ['<leader>fd'] = { '<cmd>Telescope lsp_document_symbols<CR>', { desc = 'Document Symbols' } },
-    ['<leader>fe'] = { '<cmd>Telescope file_browser<CR>', { desc = 'File Browser' } },
+    ['<leader>fe'] = { '<cmd>Telescope file_browser theme=get_ivy<CR>', { desc = 'File Browser' } },
     ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', { desc = 'Find Files' } },
     ['<leader>fh'] = { '<cmd>Telescope git_status<CR>', { desc = 'Git Status' } },
     ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', { desc = 'Live Grep' } },
@@ -69,7 +69,7 @@ M.config = function()
             ['<A-d>'] = actions.delete_buffer,
           },
           n = {
-            ['<A-d>'] = actions.delete_buffer,
+            ['d'] = actions.delete_buffer,
           },
         },
       },

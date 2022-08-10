@@ -21,7 +21,7 @@ local normal_keymaps = {
   ['<leader>w'] = { '<cmd>up<CR>', { desc = 'Write' } },
   ['<leader>q'] = { 'ZZ', { desc = 'Quit' } },
   ['<leader>c'] = { '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
-  ['<leader>C'] = { '<cmd>%bd|e#|bd#<CR>', { desc = 'Close All But Current Buffer' } },
+  ['<leader>C'] = { '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
 
   ['J'] = { 'mzJ`z', { desc = 'Join on same line' } },
   ['n'] = { 'nzzzv', { desc = 'Center on next' } },
@@ -33,37 +33,24 @@ local normal_keymaps = {
   ['<'] = { '<<', { desc = 'Increase Indent' } },
   ['>'] = { '>>', { desc = 'Decrease Indent' } },
 
-  ['<C-h>'] = { '<C-w>h', { desc = 'Move to left window' } },
-  ['<C-l>'] = { '<C-w>l', { desc = 'Move to right window' } },
-
   ['<C-j>'] = { ':m .+1<CR>==', { desc = 'Move line up' } },
   ['<C-k>'] = { ':m .-2<CR>==', { desc = 'Move line down' } },
 
   ['<C-q>'] = { "<cmd>lua require('utils').quick_fix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
   [']q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>', { desc = 'Next QuickFix Item' } },
   ['[q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>', { desc = 'Previous QuickFix Item' } },
-
-  ['<C-Up>'] = { ':resize -5<CR>', { desc = 'Increase height of horizontal window' } },
-  ['<C-Down>'] = { ':resize +5<CR>', { desc = 'Decrease height of horizontal window' } },
-  ['<C-Left>'] = { ':vertical resize -5<CR>', { desc = 'Decrease width of vertical window' } },
-  ['<C-Right>'] = { ':vertical resize +5<CR>', { desc = 'Increase width of vertical window' } },
 }
 
 local insert_keymaps = {
   ['<C-l>'] = { "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
-  ['jk'] = { '<ESC>', { desc = 'Exit insert mode' } }
 }
 
 local visual_keymaps = {
-  -- Move Lines Around
   ['<C-j>'] = { ":m '>+1<CR>gv-gv", { desc = 'Move line up' } },
   ['<C-k>'] = { ":m '<-2<CR>gv-gv", { desc = 'Move line down' } },
 
-  -- Better Indenting
   ['<'] = { '<gv', { desc = 'Keep visual selection on indent decrease' } },
   ['>'] = { '>gv', { desc = 'Keep visual selection on indent increase' } },
-
-  ['jk'] = { '<ESC>', { desc = 'Exit visual mode' } }
 }
 
 -- Center navigation commands
@@ -92,6 +79,8 @@ end
 for key, val in pairs(visual_keymaps) do
   keymap('v', key, val[1], vim.tbl_extend('keep', opts, val[2]))
 end
+
+keymap({ 'i', 'v', 'x' }, 'jk', '<ESC>', vim.tbl_extend('keep', opts, { desc = 'Return to normal mode' }))
 
 -- Jumplist mutations
 vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'

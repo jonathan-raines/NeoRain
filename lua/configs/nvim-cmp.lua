@@ -50,13 +50,11 @@ cmp.setup {
   mapping = {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-e>'] = cmp.mapping.abort(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<C-y>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    },
+    ['<C-y>'] = cmp.mapping.confirm { select = true },
+    ['<CR>'] = cmp.mapping.confirm { select = true },
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
@@ -83,8 +81,8 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = 'luasnip' },
     { name = 'nvim_lsp' },
+    { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'nvim_lua' },
@@ -96,7 +94,7 @@ cmp.setup {
   },
   window = {
     documentation = {
-      border = 'single',
+      border = 'rounded',
       winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
     },
   },
