@@ -73,10 +73,10 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     setup = function()
-      require 'configs.telescope'.setup()
+      require 'configs.telescope-nvim'.setup()
     end,
     config = function()
-      require 'configs.telescope'.config()
+      require 'configs.telescope-nvim'.config()
     end,
     requires = {
       { 'nvim-lua/plenary.nvim' },
