@@ -34,13 +34,23 @@ return packer.startup(function(use)
   -- Package Manager --
   ---------------------
 
-  use { 'wbthomason/packer.nvim', config = "require 'configs.packer'.setup()" }
+  use {
+    'wbthomason/packer.nvim',
+    config = function()
+      require 'configs.packer'.setup()
+    end
+  }
 
   ----------------------
   -- Required plugins --
   ----------------------
 
-  use { 'lewis6991/impatient.nvim', config = "require('impatient').enable_profile()" }
+  use {
+    'lewis6991/impatient.nvim',
+    config = function()
+      require 'impatient'.enable_profile()
+    end
+  }
 
   --------------
   -- Database --
@@ -63,7 +73,9 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     setup = "require 'configs.telescope'.setup()",
-    config = "require 'configs.telescope'.config()",
+    config = function()
+      require 'configs.telescope'.config()
+    end,
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'kyazdani42/nvim-web-devicons' },
@@ -73,14 +85,18 @@ return packer.startup(function(use)
 
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
-    config = "require('telescope').load_extension 'fzf'",
+    config = function()
+      require 'telescope'.load_extension 'fzf'
+    end,
     run = 'make',
     after = 'telescope.nvim',
   }
 
   use {
     'nvim-telescope/telescope-file-browser.nvim',
-    config = "require 'configs.telescope-file-browser'",
+    config = function()
+      require 'configs.telescope-file-browser'
+    end,
     after = 'telescope.nvim',
   }
 
@@ -90,7 +106,9 @@ return packer.startup(function(use)
 
   use {
     'lewis6991/gitsigns.nvim',
-    config = "require 'configs.gitsigns'.config()",
+    config = function()
+      require 'configs.gitsigns'.config()
+    end,
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
@@ -113,7 +131,9 @@ return packer.startup(function(use)
 
   use {
     'neovim/nvim-lspconfig',
-    config = "require 'configs.lsp'",
+    config = function()
+      require 'configs.lsp'
+    end
   }
 
   ----------
@@ -123,26 +143,41 @@ return packer.startup(function(use)
   use {
     'vim-test/vim-test',
     setup = "require 'configs.vim-test'.setup()",
-    config = "require 'configs.vim-test'.config()",
+    config = function()
+      require 'configs.vim-test'.config()
+    end,
     cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
   }
 
   use {
     'windwp/nvim-autopairs',
-    config = "require 'configs.nvim-autopairs'",
+    config = function()
+      require 'configs.nvim-autopairs'
+    end,
     event = 'InsertEnter',
   }
 
   use {
     'numToStr/Comment.nvim',
-    config = "require 'configs.comment'",
+    config = function()
+      require 'configs.comment'
+    end,
+    keys = { 'gc', 'gb' }
   }
 
   use {
     'kylechui/nvim-surround',
     config = function()
       require 'nvim-surround'.setup {}
-    end
+    end,
+  }
+
+  use {
+    'folke/twilight.nvim',
+    config = function()
+      require 'twilight'.setup {}
+    end,
+    cmd = { 'Twilight' }
   }
 
   use {
@@ -150,7 +185,8 @@ return packer.startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require 'configs.rest'
-    end
+    end,
+    ft = { 'http' }
   }
 
   --------------------
@@ -162,8 +198,11 @@ return packer.startup(function(use)
     requires = {
       {
         'L3MON4D3/LuaSnip',
-        config = " require('luasnip/loaders/from_vscode').lazy_load()",
-        requires = { { 'rafamadriz/friendly-snippets' } },
+        config = function()
+          require 'luasnip/loaders/from_vscode'.lazy_load()
+        end,
+        requires = { { 'rafamadriz/friendly-snippets', event = 'InsertEnter' } },
+        event = 'InsertEnter'
       },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
@@ -171,7 +210,9 @@ return packer.startup(function(use)
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     },
-    config = "require 'configs.nvim-cmp'",
+    config = function()
+      require 'configs.nvim-cmp'
+    end,
     event = 'InsertEnter',
   }
 
@@ -181,7 +222,9 @@ return packer.startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter',
-    config = "require 'configs.nvim-treesitter'",
+    config = function()
+      require 'configs.nvim-treesitter'
+    end,
     run = ':TSUpdate',
     event = { 'BufRead', 'BufNewFile' }
   }
@@ -192,7 +235,9 @@ return packer.startup(function(use)
 
   use {
     'tanvirtin/monokai.nvim',
-    config = 'vim.cmd[[ colorscheme monokai_pro ]]'
+    config = function()
+      vim.cmd [[ colorscheme monokai_pro ]]
+    end
   }
 
   -----------------
@@ -201,18 +246,22 @@ return packer.startup(function(use)
 
   use {
     'folke/which-key.nvim',
-    config = "require 'configs.which-key'.config()",
+    config = function()
+      require 'configs.which-key'.config()
+    end
   }
 
   use {
     'nvim-lualine/lualine.nvim',
-    config = "require 'configs.lualine'",
+    config = function()
+      require 'configs.lualine'
+    end,
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
-    require 'packer'.sync()
+    packer.sync()
   end
 end)
