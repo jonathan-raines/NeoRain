@@ -56,15 +56,17 @@ return packer.startup(function(use)
   -- Database --
   --------------
 
-  -- use {
-  --   'kristijanhusak/vim-dadbod-ui',
-  --   config = "require 'configs.vim-dadbod-ui'",
-  --   requires = {
-  --     { 'tpope/vim-dadbod', after = 'vim-dadbod-ui' },
-  --     { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
-  --   },
-  --   cmd = { 'DBUI', 'DBUIToggle' },
-  -- }
+  use {
+    'kristijanhusak/vim-dadbod-ui',
+    config = function()
+      require 'configs.vim-dadbod-ui'
+    end,
+    requires = {
+      { 'tpope/vim-dadbod', after = 'vim-dadbod-ui' },
+      { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
+    },
+    cmd = { 'DBUI', 'DBUIToggle' },
+  }
 
   ---------------
   -- Telescope --
@@ -244,7 +246,10 @@ return packer.startup(function(use)
     end
   }
 
-  use { 'Mofiqul/dracula.nvim' }
+  use {
+    'Mofiqul/dracula.nvim',
+    event = 'ColorSchemePre'
+  }
 
   -----------------
   -- UI Elements --
