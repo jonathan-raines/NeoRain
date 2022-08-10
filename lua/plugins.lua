@@ -126,6 +126,13 @@ return packer.startup(function(use)
   }
 
   use {
+    'kylechui/nvim-surround',
+    config = function()
+      require 'nvim-surround'.setup {}
+    end
+  }
+
+  use {
     'NTBBloodbath/rest.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
