@@ -244,6 +244,8 @@ return packer.startup(function(use)
     end
   }
 
+  use { 'Mofiqul/dracula.nvim' }
+
   -----------------
   -- UI Elements --
   -----------------
