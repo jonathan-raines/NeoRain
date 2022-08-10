@@ -84,14 +84,27 @@ return packer.startup(function(use)
     after = 'telescope.nvim',
   }
 
-  ------------
-  -- Github --
-  ------------
+  ---------
+  -- Git --
+  ---------
 
   use {
     'lewis6991/gitsigns.nvim',
     config = "require 'configs.gitsigns'.config()",
     requires = { 'nvim-lua/plenary.nvim' },
+  }
+
+  use {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function()
+      require 'octo'.setup()
+    end,
+    cmd = { 'Octo' }
   }
 
   ---------------------
