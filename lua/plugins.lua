@@ -125,6 +125,14 @@ return packer.startup(function(use)
     config = "require 'configs.comment'",
   }
 
+  use {
+    'NTBBloodbath/rest.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require 'configs.rest'
+    end
+  }
+
   --------------------
   -- Autocompletion --
   --------------------
