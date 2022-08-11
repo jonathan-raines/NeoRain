@@ -19,13 +19,10 @@ local normal_keymaps = {
   ['<leader><space>'] = { '<c-^>', { desc = 'Alternate Buffer' } },
 
   ['<leader>w'] = { '<cmd>up<CR>', { desc = 'Write' } },
-  ['<leader>q'] = { 'ZZ', { desc = 'Quit' } },
   ['<leader>c'] = { '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
   ['<leader>C'] = { '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
 
   ['J'] = { 'mzJ`z', { desc = 'Join on same line' } },
-  ['n'] = { 'nzzzv', { desc = 'Center on next' } },
-  ['N'] = { 'Nzzzv', { desc = 'Center on previous' } },
 
   ['<Backspace>'] = { '<cmd>bp<CR>', { desc = 'Previous Buffer' } },
   ['<Tab>'] = { '<cmd>bn<CR>', { desc = 'Next Buffer' } },
@@ -36,9 +33,9 @@ local normal_keymaps = {
   ['<C-j>'] = { ':m .+1<CR>==', { desc = 'Move line up' } },
   ['<C-k>'] = { ':m .-2<CR>==', { desc = 'Move line down' } },
 
-  ['<C-q>'] = { "<cmd>lua require('utils').quick_fix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
-  [']q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>', { desc = 'Next QuickFix Item' } },
-  ['[q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>', { desc = 'Previous QuickFix Item' } },
+  -- ['<C-q>'] = { "<cmd>lua require('utils').quick_fix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
+  -- [']q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>', { desc = 'Next QuickFix Item' } },
+  -- ['[q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>', { desc = 'Previous QuickFix Item' } },
 }
 
 local insert_keymaps = {
@@ -52,12 +49,6 @@ local visual_keymaps = {
   ['<'] = { '<gv', { desc = 'Keep visual selection on indent decrease' } },
   ['>'] = { '>gv', { desc = 'Keep visual selection on indent increase' } },
 }
-
--- Center navigation commands
-local navigation = { '{', '}', '<C-o>', '<C-i>', '<C-d>', '<C-u>', '<C-f>', '<C-b>', '*', '#' }
-for _, char in ipairs(navigation) do
-  keymap('n', char, char .. 'zz')
-end
 
 -- Undo break points
 local break_points = { ',', '.', ';' }
