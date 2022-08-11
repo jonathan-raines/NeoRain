@@ -2,75 +2,52 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 --Remap space as leader key
-keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+keymap('', '<Space>', '<Nop>', opts)
 
--- Modes
--- normal_mode = "n",
--- insert_mode = "i",
--- visual_mode = "v",
--- visual_block_mode = "x",
--- term_mode = "t",
--- command_mode = "c",
+local keymaps = {
+  { { 'i', 'v' }, 'jk', '<ESC>', { desc = 'Return to normal mode' } },
 
-local normal_keymaps = {
-  ['<leader><space>'] = { '<c-^>', { desc = 'Alternate Buffer' } },
+  { { 'n' }, '<leader><space>', '<c-^>', { desc = 'Alternate Buffer' } },
 
-  ['<leader>w'] = { '<cmd>up<CR>', { desc = 'Write' } },
-  ['<leader>c'] = { '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
-  ['<leader>C'] = { '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
+  { { 'n' }, '<leader>w', '<cmd>up<CR>', { desc = 'Write' } },
 
-  ['J'] = { 'mzJ`z', { desc = 'Join on same line' } },
+  { { 'n' }, '<leader>c', '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
+  { { 'n' }, '<leader>C', '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
 
-  ['<Backspace>'] = { '<cmd>bp<CR>', { desc = 'Previous Buffer' } },
-  ['<Tab>'] = { '<cmd>bn<CR>', { desc = 'Next Buffer' } },
+  { { 'n' }, 'J', 'mzJ`z', { desc = 'Join on same line' } },
 
-  ['<'] = { '<<', { desc = 'Increase Indent' } },
-  ['>'] = { '>>', { desc = 'Decrease Indent' } },
+  { { 'n' }, '<Backspace>', '<cmd>bp<CR>', { desc = 'Previous Buffer' } },
+  { { 'n' }, '<Tab>', '<cmd>bn<CR>', { desc = 'Next Buffer' } },
 
-  ['<C-j>'] = { ':m .+1<CR>==', { desc = 'Move line up' } },
-  ['<C-k>'] = { ':m .-2<CR>==', { desc = 'Move line down' } },
+  { { 'n' }, '<', '<<', { desc = 'Increase Indent' } },
+  { { 'n' }, '>', '>>', { desc = 'Decrease Indent' } },
 
-  -- ['<C-q>'] = { "<cmd>lua require('utils').quick_fix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
-  -- [']q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cnext"<CR>', { desc = 'Next QuickFix Item' } },
-  -- ['[q'] = { '<cmd>execute (v:count > 1 ? v:count : 1) . "cprevious"<CR>', { desc = 'Previous QuickFix Item' } },
+  { { 'n' }, '<C-j>', ':m .+1<CR>==', { desc = 'Move line up' } },
+  { { 'n' }, '<C-k>', ':m .-2<CR>==', { desc = 'Move line down' } },
+
+  { { 'n' }, '<', '<<', { desc = 'Increase Indent' } },
+  { { 'n' }, '>', '>>', { desc = 'Decrease Indent' } },
+
+  { { 'i' }, '<C-l>', "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
+
+  { { 'v' }, '<C-j>', ":m '>+1<CR>gv-gv", { desc = 'Move line up' } },
+  { { 'v' }, '<C-k>', ":m '<-2<CR>gv-gv", { desc = 'Move line down' } },
+
+  { { 'v' }, '<', '<gv', { desc = 'Keep visual selection on indent decrease' } },
+  { { 'v' }, '>', '>gv', { desc = 'Keep visual selection on indent increase' } },
 }
 
-local insert_keymaps = {
-  ['<C-l>'] = { "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
-}
-
-local visual_keymaps = {
-  ['<C-j>'] = { ":m '>+1<CR>gv-gv", { desc = 'Move line up' } },
-  ['<C-k>'] = { ":m '<-2<CR>gv-gv", { desc = 'Move line down' } },
-
-  ['<'] = { '<gv', { desc = 'Keep visual selection on indent decrease' } },
-  ['>'] = { '>gv', { desc = 'Keep visual selection on indent increase' } },
-}
+for _, val in pairs(keymaps) do
+  keymap(val[1], val[2], val[3], vim.tbl_extend('keep', opts, val[4]))
+end
 
 -- Undo break points
 local break_points = { ',', '.', ';' }
 for _, char in ipairs(break_points) do
   keymap('i', char, char .. '<C-g>u')
 end
-
--- Map Normal Mode
-for key, val in pairs(normal_keymaps) do
-  keymap('n', key, val[1], vim.tbl_extend('keep', opts, val[2]))
-end
-
--- Map Insert Mode
-for key, val in pairs(insert_keymaps) do
-  keymap('i', key, val[1], vim.tbl_extend('keep', opts, val[2]))
-end
-
--- Map Visual Mode
-for key, val in pairs(visual_keymaps) do
-  keymap('v', key, val[1], vim.tbl_extend('keep', opts, val[2]))
-end
-
-keymap({ 'i', 'v' }, 'jk', '<ESC>', vim.tbl_extend('keep', opts, { desc = 'Return to normal mode' }))
 
 -- Jumplist mutations
 vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
