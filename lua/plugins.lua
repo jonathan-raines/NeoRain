@@ -140,6 +140,10 @@ return packer.startup(function(use)
     end
   }
 
+  use { 'gpanders/editorconfig.nvim' }
+
+  use { 'tpope/vim-rails' }
+
   ----------
   -- MISC --
   ----------
@@ -193,6 +197,11 @@ return packer.startup(function(use)
       require 'configs.rest'
     end,
     ft = { 'http' }
+  }
+
+  use {
+    'gennaro-tedesco/nvim-jqx',
+    cmd = { 'JqxList', 'JqxQuery' }
   }
 
   --------------------
