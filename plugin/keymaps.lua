@@ -7,14 +7,13 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
+-- normal_mode = "n",
+-- insert_mode = "i",
+-- visual_mode = "v",
+-- visual_block_mode = "x",
+-- term_mode = "t",
+-- command_mode = "c",
 
--- Normal Mode --
 local normal_keymaps = {
   ['<leader><space>'] = { '<c-^>', { desc = 'Alternate Buffer' } },
 
@@ -71,7 +70,7 @@ for key, val in pairs(visual_keymaps) do
   keymap('v', key, val[1], vim.tbl_extend('keep', opts, val[2]))
 end
 
-keymap({ 'i', 'v', 'x' }, 'jk', '<ESC>', vim.tbl_extend('keep', opts, { desc = 'Return to normal mode' }))
+keymap({ 'i', 'v' }, 'jk', '<ESC>', vim.tbl_extend('keep', opts, { desc = 'Return to normal mode' }))
 
 -- Jumplist mutations
 vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
