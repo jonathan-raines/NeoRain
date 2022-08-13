@@ -242,7 +242,6 @@ return packer.startup(function(use)
       require 'configs.nvim-treesitter'
     end,
     run = ':TSUpdate',
-    event = { 'BufRead', 'BufNewFile' }
   }
 
   -------------------
