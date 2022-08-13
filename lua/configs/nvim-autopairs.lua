@@ -14,7 +14,7 @@ npairs.setup {
 npairs.add_rules(require 'nvim-autopairs.rules.endwise-lua')
 npairs.add_rules(require 'nvim-autopairs.rules.endwise-ruby')
 
-local cmp_ok, cmp = pcall('require', 'cmp')
+local cmp_ok, cmp = pcall(require, 'cmp')
 if cmp_ok then
   cmp.event:on('confirm_done', require 'nvim-autopairs.completion.cmp'.on_confirm_done())
 end
