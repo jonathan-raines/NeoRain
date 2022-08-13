@@ -58,13 +58,13 @@ return packer.startup(function(use)
 
   use {
     'kristijanhusak/vim-dadbod-ui',
-    config = function()
-      require 'configs.vim-dadbod-ui'
-    end,
     requires = {
       { 'tpope/vim-dadbod', after = 'vim-dadbod-ui' },
       { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
     },
+    config = function()
+      require 'configs.vim-dadbod-ui'
+    end,
     cmd = { 'DBUI', 'DBUIToggle' },
   }
 
@@ -74,16 +74,16 @@ return packer.startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim',
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'kyazdani42/nvim-web-devicons' },
+    },
     setup = function()
       require 'configs.telescope-nvim'.setup()
     end,
     config = function()
       require 'configs.telescope-nvim'.config()
     end,
-    requires = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'kyazdani42/nvim-web-devicons' },
-    },
     cmd = { 'Telescope' },
   }
 
@@ -110,10 +110,10 @@ return packer.startup(function(use)
 
   use {
     'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require 'configs.gitsigns'.config()
     end,
-    requires = { 'nvim-lua/plenary.nvim' },
   }
 
   use {
@@ -138,6 +138,12 @@ return packer.startup(function(use)
     config = function()
       require 'configs.lsp'
     end
+  }
+
+  use {
+    'akinsho/flutter-tools.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    ft = { 'dart' }
   }
 
   use { 'gpanders/editorconfig.nvim' }
@@ -199,11 +205,6 @@ return packer.startup(function(use)
     ft = { 'http' }
   }
 
-  use {
-    'gennaro-tedesco/nvim-jqx',
-    cmd = { 'JqxList', 'JqxQuery' }
-  }
-
   --------------------
   -- Autocompletion --
   --------------------
@@ -213,10 +214,10 @@ return packer.startup(function(use)
     requires = {
       {
         'L3MON4D3/LuaSnip',
+        requires = { { 'rafamadriz/friendly-snippets', event = 'InsertEnter' } },
         config = function()
           require 'luasnip/loaders/from_vscode'.lazy_load()
         end,
-        requires = { { 'rafamadriz/friendly-snippets', event = 'InsertEnter' } },
         event = 'InsertEnter'
       },
       { 'hrsh7th/cmp-nvim-lsp' },
@@ -273,19 +274,19 @@ return packer.startup(function(use)
 
   use {
     'akinsho/bufferline.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require 'configs.bufferline'
     end,
-    requires = 'kyazdani42/nvim-web-devicons'
   }
 
   use {
     'feline-nvim/feline.nvim',
-    config = "require 'configs.feline'",
     requires = {
       { 'kyazdani42/nvim-web-devicons' },
       { 'lewis6991/gitsigns.nvim' },
-    }
+    },
+    config = "require 'configs.feline'"
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
