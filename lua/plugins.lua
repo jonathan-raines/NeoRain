@@ -229,7 +229,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.nvim-cmp'
     end,
-    event = 'InsertEnter',
+    after = 'LuaSnip'
   }
 
   ----------------
