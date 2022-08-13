@@ -286,7 +286,9 @@ return packer.startup(function(use)
       { 'kyazdani42/nvim-web-devicons' },
       { 'lewis6991/gitsigns.nvim' },
     },
-    config = "require 'configs.feline'"
+    config = function()
+      require 'configs.feline'
+    end
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
