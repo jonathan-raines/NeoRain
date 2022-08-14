@@ -244,6 +244,16 @@ return packer.startup(function(use)
     event = 'ColorSchemePre'
   }
 
+  use {
+    'olimorris/onedarkpro.nvim',
+    config = function()
+      require 'onedarkpro'.setup {
+        dark_theme = 'onedark_vivid'
+      }
+    end,
+    event = 'ColorSchemePre'
+  }
+
   -----------------
   -- UI Elements --
   -----------------
