@@ -52,22 +52,6 @@ return packer.startup(function(use)
     end
   }
 
-  --------------
-  -- Database --
-  --------------
-
-  use {
-    'kristijanhusak/vim-dadbod-ui',
-    requires = {
-      { 'tpope/vim-dadbod', after = 'vim-dadbod-ui' },
-      { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
-    },
-    config = function()
-      require 'configs.vim-dadbod-ui'
-    end,
-    cmd = { 'DBUI', 'DBUIToggle' },
-  }
-
   ---------------
   -- Telescope --
   ---------------
