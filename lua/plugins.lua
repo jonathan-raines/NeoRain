@@ -202,7 +202,7 @@ return packer.startup(function(use)
         config = function()
           require 'luasnip/loaders/from_vscode'.lazy_load()
         end,
-        event = 'InsertEnter'
+        after = 'friendly-snippets'
       },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
