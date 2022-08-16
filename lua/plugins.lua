@@ -132,8 +132,6 @@ return packer.startup(function(use)
 
   use { 'gpanders/editorconfig.nvim' }
 
-  use { 'tpope/vim-rails' }
-
   ----------
   -- MISC --
   ----------
