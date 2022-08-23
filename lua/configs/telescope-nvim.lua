@@ -14,7 +14,6 @@ M.setup = function()
     ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
     ['<leader>fC'] = { '<cmd>Telescope colorscheme<CR>', { desc = 'Colorscheme' } },
     ['<leader>fd'] = { '<cmd>Telescope lsp_document_symbols<CR>', { desc = 'Document Symbols' } },
-    ['<leader>fe'] = { '<cmd>Telescope file_browser theme=get_ivy<CR>', { desc = 'File Browser' } },
     ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', { desc = 'Find Files' } },
     ['<leader>fh'] = { '<cmd>Telescope git_status<CR>', { desc = 'Git Status' } },
     ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', { desc = 'Live Grep' } },

@@ -80,14 +80,6 @@ return packer.startup(function(use)
     after = 'telescope.nvim',
   }
 
-  use {
-    'nvim-telescope/telescope-file-browser.nvim',
-    config = function()
-      require 'configs.telescope-file-browser'
-    end,
-    after = 'telescope.nvim',
-  }
-
   ---------
   -- Git --
   ---------
@@ -187,6 +179,21 @@ return packer.startup(function(use)
     ft = { 'http' }
   }
 
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    setup = function()
+      vim.keymap.set('n', '<leader>fe', '<cmd>NvimTreeToggle<CR>',
+        { noremap = true, silent = true, desc = { 'Nvim Tree Toggle' } })
+    end,
+    config = function()
+      require 'nvim-tree'.setup {}
+    end,
+    tag = 'nightly',
+    cmd = { 'NvimTreeToggle' }
+  }
   --------------------
   -- Autocompletion --
   --------------------
