@@ -22,6 +22,9 @@ local keymaps = {
   { { 'n' }, '<', '<<', { desc = 'Increase Indent' } },
   { { 'n' }, '>', '>>', { desc = 'Decrease Indent' } },
 
+  { { 'n' }, '<C-h>', '<C-w>h', { desc = 'Move to left window' } },
+  { { 'n' }, '<C-l>', '<C-w>l', { desc = 'Move to right window' } },
+
   { { 'v' }, '<', '<gv', { desc = 'Keep visual selection on indent decrease' } },
   { { 'v' }, '>', '>gv', { desc = 'Keep visual selection on indent increase' } },
 
