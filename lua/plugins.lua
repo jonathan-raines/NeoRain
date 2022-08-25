@@ -250,11 +250,9 @@ return packer.startup(function(use)
   }
 
   use {
-    'olimorris/onedarkpro.nvim',
+    'navarasu/onedark.nvim',
     config = function()
-      require 'onedarkpro'.setup {
-        dark_theme = 'onedark_vivid'
-      }
+      -- require('onedark').load()
     end,
     event = 'ColorSchemePre'
   }
@@ -298,6 +296,8 @@ return packer.startup(function(use)
       vim.api.nvim_create_user_command('Lazygit', function()
         require 'FTerm'.scratch { cmd = { 'lazygit' } }
       end, { bang = true })
+
+      vim.keymap.set('n', '<leader>l', '<cmd>Lazygit<CR>')
     end,
     config = function()
       require 'FTerm'.setup {
