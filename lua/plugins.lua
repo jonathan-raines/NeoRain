@@ -297,7 +297,7 @@ return packer.startup(function(use)
         require 'FTerm'.scratch { cmd = { 'lazygit' } }
       end, { bang = true })
 
-      vim.keymap.set('n', '<leader>l', '<cmd>Lazygit<CR>')
+      vim.keymap.set('n', '<leader>hl', '<cmd>Lazygit<CR>', { silent = true, remap = true, desc = { 'Lazygit' } })
     end,
     config = function()
       require 'FTerm'.setup {
