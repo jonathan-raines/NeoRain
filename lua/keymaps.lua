@@ -13,10 +13,16 @@ local keymaps = {
 
   { { 'n' }, '<leader>q', 'ZQ', { desc = 'Quit' } },
 
+  { { 'n' }, '<leader><space>', '<C-^>', { desc = 'Alternate Buffer' } },
+
   { { 'n' }, '<leader>c', '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
   { { 'n' }, '<leader>C', '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
 
   { { 'n' }, 'J', 'mzJ`z', { desc = 'Join on same line' } },
+
+  { { 'n' }, '<C-q>', "<cmd>lua require('utils').quick_fix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
+  { { 'n' }, ']q', '<cmd>cnext<CR>', { desc = 'QuickFix Next' } },
+  { { 'n' }, '[q', '<cmd>cprevious<CR>', { desc = 'QuickFix Previous' } },
 
   { { 'n' }, '<Backspace>', '<cmd>bp<CR>', { desc = 'Previous Buffer' } },
   { { 'n' }, '<Tab>', '<cmd>bn<CR>', { desc = 'Next Buffer' } },
