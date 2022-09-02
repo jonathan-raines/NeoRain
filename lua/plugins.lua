@@ -163,14 +163,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'folke/twilight.nvim',
-    config = function()
-      require 'twilight'.setup {}
-    end,
-    cmd = { 'Twilight' }
-  }
-
-  use {
     'NTBBloodbath/rest.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -202,6 +194,15 @@ return packer.startup(function(use)
     end,
     config = function()
       require './configs/nvim-toggleterm'.config()
+    end
+  }
+
+  use {
+    'jinh0/eyeliner.nvim',
+    config = function()
+      require 'eyeliner'.setup {
+        highlight_on_key = true
+      }
     end
   }
 
@@ -250,6 +251,7 @@ return packer.startup(function(use)
       require 'configs.treesitter-textobjects'.config()
     end
   }
+
   -------------------
   -- COLOR SCHEMES --
   -------------------
@@ -301,25 +303,6 @@ return packer.startup(function(use)
     },
     config = function()
       require 'configs.feline'
-    end
-  }
-
-  use {
-    'numToStr/FTerm.nvim',
-    setup = function()
-      vim.keymap.set('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>')
-      vim.keymap.set('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
-
-      vim.api.nvim_create_user_command('Lazygit', function()
-        require 'FTerm'.scratch { cmd = { 'lazygit' } }
-      end, { bang = true })
-
-      vim.keymap.set('n', '<leader>hl', '<cmd>Lazygit<CR>', { silent = true, remap = true, desc = { 'Lazygit' } })
-    end,
-    config = function()
-      require 'FTerm'.setup {
-        border = 'rounded',
-      }
     end
   }
 
