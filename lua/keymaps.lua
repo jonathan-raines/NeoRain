@@ -32,12 +32,11 @@ local keymaps = {
 
   { { 'n' }, '<C-h>', '<C-w>h', { desc = 'Move to left window' } },
   { { 'n' }, '<C-l>', '<C-w>l', { desc = 'Move to right window' } },
+  { { 'n' }, '<C-j>', '<C-w>j', { desc = 'Move to top window' } },
+  { { 'n' }, '<C-k>', '<C-w>k', { desc = 'Move to bottom window' } },
 
   { { 'v' }, '<', '<gv', { desc = 'Keep visual selection on indent decrease' } },
   { { 'v' }, '>', '>gv', { desc = 'Keep visual selection on indent increase' } },
-
-  { { 'n' }, '<C-j>', ':m .+1<CR>==', { desc = 'Move line up' } },
-  { { 'n' }, '<C-k>', ':m .-2<CR>==', { desc = 'Move line down' } },
 
   { { 'v' }, '<C-j>', ":m '>+1<CR>gv-gv", { desc = 'Move line up' } },
   { { 'v' }, '<C-k>', ":m '<-2<CR>gv-gv", { desc = 'Move line down' } },
