@@ -194,7 +194,8 @@ return packer.startup(function(use)
     end,
     config = function()
       require './configs/nvim-toggleterm'.config()
-    end
+    end,
+    tag = 'v2.*'
   }
 
   use {
