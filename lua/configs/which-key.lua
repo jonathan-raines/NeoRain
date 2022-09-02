@@ -30,6 +30,7 @@ M.config = function()
   require 'which-key'.register({
     f = { name = 'Telescope' },
     h = { name = 'Git' },
+    j = { name = 'Terminal' },
     p = { name = 'Packer' },
     t = { name = 'Test' },
   }, { prefix = '<leader>' })

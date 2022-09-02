@@ -194,6 +194,17 @@ return packer.startup(function(use)
     tag = 'nightly',
     cmd = { 'NvimTreeToggle' }
   }
+
+  use {
+    'akinsho/nvim-toggleterm.lua',
+    setup = function()
+      require './configs/nvim-toggleterm'.setup()
+    end,
+    config = function()
+      require './configs/nvim-toggleterm'.config()
+    end
+  }
+
   --------------------
   -- Autocompletion --
   --------------------
