@@ -15,7 +15,7 @@ local keymaps = {
 
   { { 'n' }, '<leader><space>', '<C-^>', { desc = 'Alternate Buffer' } },
 
-  { { 'n' }, '<leader>c', '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
+  { { 'n' }, '<leader>c', '<cmd>execute (v:count > 0 ? v:count : "") . "bd!"<CR>', { desc = 'Close Buffer' } },
 
   { { 'n' }, '<leader>C', '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
 
