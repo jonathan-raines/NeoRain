@@ -261,20 +261,15 @@ return packer.startup(function(use)
     'tanvirtin/monokai.nvim',
     config = function()
       vim.cmd [[ colorscheme monokai_pro ]]
-    end
-  }
-
-  use {
-    'Mofiqul/dracula.nvim',
-    event = 'ColorSchemePre'
-  }
-
-  use {
-    'navarasu/onedark.nvim',
-    config = function()
-      -- require('onedark').load()
     end,
     event = 'ColorSchemePre'
+  }
+
+  use {
+    'dracula/vim',
+    config = function()
+      vim.cmd [[ colorscheme dracula ]]
+    end
   }
 
   -----------------
