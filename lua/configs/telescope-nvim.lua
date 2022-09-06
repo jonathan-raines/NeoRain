@@ -10,12 +10,12 @@ M.setup = function()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    ['<leader>fb'] = { '<cmd>Telescope buffers theme=get_ivy<CR>', { desc = 'Buffers' } },
+    ['<leader>b'] = { '<cmd>Telescope buffers theme=get_ivy<CR>', { desc = 'Buffers' } },
     ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
-    ['<leader>fC'] = { '<cmd>Telescope colorscheme<CR>', { desc = 'Colorscheme' } },
     ['<leader>fd'] = { '<cmd>Telescope lsp_document_symbols<CR>', { desc = 'Document Symbols' } },
     ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', { desc = 'Find Files' } },
     ['<leader>fh'] = { '<cmd>Telescope git_status<CR>', { desc = 'Git Status' } },
+    ['<leader>fj'] = { '<cmd>Telescope<CR>', { desc = 'Telescope Functions' } },
     ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', { desc = 'Live Grep' } },
     ['<leader>fo'] = { '<cmd>Telescope oldfiles cwd_only=v:true<CR>', { desc = 'Recent Files' } },
     ['<leader>fq'] = { '<cmd>Telescope quickfix<CR>', { desc = 'Quickfix' } },

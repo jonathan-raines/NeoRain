@@ -67,8 +67,7 @@ return packer.startup(function(use)
     end,
     config = function()
       require 'configs.telescope-nvim'.config()
-    end,
-    cmd = { 'Telescope' },
+    end
   }
 
   use {
@@ -151,15 +150,14 @@ return packer.startup(function(use)
     'numToStr/Comment.nvim',
     config = function()
       require 'configs.comment'
-    end,
-    keys = { 'gc', 'gb' }
+    end
   }
 
   use {
     'kylechui/nvim-surround',
     config = function()
       require 'nvim-surround'.setup {}
-    end,
+    end
   }
 
   use {
@@ -169,33 +167,6 @@ return packer.startup(function(use)
       require 'configs.rest'
     end,
     ft = { 'http' }
-  }
-
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
-    },
-    setup = function()
-      vim.keymap.set('n', '<leader>fe', '<cmd>NvimTreeToggle<CR>',
-        { noremap = true, silent = true, desc = { 'Nvim Tree Toggle' } })
-    end,
-    config = function()
-      require 'nvim-tree'.setup {}
-    end,
-    tag = 'nightly',
-    cmd = { 'NvimTreeToggle' }
-  }
-
-  use {
-    'akinsho/nvim-toggleterm.lua',
-    setup = function()
-      require './configs/nvim-toggleterm'.setup()
-    end,
-    config = function()
-      require './configs/nvim-toggleterm'.config()
-    end,
-    tag = 'v2.*'
   }
 
   use {
@@ -295,6 +266,31 @@ return packer.startup(function(use)
     'nvim-lualine/lualine.nvim',
     config = "require 'configs.lualine'",
     requires = { 'nvim-lua/plenary.nvim' },
+  }
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    setup = function()
+      require 'configs.nvim-tree'.setup()
+    end,
+    config = function()
+      require 'configs.nvim-tree'.config()
+    end,
+    tag = 'nightly',
+    cmd = { 'NvimTreeToggle' }
+  }
+
+  use {
+    'akinsho/nvim-toggleterm.lua',
+    setup = function()
+      require './configs/nvim-toggleterm'.setup()
+    end,
+    config = function()
+      require './configs/nvim-toggleterm'.config()
+    end
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
