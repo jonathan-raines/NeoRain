@@ -1,6 +1,6 @@
 local options = {
   clipboard = 'unnamedplus', -- allows neovim to access the system clipboard
-  colorcolumn = '100',
+  colorcolumn = '+1',
   completeopt = { 'menu', 'menuone', 'noselect' }, -- mostly just for cmp
   cursorline = true, -- highlight the current line
   cursorlineopt = 'number',
@@ -27,6 +27,7 @@ local options = {
   splitright = true, -- force all vertical splits to go to the right of current window
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
+  textwidth = 100,
   timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (4000ms default)

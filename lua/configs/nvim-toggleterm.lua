@@ -4,7 +4,7 @@ M.setup = function()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
   local mappings = {
-    ['<leader>jl'] = { '<cmd>lua G_lazygit_toggle()<CR>', { desc = 'Lazygit' } },
+    ['<leader>hl'] = { '<cmd>lua G_lazygit_toggle()<CR>', { desc = 'Lazygit' } },
   }
 
   for key, val in pairs(mappings) do

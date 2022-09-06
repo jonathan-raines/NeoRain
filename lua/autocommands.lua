@@ -15,12 +15,6 @@ augroups.misc = {
       vim.highlight.on_yank { higroup = 'Visual' }
     end
   },
-  -- newline_comment = {
-  --   desc = 'No commenting new line',
-  --   event = 'BufEnter',
-  --   pattern = '*',
-  --   command = 'set fo-=c fo-=r fo-=o',
-  -- },
   trim_whitespace = {
     desc = 'Trim whitespace on save',
     event = 'BufWritePre',
@@ -30,12 +24,6 @@ augroups.misc = {
 }
 
 augroups.terminal = {
-  close_terminal = {
-    desc = 'Close terminal with bd',
-    event = 'TermClose',
-    pattern = '*',
-    command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif",
-  },
   set_keymaps = {
     event = 'TermOpen',
     group = 'NeovimTerminal',

@@ -24,11 +24,6 @@ local keymaps = {
   { { 'n' }, '<Backspace>', '<cmd>bp<CR>', { desc = 'Previous Buffer' } },
   { { 'n' }, '<Tab>', '<cmd>bn<CR>', { desc = 'Next Buffer' } },
 
-  -- { { 'n' }, '<C-h>', '<C-w>h', { desc = 'Move to left window' } },
-  -- { { 'n' }, '<C-l>', '<C-w>l', { desc = 'Move to right window' } },
-  -- { { 'n' }, '<C-j>', '<C-w>j', { desc = 'Move to top window' } },
-  -- { { 'n' }, '<C-k>', '<C-w>k', { desc = 'Move to bottom window' } },
-
   { { 'n' }, '<', '<<', { desc = 'Increase Indent' } },
   { { 'n' }, '>', '>>', { desc = 'Decrease Indent' } },
 
