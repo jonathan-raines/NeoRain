@@ -237,7 +237,7 @@ return packer.startup(function(use)
   }
 
   use {
-    'dracula/vim',
+    'dracula/vim', as = 'dracula',
     config = function()
       vim.cmd [[ colorscheme dracula ]]
     end
