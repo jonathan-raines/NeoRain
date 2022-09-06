@@ -50,9 +50,3 @@ local break_points = { ',', '.', ';' }
 for _, char in ipairs(break_points) do
   keymap('i', char, char .. '<C-g>u')
 end
-
-if vim.opt.diff:get() == true then
-  keymap('n', '<C-f>', '<cmd>diffget LOCAL<CR>', opts)
-  keymap('n', '<C-j>', '<cmd>diffget REMOTE<CR>', opts)
-  keymap('n', '<leader>w', '<cmd>wqa<CR>', opts)
-end
