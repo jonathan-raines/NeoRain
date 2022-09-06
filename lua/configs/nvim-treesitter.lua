@@ -1,8 +1,8 @@
 local configs = require 'nvim-treesitter.configs'
 
 configs.setup {
-  ensure_installed = {},
-  auto_install = true,
+  ensure_installed = 'all',
+  ignore_installed = { 'haskell' },
   incremental_selection = {
     enable = true,
     keymaps = {
