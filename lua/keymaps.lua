@@ -16,24 +16,21 @@ local keymaps = {
   { { 'n' }, '<leader><space>', '<C-^>', { desc = 'Alternate Buffer' } },
 
   { { 'n' }, '<leader>c', '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
+
   { { 'n' }, '<leader>C', '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
 
   { { 'n' }, 'J', 'mzJ`z', { desc = 'Join on same line' } },
 
-  { { 'n' }, '<C-q>', "<cmd>lua require('utils').quick_fix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
-  { { 'n' }, ']q', '<cmd>cnext<CR>', { desc = 'QuickFix Next' } },
-  { { 'n' }, '[q', '<cmd>cprevious<CR>', { desc = 'QuickFix Previous' } },
-
   { { 'n' }, '<Backspace>', '<cmd>bp<CR>', { desc = 'Previous Buffer' } },
   { { 'n' }, '<Tab>', '<cmd>bn<CR>', { desc = 'Next Buffer' } },
 
+  -- { { 'n' }, '<C-h>', '<C-w>h', { desc = 'Move to left window' } },
+  -- { { 'n' }, '<C-l>', '<C-w>l', { desc = 'Move to right window' } },
+  -- { { 'n' }, '<C-j>', '<C-w>j', { desc = 'Move to top window' } },
+  -- { { 'n' }, '<C-k>', '<C-w>k', { desc = 'Move to bottom window' } },
+
   { { 'n' }, '<', '<<', { desc = 'Increase Indent' } },
   { { 'n' }, '>', '>>', { desc = 'Decrease Indent' } },
-
-  { { 'n' }, '<C-h>', '<C-w>h', { desc = 'Move to left window' } },
-  { { 'n' }, '<C-l>', '<C-w>l', { desc = 'Move to right window' } },
-  { { 'n' }, '<C-j>', '<C-w>j', { desc = 'Move to top window' } },
-  { { 'n' }, '<C-k>', '<C-w>k', { desc = 'Move to bottom window' } },
 
   { { 'v' }, '<', '<gv', { desc = 'Keep visual selection on indent decrease' } },
   { { 'v' }, '>', '>gv', { desc = 'Keep visual selection on indent increase' } },
@@ -53,10 +50,6 @@ local break_points = { ',', '.', ';' }
 for _, char in ipairs(break_points) do
   keymap('i', char, char .. '<C-g>u')
 end
-
--- Jumplist mutations
-vim.cmd 'nnoremap <expr> j (v:count > 5 ? "m\'" . v:count : "") . "j"'
-vim.cmd 'nnoremap <expr> k (v:count > 5 ? "m\'" . v:count : "") . "k"'
 
 if vim.opt.diff:get() == true then
   keymap('n', '<C-f>', '<cmd>diffget LOCAL<CR>', opts)
