@@ -24,6 +24,18 @@ augroups.misc = {
 }
 
 augroups.terminal = {
+  close_terminal = {
+    desc = 'Close terminal automatically when exit 0',
+    event = 'TermClose',
+    pattern = '*',
+    command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif",
+  },
+  set_terminal_options = {
+    desc = 'Set terminal options',
+    event = 'TermOpen',
+    pattern = '*',
+    command = 'set nonumber norelativenumber nobuflisted',
+  },
   set_keymaps = {
     event = 'TermOpen',
     group = 'NeovimTerminal',
