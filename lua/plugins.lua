@@ -150,14 +150,16 @@ return packer.startup(function(use)
     'numToStr/Comment.nvim',
     config = function()
       require 'configs.comment'
-    end
+    end,
+    keys = { 'gb', 'gc' }
   }
 
   use {
     'kylechui/nvim-surround',
     config = function()
       require 'nvim-surround'.setup {}
-    end
+    end,
+    keys = { 'ys', 'yS', 'ds', 'cs' }
   }
 
   use {
@@ -229,6 +231,13 @@ return packer.startup(function(use)
   -------------------
 
   use {
+    'dracula/vim', as = 'dracula',
+    config = function()
+      vim.cmd [[ colorscheme dracula ]]
+    end
+  }
+
+  use {
     'tanvirtin/monokai.nvim',
     config = function()
       vim.cmd [[ colorscheme monokai_pro ]]
@@ -237,10 +246,8 @@ return packer.startup(function(use)
   }
 
   use {
-    'dracula/vim', as = 'dracula',
-    config = function()
-      vim.cmd [[ colorscheme dracula ]]
-    end
+    'gruvbox-community/gruvbox',
+    event = 'ColorSchemePre'
   }
 
   -----------------
