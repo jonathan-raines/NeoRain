@@ -1,6 +1,5 @@
 require 'bufferline'.setup {
   options = {
-    -- numbers = 'buffer_id',
     show_buffer_close_icons = false,
     show_close_icons = false,
     middle_mouse_command = 'bdelete! %d',
@@ -9,4 +8,4 @@ require 'bufferline'.setup {
 }
 
 vim.api.nvim_set_keymap('n', '<C-p>', ':BufferLinePick<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-]>', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<A-p>', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
