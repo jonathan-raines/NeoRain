@@ -64,7 +64,21 @@ require 'lualine'.setup {
     },
   },
   extensions = { 'quickfix', 'toggleterm' },
-  tabline = {},
+  tabline = {
+    -- lualine_a = {
+    --   {
+    --     'buffers',
+    --     hide_filename_extension = true,
+    --     mode = 4,
+    --     separator = { --[[ left = '', ]] right = '' },
+    --   },
+    -- },
+    -- lualine_b = {},
+    -- lualine_c = {},
+    -- lualine_x = {},
+    -- lualine_y = {},
+    -- lualine_z = { 'tabs' }
+  },
   winbar = {
     lualine_a = {},
     lualine_b = {},
