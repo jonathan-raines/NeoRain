@@ -79,6 +79,12 @@ return packer.startup(function(use)
     after = 'telescope.nvim',
   }
 
+  use {
+    'nvim-telescope/telescope-file-browser.nvim',
+    config = "require 'configs.telescope-file-browser'",
+    after = 'telescope.nvim',
+  }
+
   ---------
   -- Git --
   ---------
@@ -219,13 +225,6 @@ return packer.startup(function(use)
     run = ':TSUpdate',
   }
 
-  use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    config = function()
-      require 'configs.treesitter-textobjects'.config()
-    end
-  }
-
   -------------------
   -- COLOR SCHEMES --
   -------------------
@@ -271,32 +270,19 @@ return packer.startup(function(use)
 
   use {
     'nvim-lualine/lualine.nvim',
-    config = "require 'configs.lualine'",
+    config = function()
+      require 'configs.lualine'
+    end,
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
   use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    },
+    'numToStr/FTerm.nvim',
     setup = function()
-      require 'configs.nvim-tree'.setup()
+      require 'configs.fterm'.setup()
     end,
     config = function()
-      require 'configs.nvim-tree'.config()
-    end,
-    tag = 'nightly',
-    cmd = { 'NvimTreeToggle' }
-  }
-
-  use {
-    'akinsho/nvim-toggleterm.lua',
-    setup = function()
-      require './configs/nvim-toggleterm'.setup()
-    end,
-    config = function()
-      require './configs/nvim-toggleterm'.config()
+      require 'configs.fterm'.config()
     end
   }
 
