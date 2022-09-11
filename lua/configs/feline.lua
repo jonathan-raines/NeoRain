@@ -1,26 +1,6 @@
 local lsp = require 'feline.providers.lsp'
-local vi_mode_utils = require 'feline.providers.vi_mode'
+local vi_mode = require 'feline.providers.vi_mode'
 local utils = require 'utils'
-
-local vi_mode_text = {
-  n = 'NORMAL',
-  i = 'INSERT',
-  v = 'VISUAL',
-  [''] = 'V-BLOCK',
-  V = 'V-LINE',
-  c = 'COMMAND',
-  no = 'UNKNOWN',
-  s = 'UNKNOWN',
-  S = 'UNKNOWN',
-  ic = 'UNKNOWN',
-  R = 'REPLACE',
-  Rv = 'UNKNOWN',
-  cv = 'UNKWON',
-  ce = 'UNKNOWN',
-  r = 'REPLACE',
-  rm = 'UNKNOWN',
-  t = 'INSERT'
-}
 
 local components = {
   active = { {}, {}, {} },
@@ -29,24 +9,26 @@ local components = {
 
 components.active[1] = {
   {
+    name = 'mode color',
     provider = '▊',
     hl = function()
       return {
-        name = vi_mode_utils.get_mode_highlight_name(),
-        fg = vi_mode_utils.get_mode_color(),
+        name = vi_mode.get_mode_highlight_name(),
+        fg = vi_mode.get_mode_color(),
         style = 'bold',
       }
     end,
     right_sep = ' '
   },
   {
+    name = 'mode',
     provider = function()
-      return vi_mode_text[vim.fn.mode()]
+      return vi_mode.get_vim_mode()
     end,
     hl = function()
       return {
-        name = vi_mode_utils.get_mode_highlight_name(),
-        fg = vi_mode_utils.get_mode_color(),
+        name = vi_mode.get_mode_highlight_name(),
+        fg = vi_mode.get_mode_color(),
         style = 'bold',
       }
     end,
@@ -115,6 +97,7 @@ components.active[1] = {
 
 components.active[3] = {
   {
+    name = 'lsp',
     provider = function()
       return utils.get_client_names()
     end,
@@ -127,6 +110,7 @@ components.active[3] = {
     },
   },
   {
+    name = 'treesitter',
     provider = function()
       if next(vim.treesitter.highlighter.active) then
         return '  '
@@ -148,3 +132,5 @@ components.active[3] = {
 require 'feline'.setup {
   components = components
 }
+
+-- require 'feline'.winbar.setup {}
