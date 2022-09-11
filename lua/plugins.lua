@@ -269,11 +269,24 @@ return packer.startup(function(use)
   }
 
   use {
+    'feline-nvim/feline.nvim',
+    requires = {
+      { 'kyazdani42/nvim-web-devicons' },
+      { 'lewis6991/gitsigns.nvim' },
+    },
+    config = function()
+      require 'configs.feline'
+    end,
+    disable = true
+  }
+
+  use {
     'nvim-lualine/lualine.nvim',
     config = function()
       require 'configs.lualine'
     end,
     requires = { 'nvim-lua/plenary.nvim' },
+    disable = false
   }
 
   use {
