@@ -37,6 +37,10 @@ local keymaps = {
   { { 'v' }, '<C-k>', ":m '<-2<CR>gv-gv", { desc = 'Move line down' } },
 
   { { 'i' }, '<C-l>', "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
+
+  { { 'n' }, '<C-q>', "<cmd>lua require('utils').quickfix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
+  { { 'n' }, ']q', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
+  { { 'n' }, '[q', '<cmd>cprevious<CR>', { desc = 'QuickFix Previous Item' } },
 }
 
 for _, val in pairs(keymaps) do

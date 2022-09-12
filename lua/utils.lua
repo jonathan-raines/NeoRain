@@ -1,6 +1,6 @@
 local M = {}
 
-M.quick_fix_toggle = function()
+M.quickfix_toggle = function()
   if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1 then
     vim.cmd 'copen'
   else
