@@ -76,13 +76,13 @@ return packer.startup(function(use)
       require 'configs.telescope-fzf-native'
     end,
     run = 'make',
-    after = 'telescope.nvim',
+    after = 'telescope.nvim'
   }
 
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = "require 'configs.telescope-file-browser'",
-    after = 'telescope.nvim',
+    after = 'telescope.nvim'
   }
 
   ---------
@@ -94,7 +94,7 @@ return packer.startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require 'configs.gitsigns'.config()
-    end,
+    end
   }
 
   use {
@@ -141,7 +141,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.vim-test'.config()
     end,
-    cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' },
+    cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' }
   }
 
   use {
@@ -149,7 +149,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.nvim-autopairs'
     end,
-    event = 'InsertEnter',
+    event = 'InsertEnter'
   }
 
   use {
@@ -164,8 +164,7 @@ return packer.startup(function(use)
     'kylechui/nvim-surround',
     config = function()
       require 'nvim-surround'.setup {}
-    end,
-    keys = { 'ys', 'yS', 'ds', 'cs' }
+    end
   }
 
   use {
@@ -222,7 +221,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.nvim-treesitter'
     end,
-    run = ':TSUpdate',
+    run = ':TSUpdate'
   }
 
   -------------------
@@ -265,7 +264,7 @@ return packer.startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require 'configs.bufferline'
-    end,
+    end
   }
 
   use {
@@ -276,17 +275,7 @@ return packer.startup(function(use)
     },
     config = function()
       require 'configs.feline'
-    end,
-    disable = true
-  }
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    config = function()
-      require 'configs.lualine'
-    end,
-    requires = { 'nvim-lua/plenary.nvim' },
-    disable = false
+    end
   }
 
   use {
