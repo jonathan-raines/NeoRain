@@ -14,7 +14,7 @@ M.setup = function()
     }
   end, { bang = true })
 
-  vim.keymap.set('n', '<leader>hl', '<cmd>Lazygit<CR>', { silent = true, remap = true, desc = 'Lazygit' })
+  vim.keymap.set('n', '<leader>gl', '<cmd>Lazygit<CR>', { silent = true, remap = true, desc = 'Lazygit' })
 end
 
 M.config = function()
