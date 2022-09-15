@@ -78,7 +78,7 @@ local function lsp_keymaps(bufnr)
     vim.tbl_extend('keep', opts, { desc = 'Remove Workspace Folder' }))
   keymap(bufnr, 'n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
     vim.tbl_extend('keep', opts, { desc = 'List Workspace Folders' }))
-  keymap(bufnr, 'n', 'gF', '<CMD>lua vim.lsp.buf.format { async = false }<CR>',
+  keymap(bufnr, 'n', 'gF', '<CMD>lua vim.lsp.buf.format { async = true }<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Format [LSP]' }))
 end
 
