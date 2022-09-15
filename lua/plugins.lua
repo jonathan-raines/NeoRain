@@ -161,9 +161,11 @@ return packer.startup(function(use)
   }
 
   use {
-    'kylechui/nvim-surround',
+    'jinh0/eyeliner.nvim',
     config = function()
-      require 'nvim-surround'.setup {}
+      require 'eyeliner'.setup {
+        highlight_on_key = true
+      }
     end
   }
 
@@ -174,15 +176,6 @@ return packer.startup(function(use)
       require 'configs.rest'
     end,
     ft = { 'http' }
-  }
-
-  use {
-    'jinh0/eyeliner.nvim',
-    config = function()
-      require 'eyeliner'.setup {
-        highlight_on_key = true
-      }
-    end
   }
 
   --------------------
