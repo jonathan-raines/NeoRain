@@ -48,38 +48,41 @@ local function lsp_keymaps(bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  keymap(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+  keymap(bufnr, 'n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Code Action' }))
-  keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Definition' }))
-  keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Declaration' }))
-  keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Implementation' }))
-  keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>',
+  keymap(bufnr, 'n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Set Local List' }))
+  keymap(bufnr, 'n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Line Diagnostics' }))
-  keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Hover' }))
-  keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Signature Help' }))
-  keymap(bufnr, 'n', 'grn', '<cmd>lua vim.lsp.buf.rename()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Rename' }))
-  keymap(bufnr, 'n', 'grr', '<cmd>lua vim.lsp.buf.references()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'References' }))
   keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Previous Diagnostics' }))
   keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Next Diagnostics' }))
-  keymap(bufnr, 'n', 'gq', '<cmd>lua vim.diagnostic.setloclist()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Set Local List' }))
-  keymap(bufnr, 'n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Add Workspace Folder' }))
-  keymap(bufnr, 'n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Remove Workspace Folder' }))
-  keymap(bufnr, 'n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'List Workspace Folders' }))
-  keymap(bufnr, 'n', 'gF', '<CMD>lua vim.lsp.buf.format { async = true }<CR>',
+
+  keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Definition' }))
+  keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Declaration' }))
+  keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Hover' }))
+  keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Implementation' }))
+  keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Signature Help' }))
+  keymap(bufnr, 'n', '<leader>lf', '<CMD>lua vim.lsp.buf.format { async = true }<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Format [LSP]' }))
+  keymap(bufnr, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Rename' }))
+  keymap(bufnr, 'n', '<leader>lR', '<cmd>lua vim.lsp.buf.references()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'References' }))
+
+  keymap(bufnr, 'n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Add Workspace Folder' }))
+  keymap(bufnr, 'n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Remove Workspace Folder' }))
+  keymap(bufnr, 'n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'List Workspace Folders' }))
+
 end
 
 M.on_attach = function(client, bufnr)

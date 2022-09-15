@@ -31,6 +31,10 @@ M.config = function()
     f = { name = 'Telescope' },
     h = { name = 'Git' },
     j = { name = 'Terminal' },
+    l = {
+      name = 'LSP',
+      w = 'Workspace'
+    },
     p = { name = 'Packer' },
     t = { name = 'Test' },
   }, { prefix = '<leader>' })
