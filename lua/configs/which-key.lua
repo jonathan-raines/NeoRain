@@ -28,6 +28,7 @@ M.config = function()
   }
 
   require 'which-key'.register({
+    d = { name = 'Delete' },
     f = { name = 'Telescope' },
     g = { name = 'Git' },
     j = { name = 'Terminal' },
