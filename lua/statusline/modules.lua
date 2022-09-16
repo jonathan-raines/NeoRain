@@ -1,5 +1,6 @@
 local M = {}
 local fn = vim.fn
+local colors = require 'statusline.colors'.vi_mode_colors
 
 local modes = {
   ['n'] = 'NORMAL ',
@@ -48,7 +49,12 @@ local modes = {
 
 M.Mode = function()
   local current_mode = vim.api.nvim_get_mode().mode
-  return table.concat { '%#Normal#', ' ', modes[current_mode]:upper() }
+  vim.api.nvim_set_hl(0, 'ModeColor', { fg = colors[current_mode], bold = true })
+  return table.concat { '%#ModeColor#', '█', ' ', modes[current_mode]:upper() }
+end
+
+M.Spacer = function()
+  return table.concat { '%#Normal#', ' ' }
 end
 
 M.FileInfo = function()
@@ -114,7 +120,7 @@ M.LSP_status = function()
 end
 
 M.Treesitter = function()
-  vim.cmd [[hi Treesitter guifg='seagreen']]
+  vim.api.nvim_set_hl(0, 'Treesitter', { fg = 'seagreen' })
 
   if next(vim.treesitter.highlighter.active) then
     return '%#Treesitter#' .. ' '
