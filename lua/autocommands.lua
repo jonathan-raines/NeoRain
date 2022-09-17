@@ -14,14 +14,6 @@ augroups.misc = {
     pattern = '*',
     command = 'silent! normal! g`"zv',
   },
-  -- hide_cursorline = {
-  --   desc = 'Hide cursorline in inactive window',
-  --   event = 'WinLeave',
-  --   pattern = '*',
-  --   callback = function()
-  --     vim.opt_local.cursorline = false
-  --   end,
-  -- },
   highlight_yank = {
     desc = 'Highland text on yank',
     event = 'TextYankPost',
@@ -36,14 +28,14 @@ augroups.misc = {
     pattern = '*',
     command = 'set fo-=c fo-=r fo-=o',
   },
-  -- show_cursorline = {
-  --   desc = 'Show cursorline in active window',
-  --   event = 'WinEnter',
-  --   pattern = '*',
-  --   callback = function()
-  --     vim.opt_local.cursorline = true
-  --   end,
-  -- },
+  statusline_highlights = {
+    desc = 'Set highlights for Statusline',
+    event = 'ColorScheme',
+    pattern = '*',
+    callback = function()
+      require 'statusline.colors'.set_hl()
+    end
+  }
   -- trim_whitespace = {
   --   desc = 'Trim whitespace on save',
   --   event = 'BufWritePre',

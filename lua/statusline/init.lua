@@ -1,8 +1,6 @@
 local utils = require 'statusline.modules'
 
-local M = {}
-
-M.statusline = function()
+function Statusline()
   return table.concat {
     utils.Mode(),
     utils.Spacer(),
@@ -18,4 +16,4 @@ M.statusline = function()
   }
 end
 
-return M
+vim.o.statusline = "%!luaeval('Statusline()')"

@@ -52,4 +52,8 @@ M.get_client_names = function()
   return table.concat(clientnames_tbl, ', ')
 end
 
+M.highlight = function(color, opts)
+  vim.api.nvim_set_hl(0, color, opts)
+end
+
 return M

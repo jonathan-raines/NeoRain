@@ -1,56 +1,14 @@
 local M = {}
 local fn = vim.fn
-local colors = require 'statusline.colors'.vi_mode_colors
 
-local modes = {
-  ['n'] = 'NORMAL ',
-  ['no'] = 'NORMAL ',
-  ['v'] = 'VISUAL ',
-  ['V'] = 'LINES  ',
-  [''] = 'BLOCK  ',
-  ['s'] = 'SELECT',
-  ['S'] = 'SELECT LINE',
-  [''] = 'SELECT BLOCK',
-  ['i'] = 'INSERT ',
-  ['ic'] = 'INSERT ',
-  ['R'] = 'REPLACE ',
-  ['Rv'] = 'VISUAL REPLACE',
-  ['c'] = 'COMMAND',
-  ['cv'] = 'VIM EX',
-  ['ce'] = 'EX',
-  ['r'] = 'PROMPT',
-  ['rm'] = 'MOAR',
-  ['r?'] = 'CONFIRM',
-  ['!'] = 'SHELL',
-  ['t'] = 'TERMINAL',
-}
-
--- M.statusline_separators = {
---   default = {
---     left = '',
---     right = ' ',
---   },
-
---   round = {
---     left = '',
---     right = '',
---   },
-
---   block = {
---     left = '█',
---     right = '█',
---   },
-
---   arrow = {
---     left = '',
---     right = '',
---   },
--- }
+local modes = require 'statusline.colors'.modes
 
 M.Mode = function()
-  local current_mode = vim.api.nvim_get_mode().mode
-  vim.api.nvim_set_hl(0, 'ModeColor', { fg = colors[current_mode], bold = true })
-  return table.concat { '%#ModeColor#', '█', ' ', modes[current_mode]:upper() }
+  local m = vim.api.nvim_get_mode().mode
+  local current_mode = '%#' .. modes[m][2] .. '#' .. '  ' .. modes[m][1]
+  -- local mode_sep1 = '%#' .. modes[m][2] .. 'Sep' .. '#' .. sep_r
+
+  return table.concat { current_mode }
 end
 
 M.Spacer = function()
@@ -80,11 +38,18 @@ M.Git = function()
 
   local git_status = vim.b.gitsigns_status_dict
 
+  vim.api.nvim_set_hl(0, 'St_git_add', { fg = vim.api.nvim_get_hl_by_name('GitSignsAdd', {}).foreground or 'Green' })
+  vim.api.nvim_set_hl(0, 'St_git_change',
+    { fg = vim.api.nvim_get_hl_by_name('GitSignsChange', {}).foreground or 'Orange' })
+  vim.api.nvim_set_hl(0, 'St_git_delete', { fg = vim.api.nvim_get_hl_by_name('GitSignsDelete', {}).foreground or 'Red' })
+
   local branch_name = '%#Normal#' .. '   ' .. git_status.head .. ' '
-  local added = (git_status.added and git_status.added ~= 0) and ('%#DiffAdd#' .. '  ' .. git_status.added) or ''
-  local changed = (git_status.changed and git_status.changed ~= 0) and ('%#DiffChange#' .. '  ' .. git_status.changed
+  local added = (git_status.added and git_status.added ~= 0) and ('%#St_git_add#' .. '  ' .. git_status.added) or ''
+  local changed = (git_status.changed and git_status.changed ~= 0) and
+    ('%#St_git_change#' .. '  ' .. git_status.changed
     ) or ''
-  local removed = (git_status.removed and git_status.removed ~= 0) and ('%#DiffDelete#' .. '  ' .. git_status.removed
+  local removed = (git_status.removed and git_status.removed ~= 0) and
+    ('%#St_git_delete#' .. '  ' .. git_status.removed
     ) or ''
 
   return table.concat { branch_name, added, changed, removed }
