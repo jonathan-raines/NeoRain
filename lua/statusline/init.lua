@@ -11,8 +11,9 @@ function Statusline()
     utils.AlternateFile(),
     '%=',
     utils.LSP_Diagnostics(),
-    utils.Treesitter(),
     utils.LSP_status(),
+    utils.Spacer(),
+    utils.Treesitter(),
     utils.Spacer()
   }
 end

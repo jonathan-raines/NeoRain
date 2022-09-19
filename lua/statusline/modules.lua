@@ -84,7 +84,7 @@ M.LSP_Diagnostics = function()
   local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 
   errors = (errors and errors > 0) and ('%#DiagnosticError#' .. ' ' .. errors .. ' ') or ''
-  warnings = (warnings and warnings > 0) and ('%#DiagnosticWarn#' .. '  ' .. warnings .. ' ') or ''
+  warnings = (warnings and warnings > 0) and ('%#DiagnosticWarn#' .. ' ' .. warnings .. ' ') or ''
   hints = (hints and hints > 0) and ('%#DiagnosticHint#' .. 'ﯧ ' .. hints .. ' ') or ''
   info = (info and info > 0) and ('%#DiagnosticInfo#' .. ' ' .. info .. ' ') or ''
 
