@@ -1,4 +1,3 @@
-local lsp = require 'feline.providers.lsp'
 local vi_mode = require 'feline.providers.vi_mode'
 local utils = require 'utils'
 
