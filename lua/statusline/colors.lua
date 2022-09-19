@@ -10,6 +10,7 @@ M.set_hl = function()
   highlight('St_TerminalMode', { fg = 'LightGreen', bold = true })
   highlight('St_NTerminalMode', { fg = 'LightGreen', bold = true })
   highlight('St_CurrentFile', { fg = 'DarkYellow', bold = true })
+  highlight('St_AlternateFile', { fg = 'DarkCyan', bold = true })
 end
 
 M.modes = {

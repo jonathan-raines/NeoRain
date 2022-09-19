@@ -37,7 +37,7 @@ M.AlternateFile = function()
       icon = M.GetFileIcon(filename)
     end
 
-    return table.concat { '%#Normal#', '#', icon, ' ', filename, ' ' }
+    return table.concat { '%#St_AlternateFile#', '#', icon, ' ', filename, ' ' }
   end
 
   return ' '
