@@ -12,11 +12,10 @@ local keymaps = {
   { { 'n' }, '<leader><space>', '<C-^>', { desc = 'Alternate Buffer' } },
 
   { { 'n' }, '<leader>w', '<cmd>up<CR>', { desc = 'Write' } },
+  { { 'n' }, '<leader>q', 'ZZ', { desc = 'Quit' } },
 
-  { { 'n' }, '<leader>da', '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
-  { { 'n' }, '<leader>db', '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Close Buffer' } },
-  { { 'n' }, '<leader>df', '<cmd>execute (v:count > 0 ? v:count : "") . "bd"<CR>', { desc = 'Force Close Buffer' } },
-  { { 'n' }, '<leader>dq', 'ZZ', { desc = 'Quit' } },
+  { { 'n' }, '<leader>c', '<cmd>execute (v:count > 0 ? v:count : "") . "bd!"<CR>', { desc = 'Close Buffer' } },
+  { { 'n' }, '<leader>C', '<cmd>%bd|e#|bd#<CR>', { desc = 'Close Other Buffers' } },
 
   { { 'n' }, 'J', 'mzJ`z', { desc = 'Join on same line' } },
 
@@ -37,7 +36,7 @@ local keymaps = {
 
   { { 'i' }, '<C-l>', "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
 
-  { { 'n' }, '<leader>q', "<cmd>lua require('utils').quickfix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
+  { { 'n' }, '<A-q>', "<cmd>lua require('utils').quickfix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
   { { 'n' }, ']q', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
   { { 'n' }, '[q', '<cmd>cprevious<CR>', { desc = 'QuickFix Previous Item' } },
 }

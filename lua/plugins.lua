@@ -67,7 +67,8 @@ return packer.startup(function(use)
     end,
     config = function()
       require 'configs.telescope-nvim'.config()
-    end
+    end,
+    cmd = { 'Telescope' }
   }
 
   use {
@@ -211,6 +212,7 @@ return packer.startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter',
+    module = 'nvim-treesitter',
     config = function()
       require 'configs.nvim-treesitter'
     end,
@@ -230,9 +232,6 @@ return packer.startup(function(use)
 
   use {
     'tanvirtin/monokai.nvim',
-    config = function()
-      vim.cmd [[ colorscheme monokai_pro ]]
-    end,
     event = 'ColorSchemePre'
   }
 
@@ -249,26 +248,7 @@ return packer.startup(function(use)
     'folke/which-key.nvim',
     config = function()
       require 'configs.which-key'.config()
-    end
-  }
-
-  use {
-    'akinsho/bufferline.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require 'configs.bufferline'
-    end
-  }
-
-  use {
-    'feline-nvim/feline.nvim',
-    requires = {
-      { 'kyazdani42/nvim-web-devicons' },
-      { 'lewis6991/gitsigns.nvim' },
-    },
-    config = function()
-      require 'configs.feline'
-    end
+    end,
   }
 
   use {
@@ -278,7 +258,8 @@ return packer.startup(function(use)
     end,
     config = function()
       require 'configs.fterm'.config()
-    end
+    end,
+    module = 'FTerm'
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

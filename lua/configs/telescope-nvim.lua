@@ -10,10 +10,10 @@ M.setup = function()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    ['<leader>fb'] = { '<cmd>Telescope buffers theme=get_ivy<CR>', { desc = 'Buffers' } },
+    ['<leader>fb'] = { '<cmd>Telescope buffers<CR>', { desc = 'Buffers' } },
     ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
     ['<leader>fd'] = { '<cmd>Telescope lsp_document_symbols<CR>', { desc = 'Document Symbols' } },
-    ['<leader>fe'] = { '<cmd>Telescope file_browser<CR>', { desc = 'File Browser' } },
+    ['<leader>fe'] = { '<cmd>Telescope file_browser initial_mode=normal<CR>', { desc = 'File Browser' } },
     ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', { desc = 'Find Files' } },
     ['<leader>fh'] = { '<cmd>Telescope git_status<CR>', { desc = 'Git Status' } },
     ['<leader>fj'] = { '<cmd>Telescope<CR>', { desc = 'Telescope Functions' } },
@@ -65,6 +65,9 @@ M.config = function()
         show_all_buffers = true,
         ignore_current_buffer = true,
         sort_lastused = true,
+        previewer = false,
+        initial_mode = 'normal',
+        theme = 'dropdown',
         mappings = {
           i = {
             ['<A-d>'] = actions.delete_buffer,

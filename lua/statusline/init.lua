@@ -16,4 +16,4 @@ function Statusline()
   }
 end
 
-vim.o.statusline = "%!luaeval('Statusline()')"
+vim.o.statusline = '%!v:lua.Statusline()'
