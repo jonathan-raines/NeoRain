@@ -1,15 +1,11 @@
 local M = {}
 
-function _CURR_BUF()
-  local opt = require 'telescope.themes'.get_ivy()
-  require 'telescope.builtin'.current_buffer_fuzzy_find(opt)
-end
-
 M.setup = function()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
+    ['<Tab>'] = { '<cmd>Telescope buffers<CR>', { desc = 'Buffers' } },
     ['<leader>fb'] = { '<cmd>Telescope buffers<CR>', { desc = 'Buffers' } },
     ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
     ['<leader>fd'] = { '<cmd>Telescope lsp_document_symbols<CR>', { desc = 'Document Symbols' } },
@@ -24,7 +20,7 @@ M.setup = function()
     ['<leader>fs'] = { '<cmd>Telescope grep_string<CR>', { desc = 'Grep String' } },
     ['<leader>ft'] = { '<cmd>Telescope treesitter<CR>', { desc = 'Treesitter' } },
     ['<leader>fw'] = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', { desc = 'Workplace Symbols' } },
-    ['<leader>/'] = { '<cmd>lua _CURR_BUF()<CR>', { desc = 'Current Buffer' } },
+    ['<leader>/'] = { '<cmd>Telescope current_buffer_fuzzy_find<CR>', { desc = 'Current Buffer' } },
   }
 
   for key, val in pairs(keymaps) do
@@ -76,11 +72,13 @@ M.config = function()
           },
           n = {
             ['d'] = actions.delete_buffer,
+            ['<Tab>'] = actions.close
           },
         },
       },
       current_buffer_fuzzy_find = {
         previewer = false,
+        theme = 'ivy',
       },
       find_files = {
         hidden = true,

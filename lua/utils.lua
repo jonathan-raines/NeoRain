@@ -1,13 +1,5 @@
 local M = {}
 
-M.quickfix_toggle = function()
-  if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1 then
-    vim.cmd 'copen'
-  else
-    vim.cmd 'cclose'
-  end
-end
-
 M.escape_pair = function()
   local closers = { ')', ']', '}', '>', "'", '"', '`', ',' }
   local line = vim.api.nvim_get_current_line()
@@ -34,22 +26,6 @@ M.set_terminal_keymaps = function()
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], term_opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], term_opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], term_opts)
-end
-
-M.get_client_names = function()
-  local bufnr = vim.fn.bufnr ''
-  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-  local clients = vim.lsp.buf_get_clients(bufnr)
-  local clientnames_tbl = {}
-
-  for _, v in pairs(clients) do
-    local filetypes = v.config.filetypes
-    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 and v.name then
-      table.insert(clientnames_tbl, v.name)
-    end
-  end
-
-  return table.concat(clientnames_tbl, ', ')
 end
 
 M.highlight = function(color, opts)
