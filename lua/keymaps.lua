@@ -19,12 +19,6 @@ local keymaps = {
 
   { { 'n' }, 'J', 'mzJ`z', { desc = 'Join on same line' } },
 
-  { { 'n' }, '<Backspace>', '<cmd>bp<CR>', { desc = 'Previous Buffer' } },
-  { { 'n' }, '<Tab>', '<cmd>bn<CR>', { desc = 'Next Buffer' } },
-
-  { { 'n' }, '<', '<<', { desc = 'Increase Indent' } },
-  { { 'n' }, '>', '>>', { desc = 'Decrease Indent' } },
-
   { { 'v' }, '<', '<gv', { desc = 'Keep visual selection on indent decrease' } },
   { { 'v' }, '>', '>gv', { desc = 'Keep visual selection on indent increase' } },
 
