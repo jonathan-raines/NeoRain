@@ -2,6 +2,8 @@ local M = {}
 local fn = vim.fn
 
 local modes = require 'statusline.colors'.modes
+local icon = '  '
+local devicons_present, devicons = pcall(require, 'nvim-web-devicons')
 
 M.Mode = function()
   local m = vim.api.nvim_get_mode().mode
@@ -16,19 +18,35 @@ M.Spacer = function()
 end
 
 M.FileInfo = function()
-  local icon = '  '
   local filename = (fn.expand '%' == '' and 'Empty ') or fn.expand '%:t'
 
   if filename ~= 'Empty ' then
-    local devicons_present, devicons = pcall(require, 'nvim-web-devicons')
-
     if devicons_present then
-      local ft_icon = devicons.get_icon(filename)
-      icon = (ft_icon ~= nil and ' ' .. ft_icon) or ''
+      icon = M.GetFileIcon(filename)
     end
   end
 
-  return table.concat { '%#Normal#', icon, ' ', filename, ' ' }
+  return table.concat { '%#St_CurrentFile#', icon, ' ', filename, ' ' }
+end
+
+M.AlternateFile = function()
+  local filename = (fn.expand '#' == '' and 'Empty') or fn.expand '#:t'
+
+  if (fn.bufnr '#' ~= fn.bufnr '%') and (filename ~= 'Empty') then
+    if devicons_present then
+      icon = M.GetFileIcon(filename)
+    end
+
+    return table.concat { '%#Normal#', '#', icon, ' ', filename, ' ' }
+  end
+
+  return ' '
+end
+
+M.GetFileIcon = function(filename)
+  local ft_icon = devicons.get_icon(filename)
+
+  return (ft_icon ~= nil and ' ' .. ft_icon) or ''
 end
 
 M.Git = function()

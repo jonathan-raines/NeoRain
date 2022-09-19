@@ -46,7 +46,9 @@ M.config = function()
         i = {
           ['<ESC>'] = actions.close,
         },
-        n = {},
+        n = {
+          ['jk'] = actions.close,
+        },
       },
       -- Remove indentation at the beginning of a line
       vimgrep_arguments = {

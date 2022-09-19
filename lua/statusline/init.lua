@@ -8,6 +8,7 @@ function Statusline()
     utils.Spacer(),
     '%=',
     utils.FileInfo(),
+    utils.AlternateFile(),
     '%=',
     utils.LSP_Diagnostics(),
     utils.Treesitter(),
