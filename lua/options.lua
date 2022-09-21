@@ -41,7 +41,7 @@ local options = {
 vim.opt.shortmess:append 'cI'
 vim.opt.path:append '**'
 vim.o.laststatus = 3
--- vim.o.winbar = '%= %m %t'
+vim.o.winbar = "%{%v:lua.require'statusline.modules'.FileInfo()%} %#Normal# %{%v:lua.require'nvim-navic'.get_location()%}"
 
 for k, v in pairs(options) do
   vim.opt[k] = v

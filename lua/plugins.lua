@@ -124,6 +124,12 @@ return packer.startup(function(use)
   }
 
   use {
+    'SmiteshP/nvim-navic',
+    requires = 'neovim/nvim-lspconfig',
+    after = 'nvim-lspconfig'
+  }
+
+  use {
     'akinsho/flutter-tools.nvim',
     requires = 'nvim-lua/plenary.nvim',
     ft = { 'dart' }

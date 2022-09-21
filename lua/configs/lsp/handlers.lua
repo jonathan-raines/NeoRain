@@ -86,6 +86,9 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
+  local navic = require 'nvim-navic'
+  navic.attach(client, bufnr)
+
   if client.name == 'tsserver' then
     client.server_capabilities.documentFormattingProvider = false
   end
