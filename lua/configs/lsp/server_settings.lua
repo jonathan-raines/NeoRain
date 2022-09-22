@@ -14,7 +14,8 @@ M.sumneko_lua = function()
             indent_size = '2',
             quote_style = 'single',
             call_arg_parentheses = 'remove',
-            continuation_indent_size = '2'
+            continuation_indent_size = '2',
+            max_line_length = '140'
           },
         },
         workspace = {

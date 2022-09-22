@@ -242,24 +242,29 @@ return packer.startup(function(use)
 
   use {
     'dracula/vim', as = 'dracula',
+    event = 'ColorSchemePre'
+  }
+
+  use {
+    'folke/tokyonight.nvim',
     config = function()
-      vim.cmd [[ colorscheme dracula ]]
-    end
-  }
-
-  use {
-    'tanvirtin/monokai.nvim',
-    event = 'ColorSchemePre'
-  }
-
-  use {
-    'gruvbox-community/gruvbox',
-    event = 'ColorSchemePre'
+      require 'configs.tokyonight'
+      vim.cmd [[colorscheme tokyonight]]
+    end,
   }
 
   -----------------
   -- UI Elements --
   -----------------
+
+  use {
+    'alvarosevilla95/luatab.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require 'luatab'.setup {}
+    end,
+    event = 'TabNew'
+  }
 
   use {
     'folke/which-key.nvim',

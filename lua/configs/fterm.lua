@@ -8,21 +8,21 @@ M.setup = function()
     require 'FTerm'.scratch { cmd = { 'lazygit' },
       border = 'rounded',
       dimensions = {
-        height = 0.9,
-        width = 0.9,
+        height = 1.0,
+        width = 1.0,
       }
     }
   end, { bang = true })
 
-  vim.keymap.set('n', '<leader>gl', '<cmd>Lazygit<CR>', { silent = true, remap = true, desc = 'Lazygit' })
+  vim.keymap.set('n', '<leader>gg', '<cmd>Lazygit<CR>', { silent = true, remap = true, desc = 'Lazygit' })
 end
 
 M.config = function()
   require 'FTerm'.setup {
     border = 'rounded',
     dimensions = {
-      height = 0.9,
-      width = 0.9,
+      height = 0.98,
+      width = 0.98,
     },
   }
 end

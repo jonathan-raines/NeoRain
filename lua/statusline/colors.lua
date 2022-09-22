@@ -9,8 +9,12 @@ M.set_hl = function()
   highlight('St_CommandMode', { fg = 'Yellow', bold = true })
   highlight('St_TerminalMode', { fg = 'LightGreen', bold = true })
   highlight('St_NTerminalMode', { fg = 'LightGreen', bold = true })
-  highlight('St_CurrentFile', { fg = 'DarkYellow', bold = true })
+  highlight('St_CurrentFile', { fg = M.get_hl 'BufferCurrentIndex'.foreground or 'DarkYellow', bold = true })
   highlight('St_AlternateFile', { fg = 'DarkCyan', bold = true })
+end
+
+M.get_hl = function(name)
+  return vim.api.nvim_get_hl_by_name(name, {})
 end
 
 M.modes = {

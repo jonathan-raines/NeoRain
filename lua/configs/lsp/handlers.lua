@@ -76,13 +76,23 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, 'n', '<leader>lR', '<cmd>lua vim.lsp.buf.references()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'References' }))
 
+  keymap(bufnr, 'n', '<leader>li', '<CMD>LspInfo<CR>', vim.tbl_extend('keep', opts, { desc = 'LspInfo' }))
+  keymap(bufnr, 'n', '<leader>lj', '<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Next Diagnostic' }))
+  keymap(bufnr, 'n', '<leader>lk', '<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Previous Diagnostic' }))
+
+  keymap(bufnr, 'n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Document Symbols' }))
+
   keymap(bufnr, 'n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Add Workspace Folder' }))
   keymap(bufnr, 'n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Remove Workspace Folder' }))
   keymap(bufnr, 'n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
     vim.tbl_extend('keep', opts, { desc = 'List Workspace Folders' }))
-
+  keymap(bufnr, 'n', '<leader>lws', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>',
+    vim.tbl_extend('keep', opts, { desc = 'Workspace Symbols' }))
 end
 
 M.on_attach = function(client, bufnr)

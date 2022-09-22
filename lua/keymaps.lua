@@ -19,14 +19,16 @@ local keymaps = {
 
   { { 'n' }, 'J', 'mzJ`z', { desc = 'Join on same line' } },
 
-  { { 'v' }, '<', '<gv', { desc = 'Keep visual selection on indent decrease' } },
-  { { 'v' }, '>', '>gv', { desc = 'Keep visual selection on indent increase' } },
-
   { { 'n' }, '<C-j>', ':m .+1<CR>==', { desc = 'Move line up' } },
   { { 'n' }, '<C-k>', ':m .-2<CR>==', { desc = 'Move line down' } },
 
   { { 'v' }, '<C-j>', ":m '>+1<CR>gv-gv", { desc = 'Move line up' } },
   { { 'v' }, '<C-k>', ":m '<-2<CR>gv-gv", { desc = 'Move line down' } },
+
+  { { 'v' }, '<', '<gv', { desc = 'Keep visual selection on indent decrease' } },
+  { { 'v' }, '>', '>gv', { desc = 'Keep visual selection on indent increase' } },
+
+  { { 'v' }, 'p', '"_dP', { desc = 'Paste without replacing' } },
 
   { { 'i' }, '<C-l>', "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
 
