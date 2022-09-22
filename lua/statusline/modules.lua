@@ -56,11 +56,6 @@ M.Git = function()
 
   local git_status = vim.b.gitsigns_status_dict
 
-  vim.api.nvim_set_hl(0, 'St_git_add', { fg = vim.api.nvim_get_hl_by_name('GitSignsAdd', {}).foreground or 'Green' })
-  vim.api.nvim_set_hl(0, 'St_git_change',
-    { fg = vim.api.nvim_get_hl_by_name('GitSignsChange', {}).foreground or 'Orange' })
-  vim.api.nvim_set_hl(0, 'St_git_delete', { fg = vim.api.nvim_get_hl_by_name('GitSignsDelete', {}).foreground or 'Red' })
-
   local branch_name = '%#Normal#' .. '   ' .. git_status.head .. ' '
   local added = (git_status.added and git_status.added ~= 0) and ('%#St_git_add#' .. '  ' .. git_status.added) or ''
   local changed = (git_status.changed and git_status.changed ~= 0) and
@@ -103,7 +98,7 @@ M.LSP_status = function()
 end
 
 M.Treesitter = function()
-  vim.api.nvim_set_hl(0, 'Treesitter', { fg = 'seagreen' })
+  vim.api.nvim_set_hl(0, 'Treesitter', { fg = '#32CD32' })
 
   if next(vim.treesitter.highlighter.active) then
     return '%#Treesitter#' .. ' '

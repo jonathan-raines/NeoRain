@@ -2,15 +2,19 @@ local M = {}
 local highlight = require 'utils'.highlight
 
 M.set_hl = function()
-  highlight('St_NormalMode', { fg = 'Green', bold = true })
-  highlight('St_InsertMode', { fg = 'Cyan', bold = true })
-  highlight('St_VisualMode', { fg = 'Magenta', bold = true })
-  highlight('St_ReplaceMode', { fg = 'Red', bold = true })
-  highlight('St_CommandMode', { fg = 'Yellow', bold = true })
-  highlight('St_TerminalMode', { fg = 'LightGreen', bold = true })
-  highlight('St_NTerminalMode', { fg = 'LightGreen', bold = true })
-  highlight('St_CurrentFile', { fg = M.get_hl 'BufferCurrentIndex'.foreground or 'DarkYellow', bold = true })
-  highlight('St_AlternateFile', { fg = 'DarkCyan', bold = true })
+  highlight('St_NormalMode', { fg = '#32CD32', bold = true })
+  highlight('St_InsertMode', { fg = '#00BFFF', bold = true })
+  highlight('St_VisualMode', { fg = '#EE82EE', bold = true })
+  highlight('St_ReplaceMode', { fg = '#FF6347', bold = true })
+  highlight('St_CommandMode', { fg = '#F4A460', bold = true })
+  highlight('St_TerminalMode', { fg = '#8F83D8', bold = true })
+  highlight('St_NTerminalMode', { fg = '#8F83D8', bold = true })
+  highlight('St_CurrentFile', { fg = '#6495ED', bold = true })
+  highlight('St_AlternateFile', { fg = '#20B2AA', bold = true })
+
+  highlight('St_git_add', { fg = '#32CD32' })
+  highlight('St_git_change', { fg = '#F4A460' })
+  highlight('St_git_delete', { fg = '#FF6347' })
 end
 
 M.get_hl = function(name)
