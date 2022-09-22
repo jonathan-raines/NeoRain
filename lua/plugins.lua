@@ -186,6 +186,16 @@ return packer.startup(function(use)
     ft = { 'http' }
   }
 
+  use {
+    'ThePrimeagen/harpoon',
+    setup = function()
+      require 'configs.harpoon'.setup()
+    end,
+    config = function()
+      require 'configs.harpoon'.config()
+    end
+  }
+
   --------------------
   -- Autocompletion --
   --------------------

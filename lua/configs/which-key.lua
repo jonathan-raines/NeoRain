@@ -30,6 +30,7 @@ M.config = function()
   require 'which-key'.register({
     f = { name = 'Telescope' },
     g = { name = 'Git' },
+    h = { name = 'Harpoon' },
     j = { name = 'Terminal' },
     l = {
       name = 'LSP',
