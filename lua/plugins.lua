@@ -236,6 +236,14 @@ return packer.startup(function(use)
     run = ':TSUpdate'
   }
 
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    config = function()
+      require 'configs.treesitter-textobjects'.config()
+    end,
+    after = 'nvim-treesitter'
+  }
+
   -------------------
   -- COLOR SCHEMES --
   -------------------
