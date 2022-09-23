@@ -48,8 +48,6 @@ for k, v in pairs(options) do
 end
 
 local disabled_built_ins = {
-  'netrw',
-  'netrwPlugin',
   'gzip',
   'zip',
   'zipPlugin',

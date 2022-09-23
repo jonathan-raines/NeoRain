@@ -1,13 +1,6 @@
 local augroups = {}
 
 augroups.misc = {
-  -- create_missing_directories = {
-  --   desc = 'Create missing directories before saving the buffer',
-  --   event = 'BufWritePre',
-  --   callback = function()
-  --     vim.fn.mkdir(vim.fn.expand '%:p:h', 'p')
-  --   end,
-  -- },
   cursor_location = {
     desc = 'Open file at the last position it was edited earlier',
     event = 'BufReadPost',
@@ -35,13 +28,13 @@ augroups.misc = {
     callback = function()
       require 'statusline.colors'.set_hl()
     end
+  },
+  trim_whitespace = {
+    desc = 'Trim whitespace on save',
+    event = 'BufWritePre',
+    pattern = '*',
+    command = [[:%s/\s\+$//e]],
   }
-  -- trim_whitespace = {
-  --   desc = 'Trim whitespace on save',
-  --   event = 'BufWritePre',
-  --   pattern = '*',
-  --   command = [[:%s/\s\+$//e]],
-  -- }
 }
 
 augroups.terminal = {
