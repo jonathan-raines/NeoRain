@@ -14,7 +14,7 @@ M.Mode = function()
 end
 
 M.Spacer = function()
-  return table.concat { ' ' }
+  return table.concat { '%#Spacer# ' }
 end
 
 M.FileInfo = function()
@@ -80,7 +80,7 @@ M.LSP_Diagnostics = function()
 
   errors = (errors and errors > 0) and ('%#DiagnosticError#' .. ' ' .. errors .. ' ') or ''
   warnings = (warnings and warnings > 0) and ('%#DiagnosticWarn#' .. ' ' .. warnings .. ' ') or ''
-  hints = (hints and hints > 0) and ('%#DiagnosticHint#' .. 'ﯧ ' .. hints .. ' ') or ''
+  hints = (hints and hints > 0) and ('%#DiagnosticHint#' .. ' ' .. hints .. ' ') or ''
   info = (info and info > 0) and ('%#DiagnosticInfo#' .. ' ' .. info .. ' ') or ''
 
   return errors .. warnings .. hints .. info
@@ -94,15 +94,13 @@ M.LSP_status = function()
     end
 
     if next(client_names) then
-      return (vim.o.columns > 100 and '%#Normal#' .. '   ' .. table.concat(client_names, ', ') .. ' ')
+      return (vim.o.columns > 100 and '%#LspClient#' .. '   ' .. table.concat(client_names, ', ') .. ' ')
     end
   end
   return ''
 end
 
 M.Treesitter = function()
-  vim.api.nvim_set_hl(0, 'Treesitter', { fg = '#32CD32' })
-
   if next(vim.treesitter.highlighter.active) then
     return '%#Treesitter#' .. ' '
   end

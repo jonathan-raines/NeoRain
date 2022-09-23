@@ -15,6 +15,10 @@ M.set_hl = function()
   highlight('St_git_add', { fg = '#32CD32' })
   highlight('St_git_change', { fg = '#FF7518' })
   highlight('St_git_delete', { fg = '#D2042D' })
+
+  highlight('Spacer', { bg = require 'statusline.colors'.get_hl 'St_NormalMode'.background })
+  highlight('LspClient', { bg = require 'statusline.colors'.get_hl 'St_NormalMode'.background })
+  highlight('Treesitter', { fg = '#32CD32', bg = require 'statusline.colors'.get_hl 'St_NormalMode'.background })
 end
 
 M.get_hl = function(name)
