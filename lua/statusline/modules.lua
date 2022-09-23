@@ -88,10 +88,13 @@ end
 
 M.LSP_status = function()
   if rawget(vim, 'lsp') then
+    local client_names = {}
     for _, client in ipairs(vim.lsp.get_active_clients()) do
-      if client.attached_buffers[vim.api.nvim_get_current_buf()] then
-        return (vim.o.columns > 100 and '%#Normal#' .. '   ' .. client.name .. ' ')
-      end
+      table.insert(client_names, client.name)
+    end
+
+    if next(client_names) then
+      return (vim.o.columns > 100 and '%#Normal#' .. '   ' .. table.concat(client_names, ', ') .. ' ')
     end
   end
   return ''
