@@ -14,7 +14,7 @@ M.Mode = function()
 end
 
 M.Spacer = function()
-  return table.concat { '%#Normal#', ' ' }
+  return table.concat { ' ' }
 end
 
 M.FileInfo = function()

@@ -48,7 +48,6 @@ M.config = function()
       hidden = true,
       previewer = false,
       file_ignore_patterns = { '.git/' },
-      find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
     },
     git_files = {
       hidden = true,
