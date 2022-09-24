@@ -30,19 +30,17 @@ local keymaps = {
 
   { { 'v' }, 'p', '"_dP', { desc = 'Paste without replacing' } },
 
-  { { 'i' }, '<C-l>', "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
-
   { { 'n' }, '<A-q>', "<cmd>lua require('utils').quickfix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
   { { 'n' }, ']q', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
   { { 'n' }, '[q', '<cmd>cprevious<CR>', { desc = 'QuickFix Previous Item' } },
+
+  { { 'i' }, '<C-l>', "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
+
+  { { 'i' }, ',', ',<C-g>u', { desc = 'Undo Break Point' } },
+  { { 'i' }, '.', '.<C-g>u', { desc = 'Undo Break Point' } },
+  { { 'i' }, ';', ';<C-g>u', { desc = 'Undo Break Point' } },
 }
 
 for _, val in pairs(keymaps) do
   keymap(val[1], val[2], val[3], vim.tbl_extend('keep', opts, val[4]))
-end
-
--- Undo break points
-local break_points = { ',', '.', ';' }
-for _, char in ipairs(break_points) do
-  keymap('i', char, char .. '<C-g>u')
 end
