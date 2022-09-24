@@ -37,32 +37,9 @@ local options = {
   wrap = false, -- display lines as one long line
 }
 
-
 vim.opt.shortmess:append 'cI'
 vim.opt.path:append '**'
 
 for k, v in pairs(options) do
   vim.opt[k] = v
-end
-
-local disabled_built_ins = {
-  'gzip',
-  'zip',
-  'zipPlugin',
-  'tar',
-  'tarPlugin',
-  'getscript',
-  'getscriptPlugin',
-  'vimball',
-  'vimballPlugin',
-  '2html_plugin',
-  'matchit',
-  'matchparen',
-  'logipat',
-  'rrhelper',
-  'spellfile_plugin',
-}
-
-for _, plugin in ipairs(disabled_built_ins) do
-  vim.g['loaded_' .. plugin] = false
 end
