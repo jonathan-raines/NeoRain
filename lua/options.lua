@@ -3,9 +3,7 @@ local options = {
   colorcolumn = '+1',
   completeopt = { 'menu', 'menuone', 'noselect' }, -- mostly just for cmp
   expandtab = true, -- convert tabs to spaces
-  foldexpr = 'nvim_treesitter#foldexpr()',
   foldlevelstart = 99,
-  foldmethod = 'expr',
   hlsearch = false, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   inccommand = 'split', -- preview incremental substitute
@@ -22,6 +20,7 @@ local options = {
   smartcase = true, -- smart case
   smartindent = true, -- make indenting smarter again
   splitbelow = true, -- force all horizontal splits to go below current window
+  statusline = '%!v:lua.Statusline()',
   swapfile = false, -- creates a swapfile
   splitright = true, -- force all vertical splits to go to the right of current window
   tabstop = 2, -- insert 2 spaces for a tab
@@ -43,3 +42,13 @@ vim.opt.path:append '**'
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+---WORKAROUND
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
+  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+  callback = function()
+    vim.opt.foldmethod = 'expr'
+    vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
+  end
+})
+---ENDWORKAROUND
