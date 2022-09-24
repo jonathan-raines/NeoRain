@@ -2,8 +2,6 @@ local options = {
   clipboard = 'unnamedplus', -- allows neovim to access the system clipboard
   colorcolumn = '+1',
   completeopt = { 'menu', 'menuone', 'noselect' }, -- mostly just for cmp
-  cursorline = true, -- highlight the current line
-  cursorlineopt = 'number',
   expandtab = true, -- convert tabs to spaces
   foldexpr = 'nvim_treesitter#foldexpr()',
   foldlevelstart = 99,
@@ -11,6 +9,7 @@ local options = {
   hlsearch = false, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   inccommand = 'split', -- preview incremental substitute
+  laststatus = 3,
   mouse = 'a', -- allow the mouse to be used in neovim
   number = true,
   relativenumber = true,
@@ -33,6 +32,7 @@ local options = {
   updatetime = 300, -- faster completion (4000ms default)
   wildignore = '**/node_modules/*, **/.git/*',
   wildmode = 'longest:full,full',
+  winbar = "%{%v:lua.require'statusline.modules'.FileInfo()%} %#Normal# %{%v:lua.require'nvim-navic'.get_location()%}",
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   wrap = false, -- display lines as one long line
 }
@@ -40,8 +40,6 @@ local options = {
 
 vim.opt.shortmess:append 'cI'
 vim.opt.path:append '**'
-vim.o.laststatus = 3
-vim.o.winbar = "%{%v:lua.require'statusline.modules'.FileInfo()%} %#Normal# %{%v:lua.require'nvim-navic'.get_location()%}"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
