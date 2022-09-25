@@ -84,6 +84,15 @@ return packer.startup(function(use)
     'nvim-telescope/telescope-file-browser.nvim',
     config = "require 'configs.telescope-file-browser'",
     after = 'telescope.nvim'
+
+  use {
+    'otavioschwanck/telescope-alternate',
+    setup = function()
+      require 'configs.telescope-alternate'.setup()
+    end,
+    config = function()
+      require 'configs.telescope-alternate'.config()
+    end
   }
 
   ---------
@@ -96,7 +105,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.gitsigns'.config()
     end,
-    event = 'BufRead'
+    -- event = 'BufRead'
   }
 
   use {
