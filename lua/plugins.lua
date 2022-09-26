@@ -68,7 +68,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.telescope-nvim'.config()
     end,
-    cmd = { 'Telescope' }
+    -- cmd = { 'Telescope' }
   }
 
   use {
@@ -77,22 +77,23 @@ return packer.startup(function(use)
       require 'configs.telescope-fzf-native'
     end,
     run = 'make',
-    after = 'telescope.nvim'
+    -- after = 'telescope.nvim'
   }
 
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = "require 'configs.telescope-file-browser'",
-    after = 'telescope.nvim'
+    -- after = 'telescope.nvim'
+  }
 
   use {
-    'otavioschwanck/telescope-alternate',
+    'otavioschwanck/telescope-alternate.nvim',
     setup = function()
       require 'configs.telescope-alternate'.setup()
     end,
     config = function()
       require 'configs.telescope-alternate'.config()
-    end
+    end,
   }
 
   ---------
@@ -121,6 +122,11 @@ return packer.startup(function(use)
     cmd = { 'Octo' }
   }
 
+  use {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewToggleFiles' }
+  }
+
   ---------------------
   -- Language Server --
   ---------------------
@@ -135,7 +141,7 @@ return packer.startup(function(use)
   use {
     'SmiteshP/nvim-navic',
     requires = 'neovim/nvim-lspconfig',
-    after = 'nvim-lspconfig'
+    -- after = 'nvim-lspconfig'
   }
 
   use {
@@ -166,7 +172,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.nvim-autopairs'
     end,
-    event = 'InsertEnter'
+    -- event = 'InsertEnter'
   }
 
   use {
@@ -174,7 +180,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.comment'
     end,
-    keys = { 'gb', 'gc' }
+    -- keys = { 'gb', 'gc' }
   }
 
   use {
@@ -214,22 +220,27 @@ return packer.startup(function(use)
     requires = {
       {
         'L3MON4D3/LuaSnip',
-        requires = { { 'rafamadriz/friendly-snippets', event = 'InsertEnter' } },
+        requires = {
+          {
+            'rafamadriz/friendly-snippets',
+            -- event = 'InsertEnter'
+          }
+        },
         config = function()
           require 'luasnip/loaders/from_vscode'.lazy_load()
         end,
-        after = 'friendly-snippets'
+        -- after = 'friendly-snippets'
       },
       { 'hrsh7th/cmp-nvim-lsp' },
-      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip', --[[ after = 'nvim-cmp' ]] },
+      { 'hrsh7th/cmp-nvim-lua', --[[ after = 'nvim-cmp'  ]] },
+      { 'hrsh7th/cmp-buffer', --[[ after = 'nvim-cmp'  ]] },
+      { 'hrsh7th/cmp-path', --[[ after = 'nvim-cmp'  ]] },
     },
     config = function()
       require 'configs.nvim-cmp'
     end,
-    after = 'LuaSnip'
+    -- after = 'LuaSnip'
   }
 
   ----------------
@@ -238,11 +249,13 @@ return packer.startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter',
-    module = 'nvim-treesitter',
     config = function()
       require 'configs.nvim-treesitter'
     end,
-    run = ':TSUpdate'
+    run = function()
+      require 'nvim-treesitter.install'.update { with_sync = true }
+    end
+    -- module = 'nvim-treesitter',
   }
 
   use {
@@ -250,7 +263,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.treesitter-textobjects'.config()
     end,
-    after = 'nvim-treesitter'
+    -- after = 'nvim-treesitter'
   }
 
   -------------------
@@ -280,7 +293,7 @@ return packer.startup(function(use)
     config = function()
       require 'luatab'.setup {}
     end,
-    event = 'TabNew'
+    -- event = 'TabNew'
   }
 
   use {
@@ -298,7 +311,7 @@ return packer.startup(function(use)
     config = function()
       require 'configs.fterm'.config()
     end,
-    module = 'FTerm'
+    -- module = 'FTerm'
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
