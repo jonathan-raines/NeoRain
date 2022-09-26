@@ -18,3 +18,5 @@ function Statusline()
     utils.Spacer()
   }
 end
+
+vim.o.statusline = '%!v:lua.Statusline()'
