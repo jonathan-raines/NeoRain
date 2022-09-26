@@ -25,7 +25,12 @@ end
 
 M.config = function()
   require 'harpoon'.setup {
-    enter_on_sendcmd = true
+    -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
+    enter_on_sendcmd = true,
+    -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
+    save_on_toggle = false,
+    -- set marks specific to each git branch inside git repository
+    mark_branch = true,
   }
 end
 
