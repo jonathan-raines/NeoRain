@@ -27,9 +27,21 @@ M.config = function()
     false
   )
 
+  vim.g['test#custom_strategies'] = {
+    fterm = function(cmd)
+      require 'FTerm'.scratch {
+        cmd = cmd,
+        dimensions = {
+          height = 0.98,
+          width = 0.98
+        }
+      }
+    end,
+  }
+
   vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')}]]
   vim.cmd [[ let test#transformation = 'docker']]
-  vim.cmd [[ let test#strategy = 'harpoon' ]]
+  vim.cmd [[ let test#strategy = 'fterm' ]]
 end
 
 return M
