@@ -93,7 +93,7 @@ M.LSP_status = function()
     end
 
     if next(client_names) then
-      return (vim.o.columns > 100 and '%#LspClient#' .. '   ' .. table.concat(client_names, ', ') .. ' ')
+      return '%#LspClient#' .. '   ' .. table.concat(client_names, ', ') .. ' '
     end
   end
   return ''
