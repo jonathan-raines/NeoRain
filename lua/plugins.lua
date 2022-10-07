@@ -96,6 +96,18 @@ return packer.startup(function(use)
     end,
   }
 
+  use {
+    'LukasPietzschmann/telescope-tabs',
+    requires = { 'nvim-telescope/telescope.nvim' },
+    setup = function()
+      vim.keymap.set('n', '<leader>v', '<cmd>Telescope telescope-tabs list_tabs initial_mode=normal<CR>',
+        { silent = true, remap = true, desc = 'Tabs' })
+    end,
+    config = function()
+      require 'telescope-tabs'.setup { show_preview = false }
+    end
+  }
+
   ---------
   -- Git --
   ---------
@@ -276,13 +288,27 @@ return packer.startup(function(use)
   }
 
   use {
-    'folke/tokyonight.nvim',
+    'catppuccin/nvim',
+    as = 'catppuccin',
     config = function()
-      require 'configs.tokyonight'
-      vim.cmd [[colorscheme tokyonight]]
+      vim.g.catppuccin_flavour = 'mocha' -- latte, frappe, macchiato, mocha
+      require 'catppuccin'.setup {
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          harpoon = true,
+          native_lsp = {
+            enabled = true
+          },
+          telescope = true,
+          treesitter = true,
+          which_key = true
+        },
+      }
+      vim.api.nvim_command 'colorscheme catppuccin'
     end,
+    run = ':CatppuccinCompile'
   }
-
   -----------------
   -- UI Elements --
   -----------------
