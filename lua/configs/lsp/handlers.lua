@@ -10,7 +10,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
-M.capabilities = require 'cmp_nvim_lsp'.update_capabilities(capabilities)
+M.capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
 
 local function lsp_document_codelens(client)
   if client.server_capabilities.code_lens then
