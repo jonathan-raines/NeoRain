@@ -312,6 +312,7 @@ return packer.startup(function(use)
     end,
     run = ':CatppuccinCompile'
   }
+
   -----------------
   -- UI Elements --
   -----------------
