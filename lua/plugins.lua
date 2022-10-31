@@ -68,7 +68,6 @@ return packer.startup(function(use)
     config = function()
       require 'configs.telescope-nvim'.config()
     end,
-    -- cmd = { 'Telescope' }
   }
 
   use {
@@ -77,13 +76,11 @@ return packer.startup(function(use)
       require 'configs.telescope-fzf-native'
     end,
     run = 'make',
-    -- after = 'telescope.nvim'
   }
 
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = "require 'configs.telescope-file-browser'",
-    -- after = 'telescope.nvim'
   }
 
   use {
@@ -118,7 +115,6 @@ return packer.startup(function(use)
     config = function()
       require 'configs.gitsigns'.config()
     end,
-    -- event = 'BufRead'
   }
 
   use {
@@ -153,7 +149,6 @@ return packer.startup(function(use)
   use {
     'SmiteshP/nvim-navic',
     requires = 'neovim/nvim-lspconfig',
-    -- after = 'nvim-lspconfig'
   }
 
   use {
@@ -187,7 +182,6 @@ return packer.startup(function(use)
     config = function()
       require 'configs.nvim-autopairs'
     end,
-    -- event = 'InsertEnter'
   }
 
   use {
@@ -195,7 +189,6 @@ return packer.startup(function(use)
     config = function()
       require 'configs.comment'
     end,
-    -- keys = { 'gb', 'gc' }
   }
 
   use {
@@ -236,26 +229,21 @@ return packer.startup(function(use)
       {
         'L3MON4D3/LuaSnip',
         requires = {
-          {
-            'rafamadriz/friendly-snippets',
-            -- event = 'InsertEnter'
-          }
+          { 'rafamadriz/friendly-snippets', }
         },
         config = function()
           require 'luasnip/loaders/from_vscode'.lazy_load()
         end,
-        -- after = 'friendly-snippets'
       },
       { 'hrsh7th/cmp-nvim-lsp' },
-      { 'saadparwaiz1/cmp_luasnip', --[[ after = 'nvim-cmp' ]] },
-      { 'hrsh7th/cmp-nvim-lua', --[[ after = 'nvim-cmp'  ]] },
-      { 'hrsh7th/cmp-buffer', --[[ after = 'nvim-cmp'  ]] },
-      { 'hrsh7th/cmp-path', --[[ after = 'nvim-cmp'  ]] },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
     },
     config = function()
       require 'configs.nvim-cmp'
     end,
-    -- after = 'LuaSnip'
   }
 
   ----------------
@@ -270,7 +258,6 @@ return packer.startup(function(use)
     run = function()
       require 'nvim-treesitter.install'.update { with_sync = true }
     end
-    -- module = 'nvim-treesitter',
   }
 
   use {
@@ -278,7 +265,6 @@ return packer.startup(function(use)
     config = function()
       require 'configs.treesitter-textobjects'.config()
     end,
-    -- after = 'nvim-treesitter'
   }
 
   -------------------
@@ -308,9 +294,17 @@ return packer.startup(function(use)
           which_key = true
         },
       }
-      vim.api.nvim_command 'colorscheme catppuccin'
+      -- vim.api.nvim_command 'colorscheme catppuccin'
     end,
     run = ':CatppuccinCompile'
+  }
+
+  use {
+    'rose-pine/neovim',
+    as = 'rose-pine',
+    config = function()
+      vim.api.nvim_command 'colorscheme rose-pine'
+    end
   }
 
   -----------------
@@ -342,7 +336,6 @@ return packer.startup(function(use)
     config = function()
       require 'configs.fterm'.config()
     end,
-    -- module = 'FTerm'
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
