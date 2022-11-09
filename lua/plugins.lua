@@ -130,11 +130,6 @@ return packer.startup(function(use)
     cmd = { 'Octo' }
   }
 
-  use {
-    'sindrets/diffview.nvim',
-    cmd = { 'DiffviewOpen', 'DiffviewToggleFiles' }
-  }
-
   ---------------------
   -- Language Server --
   ---------------------
@@ -277,33 +272,38 @@ return packer.startup(function(use)
   }
 
   use {
-    'catppuccin/nvim',
-    as = 'catppuccin',
+    'folke/tokyonight.nvim',
     config = function()
-      vim.g.catppuccin_flavour = 'mocha' -- latte, frappe, macchiato, mocha
-      require 'catppuccin'.setup {
-        integrations = {
-          cmp = true,
-          gitsigns = true,
-          harpoon = true,
-          native_lsp = {
-            enabled = true
-          },
-          telescope = true,
-          treesitter = true,
-          which_key = true
+      require 'tokyonight'.setup {
+        style = 'storm', -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+        transparent = true, -- Enable this to disable setting the background color
+        terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+        styles = {
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = {},
+          variables = {},
+          -- Background styles. Can be "dark", "transparent" or "normal"
+          sidebars = 'dark', -- style for sidebars, see below
+          floats = 'dark', -- style for floating windows
         },
+        sidebars = { 'qf', 'help' }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+        dim_inactive = true, -- dims inactive windows
       }
-      -- vim.api.nvim_command 'colorscheme catppuccin'
-    end,
-    run = ':CatppuccinCompile'
+
+      -- vim.cmd [[ colorscheme tokyonight-storm ]]
+    end
   }
 
   use {
-    'rose-pine/neovim',
-    as = 'rose-pine',
+    'sainnhe/sonokai',
     config = function()
-      vim.api.nvim_command 'colorscheme rose-pine'
+      vim.g.sonokai_enable_italic = 1
+      vim.g.sonokai_transparent_background = 1
+      vim.g.sonokai_better_performance = 1
+      vim.g.sonokai_disable_terminal_colors = 1
+
+      vim.cmd [[ colorscheme sonokai ]]
     end
   }
 
@@ -329,13 +329,21 @@ return packer.startup(function(use)
   }
 
   use {
-    'numToStr/FTerm.nvim',
+    'akinsho/toggleterm.nvim',
+    tag = '*',
     setup = function()
-      require 'configs.fterm'.setup()
+      require 'configs.toggleterm'.setup()
     end,
     config = function()
-      require 'configs.fterm'.config()
-    end,
+      require 'configs.toggleterm'.config()
+    end
+  }
+
+  use {
+    'ggandor/leap.nvim',
+    config = function()
+      require 'leap'.add_default_mappings()
+    end
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
