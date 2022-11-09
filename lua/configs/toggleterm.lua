@@ -5,6 +5,10 @@ M.setup = function()
   local opts = { noremap = true, silent = true }
   local mappings = {
     ['<leader>gl'] = { '<cmd>lua G_lazygit_toggle()<CR>', { desc = 'Lazygit' } },
+    ['<leader>jj'] = { '<cmd>ToggleTerm direction=horizontal<CR>', { desc = 'Bottom Terminal' } },
+    ['<leader>jk'] = { '<cmd>ToggleTerm direction=tab<CR>', { desc = 'Tab Terminal' } },
+    ['<leader>jl'] = { '<cmd>ToggleTerm direction=float<CR>', { desc = 'Float Terminal' } },
+    ['<leader>j;'] = { '<cmd>ToggleTerm direction=vertical<CR>', { desc = 'Right Terminal' } },
   }
 
   for key, val in pairs(mappings) do
@@ -15,7 +19,7 @@ end
 M.config = function()
   require 'toggleterm'.setup {
     -- size can be a number or function which is passed the current terminal
-    size = 20 or function(term)
+    size = function(term)
       if term.direction == 'horizontal' then
         return 15
       elseif term.direction == 'vertical' then
@@ -46,8 +50,12 @@ M.config = function()
   local Terminal = require 'toggleterm.terminal'.Terminal
 
   function G_lazygit_toggle()
-    Terminal:new { cmd = 'lazygit', hidden = true }:toggle()
+    Terminal:new { cmd = 'lazygit', direction = 'float' }:toggle()
   end
+
+  -- You can create your on commands by using the lua functions this plugin provides directly
+  -- command! -count=1 TermGitPush  lua require'toggleterm'.exec("git push",    <count>, 12)
+  -- command! -count=1 TermGitPushF lua require'toggleterm'.exec("git push -f", <count>, 12)
 end
 
 return M

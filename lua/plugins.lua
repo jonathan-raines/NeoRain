@@ -274,24 +274,7 @@ return packer.startup(function(use)
   use {
     'folke/tokyonight.nvim',
     config = function()
-      require 'tokyonight'.setup {
-        style = 'storm', -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-        transparent = true, -- Enable this to disable setting the background color
-        terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-        styles = {
-          comments = { italic = true },
-          keywords = { italic = true },
-          functions = {},
-          variables = {},
-          -- Background styles. Can be "dark", "transparent" or "normal"
-          sidebars = 'dark', -- style for sidebars, see below
-          floats = 'dark', -- style for floating windows
-        },
-        sidebars = { 'qf', 'help' }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-        dim_inactive = true, -- dims inactive windows
-      }
-
-      -- vim.cmd [[ colorscheme tokyonight-storm ]]
+      require 'configs.tokyonight'
     end
   }
 
