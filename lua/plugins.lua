@@ -155,8 +155,6 @@ return packer.startup(function(use)
     ft = { 'dart' }
   }
 
-  use { 'gpanders/editorconfig.nvim' }
-
   ----------
   -- MISC --
   ----------
@@ -267,8 +265,13 @@ return packer.startup(function(use)
   -------------------
 
   use {
-    'dracula/vim', as = 'dracula',
-    event = 'ColorSchemePre'
+    'Mofiqul/dracula.nvim',
+    config = function()
+      require 'dracula'.setup {
+        transparent_bg = true,
+        italic_comment = true
+      }
+    end
   }
 
   use {
