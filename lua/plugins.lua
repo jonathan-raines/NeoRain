@@ -185,6 +185,13 @@ return packer.startup(function(use)
   }
 
   use {
+    'kylechui/nvim-surround',
+    config = function()
+      require 'nvim-surround'.setup {}
+    end
+  }
+
+  use {
     'jinh0/eyeliner.nvim',
     config = function()
       require 'eyeliner'.setup {
@@ -271,14 +278,16 @@ return packer.startup(function(use)
         transparent_bg = true,
         italic_comment = true
       }
-    end
+    end,
+    event = 'ColorSchemePre'
   }
 
   use {
     'folke/tokyonight.nvim',
     config = function()
       require 'configs.tokyonight'
-    end
+    end,
+    event = 'ColorSchemePre'
   }
 
   use {
