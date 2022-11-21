@@ -5,10 +5,7 @@ local keymap = vim.keymap.set
 
 M.setup = function()
   local keymaps = {
-    -- { { 'n' }, '<Tab>', '<cmd>Telescope harpoon marks theme=dropdown initial_mode=normal previewer=false<CR>', { desc = 'Telescope harpoon' } },
     { { 'n' }, '<leader>hq', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { desc = 'File Menu' } },
-    { { 'n' }, '<Tab>', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { desc = 'Harpoon Menu' } },
-
     { { 'n' }, '<leader>hp', '<cmd>lua require("harpoon.mark").add_file()<CR>', { desc = 'Add File' } },
     { { 'n' }, '<leader>hf', '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', { desc = 'File 1' } },
     { { 'n' }, '<leader>hd', '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', { desc = 'File 2' } },

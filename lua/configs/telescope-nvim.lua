@@ -5,7 +5,6 @@ M.setup = function()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    ['<S-Tab>'] = { '<cmd>Telescope buffers<CR>', { desc = 'Buffers' } },
     ['<leader>b'] = { '<cmd>Telescope buffers<CR>', { desc = 'Buffers' } },
     ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
     ['<leader>fe'] = { '<cmd>Telescope file_browser initial_mode=normal<CR>', { desc = 'File Browser' } },
