@@ -30,7 +30,7 @@ local keymaps = {
 
   { { 'v' }, 'p', '"_dP', { desc = 'Paste without replacing' } },
 
-  { { 'n' }, '<A-q>', "<cmd>lua require('utils').quickfix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
+  { { 'n' }, '<C-q>', "<cmd>lua require('utils').quickfix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
   { { 'n' }, ']q', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
   { { 'n' }, '[q', '<cmd>cprevious<CR>', { desc = 'QuickFix Previous Item' } },
 
