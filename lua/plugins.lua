@@ -63,34 +63,34 @@ return packer.startup(function(use)
       { 'kyazdani42/nvim-web-devicons' },
     },
     setup = function()
-      require 'configs.telescope-nvim'.setup()
+      require 'configs.telescope.telescope-nvim'.setup()
     end,
     config = function()
-      require 'configs.telescope-nvim'.config()
+      require 'configs.telescope.telescope-nvim'.config()
     end,
   }
 
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
     config = function()
-      require 'configs.telescope-fzf-native'
+      require 'configs.telescope.telescope-fzf-native'
     end,
     run = 'make',
   }
 
   use {
     'nvim-telescope/telescope-file-browser.nvim',
-    config = "require 'configs.telescope-file-browser'",
+    config = "require 'configs.telescope.telescope-file-browser'",
   }
 
   -- Possible Delete
   use {
     'otavioschwanck/telescope-alternate.nvim',
     setup = function()
-      require 'configs.telescope-alternate'.setup()
+      require 'configs.telescope.telescope-alternate'.setup()
     end,
     config = function()
-      require 'configs.telescope-alternate'.config()
+      require 'configs.telescope.telescope-alternate'.config()
     end,
   }
 
@@ -99,11 +99,10 @@ return packer.startup(function(use)
     'LukasPietzschmann/telescope-tabs',
     requires = { 'nvim-telescope/telescope.nvim' },
     setup = function()
-      vim.keymap.set('n', '<leader>v', '<cmd>Telescope telescope-tabs list_tabs initial_mode=normal<CR>',
-        { silent = true, remap = true, desc = 'Tabs' })
+      require 'configs.telescope.telescope-tabs'.setup()
     end,
     config = function()
-      require 'telescope-tabs'.setup { show_preview = false }
+      require 'configs.telescope.telescope-tabs'.config()
     end
   }
 
@@ -196,45 +195,27 @@ return packer.startup(function(use)
   use {
     'jinh0/eyeliner.nvim',
     config = function()
-      require 'eyeliner'.setup {
-        highlight_on_key = true
-      }
+      require 'configs.eyeliner'
     end
   }
 
   use {
     'cbochs/grapple.nvim',
     config = function()
-      vim.keymap.set('n', '<leader>hq', require 'grapple'.popup_tags, { desc = 'Grapple Menu' })
-      vim.keymap.set('n', '<leader>h/', ':GrappleSelect key=', { desc = 'Grapple Select Name' })
-      vim.keymap.set('n', '<leader>hp', require 'grapple'.toggle, { desc = 'Grapple Tag' })
-      vim.keymap.set('n', '<leader>hP', ':GrappleTag key=', { desc = 'Grapple Tag Name' })
-      vim.keymap.set('n', '<leader>hf', "<CMD>lua require 'grapple'.select { key = 1 }<CR>", { desc = 'Select Tag 1' })
-      vim.keymap.set('n', '<leader>hd', "<CMD>lua require 'grapple'.select { key = 2 }<CR>", { desc = 'Select Tag 2' })
-      vim.keymap.set('n', '<leader>hs', "<CMD>lua require 'grapple'.select { key = 3 }<CR>", { desc = 'Select Tag 3' })
-      vim.keymap.set('n', '<leader>ha', "<CMD>lua require 'grapple'.select { key = 4 }<CR>", { desc = 'Select Tag 4' })
+      require 'configs.grapple'.config()
     end
   }
 
   use {
     'cbochs/portal.nvim',
+    setup = function()
+      require 'configs.portal'.setup()
+    end,
     config = function()
-      require 'portal'.setup {
-        integrations = {
-          grapple = true
-        },
-        query = { 'modified', 'different', 'valid', 'grapple' },
-        escape = {
-          ['<esc>'] = true,
-          ['q'] = true
-        },
-      }
-
-      vim.keymap.set('n', '<leader>o', require 'portal'.jump_backward, {})
-      vim.keymap.set('n', '<leader>i', require 'portal'.jump_forward, {})
+      require 'configs.portal'.config()
     end,
     requires = {
-      'cbochs/grapple.nvim', -- Optional: provides the "grapple" query item
+      'cbochs/grapple.nvim'
     },
   }
 
@@ -280,7 +261,7 @@ return packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      require 'configs.nvim-treesitter'
+      require 'configs.treesitter.nvim-treesitter'
     end,
     run = function()
       require 'nvim-treesitter.install'.update { with_sync = true }
@@ -290,18 +271,14 @@ return packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
     config = function()
-      require 'configs.treesitter-textobjects'.config()
+      require 'configs.treesitter.treesitter-textobjects'.config()
     end,
   }
 
   use {
     'JoosepAlviste/nvim-ts-context-commentstring',
     config = function()
-      require 'nvim-treesitter.configs'.setup {
-        context_commentstring = {
-          enable = true
-        }
-      }
+      require 'configs.treesitter.nvim-ts-context-commentstring'
     end
   }
 
@@ -312,10 +289,7 @@ return packer.startup(function(use)
   use {
     'Mofiqul/dracula.nvim',
     config = function()
-      require 'dracula'.setup {
-        transparent_bg = true,
-        italic_comment = true
-      }
+      require 'configs.colorschemes.dracula'
     end,
     event = 'ColorSchemePre'
   }
@@ -323,7 +297,7 @@ return packer.startup(function(use)
   use {
     'folke/tokyonight.nvim',
     config = function()
-      require 'configs.tokyonight'
+      require 'configs.colorschemes.tokyonight'
     end,
     event = 'ColorSchemePre'
   }
@@ -331,10 +305,7 @@ return packer.startup(function(use)
   use {
     'sainnhe/sonokai',
     config = function()
-      vim.g.sonokai_enable_italic = 1
-      vim.g.sonokai_transparent_background = 1
-      vim.g.sonokai_better_performance = 1
-      vim.g.sonokai_disable_terminal_colors = 1
+      require 'configs.colorschemes.sonokai'
 
       vim.cmd [[ colorscheme sonokai ]]
     end
@@ -347,10 +318,10 @@ return packer.startup(function(use)
   use {
     'nanozuki/tabby.nvim',
     setup = function()
-      vim.o.showtabline = 2
+      require 'configs.tabby'.setup()
     end,
     config = function()
-      require 'configs.tabby'
+      require 'configs.tabby'.config()
     end
   }
 
@@ -365,10 +336,10 @@ return packer.startup(function(use)
     'akinsho/toggleterm.nvim',
     tag = '*',
     setup = function()
-      require 'configs.toggleterm'.setup()
+      require 'configs.toggleterm-nvim'.setup()
     end,
     config = function()
-      require 'configs.toggleterm'.config()
+      require 'configs.toggleterm-nvim'.config()
     end
   }
 
