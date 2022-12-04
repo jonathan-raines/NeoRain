@@ -203,18 +203,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'ThePrimeagen/harpoon',
-    setup = function()
-      require 'configs.harpoon'.setup()
-    end,
-    config = function()
-      require 'configs.harpoon'.config()
-    end,
-    disable = true
-  }
-
-  -- Possible Delete
-  use {
     'cbochs/grapple.nvim',
     config = function()
       vim.keymap.set('n', '<leader>hq', require 'grapple'.popup_tags, { desc = 'Grapple Menu' })
