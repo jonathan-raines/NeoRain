@@ -7,7 +7,7 @@ local devicons_present, devicons = pcall(require, 'nvim-web-devicons')
 
 M.Mode = function()
   local m = vim.api.nvim_get_mode().mode
-  local current_mode = '%#' .. modes[m][2] .. '#' .. '  ' .. modes[m][1]
+  local current_mode = '%#' .. modes[m][2] .. '#' .. '   ' .. modes[m][1]
 
   return table.concat { current_mode }
 end
@@ -25,7 +25,7 @@ M.FileInfo = function()
     end
   end
 
-  return table.concat { '%#St_CurrentFile#', icon, ' ', filename, ' ' }
+  return table.concat { '%#St_CurrentFile#', icon, '  ', filename, ' ' }
 end
 
 M.AlternateFile = function()
@@ -36,7 +36,7 @@ M.AlternateFile = function()
       icon = M.GetFileIcon(filename)
     end
 
-    return table.concat { '%#St_AlternateFile#', '#', icon, ' ', filename, ' ' }
+    return table.concat { '%#St_AlternateFile#', '#', icon, '  ', filename, ' ' }
   end
 
   return ' '
@@ -56,12 +56,12 @@ M.Git = function()
   local git_status = vim.b.gitsigns_status_dict
 
   local branch_name = '%#Normal#' .. '   ' .. git_status.head .. ' '
-  local added = (git_status.added and git_status.added ~= 0) and ('%#St_git_add#' .. '  ' .. git_status.added) or ''
+  local added = (git_status.added and git_status.added ~= 0) and ('%#St_git_add#' .. '   ' .. git_status.added) or ''
   local changed = (git_status.changed and git_status.changed ~= 0) and
-    ('%#St_git_change#' .. '  ' .. git_status.changed
+    ('%#St_git_change#' .. '   ' .. git_status.changed
     ) or ''
   local removed = (git_status.removed and git_status.removed ~= 0) and
-    ('%#St_git_delete#' .. '  ' .. git_status.removed
+    ('%#St_git_delete#' .. '   ' .. git_status.removed
     ) or ''
 
   return table.concat { branch_name, added, changed, removed }
@@ -77,10 +77,10 @@ M.LSP_Diagnostics = function()
   local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 
-  errors = (errors and errors > 0) and ('%#DiagnosticError#' .. ' ' .. errors .. ' ') or ''
-  warnings = (warnings and warnings > 0) and ('%#DiagnosticWarn#' .. ' ' .. warnings .. ' ') or ''
-  hints = (hints and hints > 0) and ('%#DiagnosticHint#' .. ' ' .. hints .. ' ') or ''
-  info = (info and info > 0) and ('%#DiagnosticInfo#' .. ' ' .. info .. ' ') or ''
+  errors = (errors and errors > 0) and ('%#DiagnosticSignError#' .. '  ' .. errors .. ' ') or ''
+  warnings = (warnings and warnings > 0) and ('%#DiagnosticSignWarn#' .. '  ' .. warnings .. ' ') or ''
+  hints = (hints and hints > 0) and ('%#DiagnosticSignHint#' .. '  ' .. hints .. ' ') or ''
+  info = (info and info > 0) and ('%#DiagnosticSignInfo#' .. '  ' .. info .. ' ') or ''
 
   return errors .. warnings .. hints .. info
 end
