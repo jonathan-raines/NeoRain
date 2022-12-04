@@ -67,6 +67,14 @@ M.Git = function()
   return table.concat { branch_name, added, changed, removed }
 end
 
+M.Grapple = function()
+  if require 'grapple'.exists() then
+    return table.concat { '[', require 'grapple'.key(), ']' }
+  else
+    return ''
+  end
+end
+
 M.LSP_Diagnostics = function()
   if not rawget(vim, 'lsp') then
     return ''

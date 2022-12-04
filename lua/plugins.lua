@@ -83,6 +83,7 @@ return packer.startup(function(use)
     config = "require 'configs.telescope-file-browser'",
   }
 
+  -- Possible Delete
   use {
     'otavioschwanck/telescope-alternate.nvim',
     setup = function()
@@ -93,6 +94,7 @@ return packer.startup(function(use)
     end,
   }
 
+  -- Possible Delete
   use {
     'LukasPietzschmann/telescope-tabs',
     requires = { 'nvim-telescope/telescope.nvim' },
@@ -201,22 +203,37 @@ return packer.startup(function(use)
   }
 
   use {
-    'NTBBloodbath/rest.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require 'configs.rest'
-    end,
-    ft = { 'http' }
-  }
-
-  use {
     'ThePrimeagen/harpoon',
     setup = function()
       require 'configs.harpoon'.setup()
     end,
     config = function()
       require 'configs.harpoon'.config()
+    end,
+    disable = true
+  }
+
+  -- Possible Delete
+  use {
+    'cbochs/grapple.nvim',
+    config = function()
+      vim.keymap.set('n', '<leader>hq', require 'grapple'.popup_tags, { desc = 'Grapple Menu' })
+      vim.keymap.set('n', '<leader>h/', ':GrappleSelect key=', { desc = 'Grapple Select Name' })
+      vim.keymap.set('n', '<leader>hp', require 'grapple'.toggle, { desc = 'Grapple Tag' })
+      vim.keymap.set('n', '<leader>hP', ':GrappleTag key=', { desc = 'Grapple Tag Name' })
+      vim.keymap.set('n', '<leader>hf', "<CMD>lua require 'grapple'.select { key = 1 }<CR>", { desc = 'Select Tag 1' })
+      vim.keymap.set('n', '<leader>hd', "<CMD>lua require 'grapple'.select { key = 2 }<CR>", { desc = 'Select Tag 2' })
+      vim.keymap.set('n', '<leader>hs', "<CMD>lua require 'grapple'.select { key = 3 }<CR>", { desc = 'Select Tag 3' })
+      vim.keymap.set('n', '<leader>ha', "<CMD>lua require 'grapple'.select { key = 4 }<CR>", { desc = 'Select Tag 4' })
     end
+  }
+
+  use {
+    'NvChad/nvim-colorizer.lua',
+    config = function()
+      require 'colorizer'.setup {}
+    end,
+    ft = { 'lua' }
   }
 
   --------------------
@@ -265,6 +282,17 @@ return packer.startup(function(use)
     config = function()
       require 'configs.treesitter-textobjects'.config()
     end,
+  }
+
+  use {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        context_commentstring = {
+          enable = true
+        }
+      }
+    end
   }
 
   -------------------
@@ -331,13 +359,6 @@ return packer.startup(function(use)
     end,
     config = function()
       require 'configs.toggleterm'.config()
-    end
-  }
-
-  use {
-    'ggandor/leap.nvim',
-    config = function()
-      require 'leap'.add_default_mappings()
     end
   }
 
