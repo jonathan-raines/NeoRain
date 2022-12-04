@@ -217,6 +217,28 @@ return packer.startup(function(use)
   }
 
   use {
+    'cbochs/portal.nvim',
+    config = function()
+      require 'portal'.setup {
+        integrations = {
+          grapple = true
+        },
+        query = { 'modified', 'different', 'valid', 'grapple' },
+        escape = {
+          ['<esc>'] = true,
+          ['q'] = true
+        },
+      }
+
+      vim.keymap.set('n', '<leader>o', require 'portal'.jump_backward, {})
+      vim.keymap.set('n', '<leader>i', require 'portal'.jump_forward, {})
+    end,
+    requires = {
+      'cbochs/grapple.nvim', -- Optional: provides the "grapple" query item
+    },
+  }
+
+  use {
     'NvChad/nvim-colorizer.lua',
     config = function()
       require 'colorizer'.setup {}
