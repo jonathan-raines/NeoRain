@@ -153,7 +153,10 @@ M.setup = function()
     },
     underline = true,
     update_in_insert = false,
-    virtual_text = false,
+    virtual_lines = {
+      only_current_line = false
+    },
+    virtual_text = true,
   }
 
   vim.diagnostic.config(config)
