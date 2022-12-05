@@ -65,7 +65,7 @@ local function lsp_keymaps(bufnr)
     vim.tbl_extend('keep', opts, { desc = 'Declaration' }))
   keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Hover' }))
-  keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
+  keymap(bufnr, 'n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Implementation' }))
   keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Signature Help' }))
@@ -76,7 +76,7 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, 'n', '<leader>lR', '<cmd>lua vim.lsp.buf.references()<CR>',
     vim.tbl_extend('keep', opts, { desc = 'References' }))
 
-  keymap(bufnr, 'n', '<leader>li', '<CMD>LspInfo<CR>', vim.tbl_extend('keep', opts, { desc = 'LspInfo' }))
+  keymap(bufnr, 'n', '<leader>lI', '<CMD>LspInfo<CR>', vim.tbl_extend('keep', opts, { desc = 'LspInfo' }))
   keymap(bufnr, 'n', '<leader>lj', '<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>',
     vim.tbl_extend('keep', opts, { desc = 'Next Diagnostic' }))
   keymap(bufnr, 'n', '<leader>lk', '<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>',

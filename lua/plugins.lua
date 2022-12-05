@@ -282,6 +282,14 @@ return packer.startup(function(use)
     end
   }
 
+  use {
+    'Wansmer/treesj',
+    requires = { 'nvim-treesitter' },
+    config = function()
+      require 'treesj'.setup {}
+    end,
+  }
+
   -------------------
   -- COLOR SCHEMES --
   -------------------
