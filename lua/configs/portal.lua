@@ -1,8 +1,8 @@
 local M = {}
 
 M.setup = function()
-  vim.keymap.set('n', '<leader>o', require 'portal'.jump_backward, {})
-  vim.keymap.set('n', '<leader>i', require 'portal'.jump_forward, {})
+  vim.keymap.set('n', '<leader>o', require 'portal'.jump_backward, { desc = 'Jump Backward' })
+  vim.keymap.set('n', '<leader>i', require 'portal'.jump_forward, { desc = 'Jump Forward' })
 end
 
 M.config = function()

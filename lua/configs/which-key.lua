@@ -33,7 +33,7 @@ M.config = function()
       name = 'Git',
       t = 'Toggle'
     },
-    h = { name = 'Harpoon' },
+    h = { name = 'Grapple' },
     j = { name = 'Terminal' },
     l = {
       name = 'LSP',

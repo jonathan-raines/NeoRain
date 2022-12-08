@@ -183,13 +183,24 @@ return packer.startup(function(use)
     config = function()
       require 'configs.comment'
     end,
+    keys = {
+      { 'n', 'gc' },
+      { 'n', 'gb' },
+      { 'v', 'gc' },
+      { 'v', 'gb' },
+    }
   }
 
   use {
     'kylechui/nvim-surround',
     config = function()
       require 'nvim-surround'.setup {}
-    end
+    end,
+    keys = {
+      { 'n', 'cs' },
+      { 'n', 'ys' },
+      { 'n', 'ds' },
+    }
   }
 
   use {
@@ -216,7 +227,7 @@ return packer.startup(function(use)
     end,
     requires = {
       'cbochs/grapple.nvim'
-    },
+    }
   }
 
   use {
@@ -286,8 +297,11 @@ return packer.startup(function(use)
     'Wansmer/treesj',
     requires = { 'nvim-treesitter' },
     config = function()
-      require 'treesj'.setup {}
+      require 'treesj'.setup {
+        use_default_keymaps = false
+      }
     end,
+    cmd = { 'TSJToggle', 'TSJJoin', 'TSJSplit' }
   }
 
   -------------------
