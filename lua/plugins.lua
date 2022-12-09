@@ -182,25 +182,14 @@ return packer.startup(function(use)
     'numToStr/Comment.nvim',
     config = function()
       require 'configs.comment'
-    end,
-    keys = {
-      { 'n', 'gc' },
-      { 'n', 'gb' },
-      { 'v', 'gc' },
-      { 'v', 'gb' },
-    }
+    end
   }
 
   use {
     'kylechui/nvim-surround',
     config = function()
       require 'nvim-surround'.setup {}
-    end,
-    keys = {
-      { 'n', 'cs' },
-      { 'n', 'ys' },
-      { 'n', 'ds' },
-    }
+    end
   }
 
   use {
@@ -231,11 +220,10 @@ return packer.startup(function(use)
   }
 
   use {
-    'NvChad/nvim-colorizer.lua',
+    'max397574/better-escape.nvim',
     config = function()
-      require 'colorizer'.setup {}
+      require 'better_escape'.setup()
     end,
-    ft = { 'lua' }
   }
 
   --------------------
@@ -363,6 +351,14 @@ return packer.startup(function(use)
     config = function()
       require 'configs.toggleterm-nvim'.config()
     end
+  }
+
+  use {
+    'NvChad/nvim-colorizer.lua',
+    config = function()
+      require 'colorizer'.setup {}
+    end,
+    ft = { 'lua' }
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
