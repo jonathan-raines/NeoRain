@@ -45,7 +45,7 @@ M.config = function()
   vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')}]]
   -- vim.cmd [[ let test#transformation = 'docker']]
   vim.g['test#transformation'] = 'docker'
-  vim.g['test#strategy'] = 'neovim'
+  vim.g['test#strategy'] = 'tterm'
 end
 
 return M
