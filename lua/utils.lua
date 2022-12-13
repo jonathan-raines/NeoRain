@@ -40,4 +40,12 @@ M.highlight = function(color, opts)
   vim.api.nvim_set_hl(0, color, opts)
 end
 
+M.date = function()
+  local pos = vim.api.nvim_win_get_cursor(0)[2]
+  local line = vim.api.nvim_get_current_line()
+  local nline = line:sub(0, pos) .. '# ' .. os.date '%d.%m.%y' .. line:sub(pos + 1)
+  vim.api.nvim_set_current_line(nline)
+  vim.api.nvim_feedkeys('o', 'n', true)
+end
+
 return M

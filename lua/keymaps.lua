@@ -19,6 +19,8 @@ local keymaps = {
 
   { { 'n' }, 'J', 'mzJ`z', { desc = 'Join on same line' } },
 
+  { { 'n' }, '<leader>d', require 'utils'.date, { desc = 'Insert Date' } },
+
   { { 'n' }, '<C-j>', ':m .+1<CR>==', { desc = 'Move line up' } },
   { { 'n' }, '<C-k>', ':m .-2<CR>==', { desc = 'Move line down' } },
 
@@ -30,11 +32,11 @@ local keymaps = {
 
   { { 'v' }, 'p', '"_dP', { desc = 'Paste without replacing' } },
 
-  { { 'n' }, '<C-q>', "<cmd>lua require('utils').quickfix_toggle()<CR>", { desc = 'QuickFix Toggle' } },
+  { { 'n' }, '<C-q>', require 'utils'.quickfix_toggle, { desc = 'QuickFix Toggle' } },
   { { 'n' }, ']q', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
   { { 'n' }, '[q', '<cmd>cprevious<CR>', { desc = 'QuickFix Previous Item' } },
 
-  { { 'i' }, '<C-l>', "<cmd>lua require('utils').escape_pair()<CR>", { desc = 'Escape pair' } },
+  { { 'i' }, '<C-l>', require 'utils'.escape_pair, { desc = 'Escape pair' } },
 
   { { 'i' }, ',', ',<C-g>u', { desc = 'Undo Break Point' } },
   { { 'i' }, '.', '.<C-g>u', { desc = 'Undo Break Point' } },
@@ -43,4 +45,11 @@ local keymaps = {
 
 for _, val in pairs(keymaps) do
   keymap(val[1], val[2], val[3], vim.tbl_extend('keep', opts, val[4]))
+end
+
+for i = 1, 4 do
+  local lhs = '<leader>' .. i
+  local rhs = i .. '<C-W>w'
+
+  keymap('n', lhs, rhs, { desc = 'Move to Window ' .. i })
 end

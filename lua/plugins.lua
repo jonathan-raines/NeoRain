@@ -292,6 +292,11 @@ return packer.startup(function(use)
     cmd = { 'TSJToggle', 'TSJJoin', 'TSJSplit' }
   }
 
+  use {
+    'junegunn/vim-easy-align',
+    cmd = { 'EasyAlign' }
+  }
+
   -------------------
   -- COLOR SCHEMES --
   -------------------
