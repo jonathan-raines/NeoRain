@@ -34,7 +34,6 @@ M.config = function()
       t = 'Toggle'
     },
     h = { name = 'Grapple' },
-    j = { name = 'Terminal' },
     l = {
       name = 'LSP',
       w = 'Workspace'

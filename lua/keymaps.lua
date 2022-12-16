@@ -19,7 +19,7 @@ local keymaps = {
 
   { { 'n' }, 'J', 'mzJ`z', { desc = 'Join on same line' } },
 
-  { { 'n' }, '<leader>d', require 'utils'.date, { desc = 'Insert Date' } },
+  { { 'n' }, '<leader>j', '<cmd>tabnew | terminal<CR>', { desc = 'Terminal' } },
 
   { { 'n' }, '<C-j>', ':m .+1<CR>==', { desc = 'Move line up' } },
   { { 'n' }, '<C-k>', ':m .-2<CR>==', { desc = 'Move line down' } },

@@ -56,12 +56,12 @@ augroups.terminal = {
     pattern = '*',
     command = 'set nonumber norelativenumber nobuflisted',
   },
-  start_insert_mode = {
-    desc = 'Start terminal in insert mode',
-    event = 'TermOpen',
-    pattern = '*',
-    command = 'startinsert',
-  }
+  -- start_insert_mode = {
+  --   desc = 'Start terminal in insert mode',
+  --   event = 'TermOpen',
+  --   pattern = '*',
+  --   command = 'startinsert',
+  -- }
 }
 
 for group, commands in pairs(augroups) do

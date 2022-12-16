@@ -348,17 +348,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'akinsho/toggleterm.nvim',
-    tag = '*',
-    setup = function()
-      require 'configs.toggleterm-nvim'.setup()
-    end,
-    config = function()
-      require 'configs.toggleterm-nvim'.config()
-    end
-  }
-
-  use {
     'NvChad/nvim-colorizer.lua',
     config = function()
       require 'colorizer'.setup {}
