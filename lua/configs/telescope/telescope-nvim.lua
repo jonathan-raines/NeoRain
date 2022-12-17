@@ -7,11 +7,11 @@ M.setup = function()
   local keymaps = {
     ['<leader>b'] = { '<cmd>Telescope buffers<CR>', { desc = 'Buffers' } },
     ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
-    ['<leader>fe'] = { '<cmd>Telescope file_browser initial_mode=normal<CR>', { desc = 'File Browser' } },
     ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', { desc = 'Find Files' } },
     ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', { desc = 'Live Grep' } },
     ['<leader>fh'] = { '<cmd>Telescope git_status<CR>', { desc = 'Git Status' } },
     ['<leader>fj'] = { '<cmd>Telescope<CR>', { desc = 'Telescope Functions' } },
+    ['<leader>fk'] = { '<cmd>Telescope keymaps<CR>', { desc = 'Telescope Keymaps' } },
     ['<leader>fo'] = { '<cmd>Telescope oldfiles cwd_only=v:true<CR>', { desc = 'Recent Files' } },
     ['<leader>fq'] = { '<cmd>Telescope quickfix<CR>', { desc = 'Quickfix' } },
     ['<leader>fr'] = { '<cmd>Telescope resume<CR>', { desc = 'Resume' } },

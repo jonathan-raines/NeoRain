@@ -26,7 +26,7 @@ local options = {
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
   textwidth = 100,
-  timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
+  --timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (4000ms default)
   wildignore = '**/node_modules/*, **/.git/*',
@@ -42,13 +42,3 @@ vim.opt.path:append '**'
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
----WORKAROUND
--- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
---   group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
---   callback = function()
---     vim.opt.foldmethod = 'expr'
---     vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
---   end
--- })
----ENDWORKAROUND

@@ -45,12 +45,7 @@ return packer.startup(function(use)
   -- Required plugins --
   ----------------------
 
-  use {
-    'lewis6991/impatient.nvim',
-    config = function()
-      require 'impatient'.enable_profile()
-    end
-  }
+  use { 'lewis6991/impatient.nvim' }
 
   ---------------
   -- Telescope --
@@ -78,34 +73,6 @@ return packer.startup(function(use)
     run = 'make',
   }
 
-  use {
-    'nvim-telescope/telescope-file-browser.nvim',
-    config = "require 'configs.telescope.telescope-file-browser'",
-  }
-
-  -- Possible Delete
-  use {
-    'otavioschwanck/telescope-alternate.nvim',
-    setup = function()
-      require 'configs.telescope.telescope-alternate'.setup()
-    end,
-    config = function()
-      require 'configs.telescope.telescope-alternate'.config()
-    end,
-  }
-
-  -- Possible Delete
-  use {
-    'LukasPietzschmann/telescope-tabs',
-    requires = { 'nvim-telescope/telescope.nvim' },
-    setup = function()
-      require 'configs.telescope.telescope-tabs'.setup()
-    end,
-    config = function()
-      require 'configs.telescope.telescope-tabs'.config()
-    end
-  }
-
   ---------
   -- Git --
   ---------
@@ -117,6 +84,8 @@ return packer.startup(function(use)
       require 'configs.gitsigns'.config()
     end,
   }
+
+  use { 'tpope/vim-fugitive' }
 
   use {
     'pwntester/octo.nvim',
@@ -145,15 +114,6 @@ return packer.startup(function(use)
   use {
     'SmiteshP/nvim-navic',
     requires = 'neovim/nvim-lspconfig',
-  }
-
-  use {
-    'akinsho/flutter-tools.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      require 'flutter-tools'.setup {}
-    end,
-    ft = { 'dart' }
   }
 
   ----------
@@ -219,12 +179,12 @@ return packer.startup(function(use)
     }
   }
 
-  use {
-    'max397574/better-escape.nvim',
-    config = function()
-      require 'better_escape'.setup()
-    end,
-  }
+  -- use {
+  --   'max397574/better-escape.nvim',
+  --   config = function()
+  --     require 'better_escape'.setup()
+  --   end,
+  -- }
 
   --------------------
   -- Autocompletion --
@@ -268,46 +228,15 @@ return packer.startup(function(use)
   }
 
   use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    config = function()
-      require 'configs.treesitter.treesitter-textobjects'.config()
-    end,
-  }
-
-  use {
     'JoosepAlviste/nvim-ts-context-commentstring',
     config = function()
       require 'configs.treesitter.nvim-ts-context-commentstring'
     end
   }
 
-  use {
-    'Wansmer/treesj',
-    requires = { 'nvim-treesitter' },
-    config = function()
-      require 'treesj'.setup {
-        use_default_keymaps = false
-      }
-    end,
-    cmd = { 'TSJToggle', 'TSJJoin', 'TSJSplit' }
-  }
-
-  use {
-    'junegunn/vim-easy-align',
-    cmd = { 'EasyAlign' }
-  }
-
   -------------------
   -- COLOR SCHEMES --
   -------------------
-
-  use {
-    'Mofiqul/dracula.nvim',
-    config = function()
-      require 'configs.colorschemes.dracula'
-    end,
-    event = 'ColorSchemePre'
-  }
 
   use {
     'folke/tokyonight.nvim',
@@ -340,20 +269,20 @@ return packer.startup(function(use)
     end
   }
 
-  use {
-    'folke/which-key.nvim',
-    config = function()
-      require 'configs.which-key'.config()
-    end,
-  }
+  -- use {
+  --   'folke/which-key.nvim',
+  --   config = function()
+  --     require 'configs.which-key'.config()
+  --   end,
+  -- }
 
-  use {
-    'NvChad/nvim-colorizer.lua',
-    config = function()
-      require 'colorizer'.setup {}
-    end,
-    ft = { 'lua' }
-  }
+  -- use {
+  --   'NvChad/nvim-colorizer.lua',
+  --   config = function()
+  --     require 'colorizer'.setup {}
+  --   end,
+  --   ft = { 'lua' }
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
