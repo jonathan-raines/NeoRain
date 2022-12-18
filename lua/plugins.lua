@@ -34,7 +34,7 @@ return packer.startup(function(use)
   ----------------------
   -- Required plugins --
   ----------------------
-  use { 'lewis6991/impatient.nvim' }
+  use 'lewis6991/impatient.nvim'
 
   ---------------
   -- Telescope --
@@ -42,8 +42,8 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'kyazdani42/nvim-web-devicons' },
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons',
     },
     setup = function()
       require 'configs.telescope-nvim'.setup()
@@ -67,7 +67,7 @@ return packer.startup(function(use)
   ---------
   use {
     'lewis6991/gitsigns.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    requires = 'nvim-lua/plenary.nvim',
     config = function()
       require 'configs.gitsigns'.config()
     end,
@@ -75,7 +75,7 @@ return packer.startup(function(use)
 
   use {
     'tpope/vim-fugitive',
-    setup = function()
+    config = function()
       vim.keymap.set('n', '<leader>gg', vim.cmd.Git, { desc = 'Fugitive' })
     end
   }
@@ -127,12 +127,18 @@ return packer.startup(function(use)
       end
     },
     config = function()
-      require 'configs.comment'
+      require 'Comment'.setup {
+        ignore = '^$',
+        pre_hook = require 'ts_context_commentstring.integrations.comment_nvim'.create_pre_hook(),
+      }
     end
   }
 
   use {
     'cbochs/grapple.nvim',
+    setup = function()
+      require 'configs.grapple'.setup()
+    end,
     config = function()
       require 'configs.grapple'.config()
     end
@@ -140,15 +146,13 @@ return packer.startup(function(use)
 
   use {
     'cbochs/portal.nvim',
+    requires = 'cbochs/grapple.nvim',
     setup = function()
       require 'configs.portal'.setup()
     end,
     config = function()
       require 'configs.portal'.config()
-    end,
-    requires = {
-      'cbochs/grapple.nvim'
-    }
+    end
   }
 
   --------------------
@@ -163,11 +167,11 @@ return packer.startup(function(use)
           require 'luasnip/loaders/from_vscode'.lazy_load()
         end,
       },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
     },
     config = function()
       require 'configs.nvim-cmp'

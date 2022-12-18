@@ -5,11 +5,11 @@ M.setup = function()
   local opts = { noremap = true, silent = true }
 
   local keymaps = {
-    ['<leader>tf'] = { '<cmd>TestFile<CR>', { desc = 'Test File' } },
-    ['<leader>tl'] = { '<cmd>TestLast<CR>', { desc = 'Test Last' } },
-    ['<leader>tn'] = { '<cmd>TestNearest<CR>', { desc = 'Test Nearest' } },
-    ['<leader>ts'] = { '<cmd>TestSuite<CR>', { desc = 'Test Suite' } },
-    ['<leader>tv'] = { '<cmd>TestVisit<CR>', { desc = 'Visit Test File' } },
+    ['<leader>tf'] = { vim.cmd.TestFile, { desc = 'Test File' } },
+    ['<leader>tl'] = { vim.cmd.TestLast, { desc = 'Test Last' } },
+    ['<leader>tn'] = { vim.cmd.TestNearest, { desc = 'Test Nearest' } },
+    ['<leader>ts'] = { vim.cmd.TestSuite, { desc = 'Test Suite' } },
+    ['<leader>tv'] = { vim.cmd.TestVisit, { desc = 'Visit Test File' } },
   }
 
   for key, val in pairs(keymaps) do
@@ -18,16 +18,14 @@ M.setup = function()
 end
 
 M.config = function()
-  vim.api.nvim_exec(
-    [[
+  vim.cmd
+  [[
     function! DockerTransform(cmd)
       return "docker-compose exec $(tmux display-message -p '#S') " .a:cmd
     endfunction
-  ]] ,
-    false
-  )
+  ]]
 
-  vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')}]]
+  vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')} ]]
   vim.g['test#transformation'] = 'docker'
   vim.g['test#basic#start_normal'] = 1
 end

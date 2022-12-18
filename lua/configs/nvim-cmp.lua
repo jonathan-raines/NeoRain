@@ -86,15 +86,4 @@ cmp.setup {
     { name = 'path' },
     { name = 'nvim_lua' },
   },
-  view = {
-    entries = {
-      native = true,
-    },
-  },
-  window = {
-    documentation = {
-      border = 'rounded',
-      winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
-    },
-  },
 }
