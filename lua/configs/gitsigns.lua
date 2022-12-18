@@ -25,8 +25,8 @@ M.config = function()
       end, { expr = true, desc = 'Previous Hunk' })
 
       -- Actions
-      map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage Hunk' })
-      map({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'Reset Hunk' })
+      map({ 'n', 'v' }, '<leader>gs', function() vim.cmd.Gitsigns 'stage_hunk' end, { desc = 'Stage Hunk' })
+      map({ 'n', 'v' }, '<leader>gr', function() vim.cmd.Gitsigns 'reset_hunk' end, { desc = 'Reset Hunk' })
       map('n', '<leader>gS', gs.stage_buffer, { desc = 'Stage Buffer' })
       map('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'Unstage Hunk' })
       map('n', '<leader>gR', gs.reset_buffer, { desc = 'Reset Buffer' })
@@ -38,7 +38,7 @@ M.config = function()
       map('n', '<leader>gtd', gs.toggle_deleted, { desc = 'Toggle Deleted' })
 
       -- Text object
-      map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Select Hunk' })
+      map({ 'o', 'x' }, 'ih', function() vim.cmd.Gitsigns 'select_hunk' end, { desc = 'Select Hunk' })
     end,
   }
 end
