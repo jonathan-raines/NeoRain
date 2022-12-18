@@ -46,17 +46,17 @@ return packer.startup(function(use)
       { 'kyazdani42/nvim-web-devicons' },
     },
     setup = function()
-      require 'configs.telescope.telescope-nvim'.setup()
+      require 'configs.telescope-nvim'.setup()
     end,
     config = function()
-      require 'configs.telescope.telescope-nvim'.config()
+      require 'configs.telescope-nvim'.config()
     end,
   }
 
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
     config = function()
-      require 'configs.telescope.telescope-fzf-native'
+      require 'telescope'.load_extension 'fzf'
     end,
     run = 'make',
     cond = vim.fn.executable 'make' == 1

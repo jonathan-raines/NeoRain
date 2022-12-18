@@ -1,33 +1,43 @@
 local M = {}
 
-M.setup = function()
-  local keymap = vim.keymap.set
-  local opts = { noremap = true, silent = true }
+local keymap = vim.keymap.set
+local builtin = require 'telescope.builtin'
+local actions = require 'telescope.actions'
+local themes = require 'telescope.themes'
 
+M.setup = function()
   local keymaps = {
-    ['<leader>b'] = { '<cmd>Telescope buffers<CR>', { desc = 'Buffers' } },
-    ['<leader>fc'] = { '<cmd>Telescope command_history<CR>', { desc = 'Command History' } },
-    ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', { desc = 'Find Files' } },
-    ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', { desc = 'Live Grep' } },
-    ['<leader>fh'] = { '<cmd>Telescope git_status<CR>', { desc = 'Git Status' } },
-    ['<leader>fj'] = { '<cmd>Telescope<CR>', { desc = 'Telescope Functions' } },
-    ['<leader>fk'] = { '<cmd>Telescope keymaps<CR>', { desc = 'Telescope Keymaps' } },
-    ['<leader>fo'] = { '<cmd>Telescope oldfiles cwd_only=v:true<CR>', { desc = 'Recent Files' } },
-    ['<leader>fq'] = { '<cmd>Telescope quickfix<CR>', { desc = 'Quickfix' } },
-    ['<leader>fr'] = { '<cmd>Telescope resume<CR>', { desc = 'Resume' } },
-    ['<leader>fs'] = { '<cmd>Telescope grep_string<CR>', { desc = 'Grep String' } },
-    ['<leader>ft'] = { '<cmd>Telescope treesitter<CR>', { desc = 'Treesitter' } },
-    ['<leader>/'] = { '<cmd>Telescope current_buffer_fuzzy_find<CR>', { desc = 'Current Buffer' } },
+    ['<leader>b'] = { builtin.buffers, { desc = '[B]uffers' } },
+    ['<leader>fc'] = { builtin.command_history, { desc = '[C]ommand History' } },
+    ['<leader>ff'] = { builtin.find_files, { desc = '[F]ind [F]iles' } },
+    ['<leader>fg'] = { builtin.live_grep, { desc = 'Live [G]rep' } },
+    ['<leader>fh'] = { builtin.git_status, { desc = '[H] Git Status' } },
+    ['<leader>fj'] = { builtin.builtin, { desc = '[J] Telescope Functions' } },
+    ['<leader>fk'] = { builtin.keymaps, { desc = 'Telescope [K]eymaps' } },
+    ['<leader>fo'] = {
+      function()
+        builtin.oldfiles { cwd_only = true }
+      end,
+      { desc = 'Recent Files' }
+    },
+    ['<leader>fq'] = { builtin.quickfix, { desc = '[Q]uickfix' } },
+    ['<leader>fr'] = { builtin.resume, { desc = '[R]esume' } },
+    ['<leader>fs'] = { builtin.grep_string, { desc = 'Grep [S]tring' } },
+    ['<leader>ft'] = { builtin.treesitter, { desc = '[T]reesitter' } },
+    ['<leader>/'] = {
+      function()
+        builtin.current_buffer_fuzzy_find(themes.get_dropdown { winblend = 10, previewer = false })
+      end,
+      { desc = '[/] Fuzzily search in current buffer]' }
+    }
   }
 
   for key, val in pairs(keymaps) do
-    keymap('n', key, val[1], vim.tbl_extend('keep', opts, val[2]))
+    keymap('n', key, val[1], val[2])
   end
 end
 
 M.config = function()
-  local actions = require 'telescope.actions'
-
   local pickers = {
     buffers = {
       previewer = false,
