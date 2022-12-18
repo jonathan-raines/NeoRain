@@ -30,22 +30,11 @@ M.escape_pair = function()
 end
 
 M.set_terminal_keymaps = function()
-  local term_opts = { noremap = true }
-  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], term_opts)
-  -- vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], term_opts)
-  -- vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], term_opts)
+  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], {})
 end
 
 M.highlight = function(color, opts)
   vim.api.nvim_set_hl(0, color, opts)
-end
-
-M.date = function()
-  local pos = vim.api.nvim_win_get_cursor(0)[2]
-  local line = vim.api.nvim_get_current_line()
-  local nline = line:sub(0, pos) .. '# ' .. os.date '%d.%m.%y' .. line:sub(pos + 1)
-  vim.api.nvim_set_current_line(nline)
-  vim.api.nvim_feedkeys('o', 'n', true)
 end
 
 return M
