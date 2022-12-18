@@ -1,6 +1,6 @@
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed ={},
-  auto_install  = true,
+  ensure_installed = {},
+  auto_install = true,
   incremental_selection = {
     enable = true,
     keymaps = {
