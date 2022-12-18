@@ -7,9 +7,7 @@ vim.g.maplocalleader = ' '
 keymap('', '<Space>', '<Nop>', opts)
 
 local keymaps = {
-  { { 'i', 'v' }, 'jk', '<ESC>', { desc = 'Return to normal mode' } },
-
-  { { 'n' }, '<leader><space>', '<C-^>', { desc = 'Alternate Buffer' } },
+  --{ { 'i', 'v' }, 'jk', '<ESC>', { desc = 'Return to normal mode' } },
 
   { { 'n' }, '<leader>w', vim.cmd.update, { desc = 'Write' } },
   { { 'n' }, '<leader>q', 'ZZ', { desc = 'Quit' } },
@@ -32,8 +30,8 @@ local keymaps = {
   { { 'v' }, 'p', '"_dP', { desc = 'Paste without replacing' } },
 
   { { 'n' }, '<C-q>', require 'utils'.quickfix_toggle, { desc = 'QuickFix Toggle' } },
-  { { 'n' }, '<C-j>', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
-  { { 'n' }, '<C-k>', '<cmd>cprev<CR>', { desc = 'QuickFix Previous Item' } },
+  { { 'n' }, '<C-n>', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
+  { { 'n' }, '<C-p>', '<cmd>cprev<CR>', { desc = 'QuickFix Previous Item' } },
 
   { { 'i' }, '<C-l>', require 'utils'.escape_pair, { desc = 'Escape pair' } },
 
@@ -42,11 +40,4 @@ local keymaps = {
 
 for _, val in pairs(keymaps) do
   keymap(val[1], val[2], val[3], vim.tbl_extend('keep', opts, val[4]))
-end
-
-for i = 1, 4 do
-  local lhs = '<leader>' .. i
-  local rhs = i .. '<C-W>w'
-
-  keymap('n', lhs, rhs, { desc = 'Move to Window ' .. i })
 end

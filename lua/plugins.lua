@@ -1,21 +1,12 @@
--- Automatically install packer
-local fn = vim.fn
-local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path,
-  }
-  print 'Installing packer close and reopen Neovim...'
-  vim.api.nvim_command [[packadd packer.nvim]]
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  is_bootstrap = true
+  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.cmd.packadd 'packer.nvim'
 end
 
-vim.api.nvim_create_augroup('PackerUserConfig', {})
+vim.api.nvim_create_augroup('PackerUserConfig', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
   desc = 'Reloads Neovim whenever you save the plugins.lua file',
   group = 'PackerUserConfig',
@@ -33,7 +24,6 @@ return packer.startup(function(use)
   ---------------------
   -- Package Manager --
   ---------------------
-
   use {
     'wbthomason/packer.nvim',
     config = function()
@@ -44,13 +34,11 @@ return packer.startup(function(use)
   ----------------------
   -- Required plugins --
   ----------------------
-
   use { 'lewis6991/impatient.nvim' }
 
   ---------------
   -- Telescope --
   ---------------
-
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -71,12 +59,12 @@ return packer.startup(function(use)
       require 'configs.telescope.telescope-fzf-native'
     end,
     run = 'make',
+    cond = vim.fn.executable 'make' == 1
   }
 
   ---------
   -- Git --
   ---------
-
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -85,25 +73,16 @@ return packer.startup(function(use)
     end,
   }
 
-  use { 'tpope/vim-fugitive' }
-
   use {
-    'pwntester/octo.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
-    },
-    config = function()
-      require 'octo'.setup()
-    end,
-    cmd = { 'Octo' }
+    'tpope/vim-fugitive',
+    setup = function()
+      require 'configs.fugitive'
+    end
   }
 
   ---------------------
   -- Language Server --
   ---------------------
-
   use {
     'neovim/nvim-lspconfig',
     config = function()
@@ -119,7 +98,6 @@ return packer.startup(function(use)
   ----------
   -- MISC --
   ----------
-
   use {
     'vim-test/vim-test',
     setup = function()
@@ -140,22 +118,14 @@ return packer.startup(function(use)
 
   use {
     'numToStr/Comment.nvim',
+    requires = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      config = function()
+        require 'configs.treesitter.nvim-ts-context-commentstring'
+      end
+    },
     config = function()
       require 'configs.comment'
-    end
-  }
-
-  use {
-    'kylechui/nvim-surround',
-    config = function()
-      require 'nvim-surround'.setup {}
-    end
-  }
-
-  use {
-    'jinh0/eyeliner.nvim',
-    config = function()
-      require 'configs.eyeliner'
     end
   }
 
@@ -179,25 +149,21 @@ return packer.startup(function(use)
     }
   }
 
-  -- use {
-  --   'max397574/better-escape.nvim',
-  --   config = function()
-  --     require 'better_escape'.setup()
-  --   end,
-  -- }
+  use {
+    'max397574/better-escape.nvim',
+    config = function()
+      require 'better_escape'.setup()
+    end,
+  }
 
   --------------------
   -- Autocompletion --
   --------------------
-
   use {
     'hrsh7th/nvim-cmp',
     requires = {
       {
         'L3MON4D3/LuaSnip',
-        requires = {
-          { 'rafamadriz/friendly-snippets', }
-        },
         config = function()
           require 'luasnip/loaders/from_vscode'.lazy_load()
         end,
@@ -216,7 +182,6 @@ return packer.startup(function(use)
   ----------------
   -- Treesitter --
   ----------------
-
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function()
@@ -227,17 +192,9 @@ return packer.startup(function(use)
     end
   }
 
-  use {
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    config = function()
-      require 'configs.treesitter.nvim-ts-context-commentstring'
-    end
-  }
-
   -------------------
   -- COLOR SCHEMES --
   -------------------
-
   use {
     'folke/tokyonight.nvim',
     config = function()
@@ -255,38 +212,9 @@ return packer.startup(function(use)
     end
   }
 
-  -----------------
-  -- UI Elements --
-  -----------------
-
-  use {
-    'nanozuki/tabby.nvim',
-    setup = function()
-      require 'configs.tabby'.setup()
-    end,
-    config = function()
-      require 'configs.tabby'.config()
-    end
-  }
-
-  -- use {
-  --   'folke/which-key.nvim',
-  --   config = function()
-  --     require 'configs.which-key'.config()
-  --   end,
-  -- }
-
-  -- use {
-  --   'NvChad/nvim-colorizer.lua',
-  --   config = function()
-  --     require 'colorizer'.setup {}
-  --   end,
-  --   ft = { 'lua' }
-  -- }
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
+  if is_bootstrap then
     packer.sync()
   end
 end)

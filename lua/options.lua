@@ -26,11 +26,11 @@ local options = {
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
   textwidth = 100,
-  --timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
+  timeoutlen = 250, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (4000ms default)
-  wildignore = '**/node_modules/*, **/.git/*',
-  wildmode = 'longest:full,full',
+  -- wildignore = '**/node_modules/*, **/.git/*',
+  -- wildmode = 'longest:full,full',
   winbar = "%{%v:lua.require'statusline.modules'.FileInfo()%} %#Normal# %{%v:lua.require'nvim-navic'.get_location()%} %= %{%v:lua.vim.api.nvim_win_get_number(0)%}",
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   wrap = false, -- display lines as one long line

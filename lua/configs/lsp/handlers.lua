@@ -10,7 +10,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
-M.capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
+local cmp_ok, cmp = pcall(require 'cmp_nvim_lsp')
+if cmp_ok then
+  M.capabilities = cmp.default_capabilities(capabilities)
+end
 
 local function lsp_document_codelens(client)
   if client.server_capabilities.code_lens then
@@ -42,57 +45,42 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
+local lsp_keymaps = function(bufnr)
+  local keymap = function(mode, keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
 
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
+  end
 
-  keymap(bufnr, 'n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Code Action' }))
-  keymap(bufnr, 'n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Set Local List' }))
-  keymap(bufnr, 'n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Line Diagnostics' }))
-  keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Previous Diagnostics' }))
-  keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Next Diagnostics' }))
-
-  keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Definition' }))
-  keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Declaration' }))
-  keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Hover' }))
-  keymap(bufnr, 'n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Implementation' }))
-  keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Signature Help' }))
-  keymap(bufnr, 'n', '<leader>lf', '<CMD>lua vim.lsp.buf.format { async = true }<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Format [LSP]' }))
-  keymap(bufnr, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Rename' }))
-  keymap(bufnr, 'n', '<leader>lR', '<cmd>lua vim.lsp.buf.references()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'References' }))
-
-  keymap(bufnr, 'n', '<leader>lI', '<CMD>LspInfo<CR>', vim.tbl_extend('keep', opts, { desc = 'LspInfo' }))
-  keymap(bufnr, 'n', '<leader>lj', '<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Next Diagnostic' }))
-  keymap(bufnr, 'n', '<leader>lk', '<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Previous Diagnostic' }))
-
-  keymap(bufnr, 'n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Document Symbols' }))
-
-  keymap(bufnr, 'n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Add Workspace Folder' }))
-  keymap(bufnr, 'n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Remove Workspace Folder' }))
-  keymap(bufnr, 'n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'List Workspace Folders' }))
-  keymap(bufnr, 'n', '<leader>lws', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>',
-    vim.tbl_extend('keep', opts, { desc = 'Workspace Symbols' }))
+  -- Actions
+  keymap('n', '<leader>lca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  keymap('n', '<leader>lrn', vim.lsp.buf.rename, '[R]e[n]ame')
+  keymap('n', '<leader>lf', vim.lsp.buf.format, '[F]ormat')
+  -- Diagnostics
+  keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set [L]ocal [L]ist')
+  keymap('n', '<leader>ld', vim.diagnostic.open_float, '[L]ine [D]iagnostics')
+  keymap('n', '[d', vim.diagnostic.goto_prev, 'Previous Diagnostics')
+  keymap('n', ']d', vim.diagnostic.goto_next, 'Next Diagnostics')
+  -- Help
+  keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
+  keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
+  -- Jump
+  keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
+  keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
+  keymap('n', '<leader>lds', require 'telescope.builtin'.lsp_document_symbols, '[D]ocument [S]ymbols')
+  keymap('n', '<leader>li', vim.lsp.buf.implementation, 'Implementation')
+  keymap('n', '<leader>lre', vim.lsp.buf.references, '[R][e]ferences')
+  -- Workspace Folders
+  keymap('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace Folders [A]dd')
+  keymap('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace Folders [R]emove')
+  keymap('n', '<leader>lws', require 'telescope.builtin'.lsp_dynamic_workspace_symbols, '[W]orkspace Folders [S]ymbols')
+  keymap('n', '<leader>lwl',
+    function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end,
+    '[W]orkspace Folders [L]ist ')
 end
 
 M.on_attach = function(client, bufnr)
