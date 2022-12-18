@@ -149,13 +149,6 @@ return packer.startup(function(use)
     }
   }
 
-  use {
-    'max397574/better-escape.nvim',
-    config = function()
-      require 'better_escape'.setup()
-    end,
-  }
-
   --------------------
   -- Autocompletion --
   --------------------
@@ -211,6 +204,13 @@ return packer.startup(function(use)
       vim.cmd [[ colorscheme sonokai ]]
     end
   }
+
+  -- use {
+  --   'folke/which-key.nvim',
+  --   config = function()
+  --     require 'configs.which-key'.config()
+  --   end
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

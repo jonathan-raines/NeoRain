@@ -36,9 +36,13 @@ local options = {
   wrap = false, -- display lines as one long line
 }
 
-vim.opt.shortmess:append 'cI'
-vim.opt.path:append '**'
-
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.opt.shortmess:append 'cI'
+vim.opt.path:append '**'
+
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
