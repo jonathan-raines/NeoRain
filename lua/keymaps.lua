@@ -21,6 +21,9 @@ local keymaps = {
 
   { 'n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute word under cursor' } },
 
+  { 'n', '<C-j>', ':m .+1<CR>==', { desc = 'Move line up' } },
+  { 'n', '<C-k>', ':m .-2<CR>==', { desc = 'Move line down' } },
+
   { 'v', '<C-j>', ":m '>+1<CR>gv-gv", { desc = 'Move line up' } },
   { 'v', '<C-k>', ":m '<-2<CR>gv-gv", { desc = 'Move line down' } },
 
@@ -30,8 +33,8 @@ local keymaps = {
   { 'v', 'p', '"_dP', { desc = 'Paste without replacing' } },
 
   { 'n', '<C-q>', require 'utils'.quickfix_toggle, { desc = 'QuickFix Toggle' } },
-  { 'n', '<C-j>', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
-  { 'n', '<C-k>', '<cmd>cprev<CR>', { desc = 'QuickFix Previous Item' } },
+  { 'n', ']q', '<cmd>cnext<CR>', { desc = 'QuickFix Next Item' } },
+  { 'n', '[q', '<cmd>cprev<CR>', { desc = 'QuickFix Previous Item' } },
 
   { 'i', '<C-l>', require 'utils'.escape_pair, { desc = 'Escape pair' } },
 

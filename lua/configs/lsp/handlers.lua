@@ -35,7 +35,7 @@ local lsp_keymaps = function(bufnr)
   keymap('n', ']d', vim.diagnostic.goto_next, 'Next Diagnostics')
   -- Help
   keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
-  keymap({ 'n', 'i' }, '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
+  keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
   -- Jump
   keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
   keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
