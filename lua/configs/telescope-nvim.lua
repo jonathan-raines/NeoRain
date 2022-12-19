@@ -26,7 +26,7 @@ M.setup = function()
     ['<leader>ft'] = { builtin.treesitter, { desc = '[T]reesitter' } },
     ['<leader>/'] = {
       function()
-        builtin.current_buffer_fuzzy_find(themes.get_dropdown { winblend = 10, previewer = false })
+        builtin.current_buffer_fuzzy_find(themes.get_dropdown { previewer = false })
       end,
       { desc = '[/] Fuzzily search in current buffer]' }
     }
