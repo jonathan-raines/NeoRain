@@ -68,9 +68,9 @@ M.Git = function()
 end
 
 M.Grapple = function()
-  local grapple = require 'grapple'
-  if grapple.exists() then
-    return table.concat { '[', grapple.key(), ']' }
+  local g = require 'grapple'
+  if g.exists() then
+    return table.concat { '[', g.key(), ']' }
   else
     return ''
   end
