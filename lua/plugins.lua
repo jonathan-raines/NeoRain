@@ -110,13 +110,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'windwp/nvim-autopairs',
-    config = function()
-      require 'configs.nvim-autopairs'
-    end,
-  }
-
-  use {
     'numToStr/Comment.nvim',
     requires = {
       'JoosepAlviste/nvim-ts-context-commentstring',
@@ -155,6 +148,14 @@ return packer.startup(function(use)
     end
   }
 
+  use {
+    'mbbill/undotree',
+    setup = function()
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undotree' })
+    end,
+    cmd = 'UndotreeToggle'
+  }
+
   --------------------
   -- Autocompletion --
   --------------------
@@ -190,6 +191,8 @@ return packer.startup(function(use)
       require 'nvim-treesitter.install'.update { with_sync = true }
     end
   }
+
+  use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' }
 
   -------------------
   -- COLOR SCHEMES --
