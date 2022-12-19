@@ -138,17 +138,6 @@ return packer.startup(function(use)
   }
 
   use {
-    'cbochs/portal.nvim',
-    requires = 'cbochs/grapple.nvim',
-    setup = function()
-      require 'configs.portal'.setup()
-    end,
-    config = function()
-      require 'configs.portal'.config()
-    end
-  }
-
-  use {
     'mbbill/undotree',
     setup = function()
       vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undotree' })
