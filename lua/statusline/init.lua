@@ -8,14 +8,14 @@ function Statusline()
     utils.Spacer(),
     '%=',
     utils.FileInfo(),
-    utils.Grapple(),
+    --utils.Grapple(),
     utils.Spacer(),
     utils.AlternateFile(),
     '%=',
-    utils.LSP_Diagnostics(),
-    utils.LSP_status(),
+    --utils.LSP_Diagnostics(),
+    --utils.LSP_status(),
     utils.Spacer(),
-    utils.Treesitter(),
+    --utils.Treesitter(),
     utils.Spacer()
   }
 end
