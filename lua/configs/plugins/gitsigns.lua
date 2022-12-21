@@ -1,4 +1,8 @@
-local M = {}
+local M = { 'lewis6991/gitsigns.nvim' }
+
+M.dependencies = 'nvim-lua/plenary.nvim'
+
+M.event = 'BufReadPre'
 
 M.config = function()
   require 'gitsigns'.setup {

@@ -1,6 +1,6 @@
-local M = {}
+local M = { 'vim-test/vim-test' }
 
-M.setup = function()
+M.init = function()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
 
@@ -29,5 +29,7 @@ M.config = function()
   vim.g['test#transformation'] = 'docker'
   vim.g['test#basic#start_normal'] = 1
 end
+
+M.cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' }
 
 return M

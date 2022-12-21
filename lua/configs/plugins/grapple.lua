@@ -1,6 +1,6 @@
-local M = {}
+local M = { 'cbochs/grapple.nvim' }
 
-M.setup = function()
+M.init = function()
   vim.keymap.set('n', '<leader>hq', require 'grapple'.popup_tags, { desc = 'Grapple Menu' })
   vim.keymap.set('n', '<leader>hp', require 'grapple'.toggle, { desc = 'Grapple Tag' })
   vim.keymap.set('n', '<leader>hf', function() require 'grapple'.select { key = 1 } end, { desc = 'Select Tag 1' })

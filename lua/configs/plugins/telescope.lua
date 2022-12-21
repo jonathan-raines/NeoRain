@@ -1,130 +1,135 @@
-local M = {
-  "nvim-telescope/telescope.nvim",
-  cmd = { "Telescope" },
+local M = { 'nvim-telescope/telescope.nvim' }
 
-  dependencies = {
-    { "nvim-telescope/telescope-file-browser.nvim" },
-    { "nvim-telescope/telescope-z.nvim" },
-    -- { "nvim-telescope/telescope-project.nvim" },
-    { "nvim-telescope/telescope-symbols.nvim" },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-  },
+M.cmd = 'Telescope'
+
+M.dependencies = {
+  'nvim-lua/plenary.nvim',
+  'kyazdani42/nvim-web-devicons'
 }
 
-function M.project_files(opts)
-  opts = opts or {}
-  opts.show_untracked = true
-  if vim.loop.fs_stat(".git") then
-    require("telescope.builtin").git_files(opts)
-  else
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      opts.cwd = client.config.root_dir
-    end
-    require("telescope.builtin").find_files(opts)
+M.init = function()
+  local keymap = vim.keymap.set
+  local builtin = require 'telescope.builtin'
+
+  local keymaps = {
+    ['<leader>b'] = { builtin.buffers, { desc = '[B]uffers' } },
+    ['<leader>fc'] = { builtin.command_history, { desc = '[C]ommand History' } },
+    ['<leader>ff'] = { builtin.find_files, { desc = '[F]ind [F]iles' } },
+    ['<leader>fg'] = { builtin.live_grep, { desc = 'Live [G]rep' } },
+    ['<leader>fh'] = { builtin.git_status, { desc = '[H] Git Status' } },
+    ['<leader>fj'] = { builtin.builtin, { desc = '[J] Telescope Functions' } },
+    ['<leader>fk'] = { builtin.keymaps, { desc = 'Telescope [K]eymaps' } },
+    ['<leader>fo'] = {
+      function()
+        builtin.oldfiles { cwd_only = true }
+      end,
+      { desc = 'Recent Files' }
+    },
+    ['<leader>fq'] = { builtin.quickfix, { desc = '[Q]uickfix' } },
+    ['<leader>fr'] = { builtin.resume, { desc = '[R]esume' } },
+    ['<leader>fs'] = { builtin.grep_string, { desc = 'Grep [S]tring' } },
+    ['<leader>ft'] = { builtin.treesitter, { desc = '[T]reesitter' } },
+    ['<leader>/'] = {
+      function()
+        builtin.current_buffer_fuzzy_find(require 'telescope.themes'.get_dropdown { previewer = false })
+      end,
+      { desc = '[/] Fuzzily search in current buffer]' }
+    }
+  }
+
+  for key, val in pairs(keymaps) do
+    keymap('n', key, val[1], val[2])
   end
 end
 
-function M.config()
-  -- local actions = require("telescope.actions")
-  local trouble = require("trouble.providers.telescope")
+M.config = function()
+  local actions = require 'telescope.actions'
 
-  local telescope = require("telescope")
-  local borderless = true
-  telescope.setup({
-    extensions = {
-      -- fzf = {
-      --   fuzzy = true, -- false will only do exact matching
-      --   override_generic_sorter = true, -- override the generic sorter
-      --   override_file_sorter = true, -- override the file sorter
-      --   case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-      --   -- the default case_mode is "smart_case"
-      -- },
-    },
+  require 'telescope'.setup {
     defaults = {
-      layout_strategy = "horizontal",
+      layout_strategy = 'center',
       layout_config = {
-        prompt_position = "top",
+        width = 0.8,
+        height = 0.4
       },
-      sorting_strategy = "ascending",
+      sorting_strategy = 'ascending',
+      file_sorter = require 'telescope.sorters'.get_fzy_sorter,
+      vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
+        '--trim',
+      },
       mappings = {
         i = {
-          ["<c-t>"] = trouble.open_with_trouble,
-          ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-          ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+          ['<ESC>'] = actions.close,
+        },
+        n = {
+          ['q'] = actions.close,
         },
       },
-      -- mappings = { i = { ["<esc>"] = actions.close } },
-      -- vimgrep_arguments = {
-      --   'rg',
-      --   '--color=never',
-      --   '--no-heading',
-      --   '--with-filename',
-      --   '--line-number',
-      --   '--column',
-      --   '--smart-case'
-      -- },
-      -- prompt_position = "bottom",
-      prompt_prefix = " ",
-      selection_caret = " ",
-      -- entry_prefix = "  ",
-      -- initial_mode = "insert",
-      -- selection_strategy = "reset",
-      -- sorting_strategy = "descending",
-      -- layout_strategy = "horizontal",
-      -- layout_defaults = {
-      --   horizontal = {
-      --     mirror = false,
-      --   },
-      --   vertical = {
-      --     mirror = false,
-      --   },
-      -- },
-      -- file_sorter = require"telescope.sorters".get_fzy_file
-      -- file_ignore_patterns = {},
-      -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-      -- shorten_path = true,
-      winblend = borderless and 0 or 10,
-      -- width = 0.7,
-      -- preview_cutoff = 120,
-      -- results_height = 1,
-      -- results_width = 0.8,
-      -- border = false,
-      -- color_devicons = true,
-      -- use_less = true,
-      -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-      -- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-      -- grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-      -- qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-      -- -- Developer configurations: Not meant for general override
-      -- buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+      border = true,
+      borderchars = {
+        prompt = { '─', '│', ' ', '│', '╭', '╮', '│', '│' },
+        results = { '─', '│', '─', '│', '├', '┤', '╯', '╰' },
+        preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+      },
     },
-  })
+    pickers = {
+      buffers = {
+        previewer = false,
+        initial_mode = 'normal',
+        sort_lastused = true,
+        mappings = {
+          i = {
+            ['<A-d>'] = actions.delete_buffer,
+          },
+          n = {
+            ['d'] = actions.delete_buffer,
+            ['q'] = actions.close
+          },
+        },
+      },
+      find_files = {
+        hidden = true,
+        previewer = false,
+        file_ignore_patterns = { '.git/' },
+      },
+      git_files = {
+        hidden = true,
+        previewer = false,
+        show_untracked = true,
+      },
+      grep_string = {
+        only_sort_text = true,
+      },
+      live_grep = {
+        only_sort_text = true,
+      },
+      oldfiles = {
+        hidden = true,
+        previewer = false,
+      },
+      lsp_definitions = {
+        initial_mode = 'normal',
+      },
+      lsp_declarations = {
+        initial_mode = 'normal',
+      },
+      lsp_implementations = {
+        initial_mode = 'normal',
+      },
+      lsp_references = {
+        initial_mode = 'normal',
+      },
+    }
+  }
 
-  -- telescope.load_extension("frecency")
-  telescope.load_extension("fzf")
-  telescope.load_extension("z")
-  telescope.load_extension("file_browser")
-  -- telescope.load_extension("project")
-end
-
-function M.init()
-  vim.keymap.set("n", "<leader><space>", function()
-    require("config.plugins.telescope").project_files()
-  end, { desc = "Find File" })
-
-  vim.keymap.set("n", "<leader>fd", function()
-    require("telescope.builtin").git_files({ cwd = "~/dot" })
-  end, { desc = "Find Dot File" })
-
-  vim.keymap.set("n", "<leader>fz", function()
-    require("telescope").extensions.z.list({ cmd = { vim.o.shell, "-c", "zoxide query -ls" } })
-  end, { desc = "Find Zoxide" })
-
-  vim.keymap.set("n", "<leader>pp", function()
-    require("telescope").extensions.project.project({})
-  end, { desc = "Find Project" })
+  require 'telescope'.load_extension 'fzf'
 end
 
 return M
