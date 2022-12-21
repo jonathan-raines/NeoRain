@@ -10,6 +10,8 @@ local M = {
 }
 
 M.config = function()
+  vim.o.completeopt = 'menuone,noselect'
+
   local cmp = require 'cmp'
   local luasnip = require 'luasnip'
 

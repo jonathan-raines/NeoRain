@@ -1,6 +1,5 @@
 local options = {
   colorcolumn = '+1',
-  completeopt = { 'menuone', 'noselect' }, -- mostly just for cmp
   expandtab = true, -- convert tabs to spaces
   foldlevelstart = 99,
   hlsearch = false, -- highlight all matches on previous search pattern
