@@ -1,4 +1,4 @@
-local utils = require 'statusline.modules'
+local utils = require 'configs.statusline.modules'
 
 function Statusline()
   return table.concat {

@@ -1,7 +1,7 @@
 local M = {}
 local fn = vim.fn
 
-local modes = require 'statusline.colors'.modes
+local modes = require 'configs.statusline.colors'.modes
 local icon = '  '
 local devicons_present, devicons = pcall(require, 'nvim-web-devicons')
 

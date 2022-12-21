@@ -1,5 +1,5 @@
 require 'configs.options'
 require 'configs.autocommands'
 require 'configs.keymaps'
-require 'statusline'
+require 'configs.statusline'
 require 'configs.lazy'
