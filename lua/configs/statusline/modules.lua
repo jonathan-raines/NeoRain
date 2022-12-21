@@ -108,6 +108,15 @@ M.LSP_status = function()
   return ''
 end
 
+M.Package_Updates = function()
+  local status = require 'lazy.status'
+
+  if status.has_updates() then
+    return '%#St_TerminalMode#' .. status.updates()
+  end
+  return ''
+end
+
 M.Treesitter = function()
   if next(vim.treesitter.highlighter.active) then
     return '%#Treesitter#' .. ' '

@@ -12,6 +12,7 @@ function Statusline()
     utils.Spacer(),
     utils.AlternateFile(),
     '%=',
+    utils.Package_Updates(),
     utils.LSP_Diagnostics(),
     utils.LSP_status(),
     utils.Spacer(),
