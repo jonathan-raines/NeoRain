@@ -11,7 +11,7 @@
   "lazy.nvim": { "branch": "main", "commit": "3a7b8c8132ad7d848ed7ac4fe5013788d6d6e70e" },
   "nvim-autopairs": { "branch": "master", "commit": "b5994e6547d64f781cfca853a1aa6174d238fe0e" },
   "nvim-cmp": { "branch": "main", "commit": "8868cf9a09e5f3c2612a22ccb82dcc6d9f0d0d35" },
-  "nvim-lspconfig": { "branch": "master", "commit": "d597b0f3605f43526f1b6948c6d7ca2919ea32ac" },
+  "nvim-lspconfig": { "branch": "master", "commit": "baab771852bb63ad06c91937a7a5ad199b2969b9" },
   "nvim-navic": { "branch": "master", "commit": "7a2b823152fe4de65ee7925b0e32d26ed73bc57c" },
   "nvim-treesitter": { "branch": "master", "commit": "eedb7b9c69b13afe86461b0742266bb62b811ece" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "e2ee8fd7259389deaa898d1216fdc6846a26c627" },
