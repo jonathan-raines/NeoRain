@@ -1,6 +1,7 @@
 local M = {
   'SmiteshP/nvim-navic',
-  dependencies = 'neovim/nvim-lspconfig'
+  dependencies = 'neovim/nvim-lspconfig',
+  lazy = true
 }
 
 M.config = function()

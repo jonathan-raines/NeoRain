@@ -26,7 +26,8 @@ local options = {
   textwidth = 100,
   undodir = os.getenv 'HOME' .. '/.vim/undodir',
   undofile = true, -- enable persistent undo
-  winbar = "%{%v:lua.require'configs.statusline.modules'.FileInfo()%} %#Normal# %{%v:lua.require'nvim-navic'.get_location()%} %= %{%v:lua.vim.api.nvim_win_get_number(0)%}",
+  -- winbar = "%{%v:lua.require'configs.statusline.modules'.FileInfo()%} %#Normal# %{%v:lua.require'nvim-navic'.get_location()%} %= %{%v:lua.vim.api.nvim_win_get_number(0)%}",
+  winbar = "%{%v:lua.require'configs.statusline.modules'.FileInfo()%} %#Normal# %= %{%v:lua.vim.api.nvim_win_get_number(0)%}",
   wrap = false, -- display lines as one long line
 }
 
@@ -37,7 +38,3 @@ end
 vim.opt.fo:remove { 'c', 'r', 'o' } -- 'No commenting new line'
 vim.opt.path:append '**'
 vim.opt.shortmess:append 'cI'
-
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 15
