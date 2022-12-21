@@ -1,6 +1,7 @@
-local M = { 'JoosepAlviste/nvim-ts-context-commentstring' }
-
-M.lazy = true
+local M = {
+  'JoosepAlviste/nvim-ts-context-commentstring',
+  lazy = true
+}
 
 M.config = function()
   require 'nvim-treesitter.configs'.setup {

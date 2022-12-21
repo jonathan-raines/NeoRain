@@ -1,5 +1,6 @@
-local M = { 'nvim-treesitter/nvim-treesitter-textobjects' }
-
-M.lazy = true
+local M = {
+  'nvim-treesitter/nvim-treesitter-textobjects',
+  lazy = true
+}
 
 return M

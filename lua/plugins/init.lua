@@ -15,12 +15,12 @@ return {
 
   {
     'Wansmer/treesj',
-    keys = 'J',
+    -- keys = 'J',
     config = function()
       require 'treesj'.setup { use_default_keymaps = false }
-      vim.keymap.set('n', 'J', '<cmd>TSJToggle<cr>')
+      -- vim.keymap.set('n', 'J', '<cmd>TSJToggle<cr>')
     end,
-    enabled = false
+    -- enabled = false
   },
 
   {

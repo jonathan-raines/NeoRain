@@ -1,6 +1,7 @@
-local M = { 'SmiteshP/nvim-navic' }
-
-M.dependencies = 'neovim/nvim-lspconfig'
+local M = {
+  'SmiteshP/nvim-navic',
+  dependencies = 'neovim/nvim-lspconfig'
+}
 
 M.config = function()
   vim.g.navic_silence = true

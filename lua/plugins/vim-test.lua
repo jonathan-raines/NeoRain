@@ -1,4 +1,7 @@
-local M = { 'vim-test/vim-test' }
+local M = {
+  'vim-test/vim-test',
+  cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' }
+}
 
 M.init = function()
   local keymap = vim.keymap.set
@@ -29,7 +32,5 @@ M.config = function()
   vim.g['test#transformation'] = 'docker'
   vim.g['test#basic#start_normal'] = 1
 end
-
-M.cmd = { 'TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit' }
 
 return M

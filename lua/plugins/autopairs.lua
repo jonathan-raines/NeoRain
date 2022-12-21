@@ -1,6 +1,8 @@
-local M = { 'windwp/nvim-autopairs' }
-
-M.event = 'InsertEnter'
+local M = {
+  'windwp/nvim-autopairs',
+  event = 'InsertEnter',
+  enabled = false
+}
 
 M.config = function()
   local npairs = require 'nvim-autopairs'

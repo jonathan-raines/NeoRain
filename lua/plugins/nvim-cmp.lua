@@ -1,12 +1,12 @@
-local M = { 'hrsh7th/nvim-cmp' }
-
-M.event = 'InsertEnter'
-
-M.dependencies = {
-  'L3MON4D3/LuaSnip',
-  'hrsh7th/cmp-nvim-lua',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-path',
+local M = {
+  'hrsh7th/nvim-cmp',
+  dependencies = {
+    'L3MON4D3/LuaSnip',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+  },
+  event = 'InsertEnter'
 }
 
 M.config = function()

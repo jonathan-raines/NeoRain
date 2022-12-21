@@ -1,8 +1,8 @@
-local M = { 'numToStr/Comment.nvim' }
-
-M.event = 'BufReadPre'
-
-M.dependencies = 'JoosepAlviste/nvim-ts-context-commentstring'
+local M = {
+  'numToStr/Comment.nvim',
+  dependencies = 'JoosepAlviste/nvim-ts-context-commentstring',
+  event = 'BufReadPre'
+}
 
 M.config = function()
   require 'Comment'.setup {

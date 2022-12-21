@@ -1,4 +1,7 @@
-local M = { 'sainnhe/sonokai' }
+local M = {
+  'sainnhe/sonokai',
+  event = 'ColorSchemePre'
+}
 
 M.config = function()
   vim.g.sonokai_enable_italic = 1
@@ -7,7 +10,5 @@ M.config = function()
   vim.g.sonokai_disable_terminal_colors = 1
   vim.g.sonokai_dim_inactive_windows = 1
 end
-
-M.event = 'ColorSchemePre'
 
 return M

@@ -1,10 +1,10 @@
-local M = { 'nvim-telescope/telescope.nvim' }
-
-M.cmd = 'Telescope'
-
-M.dependencies = {
-  'nvim-lua/plenary.nvim',
-  'kyazdani42/nvim-web-devicons'
+local M = {
+  'nvim-telescope/telescope.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'kyazdani42/nvim-web-devicons'
+  },
+  cmd = 'Telescope'
 }
 
 M.init = function()

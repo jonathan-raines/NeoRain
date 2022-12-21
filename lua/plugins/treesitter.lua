@@ -1,8 +1,8 @@
-local M = { 'nvim-treesitter/nvim-treesitter' }
-
-M.event = 'BufReadPre'
-
-M.dependencies = 'nvim-treesitter/nvim-treesitter-textobjects'
+local M = {
+  'nvim-treesitter/nvim-treesitter',
+  dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
+  event = 'BufReadPre'
+}
 
 M.build = function()
   require 'nvim-treesitter.install'.update { with_sync = true }
