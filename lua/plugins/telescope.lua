@@ -67,9 +67,7 @@ M.config = function()
         '--trim',
       },
       mappings = {
-        i = {
-          ['<ESC>'] = actions.close,
-        },
+        i = {},
         n = {
           ['q'] = actions.close,
         },
