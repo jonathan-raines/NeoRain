@@ -1,6 +1,9 @@
 local M = {
   'nvim-treesitter/nvim-treesitter',
-  dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    'JoosepAlviste/nvim-ts-context-commentstring'
+  },
   event = 'BufReadPre'
 }
 
@@ -11,6 +14,7 @@ end
 M.config = function()
   require 'nvim-treesitter.configs'.setup {
     auto_install = true,
+    context_commentstring = { enable = true },
     ensure_installed = { 'lua', 'ruby', 'javascript' },
     incremental_selection = {
       enable = true,

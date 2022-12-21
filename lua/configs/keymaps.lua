@@ -17,7 +17,7 @@ local keymaps = {
 
   { 'n', '<leader>j', '<cmd>tabnew | terminal<CR>', { desc = 'Terminal' } },
 
-  { 'n', '<leader>fe', vim.cmd.Explore, { desc = 'NetRW' } },
+  { 'n', '<leader>fe', vim.cmd.NeoTreeFocusToggle, { desc = 'Neotree' } },
 
   { 'n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute word under cursor' } },
 
