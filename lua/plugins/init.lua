@@ -15,17 +15,15 @@ return {
 
   {
     'Wansmer/treesj',
-    -- keys = 'J',
+    cmd = 'TSJToggle',
     config = function()
       require 'treesj'.setup { use_default_keymaps = false }
-      -- vim.keymap.set('n', 'J', '<cmd>TSJToggle<cr>')
     end,
-    -- enabled = false
+    enabled = true
   },
 
   {
     'cshuaimin/ssr.nvim',
-    -- Calling setup is optional.
     init = function()
       vim.keymap.set({ 'n', 'x' }, '<leader>cR', function()
         require 'ssr'.open()
@@ -33,4 +31,17 @@ return {
     end,
     enabled = false
   },
+
+
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      vim.cmd [[ let g:neo_tree_remove_legacy_commands = 1 ]]
+    end
+  }
 }
