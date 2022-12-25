@@ -24,6 +24,7 @@ local options = {
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
   textwidth = 100,
+  timeoutlen = 500,
   undodir = os.getenv 'HOME' .. '/.vim/undodir',
   undofile = true, -- enable persistent undo
   -- winbar = "%{%v:lua.require'configs.statusline.modules'.FileInfo()%} %#Normal# %{%v:lua.require'nvim-navic'.get_location()%} %= %{%v:lua.vim.api.nvim_win_get_number(0)%}",

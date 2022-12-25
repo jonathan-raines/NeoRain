@@ -36,6 +36,16 @@ M.setup = function(bufnr)
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end,
     '[W]orkspace Folders [L]ist ')
+
+  local status, whichkey = pcall(require, 'which-key')
+  if status then
+    whichkey.register({
+      l = {
+        name = 'LSP',
+        w = 'Workspace'
+      },
+    }, { prefix = '<leader>' })
+  end
 end
 
 return M

@@ -1,6 +1,6 @@
 local M = {
   'sainnhe/sonokai',
-  event = 'ColorSchemePre'
+  lazy = true
 }
 
 M.config = function()

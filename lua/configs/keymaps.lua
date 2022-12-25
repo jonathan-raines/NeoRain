@@ -20,7 +20,7 @@ local keymaps = {
   { 'n', '<leader>fe',
     function()
       vim.cmd.Telescope 'file_browser'
-    end, { desc = 'Neotree' } },
+    end, { desc = 'File Browser' } },
 
   { 'n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute word under cursor' } },
 
