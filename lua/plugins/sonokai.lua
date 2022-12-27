@@ -1,5 +1,6 @@
 local M = {
   'sainnhe/sonokai',
+  priority = 1000,
   lazy = true
 }
 
