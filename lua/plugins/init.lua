@@ -22,5 +22,9 @@ return {
     config = function()
       require 'mason'.setup()
     end
-  }
+  },
+
+  { 'rose-pine/neovim', as = 'rose-pine' },
+
+  { 'rebelot/kanagawa.nvim' }
 }

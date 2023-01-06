@@ -112,7 +112,7 @@ M.Package_Updates = function()
   local status = require 'lazy.status'
 
   if status.has_updates() then
-    return '%#St_TerminalMode#' .. status.updates()
+    return '%#St_TerminalMode#' .. status.updates() .. ' '
   end
   return ''
 end
