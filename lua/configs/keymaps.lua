@@ -1,5 +1,5 @@
 local keymap = vim.keymap.set
-local opts = { remap = true, silent = true }
+local opts = { silent = true }
 
 --Remap space as leader key
 vim.g.mapleader = ' '
