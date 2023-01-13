@@ -1,1 +1,1 @@
-vim.cmd [[ set wrap ]]
+vim.opt.wrap = true

@@ -30,7 +30,7 @@ M.escape_pair = function()
 end
 
 M.set_terminal_keymaps = function()
-  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], {})
+  vim.api.nvim_buf_set_keymap(0, 't', '<Escape>', [[<C-\><C-n>]], {})
 end
 
 M.highlight = function(color, opts)

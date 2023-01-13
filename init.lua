@@ -1,6 +1,5 @@
-pcall(require, 'impatient')
-require 'options'
-require 'autocommands'
-require 'keymaps'
-require 'statusline'
-require 'plugins'
+require 'configs.options'
+require 'configs.autocommands'
+require 'configs.keymaps'
+require 'configs.statusline'
+require 'configs.lazy'
