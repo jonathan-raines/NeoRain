@@ -24,7 +24,8 @@ return {
     end
   },
 
-  { 'rose-pine/neovim', as = 'rose-pine' },
+  { 'rebelot/kanagawa.nvim', lazy = true, priority = 1000 },
 
-  { 'rebelot/kanagawa.nvim' }
+  { 'savq/melange-nvim', lazy = true, priority = 1000 },
+
 }

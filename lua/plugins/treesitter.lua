@@ -4,7 +4,7 @@ local M = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'JoosepAlviste/nvim-ts-context-commentstring'
   },
-  event = 'BufReadPre'
+  lazy = true
 }
 
 M.build = function()
