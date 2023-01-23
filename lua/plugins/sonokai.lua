@@ -1,7 +1,6 @@
 local M = {
   'sainnhe/sonokai',
-  priority = 1000,
-  lazy = true
+  priority = 1000
 }
 
 M.config = function()

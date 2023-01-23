@@ -1,4 +1,4 @@
-local M = { 'folke/which-key.nvim', lazy = true }
+local M = { 'folke/which-key.nvim' }
 
 M.init = function()
   require 'which-key'.register({

@@ -21,11 +21,12 @@ return {
     'williamboman/mason.nvim',
     config = function()
       require 'mason'.setup()
-    end
+    end,
+    event = 'BufReadPre'
   },
 
-  { 'rebelot/kanagawa.nvim', lazy = true, priority = 1000 },
+  { 'rebelot/kanagawa.nvim', priority = 1000 },
 
-  { 'savq/melange-nvim', lazy = true, priority = 1000 },
+  { 'savq/melange-nvim', priority = 1000 },
 
 }

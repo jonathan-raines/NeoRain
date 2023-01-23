@@ -1,6 +1,7 @@
 local M = {
   'folke/tokyonight.nvim',
-  priority = 1000
+  priority = 1000,
+  lazy = false
 }
 
 M.config = function()

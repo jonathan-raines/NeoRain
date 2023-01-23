@@ -3,8 +3,7 @@ local M = {
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'JoosepAlviste/nvim-ts-context-commentstring'
-  },
-  lazy = true
+  }
 }
 
 M.build = function()
