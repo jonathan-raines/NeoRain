@@ -36,6 +36,12 @@ augroups.misc = {
     event = 'BufWritePre',
     pattern = '*',
     command = [[:%s/\s\+$//e]],
+  },
+  jbuilder_filetype = {
+    desc = 'Set jbuilder filetype to ruby',
+    event = 'BufRead',
+    pattern = '*.json.jbuilder',
+    command = [[set ft=ruby]],
   }
 }
 
