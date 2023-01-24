@@ -29,4 +29,5 @@ return {
 
   { 'savq/melange-nvim', priority = 1000 },
 
+  { 'AlexvZyl/nordic.nvim', priority = 1000 },
 }

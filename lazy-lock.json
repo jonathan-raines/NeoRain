@@ -14,6 +14,7 @@
   "lazy.nvim": { "branch": "main", "commit": "cab4682d22a0451bc36a648694235621b5dd808e" },
   "mason.nvim": { "branch": "main", "commit": "beb79ced9e49ea1ce2bd170b79e0cf819a8377c7" },
   "melange-nvim": { "branch": "master", "commit": "68c00e62b1a37c474897f376368ef913da0bb1be" },
+  "nordic.nvim": { "branch": "main", "commit": "70faa0510f39b6d8fe5f8453910ade92d6defd38" },
   "nvim-cmp": { "branch": "main", "commit": "11a95792a5be0f5a40bab5fc5b670e5b1399a939" },
   "nvim-lspconfig": { "branch": "master", "commit": "85cd2ecacd8805614efe3fb3a5146ac7d0f88a17" },
   "nvim-navic": { "branch": "master", "commit": "7a2b823152fe4de65ee7925b0e32d26ed73bc57c" },
