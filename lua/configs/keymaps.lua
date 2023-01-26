@@ -18,13 +18,6 @@ local keymaps = {
   { 'n', '<leader>jj', '<cmd>tabnew | terminal<CR>', { desc = 'Terminal' } },
   { 'n', '<leader>jl', '<cmd>tabnew | terminal<CR>lg && exit<CR>', { desc = 'LazyGit' } },
 
-  { 'n', '<leader>fe',
-    function()
-      vim.cmd.Telescope 'file_browser'
-    end, { desc = 'File Browser' } },
-
-  { 'n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute word under cursor' } },
-
   { 'n', '<C-j>', ':m .+1<CR>==', { desc = 'Move line up' } },
   { 'n', '<C-k>', ':m .-2<CR>==', { desc = 'Move line down' } },
 

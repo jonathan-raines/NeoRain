@@ -14,8 +14,8 @@ M.setup = function(bufnr)
   keymap('n', '<leader>lrn', vim.lsp.buf.rename, '[R]e[n]ame')
   keymap('n', '<leader>lf', vim.lsp.buf.format, '[F]ormat')
   -- Diagnostics
-  keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set [L]ocal [L]ist')
-  keymap('n', '<leader>ld', vim.diagnostic.open_float, '[L]ine [D]iagnostics')
+  keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set [L]ocal List')
+  keymap('n', '<leader>ldi', vim.diagnostic.open_float, 'Line [D][i]agnostics')
   keymap('n', '[d', vim.diagnostic.goto_prev, 'Previous Diagnostics')
   keymap('n', ']d', vim.diagnostic.goto_next, 'Next Diagnostics')
   -- Help

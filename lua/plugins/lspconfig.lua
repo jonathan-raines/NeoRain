@@ -1,6 +1,6 @@
 local M = {
   'neovim/nvim-lspconfig',
-  dependencies = 'hrsh7th/cmp-nvim-lsp',
+  dependencies = { 'hrsh7th/cmp-nvim-lsp', 'mason.nvim' },
   event = 'BufReadPre'
 }
 

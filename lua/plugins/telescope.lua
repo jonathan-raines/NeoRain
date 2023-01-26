@@ -16,6 +16,11 @@ M.init = function()
   local keymaps = {
     ['<leader>b'] = { builtin.buffers, { desc = '[B]uffers' } },
     ['<leader>fc'] = { builtin.command_history, { desc = '[C]ommand History' } },
+    ['<leader>fe'] = {
+      function()
+        vim.cmd.Telescope 'file_browser'
+      end, { desc = '[F]ind [F]iles' }
+    },
     ['<leader>ff'] = { builtin.find_files, { desc = '[F]ind [F]iles' } },
     ['<leader>fg'] = { builtin.live_grep, { desc = 'Live [G]rep' } },
     ['<leader>fh'] = { builtin.git_status, { desc = '[H] Git Status' } },
