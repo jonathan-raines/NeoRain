@@ -58,7 +58,7 @@ M.Git = function()
   local branch_name = '%#Normal#' .. '   ' .. git_status.head .. ' '
   local added = (git_status.added and git_status.added ~= 0) and ('%#St_git_add#' .. '   ' .. git_status.added) or ''
   local changed = (git_status.changed and git_status.changed ~= 0) and
-    ('%#St_git_change#' .. '   ' .. git_status.changed
+    ('%#St_git_change#' .. '   ' .. git_status.changed
     ) or ''
   local removed = (git_status.removed and git_status.removed ~= 0) and
     ('%#St_git_delete#' .. '   ' .. git_status.removed
