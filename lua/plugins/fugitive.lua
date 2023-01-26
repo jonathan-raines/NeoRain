@@ -1,10 +1,9 @@
 local M = {
   'tpope/vim-fugitive',
-  cmd = 'Git'
+  cmd = 'Git',
+  keys = {
+    { '<leader>gg', vim.cmd.Git, desc = 'Fugutive' }
+  },
 }
-
-M.init = function()
-  vim.keymap.set('n', '<leader>gg', vim.cmd.Git, { desc = 'Fugitive' })
-end
 
 return M

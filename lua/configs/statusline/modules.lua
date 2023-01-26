@@ -68,7 +68,7 @@ M.Git = function()
 end
 
 M.Grapple = function()
-  local g = require 'grapple'
+  local _, g = pcall(require, 'grapple')
   if g.exists() then
     return table.concat { '[', g.key(), ']' }
   else

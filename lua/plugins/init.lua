@@ -17,17 +17,9 @@ return {
     end
   },
 
-  {
-    'williamboman/mason.nvim',
-    config = function()
-      require 'mason'.setup()
-    end,
-    event = 'BufReadPre'
-  },
+  { 'rebelot/kanagawa.nvim', priority = 1000, lazy = false },
 
-  { 'rebelot/kanagawa.nvim', priority = 1000 },
+  { 'savq/melange-nvim', priority = 1000, lazy = false },
 
-  { 'savq/melange-nvim', priority = 1000 },
-
-  { 'AlexvZyl/nordic.nvim', priority = 1000 },
+  { 'AlexvZyl/nordic.nvim', priority = 1000, lazy = false },
 }

@@ -1,7 +1,10 @@
 local M = {
   'numToStr/Comment.nvim',
   dependencies = 'JoosepAlviste/nvim-ts-context-commentstring',
-  event = 'BufReadPre'
+  keys = {
+    { 'gc', mode = { 'n', 'x' } },
+    { 'gb', mode = { 'n', 'x' } },
+  }
 }
 
 M.config = function()
