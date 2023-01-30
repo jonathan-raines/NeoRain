@@ -17,11 +17,21 @@ return {
     end
   },
 
-  { 'rebelot/kanagawa.nvim', priority = 1000, lazy = false },
-
   { 'savq/melange-nvim', priority = 1000, lazy = false },
 
-  { 'AlexvZyl/nordic.nvim', priority = 1000, lazy = false },
-
   { 'catppuccin/nvim', name = 'catppuccin', priority = 1000, lazy = false },
+
+  {
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    lazy = false,
+    config = function()
+      local onedark = require 'onedark'
+      onedark.setup {
+        -- transparent = true
+      }
+
+      onedark.load()
+    end,
+  }
 }
