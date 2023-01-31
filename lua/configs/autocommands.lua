@@ -1,84 +1,81 @@
-local augroups = {}
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
-augroups.misc = {
-  cursor_location = {
-    desc = 'Open file at the last position it was edited earlier',
-    event = 'BufReadPost',
-    pattern = '*',
-    command = 'silent! normal! g`"zv',
-  },
-  highlight_yank = {
-    desc = 'Highland text on yank',
-    event = 'TextYankPost',
-    pattern = '*',
-    callback = function()
-      vim.highlight.on_yank { higroup = 'Visual' }
-    end
-  },
-  newline_comment = {
-    desc = 'No commenting new line',
-    event = 'BufEnter',
-    pattern = '*',
-    callback = function()
-      vim.opt.fo:remove { 'c', 'r', 'o' }
-    end
-  },
-  statusline_highlights = {
-    desc = 'Set highlights for Statusline',
-    event = 'ColorScheme',
-    pattern = '*',
-    callback = function()
-      require 'configs.statusline.colors'.set_hl()
-    end
-  },
-  trim_whitespace = {
-    desc = 'Trim whitespace on save',
-    event = 'BufWritePre',
-    pattern = '*',
-    command = [[:%s/\s\+$//e]],
-  },
-  jbuilder_filetype = {
-    desc = 'Set jbuilder filetype to ruby',
-    event = 'BufRead',
-    pattern = '*.json.jbuilder',
-    command = [[set ft=ruby]],
-  }
-}
+local misc = augroup('Misc', { clear = true })
+local terminal = augroup('Terminal', { clear = true })
 
-augroups.terminal = {
-  close_terminal = {
-    desc = 'Close terminal with bd',
-    event = 'TermClose',
-    pattern = '*',
-    command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif",
-  },
-  set_keymaps = {
-    event = 'TermOpen',
-    group = 'NeovimTerminal',
-    pattern = 'term://*',
-    command = "lua require('utils').set_terminal_keymaps()",
-  },
-  set_terminal_options = {
-    desc = 'Set terminal options',
-    event = 'TermOpen',
-    pattern = '*',
-    command = 'set nonumber norelativenumber nobuflisted',
-  },
-  start_insert_mode = {
-    desc = 'Start terminal in insert mode',
-    event = 'TermOpen',
-    pattern = '*',
-    command = 'startinsert',
-  }
-}
+autocmd('BufReadPost', {
+  desc = 'Open file at the last position it was edited earlier',
+  pattern = '*',
+  command = 'silent! normal! g`"zv',
+  group = misc
+})
 
-for group, commands in pairs(augroups) do
-  local augroup = vim.api.nvim_create_augroup('AU_' .. group, { clear = true })
+autocmd('TextYankPost', {
+  desc = 'Highland text on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'Visual' }
+  end,
+  group = misc
+})
 
-  for _, opts in pairs(commands) do
-    local event = opts.event
-    opts.event = nil
-    opts.group = augroup
-    vim.api.nvim_create_autocmd(event, opts)
-  end
-end
+autocmd('BufEnter', {
+  desc = 'No commenting new line',
+  pattern = '*',
+  callback = function()
+    vim.opt.fo:remove { 'c', 'r', 'o' }
+  end,
+  group = misc
+})
+
+autocmd('Colorscheme', {
+  desc = 'Set highlights for Statusline',
+  pattern = '*',
+  callback = function()
+    require 'configs.statusline.colors'.set_hl()
+  end,
+  group = misc
+})
+
+autocmd('BufWritePre', {
+  desc = 'Trim whitespace on save',
+  pattern = '*',
+  command = [[:%s/\s\+$//e]],
+  group = misc
+})
+
+autocmd('BufRead', {
+  desc = 'Set jbuilder filetype to ruby',
+  pattern = '*.json.jbuilder',
+  command = [[set ft=ruby]],
+  group = misc
+})
+
+autocmd('TermClose', {
+  desc = 'Close terminal with bd',
+  pattern = '*',
+  command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif",
+  group = terminal
+})
+
+autocmd('TermOpen', {
+  desc = 'Set terminal keymaps',
+  pattern = 'term://*',
+  command = "lua require('utils').set_terminal_keymaps()",
+  group = terminal
+})
+
+autocmd('TermOpen', {
+  desc = 'Set terminal options',
+  pattern = '*',
+  command = 'set nonumber norelativenumber nobuflisted',
+  group = terminal
+})
+
+-- autocmd('TermOpen', {
+--   desc = 'Start terminal in insert mode',
+--   pattern = '*',
+--   command = 'startinsert',
+--   group = terminal
+-- })
