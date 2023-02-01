@@ -1,6 +1,10 @@
 local options = {
   colorcolumn = '+1',
   expandtab = true, -- convert tabs to spaces
+  fillchars = { fold = ' ' },
+  foldmethod = 'indent',
+  foldenable = false,
+  foldlevel = 99,
   foldlevelstart = 99,
   hlsearch = false, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
@@ -27,7 +31,6 @@ local options = {
   timeoutlen = 500,
   undodir = os.getenv 'HOME' .. '/.vim/undodir',
   undofile = true, -- enable persistent undo
-  -- winbar = "%{%v:lua.require'configs.statusline.modules'.FileInfo()%} %#Normal# %{%v:lua.require'nvim-navic'.get_location()%} %= %{%v:lua.vim.api.nvim_win_get_number(0)%}",
   winbar = "%{%v:lua.require'configs.statusline.modules'.FileInfo()%} %#Normal#",
   wrap = false, -- display lines as one long line
 }
@@ -36,6 +39,5 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.opt.fo:remove { 'c', 'r', 'o' } -- 'No commenting new line'
 vim.opt.path:append '**'
 vim.opt.shortmess:append 'cI'
