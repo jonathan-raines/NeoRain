@@ -73,9 +73,9 @@ autocmd('TermOpen', {
   group = terminal
 })
 
--- autocmd('TermOpen', {
---   desc = 'Start terminal in insert mode',
---   pattern = '*',
---   command = 'startinsert',
---   group = terminal
--- })
+autocmd('TermOpen', {
+  desc = 'Start terminal in insert mode',
+  pattern = '*',
+  command = 'startinsert',
+  group = terminal
+})

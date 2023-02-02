@@ -9,13 +9,6 @@ local M = {
       end,
       cmd = { 'Mason' }
     },
-    {
-      'glepnir/lspsaga.nvim',
-      config = function()
-        require 'lspsaga'.setup {}
-      end,
-      dependencies = { { 'kyazdani42/nvim-web-devicons' } },
-    },
   },
   event = 'BufReadPre'
 }
