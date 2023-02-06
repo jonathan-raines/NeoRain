@@ -31,7 +31,7 @@ local options = {
   timeoutlen = 500,
   undodir = os.getenv 'HOME' .. '/.vim/undodir',
   undofile = true, -- enable persistent undo
-  winbar = "%{%v:lua.require'configs.statusline.modules'.FileInfo()%} %#Normal#",
+  winbar = "%{%v:lua.require'configs.statusline.modules'.FileInfo()%}%m %#Normal#",
   wrap = false, -- display lines as one long line
 }
 
