@@ -1,13 +1,12 @@
-local M = {
+return {
   'L3MON4D3/LuaSnip',
   dependencies = {
     'saadparwaiz1/cmp_luasnip',
     'rafamadriz/friendly-snippets'
   },
-  opts = {
-    history = true,
-    delete_check_events = 'TextChanged'
-  },
+  config = function()
+    require 'luasnip/loaders/from_vscode'.lazy_load()
+  end,
   keys = {
     {
       '<tab>',
@@ -20,9 +19,3 @@ local M = {
     { '<s-tab>', function() require 'luasnip'.jump(-1) end, mode = { 'i', 's' } },
   },
 }
-
-M.config = function()
-  require 'luasnip/loaders/from_vscode'.lazy_load()
-end
-
-return M

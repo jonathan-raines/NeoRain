@@ -1,10 +1,7 @@
-local M = {
+return {
   'pwntester/octo.nvim',
+  config = function()
+    require 'octo'.setup {}
+  end,
   cmd = 'Octo'
 }
-
-function M.config()
-  require 'octo'.setup {}
-end
-
-return M

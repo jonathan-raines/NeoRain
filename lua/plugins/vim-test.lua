@@ -1,5 +1,17 @@
-local M = {
+return {
   'vim-test/vim-test',
+  config = function()
+    vim.cmd
+    [[
+    function! DockerTransform(cmd)
+      return "docker-compose exec $(tmux display-message -p '#S') " .a:cmd
+    endfunction
+  ]]
+
+    vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')} ]]
+    vim.g['test#transformation'] = 'docker'
+    vim.g['test#basic#start_normal'] = 1
+  end,
   keys = {
     { '<leader>tf', vim.cmd.TestFile, desc = 'Test File' },
     { '<leader>tl', vim.cmd.TestLast, desc = 'Test Last' },
@@ -8,18 +20,3 @@ local M = {
     { '<leader>tv', vim.cmd.TestVisit, desc = 'Test Visit' },
   },
 }
-
-M.config = function()
-  vim.cmd
-  [[
-    function! DockerTransform(cmd)
-      return "docker-compose exec $(tmux display-message -p '#S') " .a:cmd
-    endfunction
-  ]]
-
-  vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')} ]]
-  vim.g['test#transformation'] = 'docker'
-  vim.g['test#basic#start_normal'] = 1
-end
-
-return M
