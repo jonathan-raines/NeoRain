@@ -14,33 +14,33 @@ M.init = function()
   local builtin = require 'telescope.builtin'
 
   local keymaps = {
-    ['<leader>b'] = { builtin.buffers, { desc = '[B]uffers' } },
-    ['<leader>fc'] = { builtin.command_history, { desc = '[C]ommand History' } },
+    ['<leader>b'] = { builtin.buffers, { desc = 'Buffers' } },
+    ['<leader>fc'] = { builtin.command_history, { desc = 'Command History' } },
     ['<leader>fe'] = {
       function()
-        vim.cmd.Telescope 'file_browser'
-      end, { desc = '[F]ind [F]iles' }
+        vim.cmd.Telescope { 'file_browser', 'path=%:p:h' }
+      end, { desc = 'File Browser' }
     },
-    ['<leader>ff'] = { builtin.find_files, { desc = '[F]ind [F]iles' } },
-    ['<leader>fg'] = { builtin.live_grep, { desc = 'Live [G]rep' } },
-    ['<leader>fh'] = { builtin.git_status, { desc = '[H] Git Status' } },
-    ['<leader>fj'] = { builtin.builtin, { desc = '[J] Telescope Functions' } },
-    ['<leader>fk'] = { builtin.keymaps, { desc = 'Telescope [K]eymaps' } },
+    ['<leader>ff'] = { builtin.find_files, { desc = 'Find Files' } },
+    ['<leader>fg'] = { builtin.live_grep, { desc = 'Live Grep' } },
+    ['<leader>fh'] = { builtin.git_status, { desc = 'Git Status' } },
+    ['<leader>fj'] = { builtin.builtin, { desc = 'Functions' } },
+    ['<leader>fk'] = { builtin.keymaps, { desc = 'Keymaps' } },
     ['<leader>fo'] = {
       function()
         builtin.oldfiles { cwd_only = true }
       end,
       { desc = 'Recent Files' }
     },
-    ['<leader>fq'] = { builtin.quickfix, { desc = '[Q]uickfix' } },
-    ['<leader>fr'] = { builtin.resume, { desc = '[R]esume' } },
-    ['<leader>fs'] = { builtin.grep_string, { desc = 'Grep [S]tring' } },
-    ['<leader>ft'] = { builtin.treesitter, { desc = '[T]reesitter' } },
+    ['<leader>fq'] = { builtin.quickfix, { desc = 'Quickfix' } },
+    ['<leader>fr'] = { builtin.resume, { desc = 'Resume' } },
+    ['<leader>fs'] = { builtin.grep_string, { desc = 'Grep String' } },
+    ['<leader>ft'] = { builtin.treesitter, { desc = 'Treesitter' } },
     ['<leader>/'] = {
       function()
         builtin.current_buffer_fuzzy_find(require 'telescope.themes'.get_dropdown { previewer = false })
       end,
-      { desc = '[/] Fuzzily search in current buffer]' }
+      { desc = 'Fuzzy Search Buffer' }
     }
   }
 

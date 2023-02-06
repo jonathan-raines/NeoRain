@@ -14,6 +14,7 @@ M.init = function()
     f = 'Telescope',
     g = 'Git',
     h = 'Grapple',
+    j = 'Terminal',
     t = 'Test',
   }, { prefix = '<leader>' })
 end
