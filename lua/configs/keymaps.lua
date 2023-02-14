@@ -15,9 +15,6 @@ local keymaps = {
 
   { 'n', 'J', 'mzJ`z', { desc = 'Join on same line' } },
 
-  { 'n', '<leader>jj', '<cmd>tabnew | terminal<CR>', { desc = 'Terminal' } },
-  { 'n', '<leader>jl', '<cmd>tabnew | terminal<CR>lg && exit<CR>', { desc = 'LazyGit' } },
-
   { 'n', '<C-j>', ':m .+1<CR>==', { desc = 'Move line up' } },
   { 'n', '<C-k>', ':m .-2<CR>==', { desc = 'Move line down' } },
 

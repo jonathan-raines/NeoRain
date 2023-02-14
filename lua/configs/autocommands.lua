@@ -52,30 +52,9 @@ autocmd('BufRead', {
   group = misc
 })
 
-autocmd('TermClose', {
-  desc = 'Close terminal with bd',
-  pattern = '*',
-  command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif",
-  group = terminal
-})
-
 autocmd('TermOpen', {
   desc = 'Set terminal keymaps',
   pattern = 'term://*',
   command = "lua require('utils').set_terminal_keymaps()",
-  group = terminal
-})
-
-autocmd('TermOpen', {
-  desc = 'Set terminal options',
-  pattern = '*',
-  command = 'set nonumber norelativenumber nobuflisted',
-  group = terminal
-})
-
-autocmd('TermOpen', {
-  desc = 'Start terminal in insert mode',
-  pattern = '*',
-  command = 'startinsert',
   group = terminal
 })
