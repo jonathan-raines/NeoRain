@@ -58,22 +58,13 @@ M.Git = function()
   local branch_name = '%#Normal#' .. '   ' .. git_status.head .. ' '
   local added = (git_status.added and git_status.added ~= 0) and ('%#St_git_add#' .. '   ' .. git_status.added) or ''
   local changed = (git_status.changed and git_status.changed ~= 0) and
-    ('%#St_git_change#' .. '   ' .. git_status.changed
-    ) or ''
+      ('%#St_git_change#' .. '   ' .. git_status.changed
+      ) or ''
   local removed = (git_status.removed and git_status.removed ~= 0) and
-    ('%#St_git_delete#' .. '   ' .. git_status.removed
-    ) or ''
+      ('%#St_git_delete#' .. '   ' .. git_status.removed
+      ) or ''
 
   return table.concat { branch_name, added, changed, removed }
-end
-
-M.Grapple = function()
-  local _, g = pcall(require, 'grapple')
-  if g.exists() then
-    return table.concat { '[', g.key(), ']' }
-  else
-    return ''
-  end
 end
 
 M.LSP_Diagnostics = function()
@@ -97,7 +88,7 @@ end
 M.LSP_status = function()
   if rawget(vim, 'lsp') then
     local client_names = {}
-    for _, client in ipairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+    for _, client in ipairs(vim.lsp.get_active_clients { bufnr = 0 } ) do
       table.insert(client_names, client.name)
     end
 

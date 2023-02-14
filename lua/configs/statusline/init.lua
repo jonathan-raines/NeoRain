@@ -8,7 +8,6 @@ function Statusline()
     utils.Spacer(),
     '%=',
     utils.FileInfo(),
-    utils.Grapple(),
     utils.Spacer(),
     utils.AlternateFile(),
     '%=',
