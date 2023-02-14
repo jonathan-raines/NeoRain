@@ -10,12 +10,12 @@ M.setup = function(bufnr)
   end
 
   -- Actions
-  keymap('n', '<leader>lca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-  keymap('n', '<leader>lrn', vim.lsp.buf.rename, '[R]e[n]ame')
-  keymap('n', '<leader>lf', vim.lsp.buf.format, '[F]ormat')
+  keymap('n', '<leader>lca', vim.lsp.buf.code_action, 'Code Action')
+  keymap('n', '<leader>lrn', vim.lsp.buf.rename, 'Rename')
+  keymap('n', '<leader>lf', vim.lsp.buf.format, 'Format')
   -- Diagnostics
-  keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set [L]ocal List')
-  keymap('n', '<leader>ldi', vim.diagnostic.open_float, 'Line [D][i]agnostics')
+  keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set Local List')
+  keymap('n', '<leader>ldi', vim.diagnostic.open_float, 'Line Diagnostics')
   keymap('n', '[d', vim.diagnostic.goto_prev, 'Previous Diagnostics')
   keymap('n', ']d', vim.diagnostic.goto_next, 'Next Diagnostics')
   -- Help
@@ -24,18 +24,18 @@ M.setup = function(bufnr)
   -- Jump
   keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
   keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
-  keymap('n', '<leader>lds', require 'telescope.builtin'.lsp_document_symbols, '[D]ocument [S]ymbols')
+  keymap('n', '<leader>lds', require 'telescope.builtin'.lsp_document_symbols, 'Document Symbols')
   keymap('n', '<leader>li', vim.lsp.buf.implementation, 'Implementation')
-  keymap('n', '<leader>lre', vim.lsp.buf.references, '[R][e]ferences')
+  keymap('n', '<leader>lre', vim.lsp.buf.references, 'References')
   -- Workspace Folders
-  keymap('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace Folders [A]dd')
-  keymap('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace Folders [R]emove')
-  keymap('n', '<leader>lws', require 'telescope.builtin'.lsp_dynamic_workspace_symbols, '[W]orkspace Folders [S]ymbols')
+  keymap('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, 'Workspace Folders Add')
+  keymap('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, 'Workspace Folders Remove')
+  keymap('n', '<leader>lws', require 'telescope.builtin'.lsp_dynamic_workspace_symbols, 'Workspace Folders Symbols')
   keymap('n', '<leader>lwl',
     function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end,
-    '[W]orkspace Folders [L]ist ')
+    'Workspace Folders List ')
 
   local status, whichkey = pcall(require, 'which-key')
   if status then
