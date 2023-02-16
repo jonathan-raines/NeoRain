@@ -35,7 +35,7 @@ return {
       ['<leader>ft'] = { builtin.treesitter, { desc = 'Treesitter' } },
       ['<leader>/'] = {
         function()
-          builtin.current_buffer_fuzzy_find(require 'telescope.themes'.get_dropdown { previewer = false })
+          builtin.current_buffer_fuzzy_find(require 'telescope.themes'.get_dropdown { previewer = false } )
         end,
         { desc = 'Fuzzy Search Buffer' }
       }

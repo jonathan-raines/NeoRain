@@ -58,3 +58,8 @@ autocmd('TermOpen', {
   command = "lua require('utils').set_terminal_keymaps()",
   group = terminal
 })
+
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'lua', -- or { 'lua', 'help' },
+--   callback = function() vim.treesitter.start() end,
+-- })

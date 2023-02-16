@@ -22,5 +22,5 @@ return {
     end
   end,
   event = 'InsertEnter',
-  enabled = false,
+  -- enabled = false,
 }
