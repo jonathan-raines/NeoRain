@@ -1,5 +1,9 @@
 return {
-  { 'savq/melange-nvim', priority = 1000, lazy = false },
+  {
+    'danymat/neogen',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    config = true,
+    cmd = 'Neogen'
+  },
 
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000, lazy = false },
 }
