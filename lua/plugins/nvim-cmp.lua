@@ -73,12 +73,12 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert {
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-b>'] = cmp.mapping.scroll_docs( -4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<C-y>'] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      },
+        ['<C-y>'] = cmp.mapping.confirm { select = true } , -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      } ,
       snippet = {
         expand = function(args)
           require 'luasnip'.lsp_expand(args.body)
@@ -90,7 +90,7 @@ return {
         { name = 'buffer' },
         { name = 'path' },
         { name = 'nvim_lua' },
-      },
+      } ,
     }
   end,
   event = 'InsertEnter'
