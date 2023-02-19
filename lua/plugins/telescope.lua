@@ -47,13 +47,17 @@ return {
       },
       pickers = {
         buffers = {
-          -- initial_mode = 'normal',
+          initial_mode = 'normal',
           theme = 'dropdown',
           sort_mru = true,
           mappings = {
             i = {
               ['<A-d>'] = actions.delete_buffer,
             },
+            n = {
+              ['d'] = actions.delete_buffer,
+              ['q'] = actions.close
+            }
           },
         },
         current_buffer_fuzzy_find = {
