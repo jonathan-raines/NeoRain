@@ -1,5 +1,7 @@
 local utils = require 'configs.statusline.modules'
 
+--- Sets up the statusline
+---@return string
 function Statusline()
   return table.concat {
     utils.Mode(),
