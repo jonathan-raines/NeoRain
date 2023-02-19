@@ -4,57 +4,33 @@ return {
     'nvim-lua/plenary.nvim',
     'kyazdani42/nvim-web-devicons',
     'nvim-telescope/telescope-file-browser.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    'otavioschwanck/telescope-alternate',
+    'LukasPietzschmann/telescope-tabs',
+    'debugloop/telescope-undo.nvim',
   },
-  init = function()
-    local keymap = vim.keymap.set
-    local builtin = require 'telescope.builtin'
-
-    local keymaps = {
-      ['<leader>b'] = { builtin.buffers, { desc = 'Buffers' } },
-      ['<leader>fc'] = { builtin.command_history, { desc = 'Command History' } },
-      ['<leader>fe'] = {
-        function()
-          vim.cmd.Telescope { 'file_browser', 'path=%:p:h' }
-        end, { desc = 'File Browser' }
-      },
-      ['<leader>ff'] = { builtin.find_files, { desc = 'Find Files' } },
-      ['<leader>fg'] = { builtin.live_grep, { desc = 'Live Grep' } },
-      ['<leader>fh'] = { builtin.git_status, { desc = 'Git Status' } },
-      ['<leader>fj'] = { builtin.builtin, { desc = 'Functions' } },
-      ['<leader>fk'] = { builtin.keymaps, { desc = 'Keymaps' } },
-      ['<leader>fo'] = {
-        function()
-          builtin.oldfiles { cwd_only = true }
-        end,
-        { desc = 'Recent Files' }
-      },
-      ['<leader>fq'] = { builtin.quickfix, { desc = 'Quickfix' } },
-      ['<leader>fr'] = { builtin.resume, { desc = 'Resume' } },
-      ['<leader>fs'] = { builtin.grep_string, { desc = 'Grep String' } },
-      ['<leader>ft'] = { builtin.treesitter, { desc = 'Treesitter' } },
-      ['<leader>/'] = {
-        function()
-          builtin.current_buffer_fuzzy_find(require 'telescope.themes'.get_dropdown { previewer = false } )
-        end,
-        { desc = 'Fuzzy Search Buffer' }
-      }
-    }
-
-    for key, val in pairs(keymaps) do
-      keymap('n', key, val[1], val[2])
-    end
-  end,
+  keys = {
+    { '<leader>/',  '<cmd>Telescope current_buffer_fuzzy_find<CR>',          desc = 'Fuzzy Search Buffer' },
+    { '<leader>b',  '<cmd>Telescope buffers<CR>',                            desc = 'Buffers' },
+    { '<leader>fa', '<cmd>Telescope telescope-alternate alternate_file<CR>', desc = 'Alternate File' },
+    { '<leader>fd', '<cmd>Telescope diagnostics<CR>',                        desc = 'Diagnostics' },
+    { '<leader>fe', '<cmd>Telescope file_browser path=%:p:h<CR>',            desc = 'File Browser' },
+    { '<leader>ff', '<cmd>Telescope find_files<CR>',                         desc = 'Find Files' },
+    { '<leader>fg', '<cmd>Telescope live_grep<CR>',                          desc = 'Live Grep' },
+    { '<leader>fh', '<cmd>Telescope git_status<CR>',                         desc = 'Git Status' },
+    { '<leader>fj', '<cmd>Telescope jumplist<CR>',                           desc = 'Jumplist' },
+    { '<leader>fm', '<cmd>Telescope marks<CR>',                              desc = 'Marks' },
+    { '<leader>fp', '<cmd>Telescope<CR>',                                    desc = 'Telescope Functions' },
+    { '<leader>fo', '<cmd>Telescope oldfiles<CR>',                           desc = 'Old Files' },
+    { '<leader>fr', '<cmd>Telescope resume<CR>',                             desc = 'Resume' },
+    { '<leader>fs', '<cmd>Telescope grep_string<CR>',                        desc = 'Grep String' },
+    { '<leader>ft', '<cmd>Telescope telescope-tabs list_tabs<CR>',           desc = 'Tabs' },
+  },
   config = function()
     local actions = require 'telescope.actions'
 
     require 'telescope'.setup {
       defaults = {
-        layout_strategy = 'center',
-        layout_config = {
-          width = 0.8,
-          height = 0.4
-        },
         sorting_strategy = 'ascending',
         file_sorter = require 'telescope.sorters'.get_fzy_sorter,
         vimgrep_arguments = {
@@ -67,71 +43,50 @@ return {
           '--smart-case',
           '--trim',
         },
-        mappings = {
-          i = {},
-          n = {
-            ['q'] = actions.close,
-          },
-        },
-        border = true,
-        borderchars = {
-          prompt = { '─', '│', ' ', '│', '╭', '╮', '│', '│' },
-          results = { '─', '│', '─', '│', '├', '┤', '╯', '╰' },
-          preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-        },
       },
       pickers = {
         buffers = {
-          previewer = false,
-          initial_mode = 'normal',
-          sort_lastused = true,
+          -- initial_mode = 'normal',
+          theme = 'dropdown',
+          sort_mru = true,
           mappings = {
             i = {
               ['<A-d>'] = actions.delete_buffer,
             },
-            n = {
-              ['d'] = actions.delete_buffer,
-              ['q'] = actions.close
-            },
           },
+        },
+        current_buffer_fuzzy_find = {
+          previewer = false,
         },
         find_files = {
           hidden = true,
-          previewer = false,
           file_ignore_patterns = { '.git/' },
         },
         git_files = {
           hidden = true,
-          previewer = false,
           show_untracked = true,
-        },
-        grep_string = {
-          only_sort_text = true,
-        },
-        live_grep = {
-          only_sort_text = true,
         },
         oldfiles = {
           hidden = true,
-          previewer = false,
+          cwd_only = true
         },
-        lsp_definitions = {
-          initial_mode = 'normal',
+      },
+      extensions = {
+        ['telescope-alternate'] = {
+          mappings = {},
+          presets = { 'rails', 'rspec' }
         },
-        lsp_declarations = {
-          initial_mode = 'normal',
+        ['telescope-tabs'] = {
+          show_preview = false
         },
-        lsp_implementations = {
-          initial_mode = 'normal',
-        },
-        lsp_references = {
-          initial_mode = 'normal',
-        },
-      }
+      },
     }
 
     require 'telescope'.load_extension 'fzf'
     require 'telescope'.load_extension 'file_browser'
+    require 'telescope'.load_extension 'telescope-alternate'
+    require 'telescope'.load_extension 'telescope-tabs'
+    require 'telescope'.load_extension 'undo'
   end,
   cmd = 'Telescope'
 }

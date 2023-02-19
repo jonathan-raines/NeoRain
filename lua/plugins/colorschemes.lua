@@ -1,7 +1,5 @@
 return {
-  { 'catppuccin/nvim',   name = 'catppuccin', priority = 1000, lazy = false },
-
-  { 'savq/melange-nvim', priority = 1000,     lazy = false },
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000, lazy = false },
 
   {
     'navarasu/onedark.nvim',

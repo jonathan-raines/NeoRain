@@ -9,6 +9,8 @@ M.setup = function(bufnr)
     vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
   end
 
+  local telescope = require 'telescope.builtin'
+
   -- Actions
   keymap('n', '<leader>lca', vim.lsp.buf.code_action, 'Code Action')
   keymap('n', '<leader>lrn', vim.lsp.buf.rename, 'Rename')
@@ -22,15 +24,15 @@ M.setup = function(bufnr)
   keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
   keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
   -- Jump
-  keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
+  keymap('n', 'gd', require 'telescope.builtin'.lsp_definitions, 'Definition')
   keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
   keymap('n', '<leader>lds', require 'telescope.builtin'.lsp_document_symbols, 'Document Symbols')
   keymap('n', '<leader>li', vim.lsp.buf.implementation, 'Implementation')
-  keymap('n', '<leader>lre', vim.lsp.buf.references, 'References')
+  keymap('n', '<leader>lre', require 'telescope.builtin'.lsp_references, 'References')
   -- Workspace Folders
   keymap('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, 'Workspace Folders Add')
   keymap('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, 'Workspace Folders Remove')
-  keymap('n', '<leader>lws', require 'telescope.builtin'.lsp_dynamic_workspace_symbols, 'Workspace Folders Symbols')
+  keymap('n', '<leader>lws', telescope.lsp_dynamic_workspace_symbols, 'Workspace Folders Symbols')
   keymap('n', '<leader>lwl',
     function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
