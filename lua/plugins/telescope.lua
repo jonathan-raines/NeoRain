@@ -21,6 +21,7 @@ return {
     { '<leader>fj', '<cmd>Telescope jumplist<CR>',                           desc = 'Jumplist' },
     { '<leader>fm', '<cmd>Telescope marks<CR>',                              desc = 'Marks' },
     { '<leader>fp', '<cmd>Telescope<CR>',                                    desc = 'Telescope Functions' },
+    { '<leader>fq', '<cmd>Telescope quickfix<CR>',                           desc = 'Quickfix' },
     { '<leader>fo', '<cmd>Telescope oldfiles<CR>',                           desc = 'Old Files' },
     { '<leader>fr', '<cmd>Telescope resume<CR>',                             desc = 'Resume' },
     { '<leader>fs', '<cmd>Telescope grep_string<CR>',                        desc = 'Grep String' },

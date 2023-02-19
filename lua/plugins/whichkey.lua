@@ -2,10 +2,6 @@ return {
   'folke/which-key.nvim',
   init = function()
     require 'which-key'.register({
-      ['1'] = 'which_key_ignore',
-      ['2'] = 'which_key_ignore',
-      ['3'] = 'which_key_ignore',
-      ['4'] = 'which_key_ignore',
       ['a'] = 'which_key_ignore',
       ['A'] = 'which_key_ignore',
       ['C'] = 'which_key_ignore',
@@ -13,8 +9,6 @@ return {
       ['s'] = 'which_key_ignore',
       f = 'Telescope',
       g = 'Git',
-      h = 'Grapple',
-      j = 'Terminal',
       t = 'Test',
     }, { prefix = '<leader>' })
   end,
@@ -40,7 +34,7 @@ return {
         border = 'rounded', -- none, single, double, shadow
       },
       layout = {
-        spacing = 8, -- spacing between columns
+        spacing = 6, -- spacing between columns
       },
       ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
     }

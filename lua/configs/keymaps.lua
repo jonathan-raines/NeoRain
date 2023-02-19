@@ -19,7 +19,6 @@ local keymaps = {
   { 'v', '<',         '<gv',                                                   { desc = 'Keep visual selection on indent decrease' } },
   { 'v', '>',         '>gv',                                                   { desc = 'Keep visual selection on indent increase' } },
   { 'v', 'p',         '"_dP',                                                  { desc = 'Paste without replacing' } },
-  { 'n', '<C-q>',     require 'utils'.quickfix_toggle,                         { desc = 'QuickFix Toggle' } },
   { 'n', ']q',        '<cmd>cnext<CR>',                                        { desc = 'QuickFix Next Item' } },
   { 'n', '[q',        '<cmd>cprev<CR>',                                        { desc = 'QuickFix Previous Item' } },
   { 'i', '<C-l>',     require 'utils'.escape_pair,                             { desc = 'Escape pair' } },
@@ -28,11 +27,4 @@ local keymaps = {
 
 for _, val in pairs(keymaps) do
   keymap(val[1], val[2], val[3], vim.tbl_extend('keep', opts, val[4]))
-end
-
-for i = 1, 4 do
-  local lhs = '<leader>' .. i
-  local rhs = i .. '<C-W>w'
-
-  keymap('n', lhs, rhs, { desc = 'Move to Window ' .. i })
 end
