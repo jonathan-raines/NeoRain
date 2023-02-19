@@ -21,6 +21,5 @@ return {
       cmp.event:on('confirm_done', require 'nvim-autopairs.completion.cmp'.on_confirm_done())
     end
   end,
-  event = 'InsertEnter',
-  -- enabled = false,
+  event = 'InsertEnter'
 }
