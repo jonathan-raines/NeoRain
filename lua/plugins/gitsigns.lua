@@ -45,7 +45,6 @@ return {
         if status then
           whichkey.register({
             g = {
-              name = 'Git',
               t = 'Toggle'
             },
           }, { prefix = '<leader>' })

@@ -1,5 +1,15 @@
 return {
   'vim-test/vim-test',
+  init = function()
+    local status, whichkey = pcall(require, 'which-key')
+    if status then
+      whichkey.register({
+        t = {
+          name = 'Test',
+        },
+      }, { prefix = '<leader>' })
+    end
+  end,
   config = function()
     vim.cmd
     [[ function! DockerTransform(cmd)

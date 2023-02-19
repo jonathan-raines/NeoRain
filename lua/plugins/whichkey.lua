@@ -7,8 +7,7 @@ return {
       ['C'] = 'which_key_ignore',
       ['L'] = 'which_key_ignore',
       ['s'] = 'which_key_ignore',
-      f = 'Telescope',
-      t = 'Test',
+      g = 'Git',
     }, { prefix = '<leader>' })
   end,
   config = function()

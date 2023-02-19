@@ -27,6 +27,16 @@ return {
     { '<leader>fs', '<cmd>Telescope grep_string<CR>',                        desc = 'Grep String' },
     { '<leader>ft', '<cmd>Telescope telescope-tabs list_tabs<CR>',           desc = 'Tabs' },
   },
+  init = function()
+    local status, whichkey = pcall(require, 'which-key')
+    if status then
+      whichkey.register({
+        f = {
+          name = 'Telescope',
+        },
+      }, { prefix = '<leader>' })
+    end
+  end,
   config = function()
     local actions = require 'telescope.actions'
 
