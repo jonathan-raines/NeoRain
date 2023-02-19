@@ -34,6 +34,7 @@ return {
       defaults = {
         sorting_strategy = 'ascending',
         file_sorter = require 'telescope.sorters'.get_fzy_sorter,
+        file_ignore_patterns = { '.git/' },
         vimgrep_arguments = {
           'rg',
           '--color=never',
@@ -65,7 +66,6 @@ return {
         },
         find_files = {
           hidden = true,
-          file_ignore_patterns = { '.git/' },
         },
         git_files = {
           hidden = true,
@@ -73,7 +73,7 @@ return {
         },
         oldfiles = {
           hidden = true,
-          cwd_only = true
+          cwd_only = true,
         },
       },
       extensions = {
