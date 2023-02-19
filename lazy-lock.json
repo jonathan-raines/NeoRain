@@ -37,6 +37,9 @@
   "toggleterm.nvim": { "branch": "main", "commit": "557664818f6af78de6192f0ce8bc2e887bf4943a" },
   "tokyonight.nvim": { "branch": "main", "commit": "a0abe53df53616d13da327636cb0bcac3ea7f5af" },
   "treesj": { "branch": "main", "commit": "7d397fddf9eb15e5d8e8cb0539beb6f6312a768e" },
+  "vim-dadbod": { "branch": "master", "commit": "389a2b0120f82b13d51ff7c07f5c13f9bc9f412f" },
+  "vim-dadbod-completion": { "branch": "master", "commit": "e71eb6140556c5ced80de6299a1fdfe22bd3c1b1" },
+  "vim-dadbod-ui": { "branch": "master", "commit": "caf45f54dad6150970331ac115e531524e418c7c" },
   "vim-fugitive": { "branch": "master", "commit": "62f42f013d866139fa23068ac2651b3f7e05a56f" },
   "vim-test": { "branch": "master", "commit": "c63b94c1e5089807f4532e05f087351ddb5a207c" },
   "which-key.nvim": { "branch": "main", "commit": "5224c261825263f46f6771f1b644cae33cd06995" }
