@@ -10,7 +10,7 @@ local keymaps = {
   { 'n', '<leader>w', vim.cmd.update,                                          { desc = 'Write' } },
   { 'n', '<leader>q', 'ZZ',                                                    { desc = 'Quit' } },
   { 'n', '<leader>c', '<cmd>execute (v:count > 0 ? v:count : "") . "bd!"<CR>', { desc = 'Close Buffer' } },
-  { 'n', '<leader>C', '<cmd>%bd|e#|bd#<CR>',                                   { desc = 'Close Other Buffers' } },
+  { 'n', '<leader>C', require 'utils'.close_other_buffers,                     { desc = 'Close Other Buffers' } },
   { 'n', 'J',         'mzJ`z',                                                 { desc = 'Join on same line' } },
   { 'n', '<C-j>',     ':m .+1<CR>==',                                          { desc = 'Move line up' } },
   { 'n', '<C-k>',     ':m .-2<CR>==',                                          { desc = 'Move line down' } },
