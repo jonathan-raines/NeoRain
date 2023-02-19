@@ -8,7 +8,6 @@ return {
       ['L'] = 'which_key_ignore',
       ['s'] = 'which_key_ignore',
       f = 'Telescope',
-      g = 'Git',
       t = 'Test',
     }, { prefix = '<leader>' })
   end,
