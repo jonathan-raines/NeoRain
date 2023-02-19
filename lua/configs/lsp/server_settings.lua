@@ -16,9 +16,7 @@ M.sumneko_lua = function()
           globals = { 'vim', 'use' },
         },
         workspace = {
-          library = vim.api.nvim_get_runtime_file('', true),
-          maxPreload = 10000,
-          preloadFileSize = 10000,
+          checkcheckThirdParty = false,
         },
         telemetry = { enable = false },
       },
