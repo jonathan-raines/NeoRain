@@ -1,6 +1,14 @@
 local M = {}
 local highlight = require 'utils'.highlight
 
+--- Gets highlight group by name
+---@param name string
+---@return table
+local function get_hl(name)
+  return vim.api.nvim_get_hl_by_name(name, {})
+end
+
+--- Sets highlight groups for custom statusline
 M.set_hl = function()
   highlight('St_NormalMode', { fg = '#32CD32', bold = true })
   highlight('St_InsertMode', { fg = '#FF7518', bold = true })
@@ -16,15 +24,12 @@ M.set_hl = function()
   highlight('St_git_change', { fg = '#FF7518' })
   highlight('St_git_delete', { fg = '#D2042D' })
 
-  highlight('Spacer', { bg = require 'configs.statusline.colors'.get_hl 'St_NormalMode'.background })
-  highlight('LspClient', { bg = require 'configs.statusline.colors'.get_hl 'St_NormalMode'.background })
-  highlight('Treesitter', { fg = '#32CD32', bg = require 'configs.statusline.colors'.get_hl 'St_NormalMode'.background })
+  highlight('Spacer', { bg = get_hl 'St_NormalMode'.background })
+  highlight('LspClient', { bg = get_hl 'St_NormalMode'.background })
+  highlight('Treesitter', { fg = get_hl 'St_NormalMode'.background })
 end
 
-M.get_hl = function(name)
-  return vim.api.nvim_get_hl_by_name(name, {})
-end
-
+--- Map VIM modes to custom highlight groups
 M.modes = {
   ['n'] = { 'NORMAL', 'St_NormalMode' },
   ['niI'] = { 'NORMAL i', 'St_NormalMode' },
@@ -54,6 +59,7 @@ M.modes = {
   ['!'] = { 'SHELL', 'St_TerminalMode' },
 }
 
+--- Custom separators for statusline modules
 M.statusline_separators = {
   default = {
     left = '',

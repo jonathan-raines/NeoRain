@@ -1,5 +1,6 @@
 local M = {}
 
+--- Close all hidden and unmodified buffers
 M.close_other_buffers = function()
   local api = vim.api
   local active_buffers = {}
@@ -21,6 +22,7 @@ M.close_other_buffers = function()
   api.nvim_out_write(string.format('Deleted %d hidden and unmodified buffers\n', count))
 end
 
+--- In insert mode jump to closing character or next comma
 M.escape_pair = function()
   local closers = { ')', ']', '}', '>', "'", '"', '`', ',' }
   local line = vim.api.nvim_get_current_line()
@@ -42,6 +44,7 @@ M.escape_pair = function()
   end
 end
 
+--- Sets terminal keymaps for escaping insert mode and window
 M.set_terminal_keymaps = function()
   local opts = { buffer = 0 }
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
@@ -51,6 +54,9 @@ M.set_terminal_keymaps = function()
   vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
 end
 
+--- Sets global highlight group
+---@param color string
+---@param opts { fg: string, bold: boolean }
 M.highlight = function(color, opts)
   vim.api.nvim_set_hl(0, color, opts)
 end
