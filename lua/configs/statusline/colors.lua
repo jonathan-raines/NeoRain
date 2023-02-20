@@ -26,7 +26,7 @@ M.set_hl = function()
 
   highlight('Spacer', { bg = get_hl 'St_NormalMode'.background })
   highlight('LspClient', { bg = get_hl 'St_NormalMode'.background })
-  highlight('Treesitter', { fg = get_hl 'St_NormalMode'.background })
+  highlight('Treesitter', { fg = '#32CD32', bg = get_hl 'St_NormalMode'.background })
 end
 
 --- Map VIM modes to custom highlight groups
