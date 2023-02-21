@@ -100,6 +100,17 @@ M.LSP_Diagnostics = function()
   return st_errors .. st_warnings .. st_hints .. st_info
 end
 
+--- Shows grapple label for active file
+--- @return string
+M.Grapple = function()
+  local _, g = pcall(require, 'grapple')
+  if g.exists() then
+    return table.concat { '[', g.key(), ']' }
+  else
+    return ''
+  end
+end
+
 --- Gets the name of the current active language server(s)
 ---@return string
 M.LSP_status = function()
