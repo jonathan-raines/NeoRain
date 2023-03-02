@@ -13,6 +13,7 @@ return {
     { '<leader>/',  '<cmd>Telescope current_buffer_fuzzy_find<CR>',          desc = 'Fuzzy Search Buffer' },
     { '<leader>b',  '<cmd>Telescope buffers<CR>',                            desc = 'Buffers' },
     { '<leader>fa', '<cmd>Telescope telescope-alternate alternate_file<CR>', desc = 'Alternate File' },
+    { '<leader>fc', '<cmd>Telescope colorscheme<CR>',                        desc = 'Colorscheme' },
     { '<leader>fd', '<cmd>Telescope diagnostics<CR>',                        desc = 'Diagnostics' },
     { '<leader>fe', '<cmd>Telescope file_browser path=%:p:h<CR>',            desc = 'File Browser' },
     { '<leader>ff', '<cmd>Telescope find_files<CR>',                         desc = 'Find Files' },
@@ -42,6 +43,7 @@ return {
 
     require 'telescope'.setup {
       defaults = {
+        -- borderchars = { "█", " ", "▀", "█", "█", " ", " ", "▀" },
         sorting_strategy = 'ascending',
         file_sorter = require 'telescope.sorters'.get_fzy_sorter,
         file_ignore_patterns = { '.git/' },
