@@ -11,7 +11,7 @@ return {
     require 'nvim-treesitter.configs'.setup {
       auto_install = true,
       context_commentstring = { enable = true },
-      ensure_installed = { 'lua', 'ruby', 'javascript' },
+      ensure_installed = {},
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -71,5 +71,6 @@ return {
         },
       },
     }
-  end
+  end,
+  --enabled = false
 }
