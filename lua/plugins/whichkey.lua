@@ -2,14 +2,15 @@ return {
   'folke/which-key.nvim',
   init = function()
     require 'which-key'.register({
-          ['a'] = 'which_key_ignore',
-          ['A'] = 'which_key_ignore',
-          ['C'] = 'which_key_ignore',
-          ['L'] = 'which_key_ignore',
-          ['s'] = 'which_key_ignore',
-          ['m'] = 'which_key_ignore',
-      g = 'Git',
-      h = 'Grapple',
+      ['a'] = 'which_key_ignore',
+      ['A'] = 'which_key_ignore',
+      ['C'] = 'which_key_ignore',
+      ['L'] = 'which_key_ignore',
+      ['s'] = 'which_key_ignore',
+      ['m'] = 'which_key_ignore',
+      g = 'Fugitive',
+      h = 'Gitsigns',
+      j = 'Grapple',
     }, { prefix = '<leader>' })
   end,
   config = function()
@@ -26,9 +27,9 @@ return {
         },
       },
       key_labels = {
-            ['<space>'] = 'SPC',
-            ['<CR>'] = 'RET',
-            ['<tab>'] = 'TAB',
+        ['<space>'] = 'SPC',
+        ['<CR>'] = 'RET',
+        ['<tab>'] = 'TAB',
       },
       window = {
         border = 'rounded', -- none, single, double, shadow
