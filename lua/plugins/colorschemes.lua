@@ -39,5 +39,5 @@ return {
     end,
   },
 
-  { 'rose-pine/neovim', name = 'rose-pine', event = 'VeryLazy' },
+  { 'EdenEast/nightfox.nvim', event = 'VeryLazy' },
 }

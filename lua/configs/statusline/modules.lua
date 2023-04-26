@@ -31,7 +31,8 @@ M.FileInfo = function()
     end
   end
 
-  return table.concat { '%#St_CurrentFile#', icon, '  ', filename, ' ' }
+  -- return table.concat { '%#St_CurrentFile#', icon, '  ', filename, ' ' }
+  return table.concat { icon, '  ', filename, ' ' }
 end
 
 --- Gets the current alternate file
@@ -44,7 +45,8 @@ M.AlternateFile = function()
       icon = M.GetFileIcon(filename)
     end
 
-    return table.concat { '%#St_AlternateFile#', '#', icon, '  ', filename, ' ' }
+    -- return table.concat { '%#St_AlternateFile#', '#', icon, '  ', filename, ' ' }
+    return table.concat { '#', icon, '  ', filename, ' ' }
   end
 
   return ' '
@@ -105,7 +107,7 @@ end
 M.Grapple = function()
   local _, g = pcall(require, 'grapple')
   if g.exists() then
-    return table.concat { '[', g.key(), ']' }
+    return table.concat { ' [', g.key(), ']' }
   else
     return ''
   end

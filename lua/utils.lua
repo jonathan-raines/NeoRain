@@ -1,5 +1,13 @@
 local M = {}
 
+M.quickfix_toggle = function()
+  if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')) == 1 then
+    vim.cmd 'copen'
+  else
+    vim.cmd 'cclose'
+  end
+end
+
 --- Close all hidden and unmodified buffers
 M.close_other_buffers = function()
   local api = vim.api
