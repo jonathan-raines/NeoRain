@@ -8,12 +8,12 @@ return {
     local api = require 'tabby.module.api'
 
     local theme = {
-      fill = 'TabLineFill', -- tabline background
-      head = 'TabLine', -- head element highlight
+      fill = 'TabLineFill',       -- tabline background
+      head = 'TabLine',           -- head element highlight
       current_tab = 'TabLineSel', -- current tab label highlight
-      tab = 'TabLine', -- other tab label highlight
-      win = 'TabLine', -- window highlight
-      tail = 'TabLine', -- tail element highlight
+      tab = 'TabLine',            -- other tab label highlight
+      win = 'TabLine',            -- window highlight
+      tail = 'TabLine',           -- tail element highlight
     }
 
     local tab_name = function(tab)
@@ -80,5 +80,5 @@ return {
       },
     })
   end,
-  event = 'UIEnter'
+  event = 'VeryLazy'
 }

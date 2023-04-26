@@ -11,5 +11,5 @@ return {
     { '<leader>jd', '<cmd>GrappleSelect key=3<CR>', desc = 'Select Tag 3' },
     { '<leader>js', '<cmd>GrappleSelect key=4<CR>', desc = 'Select Tag 4' },
     { '<leader>ja', '<cmd>GrappleSelect key=5<CR>', desc = 'Select Tag 5' },
-  }
+  },
 }

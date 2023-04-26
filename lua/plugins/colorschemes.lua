@@ -1,20 +1,7 @@
 return {
   {
-    'ofirgall/ofirkai.nvim',
-    config = function()
-      require 'ofirkai'.setup {}
-
-      vim.cmd.colorscheme 'ofirkai'
-    end,
-    priority = 1000,
-    lazy = false,
-    branch = 'exp'
-  },
-
-  {
     'navarasu/onedark.nvim',
-    priority = 1000,
-    lazy = false,
+    event = 'VeryLazy',
     config = function()
       local onedark = require 'onedark'
       onedark.setup {
@@ -47,8 +34,10 @@ return {
         hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
         dim_inactive = true,              -- dims inactive windows
       }
+
+      vim.cmd [[ colorscheme tokyonight ]]
     end,
-    priority = 1000,
-    lazy = false
   },
+
+  { 'rose-pine/neovim', name = 'rose-pine', event = 'VeryLazy' },
 }

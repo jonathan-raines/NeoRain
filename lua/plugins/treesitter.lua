@@ -4,10 +4,10 @@ return {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'JoosepAlviste/nvim-ts-context-commentstring'
   },
-  build = function()
+  build        = function()
     require 'nvim-treesitter.install'.update { with_sync = true }
   end,
-  config = function()
+  config       = function()
     require 'nvim-treesitter.configs'.setup {
       auto_install = true,
       context_commentstring = { enable = true },
@@ -72,5 +72,5 @@ return {
       },
     }
   end,
-  --enabled = false
+  event        = 'VeryLazy'
 }
