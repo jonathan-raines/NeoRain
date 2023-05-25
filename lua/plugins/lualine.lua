@@ -75,14 +75,15 @@ return {
         lualine_z = {
           {
             function()
-              local client_names = {}
-              for _, client in ipairs(vim.lsp.get_active_clients { bufnr = 0 }) do
-                table.insert(client_names, client.name)
+              if rawget(vim, 'lsp') then
+                local client_names = {}
+                for _, client in ipairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+                  table.insert(client_names, client.name)
+                end
+                return table.concat(client_names, ',')
               end
-              return table.concat(client_names, ',')
             end,
             icon = ' ',
-            cond = rawget(vim, 'lsp')
           },
         },
       },
