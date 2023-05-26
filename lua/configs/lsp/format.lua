@@ -1,11 +1,6 @@
 local M = {}
 
-M.setup = function(client, bufnr)
-  -- if client.name ~= 'eslint' then
-  --   local navic = require 'nvim-navic'
-  --   navic.attach(client, bufnr)
-  -- end
-
+M.setup = function(client)
   if client.name == 'tsserver' then
     client.server_capabilities.documentFormattingProvider = false
   end
@@ -25,8 +20,6 @@ M.setup = function(client, bufnr)
       end,
     })
   end
-
-  require 'configs.lsp.keymaps'.setup(bufnr)
 end
 
 return M

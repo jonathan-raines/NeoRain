@@ -1,6 +1,6 @@
 local M = {}
 
-M.sumneko_lua = function()
+M.lua_ls = function()
   return {
     settings = {
       Lua = {

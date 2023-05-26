@@ -1,15 +1,5 @@
 return {
   'vim-test/vim-test',
-  init = function()
-    local status, whichkey = pcall(require, 'which-key')
-    if status then
-      whichkey.register({
-        t = {
-          name = 'Test',
-        },
-      }, { prefix = '<leader>' })
-    end
-  end,
   config = function()
     vim.cmd
     [[ function! DockerTransform(cmd)
@@ -37,10 +27,10 @@ return {
     vim.g['test#strategy'] = 'tterm'
   end,
   keys = {
-    { '<leader>tf', vim.cmd.TestFile,    desc = 'Test File' },
-    { '<leader>tl', vim.cmd.TestLast,    desc = 'Test Last' },
-    { '<leader>tn', vim.cmd.TestNearest, desc = 'Test Nearest' },
-    { '<leader>ts', vim.cmd.TestSuite,   desc = 'Test Suite' },
-    { '<leader>tv', vim.cmd.TestVisit,   desc = 'Test Visit' },
+    { '<leader>Tf', vim.cmd.TestFile,    desc = 'Test File' },
+    { '<leader>Tl', vim.cmd.TestLast,    desc = 'Test Last' },
+    { '<leader>Tn', vim.cmd.TestNearest, desc = 'Test Nearest' },
+    { '<leader>Ts', vim.cmd.TestSuite,   desc = 'Test Suite' },
+    { '<leader>Tv', vim.cmd.TestVisit,   desc = 'Test Visit' },
   },
 }

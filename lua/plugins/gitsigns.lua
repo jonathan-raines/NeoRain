@@ -40,15 +40,6 @@ return {
 
         -- Text object
         map({ 'o', 'x' }, 'ih', function() vim.cmd.Gitsigns 'select_hunk' end, { desc = 'Select Hunk' })
-
-        local status, whichkey = pcall(require, 'which-key')
-        if status then
-          whichkey.register({
-            h = {
-              t = 'Toggle'
-            },
-          }, { prefix = '<leader>' })
-        end
       end,
     }
   end,

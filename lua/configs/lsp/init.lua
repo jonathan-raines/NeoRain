@@ -1,8 +1,8 @@
 local signs = {
   { name = 'DiagnosticSignError', text = ' ' },
-  { name = 'DiagnosticSignWarn', text = ' ' },
-  { name = 'DiagnosticSignHint', text = ' ' },
-  { name = 'DiagnosticSignInfo', text = ' ' },
+  { name = 'DiagnosticSignWarn',  text = ' ' },
+  { name = 'DiagnosticSignHint',  text = '' },
+  { name = 'DiagnosticSignInfo',  text = ' ' },
 }
 
 for _, sign in ipairs(signs) do
@@ -17,7 +17,7 @@ end
 
 local opts = {
   on_attach = function(client, bufnr)
-    require 'configs.lsp.format'.setup(client, bufnr)
+    require 'configs.lsp.format'.setup(client)
     require 'configs.lsp.keymaps'.setup(bufnr)
   end,
   capabilities = capabilities,
@@ -33,7 +33,7 @@ local servers = {
   ['jsonls'] = {},
   ['marksman'] = {},
   ['solargraph'] = {},
-  ['lua_ls'] = server_settings.sumneko_lua(),
+  ['lua_ls'] = server_settings.lua_ls(),
   ['tsserver'] = {},
   ['vuels'] = {},
   ['yamlls'] = {}

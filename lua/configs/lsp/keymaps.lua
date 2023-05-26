@@ -9,45 +9,27 @@ M.setup = function(bufnr)
     vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
   end
 
-  local telescope = require 'telescope.builtin'
+  local fzf = require('fzf-lua')
 
   -- Actions
-  keymap('n', '<leader>lca', vim.lsp.buf.code_action, 'Code Action')
-  keymap('n', '<leader>lrn', vim.lsp.buf.rename, 'Rename')
+  keymap('n', '<leader>a', vim.lsp.buf.code_action, 'Code Action')
+  keymap('n', '<leader>r', vim.lsp.buf.rename, 'Rename')
   keymap('n', '<leader>lf', vim.lsp.buf.format, 'Format')
   -- Diagnostics
   keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set Local List')
-  keymap('n', '<leader>ldi', vim.diagnostic.open_float, 'Line Diagnostics')
+  keymap('n', '<leader>ld', vim.diagnostic.open_float, 'Line Diagnostics')
   keymap('n', '[d', vim.diagnostic.goto_prev, 'Previous Diagnostics')
   keymap('n', ']d', vim.diagnostic.goto_next, 'Next Diagnostics')
   -- Help
   keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
   keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
   -- Jump
-  keymap('n', 'gd', require 'telescope.builtin'.lsp_definitions, 'Definition')
+  keymap('n', 'gd', fzf.lsp_definitions, 'Definition')
   keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
-  keymap('n', '<leader>lds', require 'telescope.builtin'.lsp_document_symbols, 'Document Symbols')
-  keymap('n', '<leader>li', vim.lsp.buf.implementation, 'Implementation')
-  keymap('n', '<leader>lre', require 'telescope.builtin'.lsp_references, 'References')
-  -- Workspace Folders
-  keymap('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, 'Workspace Folders Add')
-  keymap('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, 'Workspace Folders Remove')
-  keymap('n', '<leader>lws', telescope.lsp_dynamic_workspace_symbols, 'Workspace Folders Symbols')
-  keymap('n', '<leader>lwl',
-    function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end,
-    'Workspace Folders List ')
-
-  local status, whichkey = pcall(require, 'which-key')
-  if status then
-    whichkey.register({
-      l = {
-        name = 'LSP',
-        w = 'Workspace'
-      },
-    }, { prefix = '<leader>' })
-  end
+  keymap('n', '<leader>s', fzf.lsp_document_symbols, 'Document Symbols')
+  keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
+  keymap('n', 'gr', fzf.lsp_references, 'References')
+  keymap('n', '<leader>S', fzf.lsp_workspace_symbols, 'Workspace Symbols')
 end
 
 return M

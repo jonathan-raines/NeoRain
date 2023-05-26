@@ -1,7 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
   config = function()
-    local module = require 'configs.statusline.modules'
     require 'lualine'.setup {
       options = {
         icons_enabled = true,
@@ -21,6 +20,7 @@ return {
         },
         lualine_b = { 'branch', },
         lualine_c = {
+          'filename',
           {
             'diff',
             source = function()
@@ -33,33 +33,20 @@ return {
                 }
               end
             end,
-            symbols = { added = ' ', modified = '柳', removed = ' ' },
+            symbols = { added = '  ', modified = '  ', removed = '  ' },
           },
-          {
-            function()
-              return '%='
-            end
-          },
-          {
-            module.FileInfo,
-            color = { fg = '#00BFFF' }
-          },
-          {
-            module.AlternateFile,
-            color = { fg = '#20B2AA' }
-          }
         },
         lualine_x = {
           {
             'diagnostics',
             sources = { 'nvim_diagnostic' },
-            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+            symbols = { error = ' ', warn = '  ', info = ' ', hint = ' ' },
           },
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
             color = { fg = "#ff9e64" },
-          },
+          }
         },
         lualine_y = {
           {
@@ -82,18 +69,14 @@ return {
                 end
                 return table.concat(client_names, ',')
               end
+              return ''
             end,
             icon = ' ',
           },
         },
       },
       tabline = {},
-      winbar = {
-        -- lualine_c = {
-        --   { 'filetype', icon_only = true },
-        --   'filename',
-        -- }
-      },
+      winbar = {},
       extensions = { 'quickfix', 'toggleterm', 'fugitive', 'lazy' },
     }
   end,

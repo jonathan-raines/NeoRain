@@ -1,8 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-
 local misc = augroup('Misc', { clear = true })
-local terminal = augroup('Terminal', { clear = true })
 
 autocmd('BufReadPost', {
   desc = 'Open file at the last position it was edited earlier',
@@ -29,37 +27,9 @@ autocmd('BufEnter', {
   group = misc
 })
 
-autocmd('Colorscheme', {
-  desc = 'Set highlights for Statusline',
-  pattern = '*',
-  callback = function()
-    require 'configs.statusline.colors'.set_hl()
-  end,
-  group = misc
-})
-
 autocmd('BufWritePre', {
   desc = 'Trim whitespace on save',
   pattern = '*',
   command = [[:%s/\s\+$//e]],
   group = misc
 })
-
-autocmd('BufRead', {
-  desc = 'Set jbuilder filetype to ruby',
-  pattern = '*.json.jbuilder',
-  command = [[set ft=ruby]],
-  group = misc
-})
-
-autocmd('TermOpen', {
-  desc = 'Set terminal keymaps',
-  pattern = 'term://*',
-  command = "lua require('utils').set_terminal_keymaps()",
-  group = terminal
-})
-
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = { 'lua', 'help' },
---   callback = function() vim.treesitter.start() end,
--- })
