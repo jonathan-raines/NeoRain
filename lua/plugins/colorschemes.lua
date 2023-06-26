@@ -21,6 +21,12 @@ return {
 
       vim.cmd.colorscheme 'monokai-pro'
     end
-  }
+  },
 
+  {
+    'ribru17/bamboo.nvim',
+    config = function()
+      require 'bamboo'.setup {}
+    end
+  }
 }
