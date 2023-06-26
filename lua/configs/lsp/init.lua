@@ -17,6 +17,10 @@ end
 
 local opts = {
   on_attach = function(client, bufnr)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.buf.inlay_hint(bufnr, true)
+    end
+
     require 'configs.lsp.format'.setup(client)
     require 'configs.lsp.keymaps'.setup(bufnr)
   end,
@@ -34,7 +38,20 @@ local servers = {
   ['marksman'] = {},
   ['solargraph'] = {},
   ['lua_ls'] = server_settings.lua_ls(),
-  ['tsserver'] = {},
+  ['tsserver'] = {
+    init_options = {
+      preferences = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        importModuleSpecifierPreference = 'non-relative'
+      },
+    },
+  },
   ['vuels'] = {},
   ['yamlls'] = {}
 }

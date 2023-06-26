@@ -4,6 +4,9 @@ M.lua_ls = function()
   return {
     settings = {
       Lua = {
+        hint = {
+          enable = true
+        },
         runtime = {
           version = 'LuaJIT',
           path = runtime_path,
