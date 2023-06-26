@@ -10,8 +10,9 @@ return {
           functions = 'italic',
         },
       }
-    end,
-    event = 'VeryLazy'
+
+      vim.cmd.colorscheme 'onedark'
+    end
   },
 
   {
@@ -19,8 +20,9 @@ return {
     config = function()
       require("monokai-pro").setup {}
 
-      vim.cmd.colorscheme 'monokai-pro'
-    end
+      -- vim.cmd.colorscheme 'monokai-pro'
+    end,
+    event = 'VeryLazy'
   },
 
   {

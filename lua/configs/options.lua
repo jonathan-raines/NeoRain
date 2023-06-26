@@ -1,4 +1,5 @@
 local options = {
+  clipboard = "unnamedplus",
   colorcolumn = '+1',
   expandtab = true,     -- convert tabs to spaces
   hlsearch = false,     -- highlight all matches on previous search pattern

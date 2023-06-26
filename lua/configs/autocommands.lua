@@ -33,3 +33,12 @@ autocmd('BufWritePre', {
   command = [[:%s/\s\+$//e]],
   group = misc
 })
+
+autocmd('Colorscheme', {
+  desc = 'Set highlights for Statusline',
+  pattern = '*',
+  callback = function()
+    require 'configs.statusline.colors'.set_hl()
+  end,
+  group = misc
+})
