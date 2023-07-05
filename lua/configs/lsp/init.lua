@@ -17,10 +17,6 @@ end
 
 local opts = {
   on_attach = function(client, bufnr)
-    if client.server_capabilities.inlayHintProvider then
-      vim.lsp.buf.inlay_hint(bufnr, true)
-    end
-
     require 'configs.lsp.format'.setup(client)
     require 'configs.lsp.keymaps'.setup(bufnr)
   end,
