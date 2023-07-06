@@ -10,25 +10,22 @@ return {
           functions = 'italic',
         },
       }
-
-      vim.cmd.colorscheme 'onedark'
-    end
+    end,
+    event = 'VeryLazy'
   },
 
   {
-    "loctvl842/monokai-pro.nvim",
+    "sainnhe/sonokai",
     config = function()
-      require("monokai-pro").setup {}
-
-      -- vim.cmd.colorscheme 'monokai-pro'
+      vim.cmd.colorscheme 'sonokai'
     end,
-    event = 'VeryLazy'
   },
 
   {
     'ribru17/bamboo.nvim',
     config = function()
       require 'bamboo'.setup {}
-    end
+    end,
+    event = 'VeryLazy'
   }
 }
