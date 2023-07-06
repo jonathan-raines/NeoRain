@@ -31,5 +31,3 @@ require 'lazy'.setup('plugins', {
     },
   },
 })
-
-vim.keymap.set('n', '<leader>L', vim.cmd.Lazy, { desc = 'Lazy' })

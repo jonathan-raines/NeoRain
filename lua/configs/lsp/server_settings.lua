@@ -16,12 +16,29 @@ M.lua_ls = function()
         },
         diagnostics = {
           enable = true,
-          globals = { 'vim', 'use' },
+          globals = { 'vim', 'use', 'bufnr' },
         },
         workspace = {
           checkcheckThirdParty = false,
         },
         telemetry = { enable = false },
+      },
+    },
+  }
+end
+
+M.tsserver = function()
+  return {
+    init_options = {
+      preferences = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        importModuleSpecifierPreference = 'non-relative'
       },
     },
   }
