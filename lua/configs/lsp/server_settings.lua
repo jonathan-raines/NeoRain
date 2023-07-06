@@ -1,9 +1,12 @@
 local M = {}
 
-M.sumneko_lua = function()
+M.lua_ls = function()
   return {
     settings = {
       Lua = {
+        hint = {
+          enable = true
+        },
         runtime = {
           version = 'LuaJIT',
           path = runtime_path,
@@ -13,12 +16,29 @@ M.sumneko_lua = function()
         },
         diagnostics = {
           enable = true,
-          globals = { 'vim', 'use' },
+          globals = { 'vim', 'use', 'bufnr' },
         },
         workspace = {
           checkcheckThirdParty = false,
         },
         telemetry = { enable = false },
+      },
+    },
+  }
+end
+
+M.tsserver = function()
+  return {
+    init_options = {
+      preferences = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        importModuleSpecifierPreference = 'non-relative'
       },
     },
   }

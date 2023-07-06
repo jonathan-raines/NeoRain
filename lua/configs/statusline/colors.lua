@@ -1,5 +1,11 @@
 local M = {}
-local highlight = require 'utils'.highlight
+
+--- Sets global highlight group
+---@param color string
+---@param opts { fg: string, bold: boolean }
+local function highlight(color, opts)
+  vim.api.nvim_set_hl(0, color, opts)
+end
 
 --- Gets highlight group by name
 ---@param name string

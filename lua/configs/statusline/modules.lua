@@ -29,10 +29,11 @@ M.FileInfo = function()
     if devicons_present then
       icon = M.GetFileIcon(filename)
     end
+
+    return table.concat { '%#St_CurrentFile#', icon, '  ', filename, ' ' }
   end
 
-  -- return table.concat { '%#St_CurrentFile#', icon, '  ', filename, ' ' }
-  return table.concat { icon, '  ', filename, ' ' }
+  return ''
 end
 
 --- Gets the current alternate file
@@ -45,8 +46,7 @@ M.AlternateFile = function()
       icon = M.GetFileIcon(filename)
     end
 
-    -- return table.concat { '%#St_AlternateFile#', '#', icon, '  ', filename, ' ' }
-    return table.concat { '#', icon, '  ', filename, ' ' }
+    return table.concat { '%#St_AlternateFile#', '#', icon, '  ', filename, ' ' }
   end
 
   return ' '
@@ -70,7 +70,8 @@ M.Git = function()
 
   local git_status = vim.b.gitsigns_status_dict
 
-  local branch_name = '%#Normal#' .. '   ' .. git_status.head .. ' '
+  -- local branch_name = '%#Normal#' .. '   ' .. git_status.head .. ' '
+  local branch_name = '%#Normal#' .. '  ' .. git_status.head .. ' '
   local added = (git_status.added and git_status.added ~= 0) and ('%#St_git_add#' .. '   ' .. git_status.added) or ''
   local changed = (git_status.changed and git_status.changed ~= 0) and
       ('%#St_git_change#' .. '   ' .. git_status.changed
@@ -97,7 +98,7 @@ M.LSP_Diagnostics = function()
   local st_errors = (errors and errors > 0) and ('%#DiagnosticSignError#' .. '  ' .. errors .. ' ') or ''
   local st_warnings = (warnings and warnings > 0) and ('%#DiagnosticSignWarn#' .. '  ' .. warnings .. ' ') or ''
   local st_hints = (hints and hints > 0) and ('%#DiagnosticSignHint#' .. '  ' .. hints .. ' ') or ''
-  local st_info = (info and info > 0) and ('%#DiagnosticSignInfo#' .. '  ' .. info .. ' ') or ''
+  local st_info = (info and info > 0) and ('%#DiagnosticSignInfo#' .. ' ' .. info .. ' ') or ''
 
   return st_errors .. st_warnings .. st_hints .. st_info
 end
