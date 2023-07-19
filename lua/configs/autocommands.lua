@@ -10,19 +10,10 @@ autocmd('BufReadPost', {
 })
 
 autocmd('TextYankPost', {
-  desc = 'Highland text on yank',
+  desc = 'Highlight text on yank',
   pattern = '*',
   callback = function()
     vim.highlight.on_yank { higroup = 'Visual' }
-  end,
-  group = misc
-})
-
-autocmd('BufEnter', {
-  desc = 'No commenting new line',
-  pattern = '*',
-  callback = function()
-    vim.opt.fo:remove { 'c', 'r', 'o' }
   end,
   group = misc
 })

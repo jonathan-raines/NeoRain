@@ -1,7 +1,8 @@
 return {
-  'kylechui/nvim-surround',
+  'echasnovski/mini.surround',
+  version = false,
   config = function()
-    require 'nvim-surround'.setup {}
+    require 'mini.surround'.setup {}
   end,
-  event = 'BufRead'
+  keys = { 's' }
 }

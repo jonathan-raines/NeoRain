@@ -26,5 +26,6 @@ return {
       },
       ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
     }
-  end
+  end,
+  event = 'VeryLazy'
 }

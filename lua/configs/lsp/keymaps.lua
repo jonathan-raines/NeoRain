@@ -12,8 +12,8 @@ M.setup = function(bufnr)
   local fzf = require('fzf-lua')
 
   -- Actions
-  keymap('n', '<leader>a', vim.lsp.buf.code_action, 'Code Action')
-  keymap('n', '<leader>r', vim.lsp.buf.rename, 'Rename')
+  keymap('n', '<leader>la', vim.lsp.buf.code_action, 'Code Action')
+  keymap('n', '<leader>lr', vim.lsp.buf.rename, 'Rename')
   keymap('n', '<leader>lf', vim.lsp.buf.format, 'Format')
   -- Diagnostics
   keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set Local List')

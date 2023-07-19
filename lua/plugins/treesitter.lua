@@ -2,7 +2,6 @@ return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    'JoosepAlviste/nvim-ts-context-commentstring'
   },
   build        = function()
     require 'nvim-treesitter.install'.update { with_sync = true }
@@ -10,8 +9,11 @@ return {
   config       = function()
     require 'nvim-treesitter.configs'.setup {
       auto_install = true,
-      context_commentstring = { enable = true },
       ensure_installed = {},
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false
+      },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -22,10 +24,6 @@ return {
         }
       },
       indent = { enable = true },
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false
-      },
       textobjects = {
         select = {
           enable = true,
