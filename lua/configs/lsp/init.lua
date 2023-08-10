@@ -27,9 +27,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.bo[ev.buf].tagfunc = "v:lua.vim.lsp.tagfunc"
     end
     -- Enable inlay hints
-    if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint(ev.buf, true)
-    end
+    -- if client.server_capabilities.inlayHintProvider then
+    --   vim.lsp.inlay_hint(ev.buf, true)
+    -- end
 
     -- Enable format on save
     require 'configs.lsp.format'.setup(client)

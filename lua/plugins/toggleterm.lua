@@ -16,6 +16,6 @@ return {
   end,
   keys = {
     "<c-\\>",
-    { "<leader>lg", "<cmd>lua _G_lazygit_toggle()<CR>", desc = 'lazygit' }
+    { "<leader>hl", "<cmd>lua _G_lazygit_toggle()<CR>", desc = 'Lazygit' }
   }
 }

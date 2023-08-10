@@ -8,6 +8,7 @@ return {
           comments = 'italic',
           keywords = 'italic',
           functions = 'italic',
+          transparent = true
         },
       }
     end,
@@ -16,16 +17,19 @@ return {
 
   {
     "sainnhe/sonokai",
-    -- config = function()
-    --   vim.cmd.colorscheme 'sonokai'
-    -- end,
-    event = 'VeryLazy'
+    config = function()
+      vim.g['sonokai_transparent_background'] = 1
+
+      -- vim.cmd.colorscheme 'sonokai'
+    end,
   },
 
   {
     'ribru17/bamboo.nvim',
     config = function()
-      require 'bamboo'.setup {}
+      require 'bamboo'.setup {
+        transparent = true
+      }
 
       vim.cmd.colorscheme 'bamboo'
     end,
