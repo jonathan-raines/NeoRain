@@ -33,5 +33,5 @@ return {
 
       vim.cmd.colorscheme 'bamboo'
     end,
-  }
+  },
 }

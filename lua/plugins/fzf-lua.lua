@@ -23,7 +23,7 @@ return {
     { '<leader>fl', "<cmd>FzfLua loclist<CR>",                                     desc = 'Local List' },
     { "<leader>'",  "<cmd>FzfLua resume<CR>",                                      desc = 'Resume Last Picker' },
     { '<leader>b',  "<cmd>FzfLua buffers<CR>",                                     desc = 'Buffers' },
-    { '<leader>t',  "<cmd>FzfLua tabs<CR>",                                        desc = 'Tabs' },
+    { '<leader>v',  "<cmd>FzfLua tabs<CR>",                                        desc = 'Tabs' },
     { '<leader>/',  "<cmd>FzfLua live_grep_native<CR>",                            desc = 'Live Grep' },
     { '/',          "<cmd>FzfLua lgrep_curbuf<CR>",                                desc = "Search Buffer" }
   }

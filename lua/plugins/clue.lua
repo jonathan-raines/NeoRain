@@ -47,7 +47,7 @@ return {
         { mode = 'n', keys = '<Leader>h',  desc = '+Git' },
         { mode = 'n', keys = '<Leader>ht', desc = '+Toggle' },
         { mode = 'n', keys = '<Leader>l',  desc = '+Lsp' },
-        { mode = 'n', keys = '<Leader>T',  desc = '+Test' },
+        { mode = 'n', keys = '<Leader>t',  desc = '+Test' },
       },
 
       window = {
