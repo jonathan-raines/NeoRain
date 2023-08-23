@@ -1,5 +1,4 @@
 local options = {
-  clipboard      = "unnamedplus",
   colorcolumn    = '+1',
   expandtab      = true,     -- convert tabs to spaces
   foldmethod     = 'indent', -- Set 'indent' folding method
