@@ -48,9 +48,13 @@ return {
         { mode = 'n', keys = '<Leader>ht', desc = '+Toggle' },
         { mode = 'n', keys = '<Leader>l',  desc = '+Lsp' },
         { mode = 'n', keys = '<Leader>t',  desc = '+Test' },
+        { mode = 'n', keys = '<Leader>g',  desc = '+Grapple' },
       },
 
       window = {
+        config = {
+          width = 'auto',
+        },
         delay = 0,
       },
     })
