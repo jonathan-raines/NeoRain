@@ -22,6 +22,7 @@ return {
 
       -- vim.cmd.colorscheme 'sonokai'
     end,
+    event = 'VeryLazy'
   },
 
   {
@@ -33,5 +34,6 @@ return {
 
       vim.cmd.colorscheme 'bamboo'
     end,
+    -- event = 'VeryLazy'
   },
 }

@@ -4,6 +4,12 @@ return {
     local miniclue = require('mini.clue')
     miniclue.setup({
       triggers = {
+        -- Mini-Bracketed triggers
+        { mode = 'n', keys = '[' },
+        { mode = 'n', keys = ']' },
+        { mode = 'x', keys = '[' },
+        { mode = 'x', keys = ']' },
+
         -- Leader triggers
         { mode = 'n', keys = '<Leader>' },
         { mode = 'x', keys = '<Leader>' },
@@ -40,7 +46,7 @@ return {
         miniclue.gen_clues.builtin_completion(),
         miniclue.gen_clues.g(),
         miniclue.gen_clues.marks(),
-        miniclue.gen_clues.registers(),
+        miniclue.gen_clues.registers({ show_contents = false }),
         miniclue.gen_clues.windows(),
         miniclue.gen_clues.z(),
         { mode = 'n', keys = '<Leader>f',  desc = '+Find' },
@@ -59,5 +65,6 @@ return {
       },
     })
   end,
-  version = false
+  version = false,
+  event = "VeryLazy"
 }

@@ -12,5 +12,5 @@ return {
     { '<leader>gl', '<cmd>GrappleSelect key=4<CR>', desc = 'Select Tag 4' },
     { '<leader>g;', '<cmd>GrappleSelect key=5<CR>', desc = 'Select Tag 5' },
   },
-  lazy = false
+  event = 'VeryLazy'
 }
