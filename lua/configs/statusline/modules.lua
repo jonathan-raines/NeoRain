@@ -106,7 +106,7 @@ end
 --- Shows grapple label for active file
 --- @return string
 M.Grapple = function()
-  local _, g = pcall(require, 'grapple')
+  local g = require 'grapple'
   if g.exists() then
     return table.concat { ' [', g.key(), ']' }
   else
