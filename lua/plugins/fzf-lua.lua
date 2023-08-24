@@ -12,9 +12,11 @@ return {
   end,
   keys = {
     { '<leader>ff', "<cmd>FzfLua files<CR>",                                       desc = 'Find Files' },
+    { '<leader>fg', "<cmd>FzfLua grep<CR>",                                        desc = 'Grep' },
+    { '<leader>fG', "<cmd>FzfLua grep_project<CR>",                                desc = 'Grep Project' },
     { '<leader>fh', "<cmd>FzfLua git_status<CR>",                                  desc = 'Changed Git Files' },
     { '<leader>fk', "<cmd>FzfLua keymaps<CR>",                                     desc = 'Keymaps' },
-    { '<leader>fk', "<cmd>FzfLua marks<CR>",                                       desc = 'Marks' },
+    { '<leader>fm', "<cmd>FzfLua marks<CR>",                                       desc = 'Marks' },
     { '<leader>fs', "<cmd>FzfLua grep_cword<CR>",                                  desc = 'Word Under Cursor' },
     { '<leader>fo', "<cmd>lua require('fzf-lua').oldfiles({cwd_only = true})<CR>", desc = 'Old Files' },
     { '<leader>fc', "<cmd>FzfLua colorschemes<CR>",                                desc = 'Colorscheme' },

@@ -24,7 +24,7 @@ M.setup = function(bufnr)
   keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
   keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
   -- Jump
-  keymap('n', 'gd', fzf.lsp_definitions, 'Definition')
+  keymap('n', 'gd', function() fzf.lsp_definitions { jump_to_single_result = true } end, 'Definition')
   keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
   keymap('n', '<leader>s', fzf.lsp_document_symbols, 'Document Symbols')
   keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
