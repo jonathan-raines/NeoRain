@@ -23,7 +23,8 @@ return {
 
     vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')} ]]
     vim.g['test#transformation'] = 'docker'
-    -- vim.g['test#basic#start_normal'] = 1
+    vim.g['test#basic#start_normal'] = 1
+    vim.g['test#neovim#start_normal'] = 1
     vim.g['test#strategy'] = 'tterm'
   end,
   keys = {
