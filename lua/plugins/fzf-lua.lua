@@ -11,6 +11,7 @@ return {
     }
   end,
   keys = {
+    { '<leader>fa', "<cmd>FzfLua<CR>",                                             desc = 'Pickers' },
     { '<leader>ff', "<cmd>FzfLua files<CR>",                                       desc = 'Find Files' },
     { '<leader>fg', "<cmd>FzfLua grep<CR>",                                        desc = 'Grep' },
     { '<leader>fG', "<cmd>FzfLua grep_project<CR>",                                desc = 'Grep Project' },
