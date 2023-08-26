@@ -74,7 +74,13 @@ return {
       },
       sources = cmp.config.sources {
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
+        {
+          name = 'luasnip',
+          entry_filter = function()
+            local context = require("cmp.config.context")
+            return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
+          end,
+        },
         { name = 'buffer' },
         { name = 'path' },
         { name = 'nvim_lua' },
