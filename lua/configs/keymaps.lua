@@ -14,6 +14,7 @@ local keymaps = {
   { 'v',          '>',         '>gv',              { desc = 'Keep visual sel indent inc' } },
   { 'i',          '.',         '.<C-g>u',          { desc = 'Undo Break Point' } },
   { 'x',          'p',         [["_dP]],           { desc = 'Paste without replacing' } },
+  { "n",          "<leader>c", "<cmd>bd<CR>",      { desc = "Delete buffer" } },
   { { "n", "v" }, "<leader>p", [["+p]],            { desc = "Paste System Clipboard Down" } },
   { { "n", "v" }, "<leader>P", [["+P]],            { desc = "Paste System Clipboard Up" } },
   { { "n", "v" }, "<leader>y", [["+y]],            { desc = "Copy System Clipboard" } },
