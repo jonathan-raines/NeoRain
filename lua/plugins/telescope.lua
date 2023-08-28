@@ -85,6 +85,7 @@ return {
   keys = {
     { '<leader>fa', '<cmd>Telescope<CR>',                           desc = 'Pickers' },
     { '<leader>fb', '<cmd>Telescope buffers<CR>',                   desc = 'Buffers' },
+    { '<leader>fc', '<cmd>Telescope colorscheme<CR>',               desc = 'Colorscheme' },
     { '<leader>fd', '<cmd>Telescope lsp_definitions<CR>',           desc = 'Definitions' },
     { '<leader>ff', '<cmd>Telescope find_files<CR>',                desc = 'Files' },
     { '<leader>fg', '<cmd>Telescope live_grep<CR>',                 desc = 'Grep' },
