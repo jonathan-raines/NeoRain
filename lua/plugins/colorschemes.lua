@@ -5,40 +5,49 @@ return {
       require 'tokyonight'.setup {
         transparent = true,
         dim_inactive = true,
-        -- on_highlights = function(hl, c)
-        --   local prompt = "#2d3149"
-        --   hl.TelescopeNormal = {
-        --     bg = c.bg_dark,
-        --     fg = c.fg_dark,
-        --   }
-        --   hl.TelescopeBorder = {
-        --     bg = c.bg_dark,
-        --     fg = c.bg_dark,
-        --   }
-        --   hl.TelescopePromptNormal = {
-        --     bg = prompt,
-        --   }
-        --   hl.TelescopePromptBorder = {
-        --     bg = prompt,
-        --     fg = prompt,
-        --   }
-        --   hl.TelescopePromptTitle = {
-        --     bg = prompt,
-        --     fg = prompt,
-        --   }
-        --   hl.TelescopePreviewTitle = {
-        --     bg = c.bg_dark,
-        --     fg = c.bg_dark,
-        --   }
-        --   hl.TelescopeResultsTitle = {
-        --     bg = c.bg_dark,
-        --     fg = c.bg_dark,
-        --   }
-        -- end,
       }
 
       vim.cmd.colorscheme 'tokyonight'
     end
+  },
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = function()
+      require 'catppuccin'.setup {
+        transparent_background = true,
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          mini = true,
+          native_lsp = {
+            enabled = true,
+            virtual_text = {
+              errors = { "italic" },
+              hints = { "italic" },
+              warnings = { "italic" },
+              information = { "italic" },
+            },
+            underlines = {
+              errors = { "underline" },
+              hints = { "underline" },
+              warnings = { "underline" },
+              information = { "underline" },
+            },
+            inlay_hints = {
+              background = true,
+            },
+          },
+          treesitter = {
+            enabled = true
+          },
+          telescope = true,
+          neogit = true
+        }
+      }
+    end,
+    event = 'VeryLazy'
   },
 
   {
@@ -47,5 +56,5 @@ return {
       vim.g['sonokai_transparent_background'] = 1
     end,
     event = 'VeryLazy'
-  }
+  },
 }
