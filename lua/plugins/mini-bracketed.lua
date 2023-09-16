@@ -3,5 +3,5 @@ return {
   config = function()
     require('mini.bracketed').setup()
   end,
-  version = false
+  event = 'BufRead'
 }
