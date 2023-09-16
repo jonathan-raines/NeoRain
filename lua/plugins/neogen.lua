@@ -6,6 +6,6 @@ return {
   end,
   cmd = 'Neogen',
   keys = {
-    { '<leader>n', '<cmd>Neogen<CR>', 'Neogen' }
+    { '<leader>n', '<cmd>Neogen<CR>', desc = 'Neogen' }
   }
 }
