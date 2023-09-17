@@ -4,7 +4,10 @@ return {
     'nvim-lua/plenary.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make'
+      build = 'make',
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
     },
   },
   config = function()
@@ -80,7 +83,6 @@ return {
         },
       }
     }
-    telescope.load_extension('fzf')
   end,
   keys = {
     { '<leader>Fa', '<cmd>Telescope<CR>',                           desc = 'Pickers' },
@@ -93,10 +95,11 @@ return {
     { '<leader>Fo', '<cmd>Telescope oldfiles cwd_only=v:true<CR>',  desc = 'Recent' },
     { '<leader>Fq', '<cmd>Telescope quickfix<CR>',                  desc = 'Quickfix' },
     { '<leader>Fr', '<cmd>Telescope lsp_references<CR>',            desc = 'References' },
-    { '<leader>Fw', '<cmd>Telescope grep_string<CR>',               desc = 'Grep word' },
-    { '<leader>F/', '<cmd>Telescope current_buffer_fuzzy_find<CR>', desc = 'Current Buffer' },
     { '<leader>Fs', '<cmd>Telescope lsp_document_symbols<CR>',      desc = 'Document Symbols' },
     { '<leader>FS', '<cmd>Telescope lsp_workspace_symbols<CR>',     desc = 'Workspace Symbols' },
+    { '<leader>Fw', '<cmd>Telescope grep_string<CR>',               desc = 'Grep word' },
+    { '<leader>F/', '<cmd>Telescope current_buffer_fuzzy_find<CR>', desc = 'Current Buffer' },
+    { '<leader>F:', '<cmd>Telescope command_history<CR>',           desc = 'Command History' },
   },
   cmd = 'Telescope',
   enabled = true
