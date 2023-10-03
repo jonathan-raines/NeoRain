@@ -102,5 +102,5 @@ return {
     { '<leader>F:', '<cmd>Telescope command_history<CR>',           desc = 'Command History' },
   },
   cmd = 'Telescope',
-  enabled = true
+  enabled = false
 }
