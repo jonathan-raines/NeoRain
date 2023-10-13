@@ -6,7 +6,7 @@ return {
         transparent = true
       }
 
-      vim.cmd.colorscheme 'tokyonight'
+      -- vim.cmd.colorscheme 'tokyonight'
     end
   },
 
@@ -19,15 +19,14 @@ return {
   },
 
   {
-    "olimorris/onedarkpro.nvim",
-    priority = 1000, -- Ensure it loads first
+    'ribru17/bamboo.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      require 'onedarkpro'.setup {
-        options = {
-          transparency = true
-        }
+      require('bamboo').setup {
+        transparent = true
       }
+      require('bamboo').load()
     end,
-    event = 'VeryLazy'
   }
 }
