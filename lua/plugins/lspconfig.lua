@@ -4,5 +4,5 @@ return {
   config = function()
     require 'configs.lsp'
   end,
-  event = 'BufReadPre'
+  event = 'VeryLazy'
 }

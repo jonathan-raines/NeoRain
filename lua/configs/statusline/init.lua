@@ -1,3 +1,12 @@
+vim.api.nvim_create_autocmd("VimEnter", {
+  desc = 'Set highlights for Statusline',
+  pattern = '*',
+  callback = function()
+    require 'configs.statusline.colors'.set_hl()
+  end,
+  group = vim.api.nvim_create_augroup('Statusline', { clear = true })
+})
+
 local utils = require 'configs.statusline.modules'
 
 --- Sets up the statusline
@@ -10,7 +19,7 @@ function Statusline()
     utils.Spacer(),
     '%=',
     utils.FileInfo(),
-    utils.Grapple(),
+    -- utils.Grapple(),
     utils.Spacer(),
     utils.AlternateFile(),
     '%=',
@@ -24,3 +33,4 @@ function Statusline()
 end
 
 vim.o.statusline = '%!v:lua.Statusline()'
+

@@ -30,6 +30,11 @@ M.set_hl = function()
   highlight('St_git_change', { fg = '#FF7518' })
   highlight('St_git_delete', { fg = '#D2042D' })
 
+  highlight('St_diag_warnings', { fg = get_hl 'DiagnosticSignWarn'.foreground, bg = get_hl 'St_NormalMode'.background })
+  highlight('St_diag_error', { fg = get_hl 'DiagnosticSignError'.foreground, bg = get_hl 'St_NormalMode'.background })
+  highlight('St_diag_hints', { fg = get_hl 'DiagnosticSignHint'.foreground, bg = get_hl 'St_NormalMode'.background })
+  highlight('St_diag_info', { fg = get_hl 'DiagnosticSignInfo'.foreground, bg = get_hl 'St_NormalMode'.background })
+
   highlight('Spacer', { bg = get_hl 'St_NormalMode'.background })
   highlight('LspClient', { bg = get_hl 'St_NormalMode'.background })
   highlight('Treesitter', { fg = '#32CD32', bg = get_hl 'St_NormalMode'.background })
@@ -50,12 +55,13 @@ M.modes = {
   ['v'] = { 'VISUAL', 'St_VisualMode' },
   ['V'] = { 'V-LINE', 'St_VisualMode' },
   ['Vs'] = { 'V-LINE (Ctrl O)', 'St_VisualMode' },
-  [''] = { 'V-BLOCK', 'St_VisualMode' },
+  ['\22'] = { 'V-BLOCK', 'St_VisualMode' },
+  ['\22s'] = { 'V-BLOCK', 'St_VisualMode' },
   ['R'] = { 'REPLACE', 'St_ReplaceMode' },
   ['Rv'] = { 'V-REPLACE', 'St_ReplaceMode' },
   ['s'] = { 'SELECT', 'St_SelectMode' },
   ['S'] = { 'S-LINE', 'St_SelectMode' },
-  [''] = { 'S-BLOCK', 'St_SelectMode' },
+  ['\19'] = { 'S-BLOCK', 'St_SelectMode' },
   ['c'] = { 'COMMAND', 'St_CommandMode' },
   ['cv'] = { 'COMMAND', 'St_CommandMode' },
   ['ce'] = { 'COMMAND', 'St_CommandMode' },

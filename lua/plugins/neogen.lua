@@ -4,8 +4,5 @@ return {
   config = function()
     require 'neogen'.setup {}
   end,
-  cmd = 'Neogen',
-  keys = {
-    { '<leader>n', '<cmd>Neogen<CR>', desc = 'Neogen' }
-  }
+  cmd = 'Neogen'
 }

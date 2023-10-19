@@ -1,7 +1,10 @@
-local M = {}
-
-M.lua_ls = function()
-  return {
+local servers = {
+  ['bashls'] = {},
+  ['clangd'] = {},
+  ['eslint'] = {},
+  ['jsonls'] = {},
+  ['marksman'] = {},
+  ['lua_ls'] = {
     settings = {
       Lua = {
         hint = {
@@ -24,11 +27,9 @@ M.lua_ls = function()
         telemetry = { enable = false },
       },
     },
-  }
-end
-
-M.tsserver = function()
-  return {
+  },
+  ['solargraph'] = {},
+  ['tsserver'] = {
     init_options = {
       preferences = {
         includeInlayParameterNameHints = "all",
@@ -41,7 +42,14 @@ M.tsserver = function()
         importModuleSpecifierPreference = 'non-relative'
       },
     },
-  }
-end
+  },
+  ['vuels'] = {},
+  ['yamlls'] = {}
+}
 
-return M
+local lspconfig = require 'lspconfig'
+
+-- Server Setup
+for lsp, lsp_opts in pairs(servers) do
+  lspconfig[lsp].setup(vim.tbl_extend('force', lsp_opts, {}))
+end

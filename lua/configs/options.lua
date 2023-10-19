@@ -1,14 +1,19 @@
 local options = {
   colorcolumn    = '+1',
-  expandtab      = true,     -- convert tabs to spaces
-  foldmethod     = 'indent', -- Set 'indent' folding method
-  foldlevel      = 99,       -- Display all folds except top ones
-  foldnestmax    = 10,       -- Create folds only for some number of nested levels
-  formatoptions  = 'rqnl1j', -- Improve comment editing
-  hlsearch       = false,    -- highlight all matches on previous search pattern
-  inccommand     = 'split',  -- preview incremental substitute
-  ignorecase     = true,     -- Ignore case when searching (use `\C` to force not doing that)
-  laststatus     = 3,        -- Global Statusline
+  completeopt    = 'menuone,noinsert,noselect', -- Customize completions
+  expandtab      = true,                        -- convert tabs to spaces
+  foldmethod     = 'indent',                    -- Set 'indent' folding method
+  foldlevel      = 99,                          -- Display all folds except top ones
+  foldnestmax    = 10,                          -- Create folds only for some number of nested levels
+  formatoptions  = 'rqnl1j',                    -- Improve comment editing
+  hlsearch       = false,                       -- highlight all matches on previous search pattern
+  inccommand     = 'split',                     -- preview incremental substitute
+  incsearch      = true,                        -- Show search results while typing
+  infercase      = true,                        -- Infer letter cases for a richer built-in keyword completion
+  ignorecase     = true,                        -- Ignore case when searching (use `\C` to force not doing that)
+  laststatus     = 3,                           -- Global Statusline
+  list           = true,
+  listchars      = { extends = '.', precedes = '|', tab = "⇥ ", leadmultispace = "┊ ", trail = "␣", nbsp = "⍽" },
   number         = true,
   relativenumber = true,
   shiftwidth     = 2,     -- the number of spaces inserted for each indentation
@@ -18,7 +23,9 @@ local options = {
   splitbelow     = true,  -- force all horizontal splits to go below current window
   splitright     = true,  -- force all vertical splits to go to the right of current window
   smartcase      = true,
+  smartindent    = true,  -- Make indenting smart
   swapfile       = false, -- creates a swapfile
+  tabstop        = 2,     -- Insert 2 spaces for a tab
   termguicolors  = true,  -- set term gui colors (most terminals support this)
   textwidth      = 100,
   timeoutlen     = 500,
@@ -33,3 +40,4 @@ end
 
 vim.opt.path:append '**'
 vim.opt.shortmess:append 'cI'
+vim.opt.iskeyword:append('-') -- Treat dash separated words as a word text object

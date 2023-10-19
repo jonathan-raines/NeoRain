@@ -1,15 +1,11 @@
 return {
   'echasnovski/mini.files',
-  version = false,
   config = function()
-    require 'mini.files'.setup {}
+    require('mini.files').setup()
   end,
   keys = {
-    { '<leader>e', '<cmd>lua MiniFiles.open()<CR>', desc = 'Files' },
-    {
-      '-',
-      '<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), true)<CR>',
-      desc = 'Files Current Directory'
-    }
-  },
+    { '<leader>fe', "<cmd>lua MiniFiles.open()<cr>",                             desc = 'File Explorer' },
+    { '<leader>fE', "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>", desc = 'File Explorer' },
+  }
 }
+
