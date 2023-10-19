@@ -30,11 +30,6 @@ M.set_hl = function()
   highlight('St_git_change', { fg = '#FF7518' })
   highlight('St_git_delete', { fg = '#D2042D' })
 
-  highlight('St_diag_warnings', { fg = get_hl 'DiagnosticSignWarn'.foreground, bg = get_hl 'St_NormalMode'.background })
-  highlight('St_diag_error', { fg = get_hl 'DiagnosticSignError'.foreground, bg = get_hl 'St_NormalMode'.background })
-  highlight('St_diag_hints', { fg = get_hl 'DiagnosticSignHint'.foreground, bg = get_hl 'St_NormalMode'.background })
-  highlight('St_diag_info', { fg = get_hl 'DiagnosticSignInfo'.foreground, bg = get_hl 'St_NormalMode'.background })
-
   highlight('Spacer', { bg = get_hl 'St_NormalMode'.background })
   highlight('LspClient', { bg = get_hl 'St_NormalMode'.background })
   highlight('Treesitter', { fg = '#32CD32', bg = get_hl 'St_NormalMode'.background })

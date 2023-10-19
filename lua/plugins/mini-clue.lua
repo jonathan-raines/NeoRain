@@ -50,12 +50,12 @@ return {
         miniclue.gen_clues.windows(),
         miniclue.gen_clues.z(),
         { mode = 'n', keys = '<Leader>f',  desc = '+Find' },
-        { mode = 'n', keys = '<Leader>F',  desc = '+Find' },
+        { mode = 'n', keys = '<Leader>g',  desc = '+Grapple' },
         { mode = 'n', keys = '<Leader>h',  desc = '+Git' },
         { mode = 'n', keys = '<Leader>ht', desc = '+Toggle' },
         { mode = 'n', keys = '<Leader>l',  desc = '+Lsp' },
         { mode = 'n', keys = '<Leader>t',  desc = '+Test' },
-        { mode = 'n', keys = '<Leader>g',  desc = '+Grapple' },
+        { mode = 'n', keys = '<Leader>w',  desc = '+Workspace' },
       },
 
       window = {

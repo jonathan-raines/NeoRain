@@ -95,10 +95,10 @@ M.LSP_Diagnostics = function()
   local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 
-  local st_errors = (errors and errors > 0) and ('%#St_diag_error#' .. '  ' .. errors .. ' ') or ''
-  local st_warnings = (warnings and warnings > 0) and ('%#St_diag_warnings#' .. '  ' .. warnings .. ' ') or ''
-  local st_hints = (hints and hints > 0) and ('%#St_diag_hints#' .. '  ' .. hints .. ' ') or ''
-  local st_info = (info and info > 0) and ('%#St_diag_info#' .. ' ' .. info .. ' ') or ''
+  local st_errors = (errors and errors > 0) and ('%#DiagnosticSignError#' .. '  ' .. errors .. ' ') or ''
+  local st_warnings = (warnings and warnings > 0) and ('%#DiagnosticSignWarn#' .. '  ' .. warnings .. ' ') or ''
+  local st_hints = (hints and hints > 0) and ('%#DiagnosticSignHint#' .. '  ' .. hints .. ' ') or ''
+  local st_info = (info and info > 0) and ('%#DiagnosticSignInfo#' .. ' ' .. info .. ' ') or ''
 
   return st_errors .. st_warnings .. st_hints .. st_info
 end
@@ -151,4 +151,3 @@ M.Treesitter = function()
 end
 
 return M
-

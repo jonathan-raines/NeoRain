@@ -20,34 +20,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-  desc = 'Remove all visual effects for full screen terminal',
+  desc = 'Remove all visual effects for full screen terminal and start in insert mode',
   group = terminal_augroup,
   pattern = '*',
-  command = "setlocal nonumber norelativenumber nobuflisted signcolumn=no"
-})
-
-vim.api.nvim_create_autocmd("TermOpen", {
-  desc = 'Start terminal in insert mode',
-  group = terminal_augroup,
-  pattern = '*',
-  command = "startinsert"
+  callback = function()
+    vim.cmd [[startinsert]]
+    vim.cmd [[setlocal nonumber norelativenumber nobuflisted signcolumn=no]]
+  end
 })
 
 vim.api.nvim_create_autocmd("TermClose", {
   desc = 'Close terminal when exits 0',
   group = terminal_augroup,
   pattern = '*',
-  callback = function()
-    vim.cmd("bdelete")
-  end
+  command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif",
 })
 
--- Do not comment on new line
--- vim.api.nvim_create_autocmd("BufEnter", {
---   group = misc_augroup,
---   pattern = '*',
---   callback = function()
---     vim.opt.fo:remove { 'c', 'r', 'o' }
---   end
--- })
-
+vim.api.nvim_create_autocmd("Colorscheme", {
+  desc = 'Set highlights for Statusline',
+  pattern = '*',
+  callback = function()
+    require 'configs.statusline.colors'.set_hl()
+  end,
+  group = vim.api.nvim_create_augroup('Statusline', { clear = true })
+})
