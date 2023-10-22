@@ -5,6 +5,16 @@
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local keymap = function(mode, keys, func, desc)
+      if desc then
+        desc = 'LSP: ' .. desc
+      end
+
+      vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = desc })
+    end
+
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
     -- Enable completion triggered by <c-x><c-o>
@@ -17,9 +27,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Enable inlay hints
-    -- if client.server_capabilities.inlayHintProvider then
-    --     vim.lsp.inlay_hint(ev.buf, true)
-    -- end
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint(ev.buf, true)
+      keymap('n', '<leader>li', function() vim.lsp.inlay_hint(ev.buf, nil) end, 'Inlay Hints')
+    end
 
     -- Format on Save
     if client.name == 'tsserver' then
@@ -40,16 +51,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
           vim.lsp.buf.format { async = true }
         end,
       })
-    end
-
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local keymap = function(mode, keys, func, desc)
-      if desc then
-        desc = 'LSP: ' .. desc
-      end
-
-      vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = desc })
     end
 
     -- Actions
