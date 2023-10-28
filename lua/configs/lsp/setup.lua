@@ -27,10 +27,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Enable inlay hints
-    if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint(ev.buf, true)
-      keymap('n', '<leader>li', function() vim.lsp.inlay_hint(ev.buf, nil) end, 'Inlay Hints')
-    end
+    -- if client.server_capabilities.inlayHintProvider then
+    --   vim.lsp.inlay_hint(ev.buf, true)
+    --   keymap('n', '<leader>li', function() vim.lsp.inlay_hint(ev.buf, nil) end, 'Inlay Hints')
+    -- end
 
     -- Format on Save
     if client.name == 'tsserver' then
@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         desc = 'Autoformat buffer on save',
         buffer = 0,
         callback = function()
-          vim.lsp.buf.format { async = true }
+          vim.lsp.buf.format { async = false }
         end,
       })
     end
@@ -70,6 +70,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
     keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
     keymap('n', '<space>lD', vim.lsp.buf.type_definition, 'Type Definition')
+    keymap('n', '<space>li', vim.cmd.LspInfo, 'Info')
     keymap('n', '<leader>lp', '<cmd>lua PeekDefinition()<CR>', 'Peek Definition')
 
     -- Jump
@@ -78,7 +79,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
     keymap('n', 'gr', vim.lsp.buf.references, 'References')
     keymap('n', 'gs', vim.lsp.buf.document_symbol, 'Document Symbols')
-    keymap('n', 'gS', vim.lsp.buf.workspace_symbol, 'Workspace Symbols')
+
+    local fzf = require('fzf-lua')
+    keymap('n', '<leader>ls', fzf.lsp_document_symbols, 'Document Symbols')
+    keymap('n', '<leader>lS', fzf.lsp_workspace_symbols, 'Workspace Symbols')
 
     -- Workspace Folders
     keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder')
