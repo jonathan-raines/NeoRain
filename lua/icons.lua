@@ -3,17 +3,17 @@ local M = {}
 --- Diagnostic severities.
 M.diagnostics = {
   ERROR = '',
-  WARN = '',
   HINT = '',
   INFO = '',
+  WARN = '',
 }
 
 --- For folding.
 M.arrows = {
-  right = '',
-  left = '',
-  up = '',
   down = '',
+  left = '',
+  right = '',
+  up = '',
 }
 
 --- LSP symbol kinds.
@@ -48,9 +48,13 @@ M.symbol_kinds = {
 
 --- Shared icons that don't really fit into a category.
 M.misc = {
+  alpha = "",
   bug = '',
   git = '',
+  lazy = "󰒲",
+  oil = "󱐋",
   search = '',
+  telescope = "󰭎 ",
   vertical_bar = '│',
 }
 

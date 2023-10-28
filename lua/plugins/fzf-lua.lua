@@ -24,7 +24,7 @@ return {
     { '<leader>fs', "<cmd>FzfLua grep<CR>",                   desc = 'String' },
     { '<leader>ft', "<cmd>FzfLua tabs<CR>",                   desc = 'Tabs' },
     { '<leader>fw', "<cmd>FzfLua grep_cword<CR>",             desc = 'Word' },
+    { '<leader>f/', "<cmd>FzfLua lgrep_curbuf<CR>",           desc = "Search Buffer" },
     { '<leader>/',  "<cmd>FzfLua live_grep_native<CR>",       desc = 'Live Grep' },
-    { '/',          "<cmd>FzfLua lgrep_curbuf<CR>",           desc = "Search Buffer" }
   }
 }

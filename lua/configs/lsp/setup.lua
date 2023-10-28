@@ -27,10 +27,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Enable inlay hints
-    -- if client.server_capabilities.inlayHintProvider then
-    --   vim.lsp.inlay_hint(ev.buf, true)
-    --   keymap('n', '<leader>li', function() vim.lsp.inlay_hint(ev.buf, nil) end, 'Inlay Hints')
-    -- end
+    if client.server_capabilities.inlayHintProvider then
+      -- vim.lsp.inlay_hint(ev.buf, true)
+      keymap('n', '<leader>lh', function() vim.lsp.inlay_hint(ev.buf, nil) end, 'Inlay Hints')
+    end
 
     -- Format on Save
     if client.name == 'tsserver' then

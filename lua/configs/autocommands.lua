@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
     vim.cmd [[startinsert]]
     vim.cmd [[setlocal nonumber norelativenumber nobuflisted signcolumn=no]]
+    vim.cmd [[set ft=terminal]]
   end
 })
 
@@ -40,6 +41,8 @@ vim.api.nvim_create_autocmd("Colorscheme", {
   desc = 'Set highlights for Statusline',
   pattern = '*',
   callback = function()
+    _G_statusline_hls = {}
+
     local statusline_bg = '#1E1F29'
     local groups = {
       StatusLine = { fg = '#F6F6F5', bg = statusline_bg },
@@ -65,15 +68,14 @@ vim.api.nvim_create_autocmd("Colorscheme", {
       StatuslineModeNTerminal = { fg = statusline_bg, bg = '#93C572', bold = true },
       StatuslineModeSeparatorNTerminal = { fg = '#93C572', bg = statusline_bg, bold = true },
 
-      StatuslineModeSeparatorOther = { fg = '#FFBFA9', bold = true },
+      StatuslineModeSeparatorOther = { fg = '#FFBFA9', bg = statusline_bg, bold = true },
       StatuslineItalic = { fg = '#A9ABAC', bg = statusline_bg, italic = true },
       StatuslineSpinner = { fg = '#97EDA2', bg = statusline_bg, bold = true },
       StatuslineTitle = { fg = '#FFFFFF', bg = statusline_bg, bold = true },
 
-      -- Winbar styling.
-      WinBar = { fg = '#F6F6F5', bg = statusline_bg },
-      WinBarSeparator = { fg = '#87E58E', bg = statusline_bg },
-      WinBarSpecial = { fg = '#E7A1D7', bg = statusline_bg, italic = true },
+      Winbar = { fg = '#F6F6F5' },
+      WinbarSeparator = { fg = '#87E58E' },
+      WinbarSpecial = { fg = '#E7A1D7' },
     }
 
     for group, opts in pairs(groups) do

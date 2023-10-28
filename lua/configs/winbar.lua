@@ -2,6 +2,35 @@ local folder_icon = require('icons').symbol_kinds.Folder
 
 local M = {}
 
+--- Shows grapple label for active file
+--- @return string
+M.grapple_component = function()
+  local g = require 'grapple'
+  if g.exists() then
+    return table.concat { '%#WinbarSeparator#', ' ' }
+  else
+    return ''
+  end
+end
+
+function M.git_changes()
+  if not vim.b.gitsigns_head or vim.b.gitsigns_git_status then
+    return ''
+  end
+
+  local git_status = vim.b.gitsigns_status_dict
+
+  local added = (git_status.added and git_status.added ~= 0) and ('%#GitSignsAdd#' .. '   ' .. git_status.added) or ''
+  local changed = (git_status.changed and git_status.changed ~= 0) and
+      ('%#GitSignsChange#' .. '   ' .. git_status.changed
+      ) or ''
+  local removed = (git_status.removed and git_status.removed ~= 0) and
+      ('%#GitSignsDelete#' .. '   ' .. git_status.removed
+      ) or ''
+
+  return table.concat { added, changed, removed }
+end
+
 --- Window bar that shows the current file path (in a fancy way).
 ---@return string
 function M.render()
@@ -34,7 +63,7 @@ function M.render()
     end
     if prefix ~= '' then
       path = path:gsub('^' .. prefix_path, '')
-      prefix = string.format('%%#WinBarSpecial#%s %s%s', folder_icon, prefix, separator)
+      prefix = string.format('%%#WinbarSpecial#%s %s%s', folder_icon, prefix, separator)
     end
   end
 
@@ -50,6 +79,9 @@ function M.render()
       end, vim.split(path, '/')),
       separator
     ),
+    ' ' .. M.grapple_component(),
+    '%#Winbar#%=',
+    M.git_changes(),
   }
 end
 

@@ -10,22 +10,23 @@ vim.o.showmode = false
 
 --- Keeps track of the highlight groups I've already created.
 ---@type table<string, boolean>
-local statusline_hls = {}
+_G_statusline_hls = {}
 
 ---@param hl string
 ---@return string
 function M.get_or_create_hl(hl)
-  if not statusline_hls[hl] then
+  local hl_name = 'Statusline' .. hl
+
+  if not _G_statusline_hls[hl] then
     -- If not in the cache, create the highlight group using the icon's foreground color
     -- and the statusline's background color.
-    local fg_hl = vim.api.nvim_get_hl(0, { name = hl })
     local bg_hl = vim.api.nvim_get_hl(0, { name = 'StatusLine' })
-
-    vim.api.nvim_set_hl(0, hl, { bg = ('#%06x'):format(bg_hl.bg), fg = ('#%06x'):format(fg_hl.fg) })
-    statusline_hls[hl] = true
+    local fg_hl = vim.api.nvim_get_hl(0, { name = hl })
+    vim.api.nvim_set_hl(0, hl_name, { bg = ('#%06x'):format(bg_hl.bg), fg = ('#%06x'):format(fg_hl.fg) })
+    _G_statusline_hls[hl] = true
   end
 
-  return hl
+  return hl_name
 end
 
 --- Current mode.
@@ -218,6 +219,7 @@ function M.filetype_component()
     kitty_scrollback = { '󰄛', 'Conditional' },
     lazy = { icons.symbol_kinds.Method, 'Special' },
     lazyterm = { '', 'Special' },
+    terminal = { '', 'Special' },
     minifiles = { icons.symbol_kinds.Folder, 'Directory' },
     qf = { icons.misc.search, 'Conditional' },
     spectre_panel = { icons.misc.search, 'Constant' },
@@ -242,7 +244,7 @@ function M.filetype_component()
   end
   icon_hl = M.get_or_create_hl(icon_hl)
 
-  return string.format('%%#%s#%s %%#StatuslineTitle#%s', icon_hl, icon, filetype)
+  return string.format('%%#%s#%s %%#StatuslineTitle# %s', icon_hl, icon, filetype)
 end
 
 --- File-content encoding for the current buffer.
@@ -264,6 +266,31 @@ function M.position_component()
     string.format('%%#StatuslineTitle#%d', line),
     string.format('%%#StatuslineItalic#/%d c: %d', line_count, col),
   }
+end
+
+--- LSP name return
+---@return string
+function M.lsp_component()
+  if rawget(vim, 'lsp') then
+    local client_names = {}
+    for _, client in ipairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+      table.insert(client_names, client.name)
+    end
+
+    if next(client_names) then
+      return '%#LspClient#' .. '   ' .. table.concat(client_names, ', ') .. ' '
+    end
+  end
+  return ''
+end
+
+--- Returns the status of treesitter
+---@return string
+M.treesitter_component = function()
+  if next(vim.treesitter.highlighter.active) then
+    return '%#Treesitter#' .. ''
+  end
+  return ''
 end
 
 --- Renders the statusline.
