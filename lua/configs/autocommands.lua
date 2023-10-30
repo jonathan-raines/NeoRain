@@ -43,39 +43,41 @@ vim.api.nvim_create_autocmd("Colorscheme", {
   callback = function()
     _G_statusline_hls = {}
 
-    local statusline_bg = '#1E1F29'
+    local fg_hl = vim.api.nvim_get_hl(0, { name = '@keyword', link = false })
+    local sl_bg = '#1E1F29'
+
     local groups = {
-      StatusLine = { fg = '#F6F6F5', bg = statusline_bg },
+      StatusLine = { fg = '#F6F6F5', bg = sl_bg },
 
-      StatuslineModeNormal = { fg = statusline_bg, bg = '#32CD32', bold = true },
-      StatuslineModeSeparatorNormal = { fg = '#32CD32', bg = statusline_bg, bold = true },
+      StatuslineModeNormal = { fg = sl_bg, bg = '#32CD32', bold = true },
+      StatuslineModeSeparatorNormal = { fg = '#32CD32', bg = sl_bg, bold = true },
 
-      StatuslineModeInsert = { fg = statusline_bg, bg = '#FF7518', bold = true },
-      StatuslineModeSeparatorInsert = { fg = '#FF7518', bg = statusline_bg, bold = true },
+      StatuslineModeInsert = { fg = sl_bg, bg = '#FF7518', bold = true },
+      StatuslineModeSeparatorInsert = { fg = '#FF7518', bg = sl_bg, bold = true },
 
-      StatuslineModeVisual = { fg = statusline_bg, bg = '#DA70D6', bold = true },
-      StatuslineModeSeparatorVisual = { fg = '#DA70D6', bg = statusline_bg, bold = true },
+      StatuslineModeVisual = { fg = sl_bg, bg = '#DA70D6', bold = true },
+      StatuslineModeSeparatorVisual = { fg = '#DA70D6', bg = sl_bg, bold = true },
 
-      StatuslineModeReplace = { fg = statusline_bg, bg = '#D2042D', bold = true },
-      StatuslineModeSeparatorReplace = { fg = '#D2042D', bg = statusline_bg, bold = true },
+      StatuslineModeReplace = { fg = sl_bg, bg = '#D2042D', bold = true },
+      StatuslineModeSeparatorReplace = { fg = '#D2042D', bg = sl_bg, bold = true },
 
-      StatuslineModeCommand = { fg = statusline_bg, bg = '#DFFF00', bold = true },
-      StatuslineModeSeparatorCommand = { fg = '#DFFF00', bg = statusline_bg, bold = true },
+      StatuslineModeCommand = { fg = sl_bg, bg = '#DFFF00', bold = true },
+      StatuslineModeSeparatorCommand = { fg = '#DFFF00', bg = sl_bg, bold = true },
 
-      StatuslineModeTerminal = { fg = statusline_bg, bg = '#F4BB44', bold = true },
-      StatuslineModeSeparatorTerminal = { fg = '#F4BB44', bg = statusline_bg, bold = true },
+      StatuslineModeTerminal = { fg = sl_bg, bg = '#F4BB44', bold = true },
+      StatuslineModeSeparatorTerminal = { fg = '#F4BB44', bg = sl_bg, bold = true },
 
-      StatuslineModeNTerminal = { fg = statusline_bg, bg = '#93C572', bold = true },
-      StatuslineModeSeparatorNTerminal = { fg = '#93C572', bg = statusline_bg, bold = true },
+      StatuslineModeNTerminal = { fg = sl_bg, bg = '#93C572', bold = true },
+      StatuslineModeSeparatorNTerminal = { fg = '#93C572', bg = sl_bg, bold = true },
 
-      StatuslineModeSeparatorOther = { fg = '#FFBFA9', bg = statusline_bg, bold = true },
-      StatuslineItalic = { fg = '#A9ABAC', bg = statusline_bg, italic = true },
-      StatuslineSpinner = { fg = '#97EDA2', bg = statusline_bg, bold = true },
-      StatuslineTitle = { fg = '#FFFFFF', bg = statusline_bg, bold = true },
+      StatuslineModeSeparatorOther = { fg = '#FFBFA9', bg = sl_bg, bold = true },
+      StatuslineItalic = { fg = '#A9ABAC', bg = sl_bg, italic = true },
+      StatuslineSpinner = { fg = '#97EDA2', bg = sl_bg, bold = true },
+      StatuslineTitle = { fg = '#FFFFFF', bg = sl_bg, bold = true },
 
       Winbar = { fg = '#F6F6F5' },
       WinbarSeparator = { fg = '#87E58E' },
-      WinbarSpecial = { fg = '#E7A1D7' },
+      WinbarSpecial = { fg = fg_hl.fg },
     }
 
     for group, opts in pairs(groups) do

@@ -10,6 +10,7 @@ local default_opts = { noremap = true, silent = true }
 local keymaps = {
   { 'n', 'J',          'mzJ`z',                                                   { desc = 'Join on same line' } },
   { "n", "<leader>bd", "<cmd>bd<cr>",                                             { desc = 'Close Buffer' } },
+  { "n", "<leader>L",  "<cmd>Lazy<cr>",                                           { desc = 'Lazy' } },
   { "n", "<leader>hl", "<cmd>terminal lazygit<cr>",                               { desc = 'Lazygit' } },
   { "n", "<leader>hL", "<cmd>lua require('lazy.util').float_term('lazygit')<CR>", { desc = 'Lazygit' } },
   { "n", "<leader>u",  vim.cmd.update,                                            { desc = 'Update File' } },
