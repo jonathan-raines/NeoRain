@@ -20,10 +20,13 @@ function M.get_or_create_hl(hl)
   if not _G_statusline_hls[hl] then
     -- If not in the cache, create the highlight group using the icon's foreground color
     -- and the statusline's background color.
-    local bg_hl = vim.api.nvim_get_hl(0, { name = 'StatusLine' })
     local fg_hl = vim.api.nvim_get_hl(0, { name = hl })
-    vim.api.nvim_set_hl(0, hl_name, { bg = ('#%06x'):format(bg_hl.bg), fg = ('#%06x'):format(fg_hl.fg) })
-    _G_statusline_hls[hl] = true
+    local bg_hl = vim.api.nvim_get_hl(0, { name = 'StatusLine' })
+
+    if fg_hl.fg ~= nil and bg_hl.bg ~= nil then
+      vim.api.nvim_set_hl(0, hl_name, { bg = ('#%06x'):format(bg_hl.bg), fg = ('#%06x'):format(fg_hl.fg) })
+      _G_statusline_hls[hl] = true
+    end
   end
 
   return hl_name
