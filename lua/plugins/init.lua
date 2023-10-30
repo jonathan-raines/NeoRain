@@ -4,11 +4,9 @@ return {
   {
     'ribru17/bamboo.nvim',
     config = function()
-      require('bamboo').setup {
-        transparent = true
-      }
+      require('bamboo').setup { transparent = true }
 
-      require('bamboo').load()
+      -- require('bamboo').load()
     end
   },
 
@@ -16,6 +14,16 @@ return {
     "sainnhe/sonokai",
     config = function()
       vim.g['sonokai_transparent_background'] = 1
+    end
+  },
+
+  {
+    'dracula/vim',
+    name = 'dracula',
+    config = function()
+      vim.g['dracula_colorterm'] = 0
+
+      vim.cmd.colorscheme 'dracula'
     end
   },
 
