@@ -317,6 +317,7 @@ function M.render()
     concat_components {
       M.diagnostics_component(),
       M.filetype_component(),
+      M.treesitter_component(),
       M.encoding_component(),
       M.position_component(),
     },

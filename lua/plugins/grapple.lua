@@ -1,5 +1,15 @@
 return {
   'cbochs/grapple.nvim',
+  init = function()
+    vim.api.nvim_create_autocmd('VimEnter', {
+      desc = 'Load grapple scope',
+      pattern = '*',
+      callback = function()
+        vim.cmd [[ GrappleTags ]]
+      end,
+      group = vim.api.nvim_create_augroup('Misc', { clear = true })
+    })
+  end,
   config = function()
     require 'grapple'.setup { scope = 'git_branch' }
   end,
@@ -11,5 +21,5 @@ return {
     { '<leader>gl', '<cmd>GrappleSelect key=3<CR>', desc = 'Select Tag 3' },
     { '<leader>g;', '<cmd>GrappleSelect key=4<CR>', desc = 'Select Tag 4' },
   },
-  event = 'VeryLazy'
+  lazy = false
 }

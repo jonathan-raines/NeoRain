@@ -78,6 +78,8 @@ vim.api.nvim_create_autocmd("Colorscheme", {
       Winbar = { fg = '#F6F6F5' },
       WinbarSeparator = { fg = '#87E58E' },
       WinbarSpecial = { fg = fg_hl.fg },
+
+      Treesitter = { fg = '#32CD32', bg = sl_bg }
     }
 
     for group, opts in pairs(groups) do
