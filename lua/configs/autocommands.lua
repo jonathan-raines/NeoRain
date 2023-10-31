@@ -1,22 +1,23 @@
 -- Augroups ==================================================================
 local misc_augroup = vim.api.nvim_create_augroup('Misc', { clear = true })
+local yank_augroup = vim.api.nvim_create_augroup('Yank', { clear = true })
 local terminal_augroup = vim.api.nvim_create_augroup('Terminal', { clear = true })
 
 -- Autocmds ===================================================================
 vim.api.nvim_create_autocmd('BufReadPost', {
   desc = 'Open file at the last position it was edited earlier',
+  group = misc_augroup,
   pattern = '*',
-  command = 'silent! normal! g`"zv',
-  group = misc_augroup
+  command = 'silent! normal! g`"zv'
 })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight text on yank',
+  group = yank_augroup,
   pattern = '*',
   callback = function()
     vim.highlight.on_yank { higroup = 'Visual' }
-  end,
-  group = misc_augroup
+  end
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -34,11 +35,12 @@ vim.api.nvim_create_autocmd("TermClose", {
   desc = 'Close terminal when exits 0',
   group = terminal_augroup,
   pattern = '*',
-  command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif",
+  command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif"
 })
 
 vim.api.nvim_create_autocmd("Colorscheme", {
   desc = 'Set highlights for Statusline',
+  group = vim.api.nvim_create_augroup('Statusline', { clear = true }),
   pattern = '*',
   callback = function()
     _G_statusline_hls = {}
@@ -85,6 +87,5 @@ vim.api.nvim_create_autocmd("Colorscheme", {
     for group, opts in pairs(groups) do
       vim.api.nvim_set_hl(0, group, opts)
     end
-  end,
-  group = vim.api.nvim_create_augroup('Statusline', { clear = true })
+  end
 })
