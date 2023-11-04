@@ -7,14 +7,8 @@ return {
       require('bamboo').setup { transparent = true }
 
       -- require('bamboo').load()
-    end
-  },
-
-  {
-    "sainnhe/sonokai",
-    config = function()
-      vim.g['sonokai_transparent_background'] = 1
-    end
+    end,
+    event = 'VeryLazy'
   },
 
   {
@@ -25,6 +19,27 @@ return {
 
       vim.cmd.colorscheme 'dracula'
     end
+  },
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup {
+        transparent_background = true
+      }
+    end,
+    event = 'VeryLazy'
+  },
+
+  {
+    "sainnhe/sonokai",
+    config = function()
+      vim.g['sonokai_transparent_background'] = 1
+    end,
+    event = 'VeryLazy',
+    enabled = false
   },
 
   {
