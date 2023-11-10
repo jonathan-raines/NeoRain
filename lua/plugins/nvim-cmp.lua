@@ -4,31 +4,16 @@ return {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
-    {
-      'L3MON4D3/LuaSnip',
-      dependencies = {
-        'saadparwaiz1/cmp_luasnip',
-        'rafamadriz/friendly-snippets'
-      },
-      config = function()
-        require 'luasnip/loaders/from_vscode'.lazy_load()
-      end,
-      keys = {
-        {
-          '<tab>',
-          function()
-            return require 'luasnip'.jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>'
-          end,
-          expr = true,
-          silent = true,
-          mode = 'i',
-        },
-        { '<tab>',   function() require 'luasnip'.jump(1) end,  mode = 's' },
-        { '<s-tab>', function() require 'luasnip'.jump(-1) end, mode = { 'i', 's' } },
-      },
-    },
   },
   config = function()
+    vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+      if vim.snippet.jumpable(1) then
+        return '<cmd>lua vim.snippet.jump(1)<cr>'
+      else
+        return '<Tab>'
+      end
+    end, { expr = true })
+
     vim.o.completeopt = 'menu,menuone,noselect'
 
     local cmp = require 'cmp'
@@ -89,18 +74,23 @@ return {
       },
       snippet = {
         expand = function(args)
-          require 'luasnip'.lsp_expand(args.body)
-        end,
+          vim.snippet.expand(args.body:gsub('${(%d):(.-)}', '$%1'))
+        end
       },
+      -- snippet = {
+      --   expand = function(args)
+      --     require 'luasnip'.lsp_expand(args.body)
+      --   end,
+      -- },
       sources = cmp.config.sources {
         { name = 'nvim_lsp' },
-        {
-          name = 'luasnip',
-          entry_filter = function()
-            local context = require("cmp.config.context")
-            return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
-          end,
-        },
+        -- {
+        --   name = 'luasnip',
+        --   entry_filter = function()
+        --     local context = require("cmp.config.context")
+        --     return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
+        --   end,
+        -- },
         { name = 'buffer' },
         { name = 'path' },
         { name = 'nvim_lua' },

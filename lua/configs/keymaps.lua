@@ -10,10 +10,10 @@ local default_opts = { noremap = true, silent = true }
 local keymaps = {
   { 'n', 'J',          'mzJ`z',                                                   { desc = 'Join on same line' } },
   { "n", "<leader>bd", "<cmd>bd<cr>",                                             { desc = 'Close Buffer' } },
+  { "n", "<leader>bu", vim.cmd.update,                                            { desc = 'Update' } },
   { "n", "<leader>L",  "<cmd>Lazy<cr>",                                           { desc = 'Lazy' } },
   { "n", "<leader>hl", "<cmd>terminal lazygit<cr>",                               { desc = 'Lazygit' } },
   { "n", "<leader>hL", "<cmd>lua require('lazy.util').float_term('lazygit')<CR>", { desc = 'Lazygit' } },
-  { "n", "<leader>u",  vim.cmd.update,                                            { desc = 'Update File' } },
   { 'n', '<leader>xq', utils.quickfix_toggle,                                     { desc = 'Toggle quickfix list' } },
   { 'n', '<leader>xl', utils.locallist_toggle,                                    { desc = 'Toggle location list' } },
   { 'n', '<C-\\>',     utils.floating_terminal,                                   { desc = 'Float terminal' } },

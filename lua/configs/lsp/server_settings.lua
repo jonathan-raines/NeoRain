@@ -44,7 +44,7 @@ local servers = {
     },
   },
   ['vuels'] = {},
-  ['yamlls'] = {}
+  -- ['yamlls'] = {}
 }
 
 local lspconfig = require 'lspconfig'

@@ -18,19 +18,8 @@ return {
       vim.g['dracula_colorterm'] = 0
 
       vim.cmd.colorscheme 'dracula'
-    end
-  },
-
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      require("catppuccin").setup {
-        transparent_background = true
-      }
     end,
-    event = 'VeryLazy'
+    -- event = 'VeryLazy'
   },
 
   {
@@ -38,8 +27,7 @@ return {
     config = function()
       vim.g['sonokai_transparent_background'] = 1
     end,
-    event = 'VeryLazy',
-    enabled = false
+    event = 'VeryLazy'
   },
 
   {
