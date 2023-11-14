@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
     keymap('n', '<space>lD', vim.lsp.buf.type_definition, 'Type Definition')
     keymap('n', '<space>li', vim.cmd.LspInfo, 'Info')
-    keymap('n', '<leader>lp', '<cmd>lua PeekDefinition()<CR>', 'Peek Definition')
+    -- keymap('n', '<leader>lp', '<cmd>lua PeekDefinition()<CR>', 'Peek Definition')
 
     -- Jump
     keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
@@ -91,16 +91,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, 'List Workspace Folders')
 
-    local function preview_location_callback(_, result)
-      if result == nil or vim.tbl_isempty(result) then
-        return nil
-      end
-      vim.lsp.util.preview_location(result[1])
-    end
-
-    function PeekDefinition()
-      local params = vim.lsp.util.make_position_params()
-      return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
-    end
+    -- local function preview_location_callback(_, result)
+    --   if result == nil or vim.tbl_isempty(result) then
+    --     return nil
+    --   end
+    --   vim.lsp.util.preview_location(result[1])
+    -- end
+    --
+    -- function PeekDefinition()
+    --   local params = vim.lsp.util.make_position_params()
+    --   return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+    -- end
   end,
 })
