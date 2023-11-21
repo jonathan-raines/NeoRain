@@ -6,7 +6,7 @@ return {
   end,
   cmd = { 'Oil' },
   keys = {
-    { '<leader>e', '<cmd>Oil<CR>', desc = 'File Explorer' }
+    { '<leader>e', '<cmd>Oil --float<CR>', desc = 'File Explorer' }
   },
   lazy = false
 }
