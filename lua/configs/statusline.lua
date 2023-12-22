@@ -86,7 +86,7 @@ function M.mode_component()
     hl = 'Pending'
   elseif mode:find 'VISUAL' then
     hl = 'Visual'
-  elseif mode:find 'INSERT' or mode:find 'SELECT' then
+  elseif mode:find 'INSERT' or mode:find 'SELECT' or mode:find 'REPLACE' then
     hl = 'Insert'
   elseif mode:find 'COMMAND' or mode:find 'TERMINAL' or mode:find 'EX' then
     hl = 'Command'
