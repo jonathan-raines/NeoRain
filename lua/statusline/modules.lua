@@ -2,12 +2,6 @@ local icons = require 'icons'
 
 local M = {}
 
--- Don't show the command that produced the quickfix list.
-vim.g.qf_disable_statusline = 1
-
--- Show the mode in my custom component instead.
-vim.o.showmode = false
-
 --- Keeps track of the highlight groups I've already created.
 ---@type table<string, boolean>
 _G_statusline_hls = {}
@@ -324,7 +318,5 @@ function M.render()
     ' ',
   }
 end
-
-vim.o.statusline = "%!v:lua.require'configs.statusline'.render()"
 
 return M
