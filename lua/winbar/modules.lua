@@ -2,17 +2,6 @@ local folder_icon = require('icons').symbol_kinds.Folder
 
 local M = {}
 
---- Shows grapple label for active file
---- @return string
-M.grapple_component = function()
-  local g = require 'grapple'
-  if g.exists() then
-    return table.concat { '%#WinbarSeparator#', ' ' }
-  else
-    return ''
-  end
-end
-
 function M.git_changes()
   if not vim.b.gitsigns_head or vim.b.gitsigns_git_status then
     return ''
@@ -79,7 +68,6 @@ function M.render()
       end, vim.split(path, '/')),
       separator
     ),
-    ' ' .. M.grapple_component(),
     '%#Winbar#%=',
     M.git_changes(),
   }
