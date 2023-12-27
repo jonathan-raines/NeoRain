@@ -57,7 +57,7 @@ return {
         miniclue.gen_clues.z(),
         { mode = 'n', keys = '<Leader>b',  desc = '+Buffers' },
         { mode = 'n', keys = '<Leader>f',  desc = '+Find' },
-        { mode = 'n', keys = '<Leader>g',  desc = '+Grapple' },
+        { mode = 'n', keys = '<Leader>g',  desc = '+Harpoon' },
         { mode = 'n', keys = '<Leader>h',  desc = '+Git' },
         { mode = 'n', keys = '<Leader>ht', desc = '+Toggle' },
         { mode = 'n', keys = '<Leader>l',  desc = '+Lsp' },
