@@ -2,17 +2,6 @@ local folder_icon = require('icons').symbol_kinds.Folder
 
 local M = {}
 
---- Shows grapple label for active file
---- @return string
-M.grapple_component = function()
-  local g = require 'grapple'
-  if g.exists() then
-    return table.concat { '%#WinbarSeparator#', ' ' }
-  else
-    return ''
-  end
-end
-
 function M.git_changes()
   if not vim.b.gitsigns_head or vim.b.gitsigns_git_status then
     return ''
@@ -79,25 +68,9 @@ function M.render()
       end, vim.split(path, '/')),
       separator
     ),
-    ' ' .. M.grapple_component(),
     '%#Winbar#%=',
     M.git_changes(),
   }
 end
-
-vim.api.nvim_create_autocmd('BufWinEnter', {
-  group = vim.api.nvim_create_augroup('mariasolos/winbar', { clear = true }),
-  desc = 'Attach winbar',
-  callback = function(args)
-    if
-        not vim.api.nvim_win_get_config(0).zindex     -- Not a floating window
-        and vim.bo[args.buf].buftype == ''            -- Normal buffer
-        and vim.api.nvim_buf_get_name(args.buf) ~= '' -- Has a file name
-        and not vim.wo[0].diff                        -- Not in diff mode
-    then
-      vim.wo.winbar = "%{%v:lua.require'configs.winbar'.render()%}"
-    end
-  end,
-})
 
 return M

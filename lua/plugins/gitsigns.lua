@@ -42,5 +42,6 @@ return {
         map({ 'o', 'x' }, 'ih', function() vim.cmd.Gitsigns 'select_hunk' end, { desc = 'Select Hunk' })
       end,
     }
-  end
+  end,
+  event = 'BufRead'
 }
