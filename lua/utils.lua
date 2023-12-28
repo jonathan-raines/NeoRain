@@ -28,14 +28,4 @@ M.locallist_toggle = function()
   end
 end
 
-M.floating_terminal = function()
-  local cwd = vim.fn.expand '%:p:h'
-  ---@cast cwd string
-  if vim.startswith(cwd, 'term') then
-    vim.cmd 'close'
-  else
-    require('float_term').float_term(nil, { cwd = cwd })
-  end
-end
-
 return M
