@@ -12,14 +12,35 @@ return {
   },
 
   {
-    'ribru17/bamboo.nvim',
+    'dracula/vim',
+    name = 'dracula',
+    config = function()
+      vim.g['dracula_colorterm'] = 0
+
+      -- vim.cmd.colorscheme 'dracula'
+    end
+  },
+
+  {
+    "EdenEast/nightfox.nvim",
+    config = function()
+      -- Default options
+      require('nightfox').setup({
+        options = {
+          -- transparent = true, -- Disable setting background
+        },
+      })
+
+      vim.cmd("colorscheme nightfox")
+    end
+  },
+
+  {
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      require('bamboo').setup {
-        transparent = true, -- Show/hide background
-      }
-      require('bamboo').load()
-    end,
-  },
+    opts = {
+      transparent = true
+    },
+  }
 }
