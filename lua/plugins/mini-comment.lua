@@ -1,8 +1,6 @@
 return {
   'echasnovski/mini.comment',
-  dependencies = {
-    'JoosepAlviste/nvim-ts-context-commentstring'
-  },
+  dependencies = 'JoosepAlviste/nvim-ts-context-commentstring',
   config = function()
     require 'mini.comment'.setup {
       options = {
