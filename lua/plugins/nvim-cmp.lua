@@ -6,16 +6,6 @@ return {
     'hrsh7th/cmp-path',
   },
   config = function()
-    vim.keymap.set({ 'i', 's' }, '<Tab>', function()
-      if vim.snippet.jumpable(1) then
-        return '<cmd>lua vim.snippet.jump(1)<cr>'
-      else
-        return '<Tab>'
-      end
-    end, { expr = true })
-
-    vim.o.completeopt = 'menu,menuone,noselect'
-
     local cmp = require 'cmp'
 
     local kinds = {
