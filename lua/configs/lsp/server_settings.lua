@@ -2,7 +2,22 @@ local servers = {
   ['bashls'] = {},
   ['clangd'] = {},
   ['eslint'] = {},
-  ['jsonls'] = {},
+  ['jsonls'] = {
+    settings = {
+      json = {
+        schemas = require("schemastore").json.schemas(),
+      },
+    },
+    setup = {
+      commands = {
+        Format = {
+          function()
+            vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
+          end,
+        },
+      },
+    },
+  },
   ['marksman'] = {},
   ['lua_ls'] = {
     settings = {
@@ -11,18 +26,18 @@ local servers = {
           enable = true
         },
         runtime = {
-          version = 'LuaJIT',
-          path = runtime_path,
-        },
-        completion = {
-          callSnippet = 'Replace',
+          version = 'LuaJIT'
         },
         diagnostics = {
           enable = true,
           globals = { 'vim', 'use', 'bufnr' },
         },
         workspace = {
-          checkcheckThirdParty = false,
+          checkThirdParty = false,
+          library = {
+            [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+            [vim.fn.stdpath "config" .. "/lua"] = true,
+          },
         },
         telemetry = { enable = false },
       },
