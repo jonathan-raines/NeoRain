@@ -17,40 +17,7 @@ return {
   },
   config = function()
     local cmp = require 'cmp'
-    local kinds = {
-      Array = ' ',
-      Boolean = ' ',
-      Class = ' ',
-      Color = ' ',
-      Constant = ' ',
-      Constructor = ' ',
-      Enum = ' ',
-      EnumMember = ' ',
-      Event = ' ',
-      Field = ' ',
-      File = ' ',
-      Folder = '  ',
-      Function = "󰊕 ",
-      Interface = ' ',
-      Keyword = '  ',
-      Method = ' ',
-      Module = '  ',
-      Namespace = ' ',
-      Number = ' ',
-      Object = ' ',
-      Operator = ' ',
-      Package = ' ',
-      Property = ' ',
-      Reference = '  ',
-      Snippet = ' ',
-      String = ' ',
-      Struct = '  ',
-      Text = ' ',
-      TypeParameter = ' ',
-      Unit = ' ',
-      Value = '  ',
-      Variable = '  ',
-    }
+    local kinds = require 'icons'.symbol_kinds
 
     cmp.setup {
       experimental = {
