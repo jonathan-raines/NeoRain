@@ -4,9 +4,17 @@ return {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
+    -- {
+    --   "L3MON4D3/LuaSnip",
+    --   dependencies = {
+    --     "rafamadriz/friendly-snippets",
+    --   },
+    -- },
   },
   config = function()
     local cmp = require 'cmp'
+    -- local luasnip = require "luasnip"
+    -- require("luasnip/loaders/from_vscode").lazy_load()
 
     local kinds = {
       Array = ' ',
@@ -65,22 +73,12 @@ return {
       snippet = {
         expand = function(args)
           vim.snippet.expand(args.body:gsub('${(%d):(.-)}', '$%1'))
+          -- require 'luasnip'.lsp_expand(args.body)
         end
       },
-      -- snippet = {
-      --   expand = function(args)
-      --     require 'luasnip'.lsp_expand(args.body)
-      --   end,
-      -- },
       sources = cmp.config.sources {
         { name = 'nvim_lsp' },
-        -- {
-        --   name = 'luasnip',
-        --   entry_filter = function()
-        --     local context = require("cmp.config.context")
-        --     return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
-        --   end,
-        -- },
+        { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
         { name = 'nvim_lua' },
