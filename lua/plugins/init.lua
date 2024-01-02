@@ -20,7 +20,7 @@ return {
     'dracula/vim',
     name = 'dracula',
     config = function()
-      vim.g['dracula_colorterm'] = 0
+      -- vim.g['dracula_colorterm'] = 0
 
       -- vim.cmd.colorscheme 'dracula'
     end
@@ -29,7 +29,6 @@ return {
   {
     "EdenEast/nightfox.nvim",
     config = function()
-      -- Default options
       require('nightfox').setup({
         options = {
           -- transparent = true, -- Disable setting background
@@ -39,13 +38,4 @@ return {
       vim.cmd("colorscheme nightfox")
     end
   },
-
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      transparent = true
-    },
-  }
 }
