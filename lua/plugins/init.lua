@@ -7,22 +7,10 @@ return {
   },
 
   {
-    'Wansmer/symbol-usage.nvim',
-    event = 'LspAttach',
-    config = function()
-      require('symbol-usage').setup {
-        vt_position = 'end_of_line'
-      }
-    end
-  },
-
-  {
     'dracula/vim',
     name = 'dracula',
     config = function()
-      -- vim.g['dracula_colorterm'] = 0
-
-      -- vim.cmd.colorscheme 'dracula'
+      vim.g['dracula_colorterm'] = 0
     end
   },
 
@@ -31,11 +19,9 @@ return {
     config = function()
       require('nightfox').setup({
         options = {
-          -- transparent = true, -- Disable setting background
+          transparent = true, -- Disable setting background
         },
       })
-
-      vim.cmd("colorscheme nightfox")
     end
   },
 }
