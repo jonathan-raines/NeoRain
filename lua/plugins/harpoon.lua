@@ -5,7 +5,12 @@ return {
   config = function()
     local harpoon = require("harpoon")
 
-    harpoon:setup()
+    harpoon:setup {
+      settings = {
+        save_on_toggle = true,
+        sync_on_ui_close = true,
+      }
+    }
 
     vim.keymap.set("n", "<leader>gm", function() harpoon:list():append() end, { desc = 'Harpoon Mark' })
     vim.keymap.set("n", "<leader>gg", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
