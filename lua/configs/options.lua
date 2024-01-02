@@ -48,3 +48,8 @@ end
 
 vim.opt.shortmess:append 'cI'
 -- vim.opt.iskeyword:append('-') -- Treat dash separated words as a word text object
+
+-- NETRW --
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 15

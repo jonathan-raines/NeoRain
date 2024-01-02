@@ -80,15 +80,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
     keymap('n', 'gr', vim.lsp.buf.references, 'References')
     keymap('n', 'gs', vim.lsp.buf.document_symbol, 'Document Symbols')
-    -- keymap('n', '<space>lD', vim.lsp.buf.type_definition, 'Type Definition')
 
     keymap('n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols')
-
-    -- Workspace Folders
-    -- keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder')
-    -- keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder')
-    -- keymap('n', '<space>wl', function()
-    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    -- end, 'List Workspace Folders')
   end,
 })
