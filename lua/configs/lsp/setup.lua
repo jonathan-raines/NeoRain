@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = desc })
     end
 
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id) or {}
 
     -- Enable completion triggered by <c-x><c-o>
     if client.server_capabilities.completionProvider then
@@ -28,8 +28,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Enable inlay hints
     if client.server_capabilities.inlayHintProvider then
-      -- vim.lsp.inlay_hint(ev.buf, true)
-      keymap('n', '<leader>lh', function() vim.lsp.inlay_hint(ev.buf, nil) end, 'Inlay Hints')
+      keymap('n', '<leader>lh',
+        function()
+          vim.lsp.inlay_hint.enable(ev.buf, not (vim.lsp.inlay_hint.is_enabled()))
+        end,
+        'Inlay Hints')
     end
 
     -- Format on Save
@@ -69,9 +72,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Help
     keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
     keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
-    keymap('n', '<space>lD', vim.lsp.buf.type_definition, 'Type Definition')
     keymap('n', '<space>li', vim.cmd.LspInfo, 'Info')
-    keymap('n', '<leader>lp', '<cmd>lua PeekDefinition()<CR>', 'Peek Definition')
 
     -- Jump
     keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
@@ -79,27 +80,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
     keymap('n', 'gr', vim.lsp.buf.references, 'References')
     keymap('n', 'gs', vim.lsp.buf.document_symbol, 'Document Symbols')
+    -- keymap('n', '<space>lD', vim.lsp.buf.type_definition, 'Type Definition')
 
     keymap('n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols')
-    keymap('n', '<leader>lS', '<cmd>Telescope lsp_workspace_symbols<CR>', 'Workspace Symbols')
 
     -- Workspace Folders
-    keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder')
-    keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder')
-    keymap('n', '<space>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, 'List Workspace Folders')
-
-    local function preview_location_callback(_, result)
-      if result == nil or vim.tbl_isempty(result) then
-        return nil
-      end
-      vim.lsp.util.preview_location(result[1])
-    end
-
-    function PeekDefinition()
-      local params = vim.lsp.util.make_position_params()
-      return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
-    end
+    -- keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder')
+    -- keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder')
+    -- keymap('n', '<space>wl', function()
+    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    -- end, 'List Workspace Folders')
   end,
 })
