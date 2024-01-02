@@ -4,6 +4,6 @@ vim.g.qf_disable_statusline = 1
 -- Show the mode in my custom component instead.
 vim.o.showmode = false
 
-require 'statusline.autocommands'
+require 'configs.statusline.autocommands'
 
-vim.o.statusline = "%!v:lua.require'statusline.modules'.render()"
+vim.o.statusline = "%!v:lua.require'configs.statusline.modules'.render()"
