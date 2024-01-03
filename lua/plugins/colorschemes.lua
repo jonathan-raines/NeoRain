@@ -4,17 +4,17 @@ return {
     name = 'dracula',
     config = function()
       vim.g['dracula_colorterm'] = 0
-    end
+    end,
+    lazy = true
   },
 
   {
-    "EdenEast/nightfox.nvim",
+    "navarasu/onedark.nvim",
     config = function()
-      require('nightfox').setup({
-        options = {
-          transparent = true
-        },
-      })
-    end
+      require 'onedark'.setup {
+        transparent = true
+      }
+    end,
+    lazy = true
   },
 }

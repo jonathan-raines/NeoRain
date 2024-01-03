@@ -22,6 +22,12 @@ local keymaps = {
     end, { desc = "Delete all listed buffers except current", silent = true }
   },
   { "n", "<leader>bu", vim.cmd.update,              { desc = 'Update' } },
+  { "n", "<leader>vc",
+    function()
+      local colorscheme = vim.fn.input("Colorscheme > ")
+      vim.cmd.colorscheme { colorscheme }
+    end, { desc = 'Choose colorscheme' }
+  },
   { "n", "<leader>e",  vim.cmd.Ex,                  { desc = 'File browser' } },
   { "n", "<leader>L",  "<cmd>Lazy<cr>",             { desc = 'Lazy' } },
   { "n", "<leader>hl", "<cmd>terminal lazygit<cr>", { desc = 'Lazygit' } },
