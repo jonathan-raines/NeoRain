@@ -25,5 +25,5 @@ return {
     vim.keymap.set("n", "<leader>gp", function() harpoon:list():prev() end, { desc = 'Harpoon Prev Buf' })
     vim.keymap.set("n", "<leader>gn", function() harpoon:list():next() end, { desc = 'Harpoon Next Buf' })
   end,
-  event = 'VeryLazy'
+  keys = { "<leader>g" }
 }
