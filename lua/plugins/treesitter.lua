@@ -2,9 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
-    local configs = require("nvim-treesitter.configs")
-
-    configs.setup({
+    require("nvim-treesitter.configs").setup({
       ensure_installed = { "lua", "vim", "vimdoc", "query", "ruby" },
       sync_install = false,
       auto_install = true,
@@ -12,5 +10,5 @@ return {
       indent = { enable = true },
     })
   end,
-  event = 'BufRead'
+  event = 'VeryLazy'
 }
