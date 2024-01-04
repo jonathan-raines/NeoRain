@@ -1,33 +1,8 @@
 return {
   'nvim-telescope/telescope.nvim',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
-  },
+  dependencies = 'nvim-lua/plenary.nvim',
   config = function()
-    local telescope = require 'telescope'
-    local actions = require 'telescope.actions'
-
-    telescope.setup {
-      pickers = {
-        buffers = {
-          previewer = false,
-          initial_mode = 'normal',
-          sort_lastused = true,
-          mappings = {
-            i = {
-              ['<A-d>'] = actions.delete_buffer,
-            },
-            n = {
-              ['d'] = actions.delete_buffer,
-              ['q'] = actions.close
-            },
-          },
-          theme = 'dropdown',
-        }
-      }
-    }
-    telescope.load_extension('fzf')
+    require 'telescope'.setup {}
   end,
   keys = {
     { '<leader><leader>', '<cmd>Telescope<CR>',                          desc = 'All Pickers' },
