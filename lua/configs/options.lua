@@ -34,7 +34,6 @@ local options = {
   smartindent    = true,  -- Make indenting smart
   swapfile       = false, -- creates a swapfile
   tabstop        = 2,     -- Insert 2 spaces for a tab
-  termguicolors  = true,  -- set term gui colors (most terminals support this)
   textwidth      = 100,
   undodir        = os.getenv 'HOME' .. '/.vim/undodir',
   undofile       = true,  -- enable persistent undo
