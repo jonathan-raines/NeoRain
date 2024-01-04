@@ -36,7 +36,6 @@ local options = {
   tabstop        = 2,     -- Insert 2 spaces for a tab
   termguicolors  = true,  -- set term gui colors (most terminals support this)
   textwidth      = 100,
-  timeoutlen     = 500,
   undodir        = os.getenv 'HOME' .. '/.vim/undodir',
   undofile       = true,  -- enable persistent undo
   wrap           = false, -- display lines as one long line
