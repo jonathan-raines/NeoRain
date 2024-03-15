@@ -57,20 +57,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Diagnostics
     keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set Local List')
-    keymap('n', '<leader>ld', vim.diagnostic.open_float, 'Line Diagnostics')
+    keymap('n', '<leader>le', vim.diagnostic.open_float, 'Line Diagnostics')
     keymap('n', '[d', vim.diagnostic.goto_prev, 'Previous Diagnostics')
     keymap('n', ']d', vim.diagnostic.goto_next, 'Next Diagnostics')
 
     -- Help
     keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
     keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
-    keymap('n', '<space>li', vim.cmd.LspInfo, 'Info')
 
     -- Jump
     keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
     keymap('n', 'gr', vim.lsp.buf.references, 'References')
     keymap('n', 'gs', vim.lsp.buf.document_symbol, 'Document Symbols')
-    keymap('n', '<leader>ls', function() require 'fzf-lua'.lsp_document_symbols() end, 'Document Symbols')
+    keymap('n', '<leader>ld', require 'fzf-lua'.lsp_document_symbols, 'Document Symbols')
+    keymap('n', '<leader>lw', require 'fzf-lua'.lsp_workspace_symbols, 'Workspace Symbols')
     keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
     keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
   end,
