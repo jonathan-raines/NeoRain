@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "Colorscheme" }, {
       StatuslineModeSeparatorNTerminal = { fg = '#93C572', bg = 'None', bold = true },
 
       StatuslineModeSeparatorOther = { fg = '#FFBFA9', bg = 'None', bold = true },
-      StatuslineItalic = { fg = '#A9ABAC', bg = 'None', italic = true },
+      StatuslineItalic = { fg = '#A9ABAC', bg = 'None', bold = true },
       StatuslineSpinner = { fg = '#97EDA2', bg = 'None', bold = true },
       StatuslineTitle = { fg = '#FFFFFF', bg = 'None', bold = true },
 
