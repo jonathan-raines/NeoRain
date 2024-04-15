@@ -54,7 +54,7 @@ vim.opt.scrolloff      = 8
 vim.opt.sidescrolloff  = 8
 
 -- Place a column line
-vim.opt.colorcolumn    = "+1"
+-- vim.opt.colorcolumn    = "+1"
 vim.opt.textwidth      = 100
 
 -- Improve comment editing
@@ -63,18 +63,11 @@ vim.opt.formatoptions  = 'rqnl1j'
 -- Global Statusline
 vim.opt.laststatus     = 3
 
--- List Characters
-vim.opt.list           = true
-vim.opt.listchars      = { extends = '.', precedes = '|', tab = "⇥ ", leadmultispace = "│ ", trail = "␣", nbsp = "⍽" }
-
 -- Disable swapfile
 vim.opt.swapfile       = false
 
--- Disable vim help buffer on opening
-vim.opt.shortmess:append 'cI'
-
 --Disable showing mode in command line
-vim.opt.showmode = false
+vim.opt.showmode       = false
 
--- Treat dash separated words as a word text object
--- vim.opt.iskeyword:append('-')
+-- Decrease update time
+vim.opt.updatetime     = 250
