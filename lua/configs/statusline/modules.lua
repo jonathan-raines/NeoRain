@@ -314,7 +314,7 @@ function M.render()
     },
     '%#StatuslineModeSeparatorOther#%=',
     concat_components {
-      M.diagnostics_component(),
+      -- M.diagnostics_component(),
       M.filetype_component(),
       M.treesitter_component(),
       M.encoding_component(),
