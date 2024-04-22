@@ -15,6 +15,7 @@ return {
     { '<leader>fb',       function() vim.cmd.FzfLua 'buffers' end,                        desc = '[FzfLua] Buffers' },
     { '<leader>fc',       function() vim.cmd.FzfLua 'commands' end,                       desc = '[FzfLua] Commands' },
     { '<leader>ff',       function() vim.cmd.FzfLua 'files' end,                          desc = '[FzfLua] Find Files' },
+    { '<leader>fh',       function() vim.cmd.FzfLua 'git_status' end,                     desc = '[FzfLua] Git Status' },
     { '<leader>fk',       function() vim.cmd.FzfLua 'keymaps' end,                        desc = '[FzfLua] Keymaps' },
     { '<leader>fr',       function() vim.cmd.FzfLua 'resume' end,                         desc = '[FzfLua] Resume' },
     { '<leader>fo',       function() require('fzf-lua').oldfiles { cwd_only = true } end, desc = '[FzfLua] Old Files' },
