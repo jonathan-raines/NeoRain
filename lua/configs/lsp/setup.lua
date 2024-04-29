@@ -57,9 +57,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Diagnostics
     keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set Local List')
-    keymap('n', '<leader>le', vim.diagnostic.open_float, 'Line Diagnostics')
-    keymap('n', '[d', vim.diagnostic.goto_prev, 'Previous Diagnostics')
-    keymap('n', ']d', vim.diagnostic.goto_next, 'Next Diagnostics')
 
     -- Help
     keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
