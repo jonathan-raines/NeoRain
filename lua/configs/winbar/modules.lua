@@ -60,15 +60,17 @@ function M.render()
   path = path:gsub('^/', '')
 
   return table.concat {
-    -- ' ',
-    -- prefix,
-    -- table.concat(
-    --   vim.iter.map(function(segment)
-    --     return string.format('%%#Winbar#%s', segment)
-    --   end, vim.split(path, '/')),
-    --   separator
-    -- ),
-    -- '%#Winbar#%=',
+    ' ',
+    prefix,
+    table.concat(
+      vim.iter(vim.split(path, '/'))
+      :map(function(segment)
+        return string.format('%%#Winbar#%s', segment)
+      end)
+      :totable(),
+      separator
+    ),
+    '%#Winbar#%=',
     M.git_changes(),
   }
 end

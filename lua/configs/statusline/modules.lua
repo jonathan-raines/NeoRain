@@ -189,14 +189,16 @@ function M.diagnostics_component()
     return acc
   end)
 
-  local parts = vim.iter.map(function(severity, count)
-    if count == 0 then
-      return nil
-    end
+  local parts = vim.iter(counts)
+      :map(function(severity, count)
+        if count == 0 then
+          return nil
+        end
 
-    local hl = 'Diagnostic' .. severity:sub(1, 1) .. severity:sub(2):lower()
-    return string.format('%%#%s#%s %d', M.get_or_create_hl(hl), icons.diagnostics[severity], count)
-  end, counts)
+        local hl = 'Diagnostic' .. severity:sub(1, 1) .. severity:sub(2):lower()
+        return string.format('%%#%s#%s %d', M.get_or_create_hl(hl), icons.diagnostics[severity], count)
+      end)
+      :totable()
 
   return table.concat(parts, ' ')
 end
@@ -314,7 +316,7 @@ function M.render()
     },
     '%#StatuslineModeSeparatorOther#%=',
     concat_components {
-      -- M.diagnostics_component(),
+      M.diagnostics_component(),
       M.filetype_component(),
       M.treesitter_component(),
       M.encoding_component(),
