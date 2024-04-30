@@ -11,9 +11,8 @@ return {
     }
   end,
   keys = {
-    { '<leader><leader>', vim.cmd.FzfLua,                                                 desc = '[FzfLua] Buffers' },
+    { '<leader><leader>', vim.cmd.FzfLua,                                                 desc = '[FzfLua] Pickers' },
     { '<leader>fb',       function() vim.cmd.FzfLua 'buffers' end,                        desc = '[FzfLua] Buffers' },
-    { '<leader>fc',       function() vim.cmd.FzfLua 'commands' end,                       desc = '[FzfLua] Commands' },
     { '<leader>ff',       function() vim.cmd.FzfLua 'files' end,                          desc = '[FzfLua] Find Files' },
     { '<leader>fh',       function() vim.cmd.FzfLua 'git_status' end,                     desc = '[FzfLua] Git Status' },
     { '<leader>fk',       function() vim.cmd.FzfLua 'keymaps' end,                        desc = '[FzfLua] Keymaps' },
@@ -25,5 +24,7 @@ return {
     { '<leader>fW',       function() vim.cmd.FzfLua 'grep_cWORD' end,                     desc = '[FzfLua] Grep WORD' },
     { '<leader>f/',       function() vim.cmd.FzfLua 'lgrep_curbuf' end,                   desc = '[FzfLua] Search Buffer' },
     { '<leader>/',        function() vim.cmd.FzfLua 'live_grep_native' end,               desc = '[FzfLua] Live Grep' },
+    { '<leader>ld',       function() vim.cmd.FzfLua 'lsp_document_symbols' end,           desc = '[FzfLua] Document Symbols' },
+    { '<leader>lw',       function() vim.cmd.FzfLua 'lsp_workspace_symbols' end,          desc = '[FzfLua] Workspace Symbols' },
   },
 }

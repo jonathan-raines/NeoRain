@@ -36,5 +36,9 @@ vim.api.nvim_create_autocmd("TermClose", {
   desc = 'Close terminal when exits 0',
   group = terminal_close_augroup,
   pattern = '*',
-  command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif"
+  callback = function()
+    if vim.bo.filetype ~= 'fzf' then
+      vim.cmd "close"
+    end
+  end
 })
