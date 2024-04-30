@@ -6,6 +6,7 @@ return {
       -- e Edit Arrow File        - Open Horizontal       C Clear All Items
       show_icons = true,
       leader_key = '<leader>a',
+      buffer_leader_key = '<leader>m',
       separate_by_branch = true, -- Bookmarks will be separated by git branch
       hide_handbook = true,
       always_show_path = false
