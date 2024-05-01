@@ -9,6 +9,8 @@ return {
         }
       }
     }
+
+    require("fzf-lua").register_ui_select()
   end,
   keys = {
     { '<leader><leader>', vim.cmd.FzfLua,                                                 desc = '[FzfLua] Pickers' },
