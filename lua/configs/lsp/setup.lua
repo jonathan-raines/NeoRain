@@ -65,7 +65,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Jump
     keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
     keymap('n', 'gr', vim.lsp.buf.references, 'References')
-    keymap('n', 'gs', vim.lsp.buf.document_symbol, 'Document Symbols')
     keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
     keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
   end,
