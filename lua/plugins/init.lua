@@ -12,6 +12,7 @@ return {
     config = function()
       require('render-markdown').setup({})
     end,
+    ft = { 'markdown' }
   },
 
   {

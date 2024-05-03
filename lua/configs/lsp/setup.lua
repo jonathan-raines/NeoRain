@@ -1,7 +1,3 @@
--- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
@@ -17,7 +13,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     local client = vim.lsp.get_client_by_id(ev.data.client_id) or {}
 
-    -- Enable inlay hints
+    if client.supports_method('textDocument/implementation') then
+      keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
+    end
+
     if client.server_capabilities.inlayHintProvider then
       keymap('n', '<leader>lh',
         function()
@@ -25,7 +24,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, 'Inlay Hints')
     end
 
-    -- Format on Save
     if client.name == 'solargraph' then
       client.server_capabilities.documentFormattingProvider = true
     end
@@ -52,20 +50,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Actions
     keymap('n', '<leader>la', vim.lsp.buf.code_action, 'Code Action')
-    keymap('n', '<leader>lr', vim.lsp.buf.rename, 'Rename')
-    keymap('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, 'Format')
-
+    keymap('n', '<leader>lf', function() vim.lsp.buf.format { async = false } end, 'Format')
+    keymap('n', '<leader>lR', vim.lsp.buf.rename, 'Rename')
+    keymap('n', 'gq', function() vim.lsp.buf.format { async = false } end, 'Format')
     -- Diagnostics
     keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set Local List')
-
     -- Help
     keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
     keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
-
     -- Jump
     keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
     keymap('n', 'gr', vim.lsp.buf.references, 'References')
     keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
-    keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
   end,
 })
