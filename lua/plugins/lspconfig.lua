@@ -4,5 +4,5 @@ return {
   config = function()
     require 'configs.lsp'
   end,
-  event = 'BufRead'
+  event = { 'BufNewFile', 'BufReadPre' }
 }
