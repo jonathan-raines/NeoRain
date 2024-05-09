@@ -304,7 +304,7 @@ function M.render()
   ---@return string
   local function concat_components(components)
     return vim.iter(components):skip(1):fold(components[1], function(acc, component)
-      return #component > 0 and string.format('%s    %s', acc, component) or acc
+      return #component > 0 and string.format('%s  %s ', acc, component) or acc
     end)
   end
 
