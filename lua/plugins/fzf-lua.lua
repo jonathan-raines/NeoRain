@@ -3,6 +3,11 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     require 'fzf-lua'.setup {
+      winopts = {
+        height = 0.6,
+        row = 1.0,
+        col = 0.0
+      },
       keymap = {
         fzf = {
           ["ctrl-q"] = "select-all+accept"
