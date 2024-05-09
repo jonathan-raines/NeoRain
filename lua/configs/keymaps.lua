@@ -8,7 +8,6 @@ local default_opts = { noremap = true, silent = true }
 local keymaps = {
   { 'n',          '<leader>bd', vim.cmd.bd,                                         { desc = 'Delete Buffer' } },
   { 'n',          '<leader>bu', vim.cmd.update,                                     { desc = 'Update' } },
-  { 'n',          '<leader>e',  vim.cmd.Explore,                                    { desc = 'Netrw' } },
   { 'n',          '<leader>L',  vim.cmd.Lazy,                                       { desc = 'Lazy' } },
   { 'n',          '<leader>bD', [[:%bd|e#|bd#<cr>]],                                { desc = 'Delete all listed buffers except current' } },
   { 'n',          '<leader>hl', [[:tab terminal lazygit<CR>]],                      { desc = 'Lazygit' } },
