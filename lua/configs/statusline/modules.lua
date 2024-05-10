@@ -140,8 +140,8 @@ vim.api.nvim_create_autocmd('LspProgress', {
 
     progress_status = {
       client = vim.lsp.get_client_by_id(args.data.client_id).name,
-      kind = args.data.result.value.kind,
-      title = args.data.result.value.title,
+      kind = args.data.params.value.kind,
+      title = args.data.params.value.title,
     }
 
     if progress_status.kind == 'end' then
