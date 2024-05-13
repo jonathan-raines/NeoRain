@@ -1,7 +1,3 @@
--- Leader key =================================================================
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 -- Keymaps ====================================================================
 local keymap = vim.keymap.set
 local default_opts = { noremap = true, silent = true }

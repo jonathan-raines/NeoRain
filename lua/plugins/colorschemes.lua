@@ -14,7 +14,8 @@ return {
       require 'onedark'.setup {
         transparent = true
       }
-    end,
-    lazy = true
+
+      vim.cmd("colorscheme onedark")
+    end
   },
 }
