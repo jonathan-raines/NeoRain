@@ -1,66 +1,52 @@
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local keymap = function(mode, keys, func, desc)
-      if desc then
-        desc = 'LSP: ' .. desc
-      end
-
-      vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = desc })
-    end
-
-    local client = vim.lsp.get_client_by_id(ev.data.client_id) or {}
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
 
     if client.supports_method('textDocument/implementation') then
-      keymap('n', 'gi', vim.lsp.buf.implementation, 'Implementation')
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = 0, desc = 'Implementation' })
     end
 
     if client.server_capabilities.inlayHintProvider then
-      keymap('n', '<leader>lh',
+      vim.keymap.set('n', '<leader>lh',
         function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }))
-        end, 'Inlay Hints')
+        end, { buffer = 0, desc = 'Inlay Hints' })
     end
 
-    if client.name == 'solargraph' then
+    if client.name ~= 'tsserver' then
       client.server_capabilities.documentFormattingProvider = true
     end
 
-    if client.name == 'tsserver' then
-      client.server_capabilities.documentFormattingProvider = false
-    end
-
-    if client.name == 'eslint' then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        desc = 'Autoformat with eslint on save',
-        buffer = 0,
-        command = 'EslintFixAll'
-      })
-    elseif client.server_capabilities.documentFormattingProvider then
+    if client.server_capabilities.documentFormattingProvider then
       vim.api.nvim_create_autocmd('BufWritePre', {
         desc = 'Autoformat buffer on save',
         buffer = 0,
         callback = function()
-          vim.lsp.buf.format { async = false }
+          if client.name == 'eslint' then
+            vim.cmd [[ EslintFixAll ]]
+          else
+            vim.lsp.buf.format { async = false }
+          end
         end,
       })
     end
 
     -- Actions
-    keymap('n', '<leader>la', vim.lsp.buf.code_action, 'Code Action')
-    keymap('n', '<leader>lf', function() vim.lsp.buf.format { async = false } end, 'Format')
-    keymap('n', '<leader>lR', vim.lsp.buf.rename, 'Rename')
-    keymap('n', 'gq', function() vim.lsp.buf.format { async = false } end, 'Format')
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0, desc = 'Code Action' })
+    vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { buffer = 0, desc = 'Rename' })
+    vim.keymap.set('n', 'gq', function() vim.lsp.buf.format { async = false } end, { buffer = 0, desc = 'Format' })
+    vim.keymap.set('n', '<leader>lf', function()
+      vim.lsp.buf.format { async = false }
+    end, { buffer = 0, desc = 'Format' })
     -- Diagnostics
-    keymap('n', '<leader>ll', vim.diagnostic.setloclist, 'Set Local List')
+    vim.keymap.set('n', '<leader>ll', vim.diagnostic.setloclist, { buffer = 0, desc = 'Set Local List' })
     -- Help
-    keymap('n', 'K', vim.lsp.buf.hover, 'Hover')
-    keymap('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0, desc = 'Hover' })
+    vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { buffer = 0, desc = 'Signature Help' })
     -- Jump
-    keymap('n', 'gd', vim.lsp.buf.definition, 'Definition')
-    keymap('n', 'gr', vim.lsp.buf.references, 'References')
-    keymap('n', 'gD', vim.lsp.buf.declaration, 'Declaration')
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0, desc = 'Definition' })
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = 0, desc = 'References' })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = 0, desc = 'Declaration' })
   end,
 })
