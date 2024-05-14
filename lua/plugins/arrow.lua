@@ -12,5 +12,5 @@ return {
       always_show_path = false
     }
   end,
-  keys = { '<leader>a' }
+  keys = { '<leader>a', '<leader>m' }
 }
