@@ -2,12 +2,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Statusbar ==================================================================
-require 'configs.statusline'
-
--- Winbar =====================================================================
-require 'configs.winbar'
-
 -- Lazy =======================================================================
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -33,3 +27,12 @@ require("lazy").setup('plugins', {
     notify = false,
   },
 })
+
+-- Colorscheme ================================================================
+vim.cmd("colorscheme onedark")
+
+-- Statusbar ==================================================================
+require 'configs.statusline'
+
+-- Winbar =====================================================================
+require 'configs.winbar'
