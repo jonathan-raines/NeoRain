@@ -8,6 +8,7 @@ local keymaps = {
   { 'n',          '<leader>bD', [[:%bd|e#|bd#<cr>]],                                { desc = 'Delete all listed buffers except current' } },
   { 'n',          '<leader>S',  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute under cursor', silent = false } },
   { 'n',          'J',          [[mzJ`z]],                                          { desc = 'Join on same line' } },
+  { 'n',          'gy',         [[:let @+ = expand("%")<CR>]],                      { desc = 'Copy current file path to clipboard' } },
   { { 'n', 'v' }, '<leader>y',  [["+y]],                                            { desc = 'Copy to system clipboard' } },
   { { 'n', 'v' }, '<leader>Y',  [["+Y]],                                            { desc = 'Copy to system clipboard' } },
   { { 'n', 'v' }, '<leader>p',  [["+p]],                                            { desc = 'Paste from system clipboard' } },
