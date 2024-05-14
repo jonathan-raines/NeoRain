@@ -6,7 +6,6 @@ local keymaps = {
   { 'n',          '<leader>bu', vim.cmd.update,                                     { desc = 'Update' } },
   { 'n',          '<leader>L',  vim.cmd.Lazy,                                       { desc = 'Lazy' } },
   { 'n',          '<leader>bD', [[:%bd|e#|bd#<cr>]],                                { desc = 'Delete all listed buffers except current' } },
-  { 'n',          '<leader>hl', [[:tab terminal lazygit<CR>]],                      { desc = 'Lazygit' } },
   { 'n',          '<leader>S',  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute under cursor', silent = false } },
   { 'n',          'J',          [[mzJ`z]],                                          { desc = 'Join on same line' } },
   { { 'n', 'v' }, '<leader>y',  [["+y]],                                            { desc = 'Copy to system clipboard' } },
