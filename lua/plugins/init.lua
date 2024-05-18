@@ -37,6 +37,24 @@ return {
       { '<leader>s/', function() vim.cmd.Pick 'grep_live' end, desc = '[MiniPick] Grep' },
       { '<leader>ss', ':Pick lsp scope="document_symbol"<CR>', desc = '[MiniPick] Document Symbols' },
     },
-  }
+  },
+
+  {
+    "FabijanZulj/blame.nvim",
+    config = function()
+      require("blame").setup()
+    end
+  },
+
+  {
+    'brenoprata10/nvim-highlight-colors',
+    config = function()
+      require('nvim-highlight-colors').setup {
+        render = 'virtual',
+      }
+    end
+  },
+
+  "sindrets/diffview.nvim"
 
 }
