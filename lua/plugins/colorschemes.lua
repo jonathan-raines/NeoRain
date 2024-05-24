@@ -4,8 +4,7 @@ return {
     name = 'dracula',
     config = function()
       vim.g['dracula_colorterm'] = 0
-    end,
-    lazy = true
+    end
   },
 
   {
