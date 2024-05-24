@@ -29,7 +29,7 @@ return {
     { '<leader>ft',       function() vim.cmd.FzfLua 'tabs' end,                                               desc = '[FzfLua] Tabs' },
     { '<leader>fw',       function() vim.cmd.FzfLua 'grep_cword' end,                                         desc = '[FzfLua] Grep Word' },
     { '<leader>fW',       function() vim.cmd.FzfLua 'grep_cWORD' end,                                         desc = '[FzfLua] Grep WORD' },
-    { '<leader>f/',       function() vim.cmd.FzfLua 'lgrep_curbuf' end,                                       desc = '[FzfLua] Search Buffer' },
+    { '<leader>f/',       function() vim.cmd.FzfLua 'blines' end,                                             desc = '[FzfLua] Search Buffer' },
     { '<leader>/',        function() vim.cmd.FzfLua 'live_grep_native' end,                                   desc = '[FzfLua] Live Grep' },
     -- LSP keymaps
     { '<leader>ld',       function() require("fzf-lua").lsp_definitions { jump_to_single_result = true } end, desc = '[FzfLua] LSP Definitions' },
