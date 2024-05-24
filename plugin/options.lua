@@ -70,3 +70,6 @@ opt.updatetime     = 250
 
 -- Don't have `o` add a comment
 opt.formatoptions:remove "o"
+
+-- Highlight embedded languages in the strings
+vim.g.vimsyn_embed = "alpPrj"

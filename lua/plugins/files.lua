@@ -21,4 +21,5 @@ return {
     },
     { '<leader>fE', '<cmd>lua MiniFiles.open()<CR>', desc = 'Mini Files CWD' }
   },
+
 }
