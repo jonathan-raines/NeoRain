@@ -11,14 +11,6 @@ return {
   },
 
   {
-    "FabijanZulj/blame.nvim",
-    config = function()
-      require("blame").setup()
-    end,
-    cmd = 'BlameToggle'
-  },
-
-  {
     'brenoprata10/nvim-highlight-colors',
     config = function()
       require('nvim-highlight-colors').setup {
