@@ -17,7 +17,6 @@ opt.shiftwidth     = 2
 
 -- Enable incremental searching
 opt.incsearch      = true
-opt.hlsearch       = false
 
 -- Preview incremental substitute
 opt.inccommand     = 'split'
@@ -71,5 +70,5 @@ opt.updatetime     = 250
 -- Don't have `o` add a comment
 opt.formatoptions:remove "o"
 
--- Highlight embedded languages in the strings
-vim.g.vimsyn_embed = "alpPrj"
+-- Dash as part of the word
+opt.iskeyword:append("-")

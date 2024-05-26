@@ -4,7 +4,8 @@ return {
     name = 'dracula',
     config = function()
       vim.g['dracula_colorterm'] = 0
-    end
+    end,
+    event = 'Colorscheme'
   },
 
   {
@@ -22,7 +23,8 @@ return {
       require("monokai-pro").setup {
         transparent_background = true,
       }
-    end
+    end,
+    event = 'Colorscheme'
   },
 
 }

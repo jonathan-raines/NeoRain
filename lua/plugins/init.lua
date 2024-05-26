@@ -1,8 +1,4 @@
 return {
-  'nvim-tree/nvim-web-devicons',
-
-  'sindrets/diffview.nvim',
-
   { "b0o/schemastore.nvim", lazy = true },
 
   {
@@ -19,7 +15,8 @@ return {
     "FabijanZulj/blame.nvim",
     config = function()
       require("blame").setup()
-    end
+    end,
+    cmd = 'BlameToggle'
   },
 
   {
@@ -28,7 +25,8 @@ return {
       require('nvim-highlight-colors').setup {
         render = 'virtual',
       }
-    end
+    end,
+    event = 'BufRead'
   },
 
 }

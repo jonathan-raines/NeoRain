@@ -28,11 +28,11 @@ require("lazy").setup('plugins', {
   },
 })
 
--- Colorscheme ================================================================
-vim.cmd("colorscheme onedark")
-
 -- Statusbar ==================================================================
 require 'configs.statusline'
 
 -- Winbar =====================================================================
 require 'configs.winbar'
+
+-- Colorscheme ================================================================
+vim.cmd.colorscheme 'onedark'
