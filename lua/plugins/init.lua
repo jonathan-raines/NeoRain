@@ -1,5 +1,4 @@
 return {
-  { "b0o/schemastore.nvim", lazy = true },
 
   {
     'MeanderingProgrammer/markdown.nvim',
