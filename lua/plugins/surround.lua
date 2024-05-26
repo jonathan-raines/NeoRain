@@ -1,7 +1,7 @@
 return {
-  'echasnovski/mini.surround',
+  "kylechui/nvim-surround",
   config = function()
-    require 'mini.surround'.setup {}
+    require("nvim-surround").setup {}
   end,
-  keys = { 's' }
+  keys = { 'ys', 'ds', 'cs' }
 }
