@@ -1,6 +1,6 @@
 return {
   'vim-test/vim-test',
-  config = function()
+  init = function()
     vim.cmd
     [[ function! DockerTransform(cmd)
         return "docker compose exec $(tmux display-message -p '#S') " .a:cmd
@@ -9,7 +9,7 @@ return {
 
     vim.cmd [[ let test#custom_transformations = {'docker': function('DockerTransform')} ]]
     vim.cmd [[ let test#transformation = 'docker' ]]
-    vim.cmd [[ let test#basic#start_normal = 1 ]]
+    -- vim.cmd [[ let test#basic#start_normal = 1 ]]
   end,
   keys = {
     { '<leader>tf', vim.cmd.TestFile,    desc = 'Test File' },
