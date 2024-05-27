@@ -9,6 +9,11 @@ return {
   },
 
   {
+    "folke/tokyonight.nvim",
+    opts = {
+      transparent = true
+    },
+    event = 'Colorscheme'
   },
 
   {

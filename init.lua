@@ -35,4 +35,4 @@ require 'configs.statusline'
 require 'configs.winbar'
 
 -- Colorscheme ================================================================
-vim.cmd.colorscheme 'onedark'
+vim.cmd.colorscheme 'tokyonight'
