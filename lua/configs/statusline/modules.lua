@@ -277,7 +277,7 @@ end
 function M.lsp_component()
   if rawget(vim, 'lsp') then
     local client_names = {}
-    for _, client in ipairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+    for _, client in ipairs(vim.lsp.get_clients { bufnr = 0 }) do
       table.insert(client_names, client.name)
     end
 
@@ -318,9 +318,10 @@ function M.render()
     concat_components {
       M.diagnostics_component(),
       M.filetype_component(),
+      M.lsp_component(),
       M.treesitter_component(),
-      M.encoding_component(),
-      M.position_component(),
+      -- M.encoding_component(),
+      -- M.position_component(),
     },
     ' ',
   }
