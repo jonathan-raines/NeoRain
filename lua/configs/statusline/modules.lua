@@ -312,14 +312,15 @@ function M.render()
     concat_components {
       M.mode_component(),
       M.git_component(),
-      M.dap_component() or M.lsp_progress_component(),
+      -- M.dap_component()
     },
     '%#StatuslineModeSeparatorOther#%=',
     concat_components {
       M.diagnostics_component(),
-      M.filetype_component(),
+      M.lsp_progress_component(),
       M.lsp_component(),
       M.treesitter_component(),
+      M.filetype_component(),
       -- M.encoding_component(),
       -- M.position_component(),
     },

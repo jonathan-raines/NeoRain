@@ -41,7 +41,8 @@ vim.api.nvim_create_autocmd({ "VimEnter", "Colorscheme" }, {
       WinbarSeparator = { fg = '#87E58E' },
       WinbarSpecial = { fg = fg_hl.fg },
 
-      Treesitter = { fg = '#32CD32', bg = 'None' }
+      Treesitter = { fg = '#32CD32', bg = 'None' },
+      LspClient = { fg = '#FFFFFF', bg = 'None' }
     }
 
     for group, opts in pairs(groups) do
