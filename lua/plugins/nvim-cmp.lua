@@ -4,16 +4,7 @@ return {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
-    -- {
-    --   'L3MON4D3/LuaSnip',
-    --   dependencies = {
-    --     'saadparwaiz1/cmp_luasnip',
-    --     'rafamadriz/friendly-snippets'
-    --   },
-    --   config = function()
-    --     require 'luasnip/loaders/from_vscode'.lazy_load()
-    --   end,
-    -- }
+    'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
     local cmp = require 'cmp'
@@ -23,6 +14,7 @@ return {
       experimental = {
         ghost_text = true,
       },
+      ---@diagnostic disable-next-line: missing-fields
       formatting = {
         format = function(_, item)
           if kinds[item.kind] then
@@ -41,15 +33,14 @@ return {
       snippet = {
         expand = function(args)
           vim.snippet.expand(args.body:gsub('${(%d):(.-)}', '$%1'))
-          -- require 'luasnip'.lsp_expand(args.body)
         end
       },
       sources = cmp.config.sources {
         { name = 'nvim_lsp' },
-        -- { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
         { name = 'nvim_lua' },
+        { name = 'lazydev', group_index = 0 }
       },
     }
   end,

@@ -14,4 +14,10 @@ return {
     event = 'BufRead'
   },
 
+  {
+    'altermo/ultimate-autopair.nvim',
+    event = { 'InsertEnter', 'CmdlineEnter' },
+    opts = {},
+  },
+
 }

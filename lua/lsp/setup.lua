@@ -61,13 +61,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave', 'BufEnter' }, {
         group = under_cursor_highlights_group,
         desc = 'Highlight references under the cursor',
-        buffer = bufnr,
+        buffer = 0,
         callback = vim.lsp.buf.document_highlight,
       })
       vim.api.nvim_create_autocmd({ 'CursorMoved', 'InsertEnter', 'BufLeave' }, {
         group = under_cursor_highlights_group,
         desc = 'Clear highlight references',
-        buffer = bufnr,
+        buffer = 0,
         callback = vim.lsp.buf.clear_references,
       })
     end
