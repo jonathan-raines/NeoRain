@@ -5,7 +5,7 @@ return {
     { "b0o/schemastore.nvim", ft = { 'json', 'yaml' } },
   },
   config = function()
-    require 'configs.lsp'
+    require 'lsp'
   end,
   event = { 'BufNewFile', 'BufReadPre' }
 }

@@ -58,11 +58,11 @@ M.symbol_kinds = {
 M.misc = {
   alpha = "",
   bug = '',
+  ellipsis = '…',
   git = '',
   lazy = "󰒲",
   oil = "󱐋",
   search = '',
-  telescope = "󰭎 ",
   vertical_bar = '│',
 }
 

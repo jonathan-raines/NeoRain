@@ -53,4 +53,4 @@ vim.api.nvim_create_autocmd({ "VimEnter", "Colorscheme" }, {
 
 -- Global Statusline
 vim.opt.laststatus = 3
-vim.opt.statusline = "%!v:lua.require'configs.statusline.modules'.render()"
+vim.opt.statusline = "%!v:lua.require'statusline.modules'.render()"

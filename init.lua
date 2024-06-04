@@ -1,6 +1,21 @@
+-- Autocmds ===================================================================
+require 'autocommands'
+
 -- Leader key =================================================================
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Keymaps ====================================================================
+require 'keymaps'
+
+-- Options ====================================================================
+require 'options'
+
+-- Statusbar ==================================================================
+require 'statusline'
+
+-- Winbar =====================================================================
+require 'winbar'
 
 -- Lazy =======================================================================
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -15,24 +30,28 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup('plugins', {
-  change_detection = {
-    enabled = true,
-    notify = false,
-  },
-  checker = {
-    enabled = true,
-    notify = false,
+  ui = { border = 'rounded' },
+  change_detection = { notify = false },
+  checker = { enabled = true, notify = false },
+  performance = {
+    rtp = {
+      -- Stuff I don't use.
+      disabled_plugins = {
+        'gzip',
+        'netrwPlugin',
+        'rplugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
   },
 })
-
--- Statusbar ==================================================================
-require 'configs.statusline'
-
--- Winbar =====================================================================
-require 'configs.winbar'
 
 -- Colorscheme ================================================================
 vim.cmd.colorscheme 'tokyonight'
