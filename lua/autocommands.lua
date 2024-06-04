@@ -36,7 +36,6 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Terminal ====================================================================
 vim.api.nvim_create_autocmd("TermOpen", {
   desc = 'Remove all visual effects for full screen terminal and start in insert mode',
   group = vim.api.nvim_create_augroup('Terminal Open', { clear = true }),

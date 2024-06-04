@@ -1,10 +1,6 @@
 -- Autocmds ===================================================================
 require 'autocommands'
 
--- Leader key =================================================================
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 -- Keymaps ====================================================================
 require 'keymaps'
 
@@ -39,7 +35,6 @@ require("lazy").setup('plugins', {
   checker = { enabled = true, notify = false },
   performance = {
     rtp = {
-      -- Stuff I don't use.
       disabled_plugins = {
         'gzip',
         'netrwPlugin',

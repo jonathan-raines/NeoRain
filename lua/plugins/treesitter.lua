@@ -12,16 +12,25 @@ return {
       auto_install = true,
       highlight = {
         enable = true,
+        disable = function(_, buf)
+          -- Don't disable for read-only buffers.
+          if not vim.bo[buf].modifiable then
+            return false
+          end
+
+          local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+          -- Disable for files larger than 250 KB.
+          return ok and stats and stats.size > (250 * 1024)
+        end,
         additional_vim_regex_highlighting = false
       },
-      indent = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {
           init_selection = '<CR>',
-          scope_incremental = '<CR>',
-          node_incremental = '<TAB>',
-          node_decremental = '<S-TAB>'
+          scope_incremental = false,
+          node_incremental = '<CR>',
+          node_decremental = '<BS>'
         },
         is_supported = function()
           local mode = vim.api.nvim_get_mode().mode
@@ -31,6 +40,7 @@ return {
           return true
         end
       },
+      indent = { enable = true },
       textobjects = {
         select = {
           enable = true,

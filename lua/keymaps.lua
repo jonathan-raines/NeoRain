@@ -1,6 +1,9 @@
+-- Leader key =================================================================
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- Keymaps ====================================================================
 local keymap = vim.keymap.set
-local default_opts = { noremap = true, silent = true }
 local keymaps = {
   { 'n',          '<leader>bd', vim.cmd.bd,                                         { desc = 'Delete Buffer' } },
   { 'n',          '<leader>bu', vim.cmd.update,                                     { desc = 'Update' } },
@@ -8,7 +11,7 @@ local keymaps = {
   { 'n',          '<leader>bD', [[:%bd|e#|bd#<cr>]],                                { desc = 'Delete all listed buffers except current' } },
   { 'n',          '<leader>S',  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute under cursor', silent = false } },
   { 'n',          'J',          [[mzJ`z]],                                          { desc = 'Join on same line' } },
-  { 'n',          'gy',         [[:let @+ = expand("%")<CR>]],                      { desc = 'Copy current file path to clipboard' } },
+  { 'n',          'gy',         '<cmd>let @+ = expand("%")<CR>',                    { desc = 'Copy current file path to clipboard' } },
   { { 'n', 'v' }, '<leader>y',  [["+y]],                                            { desc = 'Copy to system clipboard' } },
   { { 'n', 'v' }, '<leader>Y',  [["+Y]],                                            { desc = 'Copy to system clipboard' } },
   { { 'n', 'v' }, '<leader>p',  [["+p]],                                            { desc = 'Paste from system clipboard' } },
@@ -22,5 +25,12 @@ local keymaps = {
 }
 
 for _, val in pairs(keymaps) do
-  keymap(val[1], val[2], val[3], vim.tbl_extend('force', default_opts, val[4]))
+  keymap(val[1], val[2], val[3], vim.tbl_extend('force', {}, val[4]))
 end
+
+-- Lazygit
+keymap('n', '<leader>gl', function()
+  require('float_term').float_term('lazygit', {
+    size = { width = 0.95, height = 0.9 }
+  })
+end, { desc = 'Lazygit' })
