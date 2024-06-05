@@ -14,7 +14,6 @@ return {
       experimental = {
         ghost_text = true,
       },
-      ---@diagnostic disable-next-line: missing-fields
       formatting = {
         format = function(_, item)
           if kinds[item.kind] then

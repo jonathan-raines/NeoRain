@@ -3,7 +3,6 @@ return {
   dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
   build = ":TSUpdate",
   config = function()
-    ---@diagnostic disable-next-line: missing-fields
     require("nvim-treesitter.configs").setup {
       version = "*", -- Use for stability; omit to use `main` branch for the latest features
       event = "VeryLazy",
@@ -18,6 +17,7 @@ return {
             return false
           end
 
+          ---@diagnostic disable-next-line: undefined-field
           local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
           -- Disable for files larger than 250 KB.
           return ok and stats and stats.size > (250 * 1024)
