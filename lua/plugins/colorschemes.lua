@@ -17,11 +17,11 @@ return {
   },
 
   {
-    "loctvl842/monokai-pro.nvim",
-    opts = {
-      transparent_background = true
-    },
+    'sainnhe/sonokai',
+    config = function()
+      vim.g.sonokai_transparent_background = true
+    end,
     event = 'Colorscheme'
-  },
+  }
 
 }
