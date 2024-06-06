@@ -50,4 +50,4 @@ require("lazy").setup('plugins', {
 })
 
 -- Colorscheme ================================================================
-vim.cmd.colorscheme 'tokyonight'
+vim.cmd.colorscheme 'github_dark'
