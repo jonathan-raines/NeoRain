@@ -9,14 +9,6 @@ return {
   },
 
   {
-    "folke/tokyonight.nvim",
-    opts = {
-      transparent = true
-    },
-    event = 'Colorscheme'
-  },
-
-  {
     'sainnhe/sonokai',
     config = function()
       vim.g.sonokai_transparent_background = true
