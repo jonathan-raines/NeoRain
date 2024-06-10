@@ -26,10 +26,9 @@ vim.api.nvim_create_autocmd('FileType', {
     'git',
     'help',
     'man',
+    'netrw',
     'qf',
     'query',
-    'scratch',
-    'spectre_panel',
   },
   callback = function(args)
     vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf })

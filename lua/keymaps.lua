@@ -7,6 +7,7 @@ local keymap = vim.keymap.set
 local keymaps = {
   { 'n',          '<leader>bd', vim.cmd.bd,                                         { desc = 'Delete Buffer' } },
   { 'n',          '<leader>bu', vim.cmd.update,                                     { desc = 'Update' } },
+  { 'n',          '<leader>e',  vim.cmd.Explore,                                    { desc = 'NetRW' } },
   { 'n',          '<leader>L',  vim.cmd.Lazy,                                       { desc = 'Lazy' } },
   { 'n',          '<leader>bD', [[:%bd|e#|bd#<cr>]],                                { desc = 'Delete all listed buffers except current' } },
   { 'n',          '<leader>S',  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute under cursor', silent = false } },
