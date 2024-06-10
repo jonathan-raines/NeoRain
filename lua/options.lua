@@ -18,6 +18,9 @@ opt.shiftwidth     = 2
 -- Enable incremental searching
 opt.incsearch      = true
 
+-- Enable incremental searching
+opt.hlsearch       = false
+
 -- Preview incremental substitute
 opt.inccommand     = 'split'
 
