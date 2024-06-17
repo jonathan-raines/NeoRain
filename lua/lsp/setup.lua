@@ -55,22 +55,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Document Highlighting
-    if client.supports_method(methods.textDocument_documentHighlight) then
-      local under_cursor_highlights_group =
-          vim.api.nvim_create_augroup('mariasolos/cursor_highlights', { clear = false })
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave', 'BufEnter' }, {
-        group = under_cursor_highlights_group,
-        desc = 'Highlight references under the cursor',
-        buffer = 0,
-        callback = vim.lsp.buf.document_highlight,
-      })
-      vim.api.nvim_create_autocmd({ 'CursorMoved', 'InsertEnter', 'BufLeave' }, {
-        group = under_cursor_highlights_group,
-        desc = 'Clear highlight references',
-        buffer = 0,
-        callback = vim.lsp.buf.clear_references,
-      })
-    end
+    -- if client.supports_method(methods.textDocument_documentHighlight) then
+    --   local under_cursor_highlights_group =
+    --       vim.api.nvim_create_augroup('mariasolos/cursor_highlights', { clear = false })
+    --   vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave', 'BufEnter' }, {
+    --     group = under_cursor_highlights_group,
+    --     desc = 'Highlight references under the cursor',
+    --     buffer = 0,
+    --     callback = vim.lsp.buf.document_highlight,
+    --   })
+    --   vim.api.nvim_create_autocmd({ 'CursorMoved', 'InsertEnter', 'BufLeave' }, {
+    --     group = under_cursor_highlights_group,
+    --     desc = 'Clear highlight references',
+    --     buffer = 0,
+    --     callback = vim.lsp.buf.clear_references,
+    --   })
+    -- end
 
     -- Formatting
     if client.name ~= 'tsserver' then
