@@ -29,6 +29,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'netrw',
     'qf',
     'query',
+    'fugitive'
   },
   callback = function(args)
     vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf })

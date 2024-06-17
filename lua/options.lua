@@ -75,3 +75,10 @@ opt.formatoptions:remove "o"
 
 -- Dash as part of the word
 opt.iskeyword:append("-")
+
+-- NETRW --
+vim.g.netrw_altfile   = 1
+vim.g.netrw_banner    = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_preview   = 1
+vim.g.netrw_winsize   = 15
