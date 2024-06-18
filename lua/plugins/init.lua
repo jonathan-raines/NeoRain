@@ -2,7 +2,7 @@ return {
   {
     'brenoprata10/nvim-highlight-colors',
     opts = { render = 'virtual' },
-    event = 'BufRead'
+    cmd = { 'HighlightColors' }
   },
 
   {
