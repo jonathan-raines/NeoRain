@@ -2,8 +2,8 @@ return {
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "ibhagwan/fzf-lua",     -- optional
+      "nvim-lua/plenary.nvim",  -- required
+      "ibhagwan/fzf-lua",       -- optional
       "sindrets/diffview.nvim", -- optional - Diff integration
     },
     config = true,
@@ -15,8 +15,8 @@ return {
     'tpope/vim-fugitive',
     cmd = { 'Git', 'G' },
     keys = {
-      { '<leader>gs', [[:tab G<CR>]],   desc = '[Fugitive] Status' },
-      { '<leader>gb', [[:G blame<CR>]], desc = '[Fugitive] Blame' },
+      { '<leader>gs', [[:tab G<CR>]], desc = '[Fugitive] Status' },
+      -- { '<leader>gb', [[:G blame<CR>]], desc = '[Fugitive] Blame' },
     },
   },
 
