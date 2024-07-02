@@ -30,9 +30,9 @@ return {
         enable = true,
         keymaps = {
           init_selection = '<CR>',
-          scope_incremental = false,
-          node_incremental = '<CR>',
-          node_decremental = '<BS>'
+          scope_incremental = '<CR>',
+          node_incremental = '<TAB>',
+          node_decremental = '<Backspace>'
         },
         is_supported = function()
           local mode = vim.api.nvim_get_mode().mode
