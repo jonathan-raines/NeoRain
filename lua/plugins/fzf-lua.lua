@@ -1,6 +1,5 @@
 return {
   'ibhagwan/fzf-lua',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     require 'fzf-lua'.setup {
       winopts = { height = 0.6, row = 1.0, col = 0.0 },
@@ -31,7 +30,7 @@ return {
     { '<leader>ft',       function() vim.cmd.FzfLua 'tabs' end,                           desc = '[FzfLua] Tabs' },
     { '<leader>fw',       function() vim.cmd.FzfLua 'grep_cword' end,                     desc = '[FzfLua] Grep Word' },
     { '<leader>fW',       function() vim.cmd.FzfLua 'grep_cWORD' end,                     desc = '[FzfLua] Grep WORD' },
-    { '<leader>f/',       function() vim.cmd.FzfLua 'lgrep_curbuf' end,                   desc = '[FzfLua] Grep Buffer' },
+    { '<leader>f/',       function() vim.cmd.FzfLua 'grep_curbuf' end,                    desc = '[FzfLua] Grep Buffer' },
     { '<leader>/',        function() vim.cmd.FzfLua 'live_grep_native' end,               desc = '[FzfLua] Live Grep' },
   }
 }

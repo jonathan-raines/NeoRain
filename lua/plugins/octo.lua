@@ -3,7 +3,6 @@ return {
   requires = {
     'nvim-lua/plenary.nvim',
     'ibhagwan/fzf-lua',
-    'nvim-tree/nvim-web-devicons',
   },
   opts = {
     enable_builtin = true,
