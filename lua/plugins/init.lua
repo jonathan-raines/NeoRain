@@ -23,7 +23,17 @@ return {
       require("curl").setup({})
     end,
     cmd = 'CurlOpen'
-  }
+  },
+
+  {
+    'MeanderingProgrammer/markdown.nvim',
+    name = 'render-markdown',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' },
+    config = function()
+      require('render-markdown').setup({})
+    end,
+  },
+
   {
     "echasnovski/mini.icons",
     opts = {},
