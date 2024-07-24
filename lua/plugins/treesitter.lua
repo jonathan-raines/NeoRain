@@ -1,8 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup {
@@ -43,45 +40,6 @@ return {
         end
       },
       indent = { enable = true },
-      textobjects = {
-        move = {
-          enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
-          goto_next_start = {
-            ["]]"] = "@function.outer",
-            ["]m"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["]["] = "@function.outer",
-            ["]M"] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[["] = "@function.outer",
-            ["[m"] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["[]"] = "@function.outer",
-            ["[M"] = "@class.outer",
-          },
-        },
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["al"] = "@loop.outer",
-            ["il"] = "@loop.inner",
-            ["ac"] = "@conditional.outer",
-            ["ic"] = "@conditional.inner",
-            ["aa"] = "@parameter.outer",
-            ["ia"] = "@parameter.inner",
-            ["ab"] = "@block.outer",
-            ["ib"] = "@block.inner",
-          },
-          include_surrounding_whitespace = false,
-        },
-      },
     }
   end,
   event = { 'BufNewFile', 'BufReadPre' }
