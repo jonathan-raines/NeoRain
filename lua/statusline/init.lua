@@ -37,6 +37,10 @@ vim.api.nvim_create_autocmd({ "VimEnter", "Colorscheme" }, {
       StatuslineSpinner = { fg = '#97EDA2', bg = 'None', bold = true },
       StatuslineTitle = { fg = '#FFFFFF', bg = 'None', bold = true },
 
+      TabLine = { link = "MiniTablineHidden" },
+      TabLineFill = { link = "Normal" },
+      TabLineSel = { link = "MiniTablineCurrent" },
+
       Winbar = { fg = '#F6F6F5' },
       WinbarSeparator = { fg = '#87E58E' },
       WinbarSpecial = { fg = fg_hl.fg },
