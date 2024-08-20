@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Symbols
     keymap('<leader>fs', function()
-      vim.cmd.FzfLua 'lsp_document_symbols'
+      require('fzf-lua').lsp_document_symbols {}
     end, 'Document symbols')
 
     keymap('<leader>fS', function()
