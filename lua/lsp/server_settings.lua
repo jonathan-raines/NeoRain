@@ -44,7 +44,7 @@ local servers = {
   },
   ['marksman'] = {},
   ['solargraph'] = {},
-  ['tsserver'] = {
+  ['ts_ls'] = {
     init_options = {
       preferences = {
         includeInlayParameterNameHints = "all",
