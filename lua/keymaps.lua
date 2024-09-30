@@ -7,14 +7,12 @@ local keymap = vim.keymap.set
 local keymaps = {
   { 'n',          '<leader>bd', vim.cmd.bd,                                         { desc = 'Delete Buffer' } },
   { 'n',          '<leader>bu', vim.cmd.update,                                     { desc = 'Update' } },
-  { 'n',          '<leader>e',  vim.cmd.Explore,                                    { desc = 'NetRW' } },
   { 'n',          '<leader>L',  vim.cmd.Lazy,                                       { desc = 'Lazy' } },
   { 'n',          '<leader>bD', [[:%bd|e#|bd#<cr>]],                                { desc = 'Delete all listed buffers except current' } },
-  { 'n',          '<leader>S',  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute under cursor', silent = false } },
+  { 'n',          '<leader>s',  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute under cursor', silent = false } },
   { 'n',          'J',          [[mzJ`z]],                                          { desc = 'Join on same line' } },
   { 'n',          'gy',         '<cmd>let @+ = expand("%")<CR>',                    { desc = 'Copy current file path to clipboard' } },
   { { 'n', 'x' }, '<leader>y',  [["+y]],                                            { desc = 'Copy to system clipboard' } },
-  { { 'n', 'x' }, '<leader>Y',  [["+Y]],                                            { desc = 'Copy to system clipboard' } },
   { { 'n', 'x' }, '<leader>p',  [["+p]],                                            { desc = 'Paste from system clipboard' } },
   { { 'n', 'x' }, '<leader>P',  [["+P]],                                            { desc = 'Paste from system clipboard' } },
   { 'x',          'p',          [["_dP]],                                           { desc = 'Paste without replacing' } },
@@ -28,10 +26,3 @@ local keymaps = {
 for _, val in pairs(keymaps) do
   keymap(val[1], val[2], val[3], vim.tbl_extend('force', {}, val[4]))
 end
-
--- Lazygit
-keymap('n', '<leader>gl', function()
-  require('float_term').float_term('lazygit', {
-    size = { width = 0.95, height = 0.9 }
-  })
-end, { desc = 'Lazygit' })
