@@ -62,6 +62,7 @@ opt.sidescrolloff  = 8
 opt.textwidth      = 100
 
 -- Disable swapfile
+opt.autoread       = true
 opt.swapfile       = false
 
 --Disable showing mode in command line
