@@ -1,4 +1,8 @@
 return {
   'nanozuki/tabby.nvim',
-  config = true
+  config = true,
+  keys = {
+    { '<leader>tp', ":Tabby jump_to_tab<CR>", desc = 'Tab Jump' }
+  },
+  lazy = false
 }
