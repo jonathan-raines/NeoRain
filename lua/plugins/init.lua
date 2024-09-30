@@ -1,4 +1,3 @@
-return {}
 return {
   {
     'stevearc/oil.nvim',
@@ -24,6 +23,14 @@ return {
       --   desc = 'Mini Files Current Directory'
       -- }
     }
+  },
+
+
+  {
+    "ramilito/kubectl.nvim",
+    config = function()
+      require("kubectl").setup()
+    end,
   },
 
 }
