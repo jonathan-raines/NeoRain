@@ -6,7 +6,8 @@ return {
   },
   opts = {
     enable_builtin = true,
-    picker = 'fzf-lua'
+    picker = 'fzf-lua',
+    default_to_projects_v2 = true
   },
   keys = {
     { '<leader>o', vim.cmd.Octo, desc = "Octo" }
