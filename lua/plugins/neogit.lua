@@ -8,7 +8,9 @@ return {
     },
     config = true,
     cmd = "Neogit",
-    keys = { { '<leader>gg', vim.cmd.Neogit, desc = 'Open Neogit' } }
+    keys = {
+      { '<leader>gg', vim.cmd.Neogit, desc = 'Open Neogit' }
+    }
   },
 
   {

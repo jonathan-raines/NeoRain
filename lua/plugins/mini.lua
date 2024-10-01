@@ -24,6 +24,6 @@ return {
         return package.loaded["nvim-web-devicons"]
       end
     end,
-  }
+  },
 
 }
