@@ -22,7 +22,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     keymap('<leader>lf', vim.lsp.buf.format, 'Format')
 
     -- References
-    keymap('grr', '<cmd>FzfLua lsp_references<cr>', 'vim.lsp.buf.references()')
+    keymap('grr', function()
+      require('fzf-lua').lsp_references()
+    end, 'vim.lsp.buf.references()')
 
     -- Symbols
     keymap('<leader>fs', function()
