@@ -23,8 +23,6 @@ return {
     { '<leader>fD',       function() vim.cmd.FzfLua 'lsp_workspace_diagnostics' end,      desc = 'Workspace diagnostics' },
     { '<leader>ff',       function() vim.cmd.FzfLua 'files' end,                          desc = '[FzfLua] Find Files' },
     { '<leader>fh',       function() vim.cmd.FzfLua 'git_status' end,                     desc = '[FzfLua] Git Status' },
-    { '<leader>fk',       function() vim.cmd.FzfLua 'keymaps' end,                        desc = '[FzfLua] Keymaps' },
-    { '<leader>fr',       function() vim.cmd.FzfLua 'resume' end,                         desc = '[FzfLua] Resume' },
     { '<leader>fo',       function() require('fzf-lua').oldfiles { cwd_only = true } end, desc = '[FzfLua] Old Files' },
     { '<leader>fr',       function() vim.cmd.FzfLua 'resume' end,                         desc = '[FzfLua] Resume' },
     { '<leader>ft',       function() vim.cmd.FzfLua 'tabs' end,                           desc = '[FzfLua] Tabs' },
