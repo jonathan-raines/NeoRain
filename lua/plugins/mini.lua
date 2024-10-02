@@ -1,13 +1,5 @@
 return {
   {
-    'echasnovski/mini.pairs',
-    config = function()
-      require 'mini.pairs'.setup {}
-    end,
-    event = { 'InsertEnter', 'CmdlineEnter' },
-  },
-
-  {
     'echasnovski/mini.files',
     config = function()
       require 'mini.files'.setup {}
