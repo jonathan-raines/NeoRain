@@ -41,7 +41,7 @@ local servers = {
       linters = { 'rubocop' }
     }
   },
-  -- ['solargraph'] = {},
+  ['solargraph'] = {},
   ['ts_ls'] = {
     init_options = {
       preferences = {
