@@ -19,6 +19,7 @@ return {
   keys = {
     { '<leader><leader>', vim.cmd.FzfLua,                                                 desc = '[FzfLua] Pickers' },
     { '<leader>fb',       function() vim.cmd.FzfLua 'buffers' end,                        desc = '[FzfLua] Buffers' },
+    { '<leader>fc',       function() vim.cmd.FzfLua 'colorschemes' end,                   desc = '[FzfLua] Colorschemes' },
     { '<leader>fd',       function() vim.cmd.FzfLua 'lsp_document_diagnostics' end,       desc = 'Document diagnostics' },
     { '<leader>fD',       function() vim.cmd.FzfLua 'lsp_workspace_diagnostics' end,      desc = 'Workspace diagnostics' },
     { '<leader>ff',       function() vim.cmd.FzfLua 'files' end,                          desc = '[FzfLua] Find Files' },
