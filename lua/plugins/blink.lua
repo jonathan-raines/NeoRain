@@ -9,8 +9,16 @@ return {
     version = 'v0.*',
     -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     -- build = 'cargo build --release',
+    -- If you use nix, you can build from source using latest nightly rust with:
+    -- build = 'nix run .#build-plugin',
 
     opts = {
+      -- 'default' for mappings similar to built-in completion
+      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+      -- see the "default configuration" section below for full documentation on how to define
+      -- your own keymap. when defining your own, no keybinds will be assigned automatically.
+      keymap = 'default',
+
       highlight = {
         -- sets the fallback highlight groups to nvim-cmp's highlight groups
         -- useful for when your theme doesn't support blink.cmp
@@ -26,12 +34,6 @@ return {
 
       -- experimental signature help support
       -- trigger = { signature_help = { enabled = true } }
-
-      keymap = {
-        accept = '<C-y>',
-        select_prev = { '<Up>', '<C-p>' },
-        select_next = { '<Down>', '<C-n>' },
-      }
     }
   }
 }
