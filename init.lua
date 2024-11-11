@@ -41,13 +41,11 @@ require("lazy").setup('plugins', {
         'rplugin',
         'tarPlugin',
         'tutor',
-        'zipPlugin',
-        -- 'netrwPlugin',
-        -- 'tohtml',
+        'zipPlugin'
       },
     },
   },
 })
 
 -- Colorscheme ================================================================
-vim.cmd.colorscheme 'github_dark'
+vim.cmd.colorscheme 'github_dark_default'
