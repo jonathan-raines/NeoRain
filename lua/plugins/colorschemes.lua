@@ -16,17 +16,6 @@ return {
       vim.g.sonokai_transparent_background = true
     end,
     lazy = true
-  },
-
-  {
-    "wtfox/jellybeans.nvim",
-    priority = 1000,
-    config = function()
-      require("jellybeans").setup {
-        transparent = true
-      }
-    end,
-    lazy = true
   }
 
 }
