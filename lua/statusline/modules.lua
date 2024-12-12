@@ -111,16 +111,6 @@ function M.git_component()
   return string.format(' %s', head)
 end
 
---- The current debugging status (if any).
----@return string?
-function M.dap_component()
-  if not package.loaded['dap'] or require('dap').status() == '' then
-    return nil
-  end
-
-  return string.format('%%#%s#%s  %s', M.get_or_create_hl 'DapUIRestart', icons.misc.bug, require('dap').status())
-end
-
 ---@type table<string, string?>
 local progress_status = {
   client = nil,
@@ -312,7 +302,6 @@ function M.render()
     concat_components {
       M.mode_component(),
       M.git_component(),
-      -- M.dap_component()
     },
     '%#StatuslineModeSeparatorOther#%=',
     concat_components {
@@ -321,8 +310,8 @@ function M.render()
       M.lsp_component(),
       M.treesitter_component(),
       M.filetype_component(),
-      -- M.encoding_component(),
-      -- M.position_component(),
+      M.encoding_component(),
+      M.position_component(),
     },
     ' ',
   }
