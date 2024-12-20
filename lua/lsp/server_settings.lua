@@ -35,12 +35,12 @@ local servers = {
     },
   },
   ['marksman'] = {},
-  ['ruby_lsp'] = {
-    init_options = {
-      formatter = 'rubocop',
-      linters = { 'rubocop' }
-    }
-  },
+  -- ['ruby_lsp'] = {
+  --   init_options = {
+  --     formatter = 'rubocop',
+  --     linters = { 'rubocop' }
+  --   }
+  -- },
   ['solargraph'] = {},
   ['ts_ls'] = {
     init_options = {
