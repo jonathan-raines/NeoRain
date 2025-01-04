@@ -1,5 +1,0 @@
-require 'lsp.setup'
-require 'lsp.diagnostics'
-require 'lsp.handlers'
-require 'lsp.server_settings'
-require 'lsp.snippets'

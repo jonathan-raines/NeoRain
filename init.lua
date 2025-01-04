@@ -1,51 +1,21 @@
--- Autocmds ===================================================================
-require 'autocommands'
+--  ╭─────────────────────────────────────────────────────────╮
+--  │                     MiniDeps                            │
+--  ╰─────────────────────────────────────────────────────────╯
+local path_package = vim.fn.stdpath('data') .. '/site/'
+local mini_path = path_package .. 'pack/deps/start/mini.nvim'
 
--- Keymaps ====================================================================
-require 'keymaps'
-
--- Options ====================================================================
-require 'options'
-
--- Statusbar ==================================================================
-require 'statusline'
-
--- Winbar =====================================================================
-require 'winbar'
-
--- Lazy =======================================================================
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
----@diagnostic disable-next-line: undefined-field
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+---@diagnostic disable-next-line undefined-field
+if not vim.loop.fs_stat(mini_path) then
+  vim.cmd('echo "Installing `mini.nvim`" | redraw')
+  local clone_cmd = {
+    'git', 'clone', '--filter=blob:none',
+    'https://github.com/echasnovski/mini.nvim', mini_path
+  }
+  vim.fn.system(clone_cmd)
+  vim.cmd('packadd mini.nvim | helptags ALL')
+  vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
 
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup('plugins', {
-  ui = { border = 'rounded' },
-  change_detection = { notify = false },
-  checker = { enabled = true, notify = false },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        'gzip',
-        'rplugin',
-        'tarPlugin',
-        'tutor',
-        'zipPlugin'
-      },
-    },
-  },
-})
-
--- Colorscheme ================================================================
-vim.cmd.colorscheme 'github_dark_default'
+require('mini.deps').setup {
+  path = { package = path_package }
+}
