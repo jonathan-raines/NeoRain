@@ -11,7 +11,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set(mode, lhs, rhs, { buffer = args.buf, desc = desc })
     end
 
-    keymap('<leader>lf', vim.lsp.buf.format, 'Diagnostic Local List')
     keymap('<leader>ll', vim.diagnostic.setloclist, 'Diagnostic Local List')
     keymap('<leader>ls', function() vim.lsp.stop_client(vim.lsp.get_clients()) end, 'Stop LSP Servers')
 
@@ -38,6 +37,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
           end,
         })
+
+        keymap('<leader>lf', vim.lsp.buf.format, 'Diagnostic Local List')
       end
     end
   end,
@@ -59,10 +60,15 @@ vim.api.nvim_create_autocmd('LspDetach', {
       })
     end
 
-    -- Delete the keymaps associated with the LSP server
-    vim.keymap.del('n', '<leader>fs', { buffer = args.buf })
-    vim.keymap.del('n', '<leader>lf', { buffer = args.buf })
-    vim.keymap.del('n', '<leader>lh', { buffer = args.buf })
+    if client:supports_method("textDocument/documentSymbol") then
+      vim.keymap.del('n', '<leader>fs', { buffer = args.buf })
+    end
+
+
+    -- Inlay Hints
+    if client:supports_method("textDocument/inlayHint") then
+      vim.keymap.del('n', '<leader>lh', { buffer = args.buf })
+    end
   end
 })
 
