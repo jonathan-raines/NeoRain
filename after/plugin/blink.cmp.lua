@@ -2,7 +2,7 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 add {
   source = "Saghen/blink.cmp",
-  checkout = "v0.9.0", -- check releases for latest tag
+  checkout = "v0.9.3", -- check releases for latest tag
 }
 
 later(function()

@@ -8,9 +8,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Keymaps
     local function keymap(lhs, rhs, desc, mode)
       mode = mode or 'n'
-      vim.keymap.set(mode, lhs, rhs, { buffer = 0, desc = desc })
+      vim.keymap.set(mode, lhs, rhs, { buffer = args.buf, desc = desc })
     end
 
+    keymap('<leader>lf', vim.lsp.buf.format, 'Diagnostic Local List')
     keymap('<leader>ll', vim.diagnostic.setloclist, 'Diagnostic Local List')
     keymap('<leader>ls', function() vim.lsp.stop_client(vim.lsp.get_clients()) end, 'Stop LSP Servers')
 
@@ -60,6 +61,7 @@ vim.api.nvim_create_autocmd('LspDetach', {
 
     -- Delete the keymaps associated with the LSP server
     vim.keymap.del('n', '<leader>fs', { buffer = args.buf })
+    vim.keymap.del('n', '<leader>lf', { buffer = args.buf })
     vim.keymap.del('n', '<leader>lh', { buffer = args.buf })
   end
 })

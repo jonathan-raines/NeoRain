@@ -9,7 +9,7 @@ vim.g.maplocalleader = ' '
 --  ╰─────────────────────────────────────────────────────────╯
 local keymaps = {
   { 'n',          '<leader>bd', vim.cmd.bd,                                                 { desc = 'Delete Buffer' } },
-  { 'n',          '<leader>bq', [[:%bd|e#|bd#<cr>]],                                        { desc = 'Delete all listed buffers except current' } },
+  { 'n',          '<leader>bD', [[:%bd|e#|bd#<cr>]],                                        { desc = 'Delete all listed buffers except current' } },
   { 'n',          '<leader>bu', vim.cmd.update,                                             { desc = 'Update' } },
   { 'n',          '<leader>s',  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],         { desc = 'Substitute under cursor', silent = false } },
   { 'n',          'J',          [[mzJ`z]],                                                  { desc = 'Join on same line' } },
@@ -27,5 +27,5 @@ local keymaps = {
 }
 
 for _, val in pairs(keymaps) do
-  vim.keymap.set(val[1], val[2], val[3], vim.tbl_extend('force', {}, val[4]))
+  vim.keymap.set(val[1], val[2], val[3], val[4])
 end

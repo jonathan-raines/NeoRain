@@ -38,13 +38,13 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd("TermOpen", {
-  desc = 'Remove all visual effects for full screen terminal and start in insert mode',
-  group = vim.api.nvim_create_augroup('Terminal Open', { clear = true }),
-  callback = function()
-    vim.cmd [[setlocal  nobuflisted]]
-  end
-})
+-- vim.api.nvim_create_autocmd("TermOpen", {
+--   desc = 'Remove all visual effects for full screen terminal and start in insert mode',
+--   group = vim.api.nvim_create_augroup('Terminal Open', { clear = true }),
+--   callback = function()
+--     vim.cmd [[setlocal nobuflisted]]
+--   end
+-- })
 
 vim.api.nvim_create_autocmd("TermClose", {
   desc = 'Automatically close terminal buffers when their process is done',
