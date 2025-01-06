@@ -1,9 +1,22 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
-add {
-  source = "Saghen/blink.cmp",
-  checkout = "v0.9.3", -- check releases for latest tag
-}
+local function build_blink(params)
+  vim.notify('Building blink.cmp', vim.log.levels.INFO)
+  local obj = vim.system({ 'cargo', 'build', '--release' }, { cwd = params.path }):wait()
+  if obj.code == 0 then
+    vim.notify('Building blink.cmp done', vim.log.levels.INFO)
+  else
+    vim.notify('Building blink.cmp failed', vim.log.levels.ERROR)
+  end
+end
+
+add({
+  source = 'Saghen/blink.cmp',
+  hooks = {
+    post_install = build_blink,
+    post_checkout = build_blink,
+  },
+})
 
 later(function()
   require 'blink.cmp'.setup {
@@ -13,6 +26,7 @@ later(function()
     -- see the "default configuration" section below for full documentation on how to define
     -- your own keymap.
     keymap = { preset = 'default' },
+    -- keymap = { preset = 'default', cmdline = { preset = 'enter' } },
 
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -31,7 +45,7 @@ later(function()
     },
 
     -- experimental auto-brackets support
-    completion = { accept = { auto_brackets = { enabled = true } } },
+    completion = { accept = { auto_brackets = { enabled = false } } },
 
     -- experimental signature help support
     signature = { enabled = true }
