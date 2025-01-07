@@ -11,6 +11,7 @@ local keymaps = {
   { 'n',          '<leader>bd', vim.cmd.bd,                                                 { desc = 'Delete Buffer' } },
   { 'n',          '<leader>bD', [[:%bd|e#|bd#<cr>]],                                        { desc = 'Delete all listed buffers except current' } },
   { 'n',          '<leader>bu', vim.cmd.update,                                             { desc = 'Update' } },
+  { 'n',          '<leader>li', function() vim.cmd.checkhealth 'lsp' end,                   { desc = 'LSP Info' } },
   { 'n',          '<leader>s',  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],         { desc = 'Substitute under cursor', silent = false } },
   { 'n',          'J',          [[mzJ`z]],                                                  { desc = 'Join on same line' } },
   { 'n',          'gy',         ":call setreg('+', expand('%:.'))<CR>",                     { desc = 'Copy current file path to clipboard' } },
