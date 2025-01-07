@@ -4,6 +4,7 @@ add { source = 'folke/snacks.nvim' }
 
 later(function()
   require 'snacks'.setup {
+    win = { backdrop = false },
     notifier = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true }
