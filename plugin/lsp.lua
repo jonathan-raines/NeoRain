@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end, 'Inlay Hints')
     end
 
-    if client:supports_method('textDocument/formatting') then
+    if client:supports_method('textDocument/formatting') or client.name == 'solargraph' then
       if client.name ~= 'tsserver' then
         -- Format the current buffer on save
         vim.api.nvim_create_autocmd('BufWritePre', {
