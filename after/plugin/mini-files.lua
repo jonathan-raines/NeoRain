@@ -1,4 +1,4 @@
-MiniDeps.later(function()
+MiniDeps.now(function()
   require 'mini.files'.setup {}
 
   vim.keymap.set('n', '<leader>e', '<cmd>lua MiniFiles.open()<CR>', { desc = 'File Explorer' })
