@@ -1,8 +1,6 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+MiniDeps.add { source = 'otavioschwanck/arrow.nvim' }
 
-add { source = 'otavioschwanck/arrow.nvim' }
-
-later(function()
+MiniDeps.later(function()
   require 'arrow'.setup {
     -- s Toggle Current         v Open Vertical         d Delete mode        q Quit
     -- e Edit Arrow File        - Open Horizontal       C Clear All Items

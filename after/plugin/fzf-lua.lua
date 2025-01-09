@@ -1,11 +1,9 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-
-add {
+MiniDeps.add {
   source = 'ibhagwan/fzf-lua',
   dependencies = { "echasnovski/mini.icons" }
 }
 
-later(function()
+MiniDeps.later(function()
   require 'fzf-lua'.setup {
     winopts = { height = 0.6, row = 1.0, col = 0.0 },
     keymap = {

@@ -1,16 +1,16 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local add, now = MiniDeps.add, MiniDeps.now
 
 add { source = 'projekt0n/github-nvim-theme' }
-add { source = 'navarasu/onedark.nvim' }
+add { source = 'sainnhe/sonokai' }
 add { source = 'folke/tokyonight.nvim' }
-
 
 now(function()
   require 'github-theme'.setup {}
-  require 'onedark'.setup { transparent = true }
-  require 'tokyonight'.setup { transparent = true }
+  require 'tokyonight'.setup {}
+
+  vim.g.sonokai_better_performance = 1
 end)
 
 now(function()
-  vim.cmd.colorscheme 'tokyonight-night'
+  vim.cmd.colorscheme 'github_dark_default'
 end)

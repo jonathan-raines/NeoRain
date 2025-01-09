@@ -1,12 +1,10 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-
-add {
+MiniDeps.add {
   source = 'nvim-treesitter/nvim-treesitter',
   checkout = 'master',
   hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
 }
 
-later(function()
+MiniDeps.later(function()
   require('nvim-treesitter.configs').setup({
     auto_install = true,
     ensure_installed = { 'lua', 'vimdoc' },

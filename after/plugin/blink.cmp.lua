@@ -1,5 +1,3 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-
 local function build_blink(params)
   vim.notify('Building blink.cmp', vim.log.levels.INFO)
   local obj = vim.system({ 'cargo', 'build', '--release' }, { cwd = params.path }):wait()
@@ -10,7 +8,7 @@ local function build_blink(params)
   end
 end
 
-add({
+MiniDeps.add({
   source = 'Saghen/blink.cmp',
   hooks = {
     post_install = build_blink,
@@ -18,7 +16,7 @@ add({
   },
 })
 
-later(function()
+MiniDeps.later(function()
   require 'blink.cmp'.setup {
     -- 'default' for mappings similar to built-in completion
     -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)

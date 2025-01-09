@@ -1,8 +1,6 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+MiniDeps.add { source = 'folke/snacks.nvim' }
 
-add { source = 'folke/snacks.nvim' }
-
-later(function()
+MiniDeps.later(function()
   require 'snacks'.setup {
     win = { backdrop = false },
     notifier = { enabled = true },

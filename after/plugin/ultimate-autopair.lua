@@ -1,7 +1,5 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+MiniDeps.add { source = 'altermo/ultimate-autopair.nvim' }
 
-add { source = 'altermo/ultimate-autopair.nvim' }
-
-later(function()
+MiniDeps.later(function()
   require('ultimate-autopair').setup {}
 end)

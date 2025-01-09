@@ -1,7 +1,5 @@
--- local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+-- MiniDeps.add { source = "folke/ts-comments.nvim" }
 --
--- add { source = "folke/ts-comments.nvim" }
---
--- later(function()
+-- MiniDeps.later(function()
 --   require 'ts-comments'.setup {}
 -- end)

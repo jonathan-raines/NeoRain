@@ -1,7 +1,5 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+MiniDeps.add { source = 'tpope/vim-fugitive' }
 
-add { source = 'tpope/vim-fugitive' }
-
-later(function()
+MiniDeps.later(function()
   vim.keymap.set('n', '<leader>gs', [[:tab G<CR>]], { desc = '[Fugitive] Status' })
 end)
