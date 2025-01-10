@@ -97,3 +97,6 @@ opt.listchars:append {
 --  │                     Global Options                      │
 --  ╰─────────────────────────────────────────────────────────╯
 vim.g.health = { style = 'float' }
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_gzip = 1
