@@ -16,9 +16,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Symbols
     if client:supports_method("textDocument/documentSymbol") then
-      keymap('<leader>fs', function()
-        require('fzf-lua').lsp_document_symbols {}
-      end, 'Document symbols')
+      keymap("<leader>fs", function() Snacks.picker.lsp_symbols() end, "LSP Symbols")
     end
 
     -- Inlay Hints
@@ -63,7 +61,6 @@ vim.api.nvim_create_autocmd('LspDetach', {
     if client:supports_method("textDocument/documentSymbol") then
       vim.keymap.del('n', '<leader>fs', { buffer = args.buf })
     end
-
 
     -- Inlay Hints
     if client:supports_method("textDocument/inlayHint") then
