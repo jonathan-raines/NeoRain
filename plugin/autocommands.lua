@@ -20,20 +20,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank { higroup = 'Visual' }
   end
 })
-
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('mariasolos/close_with_q', { clear = true }),
-  desc = 'Close with <q>',
-  pattern = {
-    'git',
-    'help',
-    'man',
-    'netrw',
-    'qf',
-    'query',
-    'fugitive'
-  },
-  callback = function(args)
-    vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf })
-  end,
-})
