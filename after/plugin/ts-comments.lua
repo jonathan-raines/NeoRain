@@ -1,0 +1,5 @@
+-- MiniDeps.add { source = "folke/ts-comments.nvim" }
+--
+-- MiniDeps.later(function()
+--   require 'ts-comments'.setup {}
+-- end)
